@@ -50,13 +50,41 @@ type RaftLog struct {
 	pendingSnapshot *pb.Snapshot
 
 	// Your Data Here (2A).
+	lastIdxOfSnapshot uint64
+	lastTermOfSnapshot uint64
 }
 
 // newLog returns log using the given storage. It recovers the log
 // to the state that it just commits and applies the latest snapshot.
 func newLog(storage Storage) *RaftLog {
 	// Your Code Here (2A).
-	return nil
+	rlog := RaftLog{}
+	rlog.entries = make([]pb.Entry, 0)
+	rlog.storage = storage
+
+	firstIdx, err1 := storage.FirstIndex()
+	lastIdx, err2 := storage.LastIndex()
+	entries, err3 := storage.Entries(firstIdx, lastIdx + 1)
+	if err1 != nil || err2 != nil || err3 != nil {
+		panic("something wrong")
+	}
+	rlog.entries = append(rlog.entries, entries...)
+	rlog.stabled = lastIdx
+	rlog.lastIdxOfSnapshot = firstIdx - 1
+	rlog.lastTermOfSnapshot, _ = storage.Term(rlog.lastIdxOfSnapshot)
+
+	return &rlog
+}
+
+func (l *RaftLog) realIdx(logicalIdx uint64) int {
+	if logicalIdx == l.lastIdxOfSnapshot {
+		return -1
+	}
+	realIdx := logicalIdx - l.lastIdxOfSnapshot - 1
+	if realIdx >= uint64(len(l.entries)) {
+		panic("something wrong")
+	}
+	return int(realIdx)
 }
 
 // We need to compact the log entries in some point of time like
@@ -69,23 +97,61 @@ func (l *RaftLog) maybeCompact() {
 // unstableEntries return all the unstable entries
 func (l *RaftLog) unstableEntries() []pb.Entry {
 	// Your Code Here (2A).
-	return nil
+	idx := l.realIdx(l.stabled) + 1
+	ents := make([]pb.Entry, 0)
+	for ; uint64(idx) < l.LastIndex(); idx++ {
+		ents = append(ents, l.entries[idx])
+	}
+	return ents
 }
 
 // nextEnts returns all the committed but not applied entries
 func (l *RaftLog) nextEnts() (ents []pb.Entry) {
 	// Your Code Here (2A).
-	return nil
+	appliedIdx := l.realIdx(l.applied)
+	commitIdx := l.realIdx(l.committed)
+
+	ents = make([]pb.Entry, 0)
+	for idx := appliedIdx + 1; idx <= commitIdx; idx++ {
+		ents = append(ents, l.entries[idx])
+	}
+	return ents
 }
 
 // LastIndex return the last index of the log entries
 func (l *RaftLog) LastIndex() uint64 {
 	// Your Code Here (2A).
-	return 0
+	if (len(l.entries) == 0) {
+		return l.lastIdxOfSnapshot
+	}
+	return l.entries[len(l.entries) - 1].Index
 }
 
 // Term return the term of the entry in the given index
 func (l *RaftLog) Term(i uint64) (uint64, error) {
 	// Your Code Here (2A).
-	return 0, nil
+	realIdx := l.realIdx(i)
+	if realIdx == -1 {
+		return l.lastTermOfSnapshot, nil
+	}
+	return l.entries[realIdx].Term, nil
+}
+
+// AppendNewEntries append new entries
+func (l *RaftLog) AppendEntry(entry pb.Entry) {
+	l.entries = append(l.entries, entry)
+}
+
+func Max(x, y int) int {
+	if x > y {
+		return x
+	}
+	return y
+}
+
+func Min(x, y int) int {
+	if x < y {
+		return x
+	}
+	return y
 }

@@ -353,6 +353,9 @@ type Message struct {
 	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
 	XXX_unrecognized     []byte      `json:"-"`
 	XXX_sizecache        int32       `json:"-"`
+
+	ConflictTerm uint64
+	CommitUse    bool
 }
 
 func (m *Message) Reset()         { *m = Message{} }
@@ -467,6 +470,13 @@ type HardState struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
+}
+
+// judge whether hard state has been changed
+func (st *HardState) Changed(curHardState HardState) bool {
+	return !(st.Commit == curHardState.Commit &&
+		st.Vote == curHardState.Vote &&
+		st.Term == curHardState.Term)
 }
 
 func (m *HardState) Reset()         { *m = HardState{} }

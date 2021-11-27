@@ -33,6 +33,10 @@ type SoftState struct {
 	RaftState StateType
 }
 
+func (st *SoftState) changed(curSt *SoftState) bool {
+	return !(st.RaftState == curSt.RaftState && st.Lead == curSt.Lead)
+}
+
 // Ready encapsulates the entries and messages that are ready to read,
 // be saved to stable storage, committed or sent to other peers.
 // All fields in Ready are read-only.
@@ -70,12 +74,19 @@ type Ready struct {
 type RawNode struct {
 	Raft *Raft
 	// Your Data Here (2A).
+	prevSoftState *SoftState
+	prevHardState pb.HardState
 }
 
 // NewRawNode returns a new RawNode given configuration and a list of raft peers.
 func NewRawNode(config *Config) (*RawNode, error) {
 	// Your Code Here (2A).
-	return nil, nil
+	raft := newRaft(config)
+	return &RawNode{
+		raft,
+		raft.SoftState(),
+		raft.HardState(),
+	}, nil
 }
 
 // Tick advances the internal logical clock by a single tick.
@@ -143,7 +154,27 @@ func (rn *RawNode) Step(m pb.Message) error {
 // Ready returns the current point-in-time state of this RawNode.
 func (rn *RawNode) Ready() Ready {
 	// Your Code Here (2A).
-	return Ready{}
+	rd := Ready{
+		Entries:          rn.Raft.RaftLog.unstableEntries(),
+		CommittedEntries: rn.Raft.RaftLog.nextEnts(),
+	}
+	curSoftSt := rn.Raft.SoftState()
+	if prevSoftSt := rn.prevSoftState;
+		prevSoftSt.changed(curSoftSt) {
+		rd.SoftState = curSoftSt
+		rn.prevSoftState = curSoftSt
+	}
+
+	curHardSt := rn.Raft.HardState()
+	if prevHardState := rn.prevHardState;
+		prevHardState.Changed(curHardSt) {
+		rd.HardState = curHardSt
+		rn.prevHardState = curHardSt
+	}
+
+	// todo: snapshot
+
+	return rd
 }
 
 // HasReady called when RawNode user need to check if any Ready pending.
@@ -156,9 +187,15 @@ func (rn *RawNode) HasReady() bool {
 // last Ready results.
 func (rn *RawNode) Advance(rd Ready) {
 	// Your Code Here (2A).
+	if len(rd.Entries) > 0 {
+		rn.Raft.RaftLog.stabled = rd.Entries[len(rd.Entries) - 1].Index
+	}
+	if len(rd.CommittedEntries) > 0 {
+		rn.Raft.RaftLog.applied = rd.CommittedEntries[len(rd.CommittedEntries) - 1].Index
+	}
 }
 
-// GetProgress return the Progress of this node and its peers, if this
+// GetProgress return the the Progress of this node and its peers, if this
 // node is leader.
 func (rn *RawNode) GetProgress() map[uint64]Progress {
 	prs := make(map[uint64]Progress)
