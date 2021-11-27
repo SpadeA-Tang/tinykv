@@ -78,6 +78,10 @@ type RawNode struct {
 	prevHardState pb.HardState
 }
 
+func (rd *Ready) IsHardStEmpty() bool {
+	return rd.Term == 0
+}
+
 // NewRawNode returns a new RawNode given configuration and a list of raft peers.
 func NewRawNode(config *Config) (*RawNode, error) {
 	// Your Code Here (2A).
@@ -171,7 +175,6 @@ func (rn *RawNode) Ready() Ready {
 		rd.HardState = curHardSt
 		rn.prevHardState = curHardSt
 	}
-
 	// todo: snapshot
 
 	return rd

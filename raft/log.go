@@ -14,7 +14,9 @@
 
 package raft
 
-import pb "github.com/pingcap-incubator/tinykv/proto/pkg/eraftpb"
+import (
+	pb "github.com/pingcap-incubator/tinykv/proto/pkg/eraftpb"
+)
 
 // RaftLog manage the log entries, its struct look like:
 //
@@ -73,6 +75,16 @@ func newLog(storage Storage) *RaftLog {
 	rlog.lastIdxOfSnapshot = firstIdx - 1
 	rlog.lastTermOfSnapshot, _ = storage.Term(rlog.lastIdxOfSnapshot)
 
+	// todo: 此处的storage为 PeerStorage 但类型断言时却出错 fix it
+	// ans: 那是因为PeerStorage 有 storage没有的属性, 只能从 storage -> PeerStorage
+	// 不能从 PeerStorage -> storage
+	// todo: 此处虽获得了 commit, 但没有获得apply fix it
+	initState, _, err := storage.InitialState()
+	if err == nil {
+		rlog.committed = initState.Commit
+		rlog.applied = initState.Commit
+	}
+
 	return &rlog
 }
 
@@ -99,7 +111,7 @@ func (l *RaftLog) unstableEntries() []pb.Entry {
 	// Your Code Here (2A).
 	idx := l.realIdx(l.stabled) + 1
 	ents := make([]pb.Entry, 0)
-	for ; uint64(idx) < l.LastIndex(); idx++ {
+	for ; idx <= l.realIdx(l.LastIndex()); idx++ {
 		ents = append(ents, l.entries[idx])
 	}
 	return ents

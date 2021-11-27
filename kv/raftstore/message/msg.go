@@ -46,6 +46,7 @@ type Msg struct {
 	Data     interface{}
 }
 
+
 func NewMsg(tp MsgType, data interface{}) Msg {
 	return Msg{Type: tp, Data: data}
 }

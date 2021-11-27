@@ -42,6 +42,12 @@ func (d *peerMsgHandler) HandleRaftReady() {
 	if d.stopped {
 		return
 	}
+	rd := d.RaftGroup.Ready()
+	// todo: 这里判断 rd中的HardState是否为empty
+	if rd.HardState.Term == 0 {
+		return
+	}
+	panic("unimpl")
 	// Your Code Here (2B).
 }
 
@@ -113,6 +119,7 @@ func (d *peerMsgHandler) proposeRaftCommand(msg *raft_cmdpb.RaftCmdRequest, cb *
 		cb.Done(ErrResp(err))
 		return
 	}
+	panic("unimpl")
 	// Your Code Here (2B).
 }
 
