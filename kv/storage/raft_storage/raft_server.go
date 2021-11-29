@@ -2,6 +2,7 @@ package raft_storage
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -59,6 +60,7 @@ func (rs *RaftStorage) checkResponse(resp *raft_cmdpb.RaftCmdResponse, reqCount 
 
 // NewRaftStorage creates a new storage engine backed by a raftstore.
 func NewRaftStorage(conf *config.Config) *RaftStorage {
+	fmt.Println("RaftStorage .....")
 	dbPath := conf.DBPath
 	kvPath := filepath.Join(dbPath, "kv")
 	raftPath := filepath.Join(dbPath, "raft")

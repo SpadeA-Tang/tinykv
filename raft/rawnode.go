@@ -33,8 +33,8 @@ type SoftState struct {
 	RaftState StateType
 }
 
-func (st *SoftState) changed(curSt *SoftState) bool {
-	return !(st.RaftState == curSt.RaftState && st.Lead == curSt.Lead)
+func (st *SoftState) equal(curSt *SoftState) bool {
+	return st.RaftState == curSt.RaftState && st.Lead == curSt.Lead
 }
 
 // Ready encapsulates the entries and messages that are ready to read,
@@ -78,6 +78,7 @@ type RawNode struct {
 	prevHardState pb.HardState
 }
 
+// todo: is this reasonable
 func (rd *Ready) IsHardStEmpty() bool {
 	return rd.Term == 0
 }
@@ -162,16 +163,19 @@ func (rn *RawNode) Ready() Ready {
 		Entries:          rn.Raft.RaftLog.unstableEntries(),
 		CommittedEntries: rn.Raft.RaftLog.nextEnts(),
 	}
+	if len(rn.Raft.msgs) > 0 {
+		rd.Messages = rn.Raft.msgs
+	}
 	curSoftSt := rn.Raft.SoftState()
 	if prevSoftSt := rn.prevSoftState;
-		prevSoftSt.changed(curSoftSt) {
+		!prevSoftSt.equal(curSoftSt) {
 		rd.SoftState = curSoftSt
 		rn.prevSoftState = curSoftSt
 	}
 
 	curHardSt := rn.Raft.HardState()
 	if prevHardState := rn.prevHardState;
-		prevHardState.Changed(curHardSt) {
+		!prevHardState.Equal(curHardSt) {
 		rd.HardState = curHardSt
 		rn.prevHardState = curHardSt
 	}
@@ -183,6 +187,19 @@ func (rn *RawNode) Ready() Ready {
 // HasReady called when RawNode user need to check if any Ready pending.
 func (rn *RawNode) HasReady() bool {
 	// Your Code Here (2A).
+	if !rn.Raft.SoftState().equal(rn.prevSoftState) {
+		return true
+	}
+	if hardSt := rn.Raft.HardState(); !hardSt.IsEmpty() && !hardSt.Equal(rn.prevHardState) {
+		return true
+	}
+	// todo: snapshot
+	if len(rn.Raft.msgs) > 0 ||
+		rn.Raft.RaftLog.hasUnstableEnts() ||
+		rn.Raft.RaftLog.hasNextEnts() {
+		return true
+	}
+
 	return false
 }
 
@@ -191,10 +208,10 @@ func (rn *RawNode) HasReady() bool {
 func (rn *RawNode) Advance(rd Ready) {
 	// Your Code Here (2A).
 	if len(rd.Entries) > 0 {
-		rn.Raft.RaftLog.stabled = rd.Entries[len(rd.Entries) - 1].Index
+		rn.Raft.RaftLog.stabled = rd.Entries[len(rd.Entries)-1].Index
 	}
 	if len(rd.CommittedEntries) > 0 {
-		rn.Raft.RaftLog.applied = rd.CommittedEntries[len(rd.CommittedEntries) - 1].Index
+		rn.Raft.RaftLog.applied = rd.CommittedEntries[len(rd.CommittedEntries)-1].Index
 	}
 }
 

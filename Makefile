@@ -80,6 +80,9 @@ project2b:
 	$(GOTEST) ./kv/test_raftstore -run ^TestPersistPartition2B$ || true
 	$(GOTEST) ./kv/test_raftstore -run ^TestPersistPartitionUnreliable2B$ || true
 
+basic2B:
+	$(GOTEST) ./kv/test_raftstore -run ^TestBasic2B$ || true
+
 project2c:
 	$(GOTEST) ./raft ./kv/test_raftstore -run 2C
 

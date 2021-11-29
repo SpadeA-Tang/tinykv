@@ -16,6 +16,7 @@ package raft
 
 import (
 	"errors"
+	"fmt"
 	"math/rand"
 	"sync"
 
@@ -170,6 +171,8 @@ type Raft struct {
 
 // newRaft return a raft peer with the given config
 func newRaft(c *Config) *Raft {
+	// Your Code Here (2A).
+
 	if err := c.validate(); err != nil {
 		panic(err.Error())
 	}
@@ -177,14 +180,21 @@ func newRaft(c *Config) *Raft {
 	raft.id = c.ID
 	raft.peers = c.peers
 	raft.electionTimeout = c.ElectionTick
-	raft.electionTimeoutRandom = c.ElectionTick
+	raft.electionTimeoutRandom = c.ElectionTick + rand.Int() % c.ElectionTick
 	raft.heartbeatTimeout = c.HeartbeatTick
 	raft.State = StateFollower
 	raft.RaftLog = newLog(c.Storage)
 	raft.votes = make(map[uint64]bool)
 	raft.msgs = make([]pb.Message, 0)
 	raft.Prs = make(map[uint64]*Progress)
-	state, _, err := c.Storage.InitialState()
+	state, configSt, err := c.Storage.InitialState()
+
+	if c.peers == nil {
+		// c.peers will be nil in the case of restart
+		//in this case, raft.peers should be set by configSt.Nodes
+		raft.peers = configSt.Nodes
+		c.peers = configSt.Nodes
+	}
 
 	if err != nil {
 		panic("something wrong")
@@ -203,7 +213,7 @@ func newRaft(c *Config) *Raft {
 	//if err != nil {
 	//	panic("todo")
 	//}
-	// Your Code Here (2A).
+
 	return raft
 }
 
@@ -216,8 +226,8 @@ func (r *Raft) SoftState() *SoftState {
 
 func (r *Raft) HardState() pb.HardState {
 	return pb.HardState{
-		Term: r.Term,
-		Vote: r.Vote,
+		Term:   r.Term,
+		Vote:   r.Vote,
 		Commit: r.RaftLog.committed,
 	}
 }
@@ -376,6 +386,9 @@ func (r *Raft) becomeCandidate() {
 func (r *Raft) becomeLeader() {
 	// Your Code Here (2A).
 	// NOTE: Leader should propose a noop entry on its term
+
+	fmt.Printf("[%v] becomes leader\n", r.id)
+
 	r.State = StateLeader
 	r.heartbeatElapsed = 0
 	r.Lead = r.id

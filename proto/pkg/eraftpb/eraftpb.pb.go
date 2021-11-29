@@ -473,10 +473,14 @@ type HardState struct {
 }
 
 // judge whether hard state has been changed
-func (st *HardState) Changed(curHardState HardState) bool {
-	return !(st.Commit == curHardState.Commit &&
+func (st *HardState) Equal(curHardState HardState) bool {
+	return st.Commit == curHardState.Commit &&
 		st.Vote == curHardState.Vote &&
-		st.Term == curHardState.Term)
+		st.Term == curHardState.Term
+}
+
+func (st *HardState) IsEmpty() bool {
+	return st.Equal(HardState{})
 }
 
 func (m *HardState) Reset()         { *m = HardState{} }

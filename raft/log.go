@@ -106,6 +106,12 @@ func (l *RaftLog) maybeCompact() {
 	// Your Code Here (2C).
 }
 
+func (l *RaftLog) hasUnstableEnts() bool {
+	stabledIdx := l.stabled
+	lastIdx := l.LastIndex()
+	return stabledIdx < lastIdx
+}
+
 // unstableEntries return all the unstable entries
 func (l *RaftLog) unstableEntries() []pb.Entry {
 	// Your Code Here (2A).
@@ -115,6 +121,14 @@ func (l *RaftLog) unstableEntries() []pb.Entry {
 		ents = append(ents, l.entries[idx])
 	}
 	return ents
+}
+
+
+// call len(l.nextEnts) > 0 is heavy
+func (l *RaftLog) hasNextEnts() bool {
+	appliedIdx := l.realIdx(l.applied)
+	commitIdx := l.realIdx(l.committed)
+	return appliedIdx < commitIdx
 }
 
 // nextEnts returns all the committed but not applied entries

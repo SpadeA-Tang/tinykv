@@ -74,9 +74,9 @@ func (s *testRegionSuite) TestRegionInfo(c *C) {
 	c.Assert(DiffRegionPeersInfo(r, info), Equals, "")
 	c.Assert(r.GetStorePeer(n), IsNil)
 	r = r.Clone(WithStartKey([]byte{0}))
-	c.Assert(DiffRegionKeyInfo(r, info), Matches, "StartKey Changed.*")
+	c.Assert(DiffRegionKeyInfo(r, info), Matches, "StartKey Equal.*")
 	r = r.Clone(WithEndKey([]byte{1}))
-	c.Assert(DiffRegionKeyInfo(r, info), Matches, ".*EndKey Changed.*")
+	c.Assert(DiffRegionKeyInfo(r, info), Matches, ".*EndKey Equal.*")
 
 	stores := r.GetStoreIds()
 	c.Assert(stores, HasLen, int(n))

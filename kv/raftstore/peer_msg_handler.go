@@ -42,13 +42,17 @@ func (d *peerMsgHandler) HandleRaftReady() {
 	if d.stopped {
 		return
 	}
-	rd := d.RaftGroup.Ready()
-	// todo: 这里判断 rd中的HardState是否为empty
-	if rd.HardState.Term == 0 {
-		return
-	}
-	panic("unimpl")
 	// Your Code Here (2B).
+	if d.RaftGroup.HasReady() {
+		rd := d.RaftGroup.Ready()
+		_, err := d.peerStorage.SaveReadyState(&rd)
+		if err != nil {
+			panic("unimpl")
+		}
+		d.Send(d.ctx.trans, rd.Messages)
+		//rd.CommittedEntries
+	}
+	// todo: 这里判断 rd中的HardState是否为empty
 }
 
 func (d *peerMsgHandler) HandleMsg(msg message.Msg) {
@@ -119,7 +123,7 @@ func (d *peerMsgHandler) proposeRaftCommand(msg *raft_cmdpb.RaftCmdRequest, cb *
 		cb.Done(ErrResp(err))
 		return
 	}
-	panic("unimpl")
+	panic("unimpl proposeRaftCommand")
 	// Your Code Here (2B).
 }
 
