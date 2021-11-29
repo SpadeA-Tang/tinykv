@@ -358,8 +358,13 @@ type Message struct {
 	CommitUse    bool
 }
 
+func (m Message) String() string {
+	return fmt.Sprintf("[%v] to:[%v] MsgType:%v Term:%v LogTerm:%v Index:%v Reject:%v",
+		m.From, m.To, m.MsgType, m.Term, m.LogTerm, m.Index, m.Reject)
+}
+
 func (m *Message) Reset()         { *m = Message{} }
-func (m *Message) String() string { return proto.CompactTextString(m) }
+//func (m *Message) String() string { return proto.CompactTextString(m) }
 func (*Message) ProtoMessage()    {}
 func (*Message) Descriptor() ([]byte, []int) {
 	return fileDescriptor_eraftpb_2f2e0bcef614736b, []int{3}
