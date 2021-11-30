@@ -136,7 +136,6 @@ func (l *RaftLog) nextEnts() (ents []pb.Entry) {
 	// Your Code Here (2A).
 	appliedIdx := l.realIdx(l.applied)
 	commitIdx := l.realIdx(l.committed)
-
 	ents = make([]pb.Entry, 0)
 	for idx := appliedIdx + 1; idx <= commitIdx; idx++ {
 		ents = append(ents, l.entries[idx])

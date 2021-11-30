@@ -2,7 +2,6 @@ package raftstore
 
 import (
 	"fmt"
-	"strings"
 	"sync"
 
 	"github.com/pingcap-incubator/tinykv/kv/raftstore/message"
@@ -52,10 +51,6 @@ func (rw *raftWorker) run(closeCh <-chan struct{}, wg *sync.WaitGroup) {
 		peerStateMap := make(map[uint64]*peerState)
 		for _, msg := range msgs {
 			peerState := rw.getPeerState(peerStateMap, msg.RegionID)
-			str := fmt.Sprintf("msg %v\n", msg)
-			if strings.Contains(str, "MsgAppend") {
-				fmt.Println()
-			}
 			if peerState == nil {
 				fmt.Printf("msg %v\n", msg)
 				continue

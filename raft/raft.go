@@ -207,7 +207,7 @@ func newRaft(c *Config) *Raft {
 	lastIdx := raft.RaftLog.LastIndex()
 	for _, p := range raft.peers {
 		// init Progroess for each peer
-		raft.Prs[p] = &Progress{0, lastIdx + 1}
+		raft.Prs[p] = &Progress{raft.RaftLog.lastIdxOfSnapshot, lastIdx + 1}
 	}
 	//state, _, err := c.Storage.InitialState()
 	//if err != nil {
@@ -215,6 +215,10 @@ func newRaft(c *Config) *Raft {
 	//}
 
 	return raft
+}
+
+func (r *Raft) GetId() uint64 {
+	return r.id
 }
 
 func (r *Raft) SoftState() *SoftState {
@@ -533,7 +537,8 @@ func (r *Raft) handleMsgAppendResponse(m pb.Message) {
 				r.Prs[m.From].Next = m.Index + 1
 			}
 		} else {
-			r.Prs[m.From].Next = m.Index + 1
+			// m.Index may be 0, however, prs.next should not be decreased
+			r.Prs[m.From].Next = max(m.Index + 1, r.Prs[m.From].Next)
 		}
 		r.sendAppend(m.From)
 	}

@@ -2,6 +2,9 @@ package raftstore
 
 import (
 	"fmt"
+	"github.com/pingcap-incubator/tinykv/kv/raftstore/meta"
+	"github.com/pingcap-incubator/tinykv/kv/util/engine_util"
+	pb "github.com/pingcap-incubator/tinykv/proto/pkg/eraftpb"
 	"time"
 
 	"github.com/Connor1996/badger/y"
@@ -50,9 +53,117 @@ func (d *peerMsgHandler) HandleRaftReady() {
 			panic("unimpl")
 		}
 		d.Send(d.ctx.trans, rd.Messages)
+		d.HandleCommitEnts(rd.CommittedEntries)
+		d.RaftGroup.Advance(rd)
 		//rd.CommittedEntries
 	}
-	// todo: 这里判断 rd中的HardState是否为empty
+}
+
+func (d *peerMsgHandler) handleRequest(
+	msg raft_cmdpb.RaftCmdRequest, ent pb.Entry, wb *engine_util.WriteBatch) *engine_util.WriteBatch {
+
+	if len(msg.Requests) != 1 {
+		panic("msg.Request not equal to 1")
+	}
+	req := msg.Requests[0]
+	key := getKey(req)
+	if key != nil {
+		err := util.CheckKeyInRegion(key, d.Region())
+		if err != nil {
+			panic(err)
+		}
+	}
+	switch req.CmdType {
+	case raft_cmdpb.CmdType_Put:
+		wb.SetCF(req.Put.Cf, req.Put.Key, req.Put.Value)
+	case raft_cmdpb.CmdType_Delete:
+		wb.DeleteCF(req.Delete.Cf, req.Delete.Key)
+	case raft_cmdpb.CmdType_Snap:
+		if msg.Header.RegionEpoch.Version != d.Region().RegionEpoch.Version {
+			panic("todo")
+			return wb
+		}
+	}
+	return d.handleProposal(req, ent, wb)
+}
+
+func (d *peerMsgHandler) handleProposal(req *raft_cmdpb.Request, ent pb.Entry, wb *engine_util.WriteBatch) *engine_util.WriteBatch {
+	if len(d.proposals) == 0 {
+		return wb
+		//panic("Something must be wrong")
+	}
+	p := d.proposals[0]
+	d.proposals = d.proposals[1:]
+	if p.index != ent.Index || p.term != ent.Term {
+		NotifyStaleReq(ent.Term, p.cb)
+		return wb
+	}
+
+	responses := []*raft_cmdpb.Response{}
+	res := &raft_cmdpb.RaftCmdResponse{
+		Header: &raft_cmdpb.RaftResponseHeader{},
+	}
+	switch req.CmdType {
+	// for Get and Snap, we should first persist the wb which may
+	// contain the previous effects
+	case raft_cmdpb.CmdType_Get:
+		d.peerStorage.applyState.AppliedIndex = ent.Index
+		wb.SetMeta(meta.ApplyStateKey(d.regionId), d.peerStorage.applyState)
+		wb.WriteToDB(d.peerStorage.Engines.Kv)
+		wb = &engine_util.WriteBatch{}
+		val, err := engine_util.GetCF(d.ctx.engine.Kv, req.Get.Cf, req.Get.Key)
+		if err != nil {
+			panic(err)
+		}
+		responses = append(responses, &raft_cmdpb.Response{
+			CmdType: raft_cmdpb.CmdType_Get,
+			Get: &raft_cmdpb.GetResponse{
+				Value: val,
+			},
+		})
+	case raft_cmdpb.CmdType_Put:
+		responses = append(responses, &raft_cmdpb.Response{
+			CmdType: raft_cmdpb.CmdType_Put,
+		})
+	case raft_cmdpb.CmdType_Delete:
+		responses = append(responses, &raft_cmdpb.Response{
+			CmdType: raft_cmdpb.CmdType_Delete,
+		})
+	case raft_cmdpb.CmdType_Snap:
+		d.peerStorage.applyState.AppliedIndex = ent.Index
+		wb.SetMeta(meta.ApplyStateKey(d.regionId), d.peerStorage.applyState)
+		wb.WriteToDB(d.ctx.engine.Kv)
+		wb = &engine_util.WriteBatch{}
+		responses = append(responses, &raft_cmdpb.Response{
+			CmdType: raft_cmdpb.CmdType_Snap,
+			Snap: &raft_cmdpb.SnapResponse{
+				Region: d.Region(),
+			},
+		})
+		p.cb.Txn = d.peerStorage.Engines.Kv.NewTransaction(false)
+	}
+	res.Responses = responses
+	p.cb.Done(res)
+	return wb
+}
+
+func (d *peerMsgHandler) HandleCommitEnts(ents []pb.Entry) {
+	if len(ents) > 0 {
+		wb := &engine_util.WriteBatch{}
+		for _, ent := range ents {
+			msg := raft_cmdpb.RaftCmdRequest{}
+			if ent.Data != nil {
+				err := msg.Unmarshal(ent.Data)
+				if err != nil {
+					panic(err)
+				}
+				wb = d.handleRequest(msg, ent, wb)
+			}
+		}
+		d.peerStorage.applyState.AppliedIndex = ents[len(ents)-1].Index
+		wb.SetMeta(meta.ApplyStateKey(d.regionId), d.peerStorage.applyState)
+		wb.WriteToDB(d.peerStorage.Engines.Kv)
+	}
 }
 
 func (d *peerMsgHandler) HandleMsg(msg message.Msg) {
@@ -62,6 +173,7 @@ func (d *peerMsgHandler) HandleMsg(msg message.Msg) {
 		if err := d.onRaftMsg(raftMsg); err != nil {
 			log.Errorf("%s handle raft message error %v", d.Tag, err)
 		}
+	// request 在此处进行封装，然后由leader propose后，最终在message.MsgTypeRaftMessage被添加到各个follower的log中
 	case message.MsgTypeRaftCmd:
 		raftCMD := msg.Data.(*message.MsgRaftCmd)
 		d.proposeRaftCommand(raftCMD.Request, raftCMD.Callback)
@@ -123,8 +235,40 @@ func (d *peerMsgHandler) proposeRaftCommand(msg *raft_cmdpb.RaftCmdRequest, cb *
 		cb.Done(ErrResp(err))
 		return
 	}
-	panic("unimpl proposeRaftCommand")
 	// Your Code Here (2B).
+
+	// sequentially record the callback(proposal) of each RaftCmdRequest
+	//when the request is done, callback can wake the client and give the response
+	d.proposals = append(d.proposals, &proposal{
+		index: d.nextProposalIndex(),
+		term:  d.Term(),
+		cb:    cb,
+	})
+
+	key := getKey(msg.Requests[0])
+	if key != nil {
+		err := util.CheckKeyInRegion(key, d.Region())
+		if err != nil {
+			panic("")
+		}
+	}
+	data, err := msg.Marshal()
+	if err != nil {
+		panic("")
+	}
+	d.RaftGroup.Propose(data)
+}
+
+func getKey(req *raft_cmdpb.Request) []byte {
+	switch req.CmdType {
+	case raft_cmdpb.CmdType_Put:
+		return req.Put.Key
+	case raft_cmdpb.CmdType_Get:
+		return req.Get.Key
+	case raft_cmdpb.CmdType_Delete:
+		return req.Delete.Key
+	}
+	return nil
 }
 
 func (d *peerMsgHandler) onTick() {

@@ -16,7 +16,6 @@ package raft
 
 import (
 	"errors"
-
 	pb "github.com/pingcap-incubator/tinykv/proto/pkg/eraftpb"
 )
 
@@ -165,6 +164,7 @@ func (rn *RawNode) Ready() Ready {
 	}
 	if len(rn.Raft.msgs) > 0 {
 		rd.Messages = rn.Raft.msgs
+		rn.Raft.msgs = nil
 	}
 	curSoftSt := rn.Raft.SoftState()
 	if prevSoftSt := rn.prevSoftState;
@@ -199,7 +199,6 @@ func (rn *RawNode) HasReady() bool {
 		rn.Raft.RaftLog.hasNextEnts() {
 		return true
 	}
-
 	return false
 }
 

@@ -361,13 +361,12 @@ func (ps *PeerStorage) SaveReadyState(ready *raft.Ready) (*ApplySnapResult, erro
 
 	ps.Append(ready.Entries, raftWb)
 
-	if len(ready.Entries) > 0 {
-		applySt := &rspb.RaftApplyState{
-			AppliedIndex: ready.Entries[len(ready.Entries) - 1].Index,
-		}
-		kvWb.SetMeta(meta.ApplyStateKey(ps.region.GetId()), applySt)
-	}
-
+	//if len(ready.Entries) > 0 {
+	//	applySt := &rspb.RaftApplyState{
+	//		AppliedIndex: ready.Entries[len(ready.Entries) - 1].Index,
+	//	}
+	//	kvWb.SetMeta(meta.ApplyStateKey(ps.region.GetId()), applySt)
+	//}
 
 	ps.Engines.WriteRaft(raftWb)
 	ps.Engines.WriteKV(kvWb)
