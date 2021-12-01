@@ -55,7 +55,6 @@ func (d *peerMsgHandler) HandleRaftReady() {
 		d.Send(d.ctx.trans, rd.Messages)
 		d.HandleCommitEnts(rd.CommittedEntries)
 		d.RaftGroup.Advance(rd)
-		//rd.CommittedEntries
 	}
 }
 
@@ -147,6 +146,24 @@ func (d *peerMsgHandler) handleProposal(req *raft_cmdpb.Request, ent pb.Entry, w
 	return wb
 }
 
+func (d *peerMsgHandler) handleAdminRequest(
+	msg raft_cmdpb.RaftCmdRequest, ent pb.Entry, wb *engine_util.WriteBatch) *engine_util.WriteBatch {
+
+	switch msg.AdminRequest.CmdType {
+	case raft_cmdpb.AdminCmdType_CompactLog:
+		applySt := d.peerStorage.applyState
+		compactLog := msg.AdminRequest.CompactLog
+		if compactLog.CompactIndex > applySt.TruncatedState.Index {
+			applySt.TruncatedState.Index = compactLog.CompactIndex
+			applySt.TruncatedState.Term = compactLog.CompactTerm
+			wb.SetMeta(meta.ApplyStateKey(d.regionId), applySt)
+			d.ScheduleCompactLog(compactLog.CompactIndex)
+		}
+	}
+
+	return wb
+}
+
 func (d *peerMsgHandler) HandleCommitEnts(ents []pb.Entry) {
 	if len(ents) > 0 {
 		wb := &engine_util.WriteBatch{}
@@ -157,7 +174,11 @@ func (d *peerMsgHandler) HandleCommitEnts(ents []pb.Entry) {
 				if err != nil {
 					panic(err)
 				}
-				wb = d.handleRequest(msg, ent, wb)
+				if msg.AdminRequest != nil {
+					wb = d.handleAdminRequest(msg, ent, wb)
+				} else {
+					wb = d.handleRequest(msg, ent, wb)
+				}
 			}
 		}
 		d.peerStorage.applyState.AppliedIndex = ents[len(ents)-1].Index
@@ -173,7 +194,7 @@ func (d *peerMsgHandler) HandleMsg(msg message.Msg) {
 		if err := d.onRaftMsg(raftMsg); err != nil {
 			log.Errorf("%s handle raft message error %v", d.Tag, err)
 		}
-	// request 在此处进行封装，然后由leader propose后，最终在message.MsgTypeRaftMessage被添加到各个follower的log中
+	// request 在此处进行封装，然后由leader propose后，最终在message.MsgTypeRaftMessage被添加到各个follower的Raftlog中
 	case message.MsgTypeRaftCmd:
 		raftCMD := msg.Data.(*message.MsgRaftCmd)
 		d.proposeRaftCommand(raftCMD.Request, raftCMD.Callback)
@@ -229,7 +250,7 @@ func (d *peerMsgHandler) preProposeRaftCommand(req *raft_cmdpb.RaftCmdRequest) e
 	return err
 }
 
-func (d* peerMsgHandler) proposeRequest(msg *raft_cmdpb.RaftCmdRequest, cb *message.Callback) {
+func (d *peerMsgHandler) proposeRequest(msg *raft_cmdpb.RaftCmdRequest, cb *message.Callback) {
 	// sequentially record the callback(proposal) of each RaftCmdRequest
 	//when the request is done, callback can wake the client and give the response
 	d.proposals = append(d.proposals, &proposal{
@@ -255,7 +276,7 @@ func (d* peerMsgHandler) proposeRequest(msg *raft_cmdpb.RaftCmdRequest, cb *mess
 	d.RaftGroup.Propose(data)
 }
 
-func (d* peerMsgHandler) proposeAdminRequest(msg *raft_cmdpb.RaftCmdRequest) {
+func (d *peerMsgHandler) proposeAdminRequest(msg *raft_cmdpb.RaftCmdRequest) {
 	switch msg.AdminRequest.CmdType {
 	case raft_cmdpb.AdminCmdType_CompactLog:
 		data, err := msg.Marshal()
