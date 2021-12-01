@@ -308,12 +308,12 @@ func ClearMeta(engines *engine_util.Engines, kvWB, raftWB *engine_util.WriteBatc
 // never be committed
 func (ps *PeerStorage) Append(entries []eraftpb.Entry, raftWB *engine_util.WriteBatch) error {
 	// Your Code Here (2B).
-	for i:= 0; i < len(entries); i++ {
-		err := raftWB.SetMeta(meta.RaftLogKey(ps.region.GetId(), entries[i].Index), &entries[i]);
+	for i := 0; i < len(entries); i++ {
+		err := raftWB.SetMeta(meta.RaftLogKey(ps.region.GetId(), entries[i].Index), &entries[i])
 		if err != nil {
 			panic("write error in PeerStorage.Append")
 		}
-		if i == len(entries) - 1 {
+		if i == len(entries)-1 {
 			ps.raftState.LastIndex = entries[i].Index
 			ps.raftState.LastTerm = entries[i].Term
 		}
@@ -350,7 +350,7 @@ func (ps *PeerStorage) SaveReadyState(ready *raft.Ready) (*ApplySnapResult, erro
 	if !ready.IsHardStEmpty() {
 		lastIdx, _ := ps.LastIndex()
 		if len(ready.Entries) > 0 {
-			lastIdx = ready.Entries[len(ready.Entries) - 1].Index
+			lastIdx = ready.Entries[len(ready.Entries)-1].Index
 		}
 		raftLocalSt := &rspb.RaftLocalState{
 			HardState: &ready.HardState,

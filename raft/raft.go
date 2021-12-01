@@ -538,7 +538,8 @@ func (r *Raft) handleMsgAppendResponse(m pb.Message) {
 			}
 		} else {
 			// m.Index may be 0, however, prs.next should not be decreased
-			r.Prs[m.From].Next = max(m.Index + 1, r.Prs[m.From].Next)
+			r.Prs[m.From].Next = max(m.Index + 1, r.Prs[m.From].Match + 1)
+			//r.Prs[m.From].Next = m.Index + 1
 		}
 		r.sendAppend(m.From)
 	}

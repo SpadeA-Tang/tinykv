@@ -229,14 +229,7 @@ func (d *peerMsgHandler) preProposeRaftCommand(req *raft_cmdpb.RaftCmdRequest) e
 	return err
 }
 
-func (d *peerMsgHandler) proposeRaftCommand(msg *raft_cmdpb.RaftCmdRequest, cb *message.Callback) {
-	err := d.preProposeRaftCommand(msg)
-	if err != nil {
-		cb.Done(ErrResp(err))
-		return
-	}
-	// Your Code Here (2B).
-
+func (d* peerMsgHandler) proposeRequest(msg *raft_cmdpb.RaftCmdRequest, cb *message.Callback) {
 	// sequentially record the callback(proposal) of each RaftCmdRequest
 	//when the request is done, callback can wake the client and give the response
 	d.proposals = append(d.proposals, &proposal{
@@ -245,6 +238,9 @@ func (d *peerMsgHandler) proposeRaftCommand(msg *raft_cmdpb.RaftCmdRequest, cb *
 		cb:    cb,
 	})
 
+	if len(msg.Requests) == 0 {
+		fmt.Println()
+	}
 	key := getKey(msg.Requests[0])
 	if key != nil {
 		err := util.CheckKeyInRegion(key, d.Region())
@@ -257,6 +253,35 @@ func (d *peerMsgHandler) proposeRaftCommand(msg *raft_cmdpb.RaftCmdRequest, cb *
 		panic("")
 	}
 	d.RaftGroup.Propose(data)
+}
+
+func (d* peerMsgHandler) proposeAdminRequest(msg *raft_cmdpb.RaftCmdRequest) {
+	switch msg.AdminRequest.CmdType {
+	case raft_cmdpb.AdminCmdType_CompactLog:
+		data, err := msg.Marshal()
+		if err != nil {
+			panic(err)
+		}
+		d.RaftGroup.Propose(data)
+	}
+}
+
+func (d *peerMsgHandler) proposeRaftCommand(msg *raft_cmdpb.RaftCmdRequest, cb *message.Callback) {
+	err := d.preProposeRaftCommand(msg)
+	if err != nil {
+		cb.Done(ErrResp(err))
+		return
+	}
+	// Your Code Here (2B).
+	if msg.AdminRequest != nil {
+		if cb != nil {
+			panic("cb may not be nil in admin request")
+		}
+		d.proposeAdminRequest(msg)
+	} else {
+		d.proposeRequest(msg, cb)
+	}
+
 }
 
 func getKey(req *raft_cmdpb.Request) []byte {
