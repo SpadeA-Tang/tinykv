@@ -111,6 +111,7 @@ var MessageType_value = map[string]int32{
 func (x MessageType) String() string {
 	return proto.EnumName(MessageType_name, int32(x))
 }
+
 func (MessageType) EnumDescriptor() ([]byte, []int) {
 	return fileDescriptor_eraftpb_2f2e0bcef614736b, []int{1}
 }

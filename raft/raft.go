@@ -17,6 +17,8 @@ package raft
 import (
 	"errors"
 	"fmt"
+	"github.com/Connor1996/badger/y"
+	"github.com/pingcap-incubator/tinykv/log"
 	"math/rand"
 	"sync"
 
@@ -180,7 +182,7 @@ func newRaft(c *Config) *Raft {
 	raft.id = c.ID
 	raft.peers = c.peers
 	raft.electionTimeout = c.ElectionTick
-	raft.electionTimeoutRandom = c.ElectionTick + rand.Int() % c.ElectionTick
+	raft.electionTimeoutRandom = c.ElectionTick + rand.Int()%c.ElectionTick
 	raft.heartbeatTimeout = c.HeartbeatTick
 	raft.State = StateFollower
 	raft.RaftLog = newLog(c.Storage)
@@ -194,6 +196,8 @@ func newRaft(c *Config) *Raft {
 		//in this case, raft.peers should be set by configSt.Nodes
 		raft.peers = configSt.Nodes
 		c.peers = configSt.Nodes
+
+		raft.RaftLog.applied = max(c.Applied, raft.RaftLog.applied)
 	}
 
 	if err != nil {
@@ -202,7 +206,7 @@ func newRaft(c *Config) *Raft {
 	raft.Term = state.Term
 	raft.Vote = state.Vote
 	raft.RaftLog.committed = state.Commit
-	raft.RaftLog.applied = c.Applied
+
 
 	lastIdx := raft.RaftLog.LastIndex()
 	for _, p := range raft.peers {
@@ -422,6 +426,8 @@ func (r *Raft) Step(m pb.Message) error {
 	switch r.State {
 	case StateFollower:
 		switch m.MsgType {
+		case pb.MessageType_MsgSnapshot:
+			r.handleSnapshot(m)
 		case pb.MessageType_MsgAppend:
 			r.handleAppendEntries(m)
 		case pb.MessageType_MsgHup:
@@ -434,6 +440,8 @@ func (r *Raft) Step(m pb.Message) error {
 		}
 	case StateCandidate:
 		switch m.MsgType {
+		case pb.MessageType_MsgSnapshot:
+			r.handleSnapshot(m)
 		case pb.MessageType_MsgAppend:
 			r.handleAppendEntries(m)
 		case pb.MessageType_MsgHup:
@@ -448,6 +456,8 @@ func (r *Raft) Step(m pb.Message) error {
 		}
 	case StateLeader:
 		switch m.MsgType {
+		case pb.MessageType_MsgSnapshot:
+			r.handleSnapshot(m)
 		case pb.MessageType_MsgBeat:
 			r.heartbeatElapsed = 0
 			r.sendHeartbeats()
@@ -538,7 +548,7 @@ func (r *Raft) handleMsgAppendResponse(m pb.Message) {
 			}
 		} else {
 			// m.Index may be 0, however, prs.next should not be decreased
-			r.Prs[m.From].Next = max(m.Index + 1, r.Prs[m.From].Match + 1)
+			r.Prs[m.From].Next = max(m.Index+1, r.Prs[m.From].Match+1)
 			//r.Prs[m.From].Next = m.Index + 1
 		}
 		r.sendAppend(m.From)
@@ -554,33 +564,64 @@ func (r *Raft) broadCastAE() {
 	}
 }
 
+func (r *Raft) needSnapshot(nextIdx uint64) bool {
+	// if nextIdx is less or equal to lastIdxOfSnapshot
+	//then, we have truncated the log entries that the follower needs
+	return nextIdx <= r.RaftLog.lastIdxOfSnapshot
+}
+
+func (r *Raft) sendSnapshot() {
+
+}
+
 // sendAppend sends an append RPC with new entries (if any) and the
 // current commit index to the given peer. Returns true if a message was sent.
 func (r *Raft) sendAppend(to uint64) bool {
 	// Your Code Here (2A).
+
+	fmt.Printf("[%d] current log length %d\n", r.id, len(r.RaftLog.entries))
+	fmt.Println(r.RaftLog.storage.FirstIndex())
+
 	lastIdx := r.RaftLog.LastIndex()
 	nextIdx := r.Prs[to].Next
-	if nextIdx > lastIdx {
-		return false
-	}
 	entries := make([]*pb.Entry, 0)
-	for logicalIdx := nextIdx; logicalIdx <= lastIdx; logicalIdx++ {
-		entries = append(entries, &r.RaftLog.entries[r.RaftLog.realIdx(logicalIdx)])
-	}
+	var m pb.Message
+	if r.needSnapshot(nextIdx) {
+		// handle sending snapshot to followers
+		snapshot, err := r.RaftLog.storage.Snapshot()
+		if err != nil {
+			panic(err)
+		}
+		m = pb.Message{
+			MsgType: pb.MessageType_MsgSnapshot,
+			To: to,
+			From: r.id,
+			Term: r.Term,
+			Snapshot: &snapshot,
+		}
+	} else {
+		// handle normal log replication
+		if nextIdx > lastIdx {
+			return false
+		}
+		for logicalIdx := nextIdx; logicalIdx <= lastIdx; logicalIdx++ {
+			entries = append(entries, &r.RaftLog.entries[r.RaftLog.realIdx(logicalIdx)])
+		}
 
-	term, err := r.RaftLog.Term(nextIdx - 1)
-	if err != nil {
-		panic("something wrong")
-	}
-	m := pb.Message{
-		MsgType: pb.MessageType_MsgAppend,
-		To:      to,
-		From:    r.id,
-		Term:    r.Term,
-		LogTerm: term,        // last matched term
-		Index:   nextIdx - 1, // last matched index
-		Commit:  r.RaftLog.committed,
-		Entries: entries,
+		term, err := r.RaftLog.Term(nextIdx - 1)
+		if err != nil {
+			panic("something wrong")
+		}
+		m = pb.Message{
+			MsgType: pb.MessageType_MsgAppend,
+			To:      to,
+			From:    r.id,
+			Term:    r.Term,
+			LogTerm: term,        // last matched term
+			Index:   nextIdx - 1, // last matched index
+			Commit:  r.RaftLog.committed,
+			Entries: entries,
+		}
 	}
 	r.msgs = append(r.msgs, m)
 	return true
@@ -759,6 +800,39 @@ func (r *Raft) handleHeartbeatResponse(m pb.Message) {
 // handleSnapshot handle Snapshot RPC request
 func (r *Raft) handleSnapshot(m pb.Message) {
 	// Your Code Here (2C).
+	y.Assert(m.Snapshot != nil)
+	metaData := m.Snapshot.Metadata
+	if metaData.Index <= r.RaftLog.LastIndex() || metaData.Term <= r.Term {
+		return
+	}
+
+	log.Infof("[%d] receives snapshot msg", r.id)
+
+	r.RaftLog.lastIdxOfSnapshot = metaData.Index
+	r.RaftLog.lastTermOfSnapshot = metaData.Term
+	r.RaftLog.committed = metaData.Index
+	r.RaftLog.applied = metaData.Index
+	r.RaftLog.stabled = metaData.Index
+	r.RaftLog.pendingSnapshot = m.Snapshot
+	r.RaftLog.entries = nil
+	r.peers = metaData.ConfState.Nodes
+	for _, id := range metaData.ConfState.Nodes {
+		r.Prs[id] = &Progress{
+			Match: r.RaftLog.lastIdxOfSnapshot,
+			Next:  r.RaftLog.lastIdxOfSnapshot + 1,
+		}
+	}
+	r.becomeFollower(m.Term, m.From)
+	// response
+	resp := pb.Message{
+		MsgType: pb.MessageType_MsgAppendResponse,
+		From:    r.id,
+		To:      m.From,
+		Reject:  false,
+		Term:    r.Term,
+		Index:   r.RaftLog.LastIndex(),
+	}
+	r.msgs = append(r.msgs, resp)
 }
 
 // addNode add a new node to raft group

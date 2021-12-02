@@ -1,44 +1,236 @@
-GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestBasic2B|| true
-=== RUN   TestBasic2B
-2021/11/29 23:20:31.639053 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
-2021/11/29 23:20:31.639733 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 1[0m
-2021/11/29 23:20:31.639885 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 481.477µs[0m
-2021/11/29 23:20:31.640911 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
-2021/11/29 23:20:31.641135 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 2[0m
-2021/11/29 23:20:31.641245 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 216.291µs[0m
-2021/11/29 23:20:31.642165 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
-2021/11/29 23:20:31.642316 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 3[0m
-2021/11/29 23:20:31.642407 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 153.464µs[0m
-2021/11/29 23:20:31.643490 node.go:193: [0;37m[info] start raft store node, storeID: 4[0m
-2021/11/29 23:20:31.643681 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 4[0m
-2021/11/29 23:20:31.643776 raftstore.go:174: [0;37m[info] start store 4, region_count 1, tombstone_count 0, takes 167.569µs[0m
-2021/11/29 23:20:31.644588 node.go:193: [0;37m[info] start raft store node, storeID: 5[0m
-2021/11/29 23:20:31.644754 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  create peer with ID 5[0m
-2021/11/29 23:20:31.644841 raftstore.go:174: [0;37m[info] start store 5, region_count 1, tombstone_count 0, takes 159.464µs[0m
-[1] becomes leader
-[1] msgtype:Put
-[3] msgtype:Put
-[2] msgtype:Put
-[5] msgtype:Put
-[4] msgtype:Put
-[1] msgtype:Put
-[5] msgtype:Put
-[2] msgtype:Put
-[4] msgtype:Put
-[3] msgtype:Put
-[1] msgtype:Put
-[3] msgtype:Put
-[5] msgtype:Put
-[2] msgtype:Put
-[4] msgtype:Put
-[1] msgtype:Put
-[3] msgtype:Put
-[4] msgtype:Put
-[5] msgtype:Put
-[2] msgtype:Put
-[1] msgtype:Put
-[5] msgtype:Put
-[3] msgtype:Put
-[2] msgtype:Put
-[4] msgtype:Put
-FAIL	github.com/pingcap-incubator/tinykv/kv/test_raftstore	5.555s
+2021/12/02 18:22:11.982256 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:5 index:5 entries:<term:6 index:6 > commit:5 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:11.983428 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:11.984572 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:6 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.026330 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.027439 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.076388 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.076466 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgHeartbeat to:3 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.078137 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.078168 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:3 index:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.126651 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.126694 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.177146 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.177215 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.177373 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgHeartbeat to:3 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.177471 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:3 index:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.227316 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.227357 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.277175 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.277217 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.277264 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgHeartbeat to:3 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.277281 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:3 index:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.326973 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.327019 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.376967 raft_worker.go:57: [info] [{4 1 0xc00024bce0}]
+2021/12/02 18:22:12.376994 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.379307 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.379376 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:6 entries:<term:6 index:7 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k1\032\002v1" > commit:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.379396 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgHeartbeat to:3 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.380328 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:7 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.380344 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:3 index:7 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.381479 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:7 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.382519 raft_worker.go:57: [info] [{4 1 0xc000077d20}]
+2021/12/02 18:22:12.384500 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:7 entries:<term:6 index:8 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k2\032\002v1" > commit:7 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.385595 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:8 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.386718 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:8 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.387725 raft_worker.go:57: [info] [{4 1 0xc000077d60}]
+2021/12/02 18:22:12.390398 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:8 entries:<term:6 index:9 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k3\032\002v1" > commit:8 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.391502 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:9 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.392604 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:9 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.393662 raft_worker.go:57: [info] [{4 1 0xc000117d50}]
+2021/12/02 18:22:12.395592 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:9 entries:<term:6 index:10 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k4\032\002v1" > commit:9 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.396488 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:10 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.397734 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:10 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.398777 raft_worker.go:57: [info] [{4 1 0xc00024bfd0}]
+2021/12/02 18:22:12.400681 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:10 entries:<term:6 index:11 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k5\032\002v1" > commit:10 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.401680 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:11 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.402727 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:11 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.403702 raft_worker.go:57: [info] [{4 1 0xc000117de0}]
+2021/12/02 18:22:12.406412 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:11 entries:<term:6 index:12 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k6\032\002v1" > commit:11 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.407444 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:12 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.408773 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:12 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.409830 raft_worker.go:57: [info] [{4 1 0xc0e46180d0}]
+2021/12/02 18:22:12.412804 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:12 entries:<term:6 index:13 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k7\032\002v1" > commit:12 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.413938 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:13 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.415224 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:13 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.416368 raft_worker.go:57: [info] [{4 1 0xc000117e30}]
+2021/12/02 18:22:12.417528 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:13 entries:<term:6 index:14 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k8\032\002v1" > commit:13 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.418631 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:14 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.419974 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:14 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.421133 raft_worker.go:57: [info] [{4 1 0xc0e46181f0}]
+2021/12/02 18:22:12.422653 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:14 entries:<term:6 index:15 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k9\032\002v1" > commit:14 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.423841 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:15 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.424998 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:15 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.426104 raft_worker.go:57: [info] [{4 1 0xc00019ca10}]
+2021/12/02 18:22:12.427115 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.427211 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.427237 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:15 entries:<term:6 index:16 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k10\032\002v1" > commit:15 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.428324 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:16 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.429464 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:16 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.430468 raft_worker.go:57: [info] [{4 1 0xc0e45fa0b0}]
+2021/12/02 18:22:12.431535 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:16 entries:<term:6 index:17 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k11\032\002v1" > commit:16 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.432617 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:17 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.433740 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:17 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.434741 raft_worker.go:57: [info] [{4 1 0xc0e46183e0}]
+2021/12/02 18:22:12.435840 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:17 entries:<term:6 index:18 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k12\032\002v1" > commit:17 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.436885 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:18 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.438032 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:18 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.439119 raft_worker.go:57: [info] [{4 1 0xc0002e6150}]
+2021/12/02 18:22:12.440237 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:18 entries:<term:6 index:19 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k13\032\002v1" > commit:18 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.441320 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:19 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.442424 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:19 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.443406 raft_worker.go:57: [info] [{4 1 0xc00019cd00}]
+2021/12/02 18:22:12.446215 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:19 entries:<term:6 index:20 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k14\032\002v1" > commit:19 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.447330 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:20 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.448334 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:20 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.449440 raft_worker.go:57: [info] [{4 1 0xc0e45fa1e0}]
+2021/12/02 18:22:12.450584 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:20 entries:<term:6 index:21 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k15\032\002v1" > commit:20 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.451679 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:21 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.452754 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:21 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.453868 raft_worker.go:57: [info] [{4 1 0xc00019ce20}]
+2021/12/02 18:22:12.455051 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:21 entries:<term:6 index:22 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k16\032\002v1" > commit:21 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.456157 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:22 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.457253 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:22 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.458240 raft_worker.go:57: [info] [{4 1 0xc0001cc7a0}]
+2021/12/02 18:22:12.466972 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:22 entries:<term:6 index:23 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k17\032\002v1" > commit:22 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.471008 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:23 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.475034 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:23 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.478844 raft_worker.go:57: [info] [{4 1 0xc0e4618760}]
+2021/12/02 18:22:12.478874 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.490396 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.490446 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:23 entries:<term:6 index:24 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k18\032\002v1" > commit:23 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.490465 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgHeartbeat to:3 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.490507 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:23 entries:<term:6 index:24 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k18\032\002v1" > entries:<term:6 index:25 data:"\n\010\010\001\022\004\010\001\020\001\032\010\010\003\"\004\010\026\020\006" > commit:23 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.491647 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:24 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.491673 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:3 index:24 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.491691 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:25 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.492809 peer_msg_handler.go:161: [info] [1] Compact log...
+2021/12/02 18:22:12.492848 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:24 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.492882 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:24 entries:<term:6 index:25 data:"\n\010\010\001\022\004\010\001\020\001\032\010\010\003\"\004\010\026\020\006" > commit:24 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.492903 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:25 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.493950 raft_worker.go:57: [info] [{4 1 0xc00019d170}]
+2021/12/02 18:22:12.494941 peer_msg_handler.go:161: [info] [3] Compact log...
+2021/12/02 18:22:12.499892 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:25 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.499945 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:25 entries:<term:6 index:26 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k19\032\002v1" > commit:25 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.502825 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:26 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.504092 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:26 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.505126 raft_worker.go:57: [info] [{4 1 0xc00019d2e0}]
+2021/12/02 18:22:12.508063 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 log_term:6 index:26 entries:<term:6 index:27 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k20\032\002v1" > commit:26 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.509166 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:3 term:6 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.510316 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgAppend to:3 from:1 term:6 commit:27 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+Putting finishes, check getting
+2021/12/02 18:22:12.510575 node.go:193: [info] start raft store node, storeID: 2
+2021/12/02 18:22:12.510646 peer.go:41: [info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:1 store_id:1 >  create peer with ID 2
+2021/12/02 18:22:12.510682 raftstore.go:174: [info] start store 2, region_count 1, tombstone_count 0, takes 59.311µs
+2021/12/02 18:22:12.510715 raft_worker.go:57: [info] [{1 1 <nil>}]
+2021/12/02 18:22:12.526926 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.526928 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.560752 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.577231 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.577277 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.577496 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgHeartbeat to:3 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.577583 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:3 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.577593 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:2 store_id:2 > message:<msg_type:MsgHeartbeat to:2 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.579033 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:2 store_id:2 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:2 index:5 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.579714 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:2 store_id:2 > message:<msg_type:MsgAppend to:2 from:1 term:6 log_term:5 index:5 entries:<term:6 index:6 > entries:<term:6 index:7 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k1\032\002v1" > entries:<term:6 index:8 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k2\032\002v1" > entries:<term:6 index:9 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k3\032\002v1" > entries:<term:6 index:10 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k4\032\002v1" > entries:<term:6 index:11 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k5\032\002v1" > entries:<term:6 index:12 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k6\032\002v1" > entries:<term:6 index:13 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k7\032\002v1" > entries:<term:6 index:14 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k8\032\002v1" > entries:<term:6 index:15 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\022\010\003\"\016\n\004lock\022\002k9\032\002v1" > entries:<term:6 index:16 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k10\032\002v1" > entries:<term:6 index:17 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k11\032\002v1" > entries:<term:6 index:18 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k12\032\002v1" > entries:<term:6 index:19 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k13\032\002v1" > entries:<term:6 index:20 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k14\032\002v1" > entries:<term:6 index:21 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k15\032\002v1" > entries:<term:6 index:22 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k16\032\002v1" > entries:<term:6 index:23 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k17\032\002v1" > entries:<term:6 index:24 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k18\032\002v1" > entries:<term:6 index:25 data:"\n\010\010\001\022\004\010\001\020\001\032\010\010\003\"\004\010\026\020\006" > entries:<term:6 index:26 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k19\032\002v1" > entries:<term:6 index:27 data:"\n\016\010\001\022\004\010\001\020\001\"\004\010\001\020\001\022\023\010\003\"\017\n\004lock\022\003k20\032\002v1" > commit:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.581332 peer_msg_handler.go:161: [info] [2] Compact log...
+2021/12/02 18:22:12.581467 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:2 store_id:2 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgAppendResponse to:1 from:2 term:6 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.582941 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:2 store_id:2 > message:<msg_type:MsgAppend to:2 from:1 term:6 commit:27 CommitUse:true > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.611018 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.626418 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.627643 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.661770 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.677304 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.677359 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.677556 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgHeartbeat to:3 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.677647 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:2 store_id:2 > message:<msg_type:MsgHeartbeat to:2 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.677662 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:3 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.677767 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:2 store_id:2 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:2 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.711111 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.726332 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.727480 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.761251 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.776945 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.777014 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.777218 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgHeartbeat to:3 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.777259 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:2 store_id:2 > message:<msg_type:MsgHeartbeat to:2 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.777313 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:3 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.777373 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:2 store_id:2 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:2 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.811028 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.826439 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.827666 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.860870 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.877450 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.877519 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.877706 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgHeartbeat to:3 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.877810 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:3 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.877825 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:2 store_id:2 > message:<msg_type:MsgHeartbeat to:2 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.877945 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:2 store_id:2 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:2 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.911302 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.926670 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.926743 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.961589 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.977077 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.977132 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:12.977212 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:2 store_id:2 > message:<msg_type:MsgHeartbeat to:2 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.977226 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgHeartbeat to:3 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.977320 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:3 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:12.977381 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:2 store_id:2 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:2 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.011295 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.026665 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.026725 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.061217 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.077382 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.077452 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.077562 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:2 store_id:2 > message:<msg_type:MsgHeartbeat to:2 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.077571 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgHeartbeat to:3 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.077703 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:2 store_id:2 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:2 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.077777 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:3 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.111440 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.126773 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.126826 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.161548 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.176919 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.176966 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.177020 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgHeartbeat to:3 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.177019 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:2 store_id:2 > message:<msg_type:MsgHeartbeat to:2 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.177036 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:3 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.177050 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:2 store_id:2 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:2 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.211564 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.227029 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.227076 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.261696 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.277069 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.277100 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.277142 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgHeartbeat to:3 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.277157 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:3 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.277186 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:2 store_id:2 > message:<msg_type:MsgHeartbeat to:2 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.277220 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:2 store_id:2 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:2 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.311796 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.327059 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.327089 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.361798 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.377157 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.377191 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.377249 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgHeartbeat to:3 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.377249 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:2 store_id:2 > message:<msg_type:MsgHeartbeat to:2 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.377266 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:3 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.377277 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:2 store_id:2 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:2 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.411738 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.426347 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.427407 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.461658 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.477341 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.477371 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.477428 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:3 store_id:3 > message:<msg_type:MsgHeartbeat to:3 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.477443 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:3 store_id:3 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:3 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.477451 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:1 store_id:1 > to_peer:<id:2 store_id:2 > message:<msg_type:MsgHeartbeat to:2 from:1 term:6 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.477503 raft_worker.go:57: [info] [{3 1 region_id:1 from_peer:<id:2 store_id:2 > to_peer:<id:1 store_id:1 > message:<msg_type:MsgHeartbeatResponse to:1 from:2 index:27 > region_epoch:<conf_ver:1 version:1 > }]
+2021/12/02 18:22:13.511738 raft_worker.go:57: [info] [{2 1 <nil>}]
+2021/12/02 18:22:13.511755 node.go:198: [info] stop raft store thread, storeID: 3
+2021/12/02 18:22:13.511778 node.go:198: [info] stop raft store thread, storeID: 1
+2021/12/02 18:22:13.511791 node.go:198: [info] stop raft store thread, storeID: 2
+--- PASS: TestOwnSnap2C (2.42s)
+PASS
+
+Process finished with the exit code 0

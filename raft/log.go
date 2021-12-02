@@ -80,10 +80,11 @@ func newLog(storage Storage) *RaftLog {
 	// 不能从 PeerStorage -> storage
 	// todo: 此处虽获得了 commit, 但没有获得apply fix it
 	initState, _, err := storage.InitialState()
-	if err == nil {
-		rlog.committed = initState.Commit
-		rlog.applied = initState.Commit
+	if err != nil {
+		panic(err)
 	}
+	rlog.committed = initState.Commit
+	rlog.applied = firstIdx - 1
 
 	return &rlog
 }
@@ -104,6 +105,16 @@ func (l *RaftLog) realIdx(logicalIdx uint64) int {
 // grow unlimitedly in memory
 func (l *RaftLog) maybeCompact() {
 	// Your Code Here (2C).
+	lastSnapIdx := l.lastIdxOfSnapshot
+	storageFirstIdx, err := l.storage.FirstIndex()
+	errPanic(err)
+	if lastSnapIdx < storageFirstIdx - 1 {
+		l.lastTermOfSnapshot, _ = l.Term(storageFirstIdx - 1)
+		l.entries = l.entries[l.realIdx(storageFirstIdx) : ]
+		l.lastIdxOfSnapshot = storageFirstIdx - 1
+	} else {
+		return
+	}
 }
 
 func (l *RaftLog) hasUnstableEnts() bool {

@@ -111,7 +111,8 @@ func (rn *RawNode) Propose(data []byte) error {
 	return rn.Raft.Step(pb.Message{
 		MsgType: pb.MessageType_MsgPropose,
 		From:    rn.Raft.id,
-		Entries: []*pb.Entry{&ent}})
+		Entries: []*pb.Entry{&ent}},
+	)
 }
 
 // ProposeConfChange proposes a config change.
@@ -212,7 +213,16 @@ func (rn *RawNode) Advance(rd Ready) {
 	if len(rd.CommittedEntries) > 0 {
 		rn.Raft.RaftLog.applied = rd.CommittedEntries[len(rd.CommittedEntries)-1].Index
 	}
+	rn.Raft.RaftLog.maybeCompact()
 }
+
+func errPanic(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
+
+
 
 // GetProgress return the the Progress of this node and its peers, if this
 // node is leader.
