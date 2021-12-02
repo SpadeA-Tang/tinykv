@@ -570,17 +570,11 @@ func (r *Raft) needSnapshot(nextIdx uint64) bool {
 	return nextIdx <= r.RaftLog.lastIdxOfSnapshot
 }
 
-func (r *Raft) sendSnapshot() {
-
-}
 
 // sendAppend sends an append RPC with new entries (if any) and the
 // current commit index to the given peer. Returns true if a message was sent.
 func (r *Raft) sendAppend(to uint64) bool {
 	// Your Code Here (2A).
-
-	fmt.Printf("[%d] current log length %d\n", r.id, len(r.RaftLog.entries))
-	fmt.Println(r.RaftLog.storage.FirstIndex())
 
 	lastIdx := r.RaftLog.LastIndex()
 	nextIdx := r.Prs[to].Next
@@ -588,9 +582,14 @@ func (r *Raft) sendAppend(to uint64) bool {
 	var m pb.Message
 	if r.needSnapshot(nextIdx) {
 		// handle sending snapshot to followers
+
+		// storage.Snapshot() will generate snapshot from disk.
+		//it will need some time, so, in order not to block the go routine, we return
+		//immediately if the snapshot has not been generated completely.
+		//In the next run and when the snapshot has been generated, we send it to the follower
 		snapshot, err := r.RaftLog.storage.Snapshot()
 		if err != nil {
-			panic(err)
+			return false
 		}
 		m = pb.Message{
 			MsgType: pb.MessageType_MsgSnapshot,
@@ -599,6 +598,8 @@ func (r *Raft) sendAppend(to uint64) bool {
 			Term: r.Term,
 			Snapshot: &snapshot,
 		}
+		// without updating this, the follower may request snapshotting unstoppable
+		r.Prs[to].Next = snapshot.Metadata.Index + 1
 	} else {
 		// handle normal log replication
 		if nextIdx > lastIdx {
@@ -802,7 +803,7 @@ func (r *Raft) handleSnapshot(m pb.Message) {
 	// Your Code Here (2C).
 	y.Assert(m.Snapshot != nil)
 	metaData := m.Snapshot.Metadata
-	if metaData.Index <= r.RaftLog.LastIndex() || metaData.Term <= r.Term {
+	if metaData.Index <= r.RaftLog.LastIndex() {
 		return
 	}
 
@@ -823,16 +824,16 @@ func (r *Raft) handleSnapshot(m pb.Message) {
 		}
 	}
 	r.becomeFollower(m.Term, m.From)
-	// response
-	resp := pb.Message{
-		MsgType: pb.MessageType_MsgAppendResponse,
-		From:    r.id,
-		To:      m.From,
-		Reject:  false,
-		Term:    r.Term,
-		Index:   r.RaftLog.LastIndex(),
-	}
-	r.msgs = append(r.msgs, resp)
+	//// response
+	//resp := pb.Message{
+	//	MsgType: pb.MessageType_MsgAppendResponse,
+	//	From:    r.id,
+	//	To:      m.From,
+	//	Reject:  false,
+	//	Term:    r.Term,
+	//	Index:   r.RaftLog.LastIndex(),
+	//}
+	//r.msgs = append(r.msgs, resp)
 }
 
 // addNode add a new node to raft group

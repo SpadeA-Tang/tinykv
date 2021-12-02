@@ -43,8 +43,6 @@ func (rw *raftWorker) run(closeCh <-chan struct{}, wg *sync.WaitGroup) {
 			msgs = append(msgs, msg)
 		}
 
-
-
 		pending := len(rw.raftCh)
 		for i := 0; i < pending; i++ {
 			msgs = append(msgs, <-rw.raftCh)

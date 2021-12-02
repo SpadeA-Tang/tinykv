@@ -181,6 +181,10 @@ func (rn *RawNode) Ready() Ready {
 		rn.prevHardState = curHardSt
 	}
 	// todo: snapshot
+	if !IsEmptySnap(rn.Raft.RaftLog.pendingSnapshot) {
+		rd.Snapshot = *rn.Raft.RaftLog.pendingSnapshot
+		rn.Raft.RaftLog.pendingSnapshot = nil
+	}
 
 	return rd
 }
@@ -194,7 +198,11 @@ func (rn *RawNode) HasReady() bool {
 	if hardSt := rn.Raft.HardState(); !hardSt.IsEmpty() && !hardSt.Equal(rn.prevHardState) {
 		return true
 	}
-	// todo: snapshot
+
+	if !IsEmptySnap(rn.Raft.RaftLog.pendingSnapshot) {
+		return true
+	}
+
 	if len(rn.Raft.msgs) > 0 ||
 		rn.Raft.RaftLog.hasUnstableEnts() ||
 		rn.Raft.RaftLog.hasNextEnts() {

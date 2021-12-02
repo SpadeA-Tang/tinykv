@@ -158,7 +158,7 @@ func (d *peerMsgHandler) handleAdminRequest(
 			applySt.TruncatedState.Term = compactLog.CompactTerm
 			wb.SetMeta(meta.ApplyStateKey(d.regionId), applySt)
 			d.ScheduleCompactLog(compactLog.CompactIndex)
-			log.Infof("[%d] Compact log...", d.RaftGroup.Raft.GetId())
+			log.Infof("[%d] Compact log... truncate index: %v", d.RaftGroup.Raft.GetId(), applySt.TruncatedState.Index)
 		}
 	}
 
@@ -366,11 +366,6 @@ func (d *peerMsgHandler) ScheduleCompactLog(truncatedIndex uint64) {
 func (d *peerMsgHandler) onRaftMsg(msg *rspb.RaftMessage) error {
 	log.Debugf("%s handle raft message %s from %d to %d",
 		d.Tag, msg.GetMessage().GetMsgType(), msg.GetFromPeer().GetId(), msg.GetToPeer().GetId())
-	fmt.Printf("%s handle raft message %s from %d to %d\n",
-		d.Tag, msg.GetMessage().GetMsgType(), msg.GetFromPeer().GetId(), msg.GetToPeer().GetId())
-	if msg.GetToPeer().GetId() == 2 && msg.GetMessage().GetMsgType() != pb.MessageType_MsgHeartbeat {
-		fmt.Println("------------------------------------------------------")
-	}
 	if !d.validateRaftMessage(msg) {
 		return nil
 	}
