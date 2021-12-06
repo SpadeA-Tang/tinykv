@@ -19,10 +19,8 @@ import (
 	"fmt"
 	"github.com/Connor1996/badger/y"
 	"github.com/pingcap-incubator/tinykv/log"
-	"math/rand"
-	"sync"
-
 	pb "github.com/pingcap-incubator/tinykv/proto/pkg/eraftpb"
+	"math/rand"
 )
 
 // None is a placeholder node ID used when there is no leader.
@@ -168,7 +166,6 @@ type Raft struct {
 
 	// ---- added -----
 	peers []uint64
-	mu    sync.Mutex
 }
 
 // newRaft return a raft peer with the given config
@@ -266,8 +263,6 @@ func (r *Raft) sendHeartbeat(to uint64) {
 // tick advances the internal logical clock by a single tick.
 func (r *Raft) tick() {
 	// Your Code Here (2A).
-	r.mu.Lock()
-	defer r.mu.Unlock()
 	r.electionElapsed++
 	r.heartbeatElapsed++
 
@@ -398,6 +393,7 @@ func (r *Raft) becomeLeader() {
 	fmt.Printf("[%v] becomes leader\n", r.id)
 
 	r.State = StateLeader
+	r.leadTransferee = None
 	r.heartbeatElapsed = 0
 	r.Lead = r.id
 
@@ -421,8 +417,6 @@ func (r *Raft) becomeLeader() {
 // on `eraftpb.proto` for what msgs should be handled
 func (r *Raft) Step(m pb.Message) error {
 	// Your Code Here (2A).
-	r.mu.Lock()
-	defer r.mu.Unlock()
 	switch r.State {
 	case StateFollower:
 		switch m.MsgType {
@@ -437,6 +431,10 @@ func (r *Raft) Step(m pb.Message) error {
 			r.handleVoteRequest(m)
 		case pb.MessageType_MsgHeartbeat:
 			r.handleHeartbeat(m)
+		case pb.MessageType_MsgTimeoutNow:
+			r.handleMsgTimeOut()
+		case pb.MessageType_MsgTransferLeader:
+			r.handleLeaderTransfer(m)
 		}
 	case StateCandidate:
 		switch m.MsgType {
@@ -453,6 +451,10 @@ func (r *Raft) Step(m pb.Message) error {
 			r.handleVoteRequest(m)
 		case pb.MessageType_MsgHeartbeat:
 			r.handleHeartbeat(m)
+		case pb.MessageType_MsgTimeoutNow:
+			r.handleMsgTimeOut()
+		case pb.MessageType_MsgTransferLeader:
+			r.handleLeaderTransfer(m)
 		}
 	case StateLeader:
 		switch m.MsgType {
@@ -474,9 +476,63 @@ func (r *Raft) Step(m pb.Message) error {
 			r.handleHeartbeat(m)
 		case pb.MessageType_MsgHeartbeatResponse:
 			r.handleHeartbeatResponse(m)
+		case pb.MessageType_MsgTransferLeader:
+			r.handleLeaderTransfer(m)
 		}
 	}
 	return nil
+}
+
+//handleMsgTimeOut is called when the leader status is transferred to r.id
+// Start compaign immediately to become the new leader
+func (r *Raft) handleMsgTimeOut() {
+	if r.State == StateCandidate {
+		return
+	}
+	r.Step(pb.Message{From: r.id, To: r.id, MsgType: pb.MessageType_MsgHup})
+}
+
+func (r *Raft) containsPeer(peer uint64) bool {
+	for _, id := range r.peers {
+		if id == peer {
+			return true
+		}
+	}
+	return false
+}
+
+func (r *Raft) handleLeaderTransfer(m pb.Message) {
+	if r.State != StateLeader {
+		if r.Lead != None {
+			r.Step(pb.Message{From: m.From, To: r.Lead, MsgType: pb.MessageType_MsgHup})
+		}
+		return
+	}
+	transfereeId := m.From
+	if !r.containsPeer(transfereeId) {
+		log.Infof("[%d] does not contains [%d], so, stop leader transfer", r.id, transfereeId)
+		return
+	}
+	if transfereeId == r.id {
+		log.Infof("[%d] transferring leader to itself can be ignored", r.id)
+		return
+	}
+	if r.leadTransferee != None {
+		if r.leadTransferee == transfereeId {
+			log.Infof("[%d] leader transfer to [%d] is in progress...", r.id, transfereeId)
+			return
+		}
+	}
+	r.leadTransferee = transfereeId
+	if r.RaftLog.LastIndex() == r.Prs[transfereeId].Match {
+		r.msgs = append(r.msgs, pb.Message{
+			MsgType: pb.MessageType_MsgTimeoutNow,
+			To: transfereeId,
+			From: r.id,
+		})
+	} else {
+		r.sendAppend(transfereeId)
+	}
 }
 
 // related to append entries ----------- start --------------------
@@ -488,6 +544,14 @@ func (r *Raft) handleMsgAppendResponse(m pb.Message) {
 		}
 		r.Prs[m.From].Match = m.Index
 		r.Prs[m.From].Next = m.Index + 1
+
+		if m.From == r.leadTransferee && r.Prs[m.From].Match == r.RaftLog.LastIndex() {
+			r.msgs = append(r.msgs, pb.Message{
+				MsgType: pb.MessageType_MsgTimeoutNow,
+				To: m.From,
+				From: r.id,
+			})
+		}
 
 		msg := pb.Message{
 			MsgType:   pb.MessageType_MsgAppend,
@@ -527,6 +591,7 @@ func (r *Raft) handleMsgAppendResponse(m pb.Message) {
 				r.msgs = append(r.msgs, msg)
 			}
 		}
+
 	} else {
 		if m.ConflictTerm != 0 {
 			searched := false
@@ -598,7 +663,7 @@ func (r *Raft) sendAppend(to uint64) bool {
 			Term: r.Term,
 			Snapshot: &snapshot,
 		}
-		// without updating this, the follower may request snapshotting unstoppable
+		// without updating this, the follower may request snapshotting infinitely
 		r.Prs[to].Next = snapshot.Metadata.Index + 1
 	} else {
 		// handle normal log replication

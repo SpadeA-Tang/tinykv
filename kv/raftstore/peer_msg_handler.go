@@ -89,7 +89,6 @@ func (d *peerMsgHandler) handleRequest(
 func (d *peerMsgHandler) handleProposal(req *raft_cmdpb.Request, ent pb.Entry, wb *engine_util.WriteBatch) *engine_util.WriteBatch {
 	if len(d.proposals) == 0 {
 		return wb
-		//panic("Something must be wrong")
 	}
 	p := d.proposals[0]
 	d.proposals = d.proposals[1:]
@@ -263,11 +262,13 @@ func (d *peerMsgHandler) proposeRequest(msg *raft_cmdpb.RaftCmdRequest, cb *mess
 	if len(msg.Requests) == 0 {
 		fmt.Println()
 	}
+
+	// maybe unnecessary
 	key := getKey(msg.Requests[0])
 	if key != nil {
 		err := util.CheckKeyInRegion(key, d.Region())
 		if err != nil {
-			panic("")
+			panic(err)
 		}
 	}
 	data, err := msg.Marshal()

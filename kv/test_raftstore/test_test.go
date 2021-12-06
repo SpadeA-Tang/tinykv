@@ -448,67 +448,67 @@ func TestPersistPartitionUnreliable2B(t *testing.T) {
 	GenericTest(t, "2B", 5, true, true, true, -1, false, false)
 }
 
-//func TestOwnSnap2C(t *testing.T) {
-//	cfg := config.NewTestConfig()
-//	cfg.LogLevel = "info"
-//	cfg.RaftLogGcCountLimit = 10
-//	cluster := NewTestCluster(3, cfg)
-//	cluster.Start()
-//	defer cluster.Shutdown()
-//
-//	testNum := 100
-//
-//	cf := engine_util.CfLock
-//	cluster.StopServer(2)
-//	SleepMS(1000)
-//	for i := 0; i< testNum; i++ {
-//		cluster.MustPutCF(cf, []byte(fmt.Sprintf("k%v", i + 1)), []byte("v1"))
-//	}
-//	fmt.Printf("Putting finishes, check getting\n")
-//	SleepMS(1000)
-//	engine := cluster.engines[1]
-//	state, err := meta.GetApplyState(engine.Kv, 1)
-//	if err != nil {
-//		t.Fatal(err)
-//	}
-//	truncatedIdx := state.TruncatedState.Index
-//	appliedIdx := state.AppliedIndex
-//	if appliedIdx-truncatedIdx > 2*uint64(cfg.RaftLogGcCountLimit) {
-//		t.Fatalf("logs were not trimmed (%v - %v > 2*%v)", appliedIdx, truncatedIdx, cfg.RaftLogGcCountLimit)
-//	}
-//	cluster.StartServer(2)
-//	SleepMS(1000)
-//	//for i := 0; i < testNum; i++ {
-//	//	if bytes.Compare(
-//	//		cluster.GetCF(cf, []byte(fmt.Sprintf("k%v", i + 1))), []byte("v1")) != 0 {
-//	//		panic("Test Fail")
-//	//	}
-//	//}
-//	engine = cluster.engines[2]
-//
-//	for i := 0; i < testNum; i++ {
-//		val, err := engine_util.GetCF(engine.Kv, cf, []byte(fmt.Sprintf("k%v", i + 1)))
-//		if err != nil {
-//			panic(err)
-//		}
-//		if bytes.Compare(val, []byte("v1")) != 0 {
-//			panic("Test Fail")
-//		}
-//	}
-//
-//	for _, engine := range cluster.engines {
-//		state, err := meta.GetApplyState(engine.Kv, 1)
-//		if err != nil {
-//			t.Fatal(err)
-//		}
-//		truncatedIdx := state.TruncatedState.Index
-//		appliedIdx := state.AppliedIndex
-//		if appliedIdx-truncatedIdx > 2*uint64(cfg.RaftLogGcCountLimit) {
-//			t.Fatalf("logs were not trimmed (%v - %v > 2*%v)", appliedIdx, truncatedIdx, cfg.RaftLogGcCountLimit)
-//		}
-//	}
-//
-//}
+func TestOwnSnap2C(t *testing.T) {
+	cfg := config.NewTestConfig()
+	cfg.LogLevel = "info"
+	cfg.RaftLogGcCountLimit = 10
+	cluster := NewTestCluster(3, cfg)
+	cluster.Start()
+	defer cluster.Shutdown()
+
+	testNum := 100
+
+	cf := engine_util.CfLock
+	cluster.StopServer(2)
+	SleepMS(1000)
+	for i := 0; i< testNum; i++ {
+		cluster.MustPutCF(cf, []byte(fmt.Sprintf("k%v", i + 1)), []byte("v1"))
+	}
+	fmt.Printf("Putting finishes, check getting\n")
+	SleepMS(1000)
+	engine := cluster.engines[1]
+	state, err := meta.GetApplyState(engine.Kv, 1)
+	if err != nil {
+		t.Fatal(err)
+	}
+	truncatedIdx := state.TruncatedState.Index
+	appliedIdx := state.AppliedIndex
+	if appliedIdx-truncatedIdx > 2*uint64(cfg.RaftLogGcCountLimit) {
+		t.Fatalf("logs were not trimmed (%v - %v > 2*%v)", appliedIdx, truncatedIdx, cfg.RaftLogGcCountLimit)
+	}
+	cluster.StartServer(2)
+	SleepMS(1000)
+	//for i := 0; i < testNum; i++ {
+	//	if bytes.Compare(
+	//		cluster.GetCF(cf, []byte(fmt.Sprintf("k%v", i + 1))), []byte("v1")) != 0 {
+	//		panic("Test Fail")
+	//	}
+	//}
+	engine = cluster.engines[2]
+
+	for i := 0; i < testNum; i++ {
+		val, err := engine_util.GetCF(engine.Kv, cf, []byte(fmt.Sprintf("k%v", i + 1)))
+		if err != nil {
+			panic(err)
+		}
+		if bytes.Compare(val, []byte("v1")) != 0 {
+			panic("Test Fail")
+		}
+	}
+
+	for _, engine := range cluster.engines {
+		state, err := meta.GetApplyState(engine.Kv, 1)
+		if err != nil {
+			t.Fatal(err)
+		}
+		truncatedIdx := state.TruncatedState.Index
+		appliedIdx := state.AppliedIndex
+		if appliedIdx-truncatedIdx > 2*uint64(cfg.RaftLogGcCountLimit) {
+			t.Fatalf("logs were not trimmed (%v - %v > 2*%v)", appliedIdx, truncatedIdx, cfg.RaftLogGcCountLimit)
+		}
+	}
+
+}
 
 func TestOneSnapshot2C(t *testing.T) {
 	cfg := config.NewTestConfig()
