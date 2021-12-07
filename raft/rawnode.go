@@ -180,7 +180,7 @@ func (rn *RawNode) Ready() Ready {
 		rd.HardState = curHardSt
 		rn.prevHardState = curHardSt
 	}
-	// todo: snapshot
+
 	if !IsEmptySnap(rn.Raft.RaftLog.pendingSnapshot) {
 		rd.Snapshot = *rn.Raft.RaftLog.pendingSnapshot
 		rn.Raft.RaftLog.pendingSnapshot = nil

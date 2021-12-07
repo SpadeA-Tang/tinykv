@@ -1,0 +1,60 @@
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./raft -run 3A
+=== RUN   TestAddNode3A
+--- PASS: TestAddNode3A (0.00s)
+=== RUN   TestRemoveNode3A
+--- PASS: TestRemoveNode3A (0.00s)
+=== RUN   TestCommitAfterRemoveNode3A
+[1] becomes leader
+--- PASS: TestCommitAfterRemoveNode3A (0.00s)
+=== RUN   TestLeaderTransferToUpToDateNode3A
+[1] becomes leader
+[2] becomes leader
+[1] becomes leader
+--- PASS: TestLeaderTransferToUpToDateNode3A (0.00s)
+=== RUN   TestLeaderTransferToUpToDateNodeFromFollower3A
+[1] becomes leader
+[2] becomes leader
+[1] becomes leader
+--- PASS: TestLeaderTransferToUpToDateNodeFromFollower3A (0.00s)
+=== RUN   TestLeaderTransferToSlowFollower3A
+[1] becomes leader
+[3] becomes leader
+--- PASS: TestLeaderTransferToSlowFollower3A (0.00s)
+=== RUN   TestLeaderTransferAfterSnapshot3A
+[1] becomes leader
+[3] becomes leader
+--- PASS: TestLeaderTransferAfterSnapshot3A (0.00s)
+=== RUN   TestLeaderTransferToSelf3A
+[1] becomes leader
+2021/12/07 14:23:46 raft.go:516: [0;37m[info] [1] transferring leader to itself can be ignored[0m
+--- PASS: TestLeaderTransferToSelf3A (0.00s)
+=== RUN   TestLeaderTransferToNonExistingNode3A
+[1] becomes leader
+2021/12/07 14:23:46 raft.go:512: [0;37m[info] [1] does not contains [4], so, stop leader transfer[0m
+--- PASS: TestLeaderTransferToNonExistingNode3A (0.00s)
+=== RUN   TestLeaderTransferReceiveHigherTermVote3A
+[1] becomes leader
+[2] becomes leader
+--- PASS: TestLeaderTransferReceiveHigherTermVote3A (0.00s)
+=== RUN   TestLeaderTransferRemoveNode3A
+[1] becomes leader
+2021/12/07 14:23:46 raft.go:512: [0;37m[info] [1] does not contains [3], so, stop leader transfer[0m
+--- PASS: TestLeaderTransferRemoveNode3A (0.00s)
+=== RUN   TestLeaderTransferBack3A
+[1] becomes leader
+2021/12/07 14:23:46 raft.go:516: [0;37m[info] [1] transferring leader to itself can be ignored[0m
+--- PASS: TestLeaderTransferBack3A (0.00s)
+=== RUN   TestLeaderTransferSecondTransferToAnotherNode3A
+[1] becomes leader
+[2] becomes leader
+--- PASS: TestLeaderTransferSecondTransferToAnotherNode3A (0.00s)
+=== RUN   TestTransferNonMember3A
+--- PASS: TestTransferNonMember3A (0.00s)
+=== RUN   TestRawNodeProposeAndConfChange3A
+[1] becomes leader
+--- PASS: TestRawNodeProposeAndConfChange3A (0.00s)
+=== RUN   TestRawNodeProposeAddDuplicateNode3A
+[1] becomes leader
+--- PASS: TestRawNodeProposeAddDuplicateNode3A (0.00s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/raft	0.002s

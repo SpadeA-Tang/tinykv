@@ -486,7 +486,7 @@ func (r *Raft) Step(m pb.Message) error {
 //handleMsgTimeOut is called when the leader status is transferred to r.id
 // Start compaign immediately to become the new leader
 func (r *Raft) handleMsgTimeOut() {
-	if r.State == StateCandidate {
+	if r.State == StateCandidate || !r.containsPeer(r.id) {
 		return
 	}
 	r.Step(pb.Message{From: r.id, To: r.id, MsgType: pb.MessageType_MsgHup})
@@ -506,32 +506,32 @@ func (r *Raft) handleLeaderTransfer(m pb.Message) {
 		if r.Lead != None {
 			r.Step(pb.Message{From: m.From, To: r.Lead, MsgType: pb.MessageType_MsgHup})
 		}
-		return
-	}
-	transfereeId := m.From
-	if !r.containsPeer(transfereeId) {
-		log.Infof("[%d] does not contains [%d], so, stop leader transfer", r.id, transfereeId)
-		return
-	}
-	if transfereeId == r.id {
-		log.Infof("[%d] transferring leader to itself can be ignored", r.id)
-		return
-	}
-	if r.leadTransferee != None {
-		if r.leadTransferee == transfereeId {
-			log.Infof("[%d] leader transfer to [%d] is in progress...", r.id, transfereeId)
+	} else {
+		transfereeId := m.From
+		if !r.containsPeer(transfereeId) {
+			log.Infof("[%d] does not contains [%d], so, stop leader transfer", r.id, transfereeId)
 			return
 		}
-	}
-	r.leadTransferee = transfereeId
-	if r.RaftLog.LastIndex() == r.Prs[transfereeId].Match {
-		r.msgs = append(r.msgs, pb.Message{
-			MsgType: pb.MessageType_MsgTimeoutNow,
-			To: transfereeId,
-			From: r.id,
-		})
-	} else {
-		r.sendAppend(transfereeId)
+		if transfereeId == r.id {
+			log.Infof("[%d] transferring leader to itself can be ignored", r.id)
+			return
+		}
+		if r.leadTransferee != None {
+			if r.leadTransferee == transfereeId {
+				log.Infof("[%d] leader transfer to [%d] is in progress...", r.id, transfereeId)
+				return
+			}
+		}
+		r.leadTransferee = transfereeId
+		if r.RaftLog.LastIndex() == r.Prs[transfereeId].Match {
+			r.msgs = append(r.msgs, pb.Message{
+				MsgType: pb.MessageType_MsgTimeoutNow,
+				To:      transfereeId,
+				From:    r.id,
+			})
+		} else {
+			r.sendAppend(transfereeId)
+		}
 	}
 }
 
@@ -697,6 +697,16 @@ func (r *Raft) handleMsgPropose(m pb.Message) {
 	for _, entry := range m.Entries {
 		entry.Term = r.Term
 		entry.Index = r.RaftLog.LastIndex() + 1
+
+		if entry.EntryType == pb.EntryType_EntryConfChange {
+			// only one conf change should be pending, so if there exists one pending already,
+			// skip the current one
+			if r.PendingConfIndex != None {
+				continue
+			}
+			r.PendingConfIndex = entry.Index
+		}
+
 		r.RaftLog.AppendEntry(*entry)
 	}
 	r.Prs[r.id].Match = r.RaftLog.LastIndex()
@@ -904,9 +914,52 @@ func (r *Raft) handleSnapshot(m pb.Message) {
 // addNode add a new node to raft group
 func (r *Raft) addNode(id uint64) {
 	// Your Code Here (3A).
+	if r.containsPeer(id) {
+		r.PendingConfIndex = None
+		return
+	}
+	r.peers = append(r.peers, id)
+	r.Prs[id] = &Progress{
+		Match: 0,
+		Next: r.RaftLog.LastIndex(),
+	}
+	r.PendingConfIndex = None
 }
 
 // removeNode remove a node from raft group
 func (r *Raft) removeNode(id uint64) {
 	// Your Code Here (3A).
+
+	delete(r.Prs, id)
+	r.removePeer(id)
+	if r.State == StateLeader {
+		// After deleting a node, there may be some log ents that can be
+		//committed now.
+		newCommit := false
+		for idx := r.RaftLog.committed + 1; idx <= r.RaftLog.LastIndex(); idx += 1 {
+			matched := 0
+			for _, peer := range r.peers {
+				if r.Prs[peer].Match >= idx {
+					matched += 1
+				}
+			}
+			term, _ := r.RaftLog.Term(idx)
+			if term == r.Term && matched > len(r.peers) / 2 {
+				r.RaftLog.committed = idx
+				newCommit = true
+			}
+		}
+		if newCommit {
+			r.broadCastAE()
+		}
+	}
+	r.PendingConfIndex = None
+}
+
+func (r *Raft) removePeer(id uint64) {
+	for idx, peer := range r.peers {
+		if id == peer {
+			r.peers = append(r.peers[:idx], r.peers[idx + 1:]...)
+		}
+	}
 }
