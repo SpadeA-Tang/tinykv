@@ -240,6 +240,26 @@ type Region struct {
 	XXX_sizecache        int32        `json:"-"`
 }
 
+func (m *Region) RemovePeer(id uint64) bool {
+	for idx, peer := range m.Peers {
+		if id == peer.Id {
+			m.Peers = append(m.Peers[:idx], m.Peers[idx + 1:]...)
+			return true
+		}
+	}
+	return false
+}
+
+func (m *Region) AddPeer(peer *Peer) bool {
+	for _, pr := range m.Peers {
+		if pr.Id == peer.Id {
+			return false
+		}
+	}
+	m.Peers = append(m.Peers, peer)
+	return true
+}
+
 func (m *Region) Reset()         { *m = Region{} }
 func (m *Region) String() string { return proto.CompactTextString(m) }
 func (*Region) ProtoMessage()    {}

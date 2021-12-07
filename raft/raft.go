@@ -513,7 +513,6 @@ func (r *Raft) handleLeaderTransfer(m pb.Message) {
 			return
 		}
 		if transfereeId == r.id {
-			log.Infof("[%d] transferring leader to itself can be ignored", r.id)
 			return
 		}
 		if r.leadTransferee != None {
@@ -867,6 +866,7 @@ func (r *Raft) handleHeartbeatResponse(m pb.Message) {
 	if m.Reject {
 		r.becomeFollower(m.Term, 0)
 	} else {
+		fmt.Printf("[%d] receives appresp from [%d] with index :%d\n", r.id, m.From, m.Index)
 		if m.Index < r.RaftLog.LastIndex() {
 			r.sendAppend(m.From)
 		}
@@ -929,7 +929,9 @@ func (r *Raft) addNode(id uint64) {
 // removeNode remove a node from raft group
 func (r *Raft) removeNode(id uint64) {
 	// Your Code Here (3A).
-
+	if !r.containsPeer(id) {
+		return
+	}
 	delete(r.Prs, id)
 	r.removePeer(id)
 	if r.State == StateLeader {

@@ -50,7 +50,6 @@ func (rw *raftWorker) run(closeCh <-chan struct{}, wg *sync.WaitGroup) {
 
 		peerStateMap := make(map[uint64]*peerState)
 		for _, msg := range msgs {
-			fmt.Println(msg)
 			peerState := rw.getPeerState(peerStateMap, msg.RegionID)
 			if peerState == nil {
 				fmt.Printf("msg %v\n", msg)

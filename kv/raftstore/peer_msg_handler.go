@@ -147,7 +147,6 @@ func (d *peerMsgHandler) handleProposal(req *raft_cmdpb.Request, ent pb.Entry, w
 
 func (d *peerMsgHandler) handleAdminRequest(
 	msg raft_cmdpb.RaftCmdRequest, ent pb.Entry, wb *engine_util.WriteBatch) *engine_util.WriteBatch {
-
 	switch msg.AdminRequest.CmdType {
 	case raft_cmdpb.AdminCmdType_CompactLog:
 		applySt := d.peerStorage.applyState
@@ -159,6 +158,69 @@ func (d *peerMsgHandler) handleAdminRequest(
 			d.ScheduleCompactLog(compactLog.CompactIndex)
 			log.Infof("[%d] Compact log... truncate index: %v", d.RaftGroup.Raft.GetId(), applySt.TruncatedState.Index)
 		}
+	case raft_cmdpb.AdminCmdType_ChangePeer:
+		cc := pb.ConfChange{}
+		if err := cc.Unmarshal(ent.Data); err != nil {
+			panic(err)
+		}
+		region := d.Region()
+		msg := &raft_cmdpb.RaftCmdRequest{}
+		if err := msg.Unmarshal(cc.Context); err != nil {
+			panic(err)
+		}
+		d.RaftGroup.ApplyConfChange(cc)
+
+		switch cc.ChangeType {
+		case pb.ConfChangeType_AddNode:
+			peer := msg.AdminRequest.ChangePeer.Peer
+			if region.AddPeer(peer) {
+				fmt.Printf("[%d] adds node :%d\n", d.RaftGroup.Raft.GetId(), cc.NodeId)
+				//log.Infof("[%d] adds node :%d", d.RaftGroup.Raft.GetId(), cc.NodeId)
+				region.RegionEpoch.ConfVer += 1
+				wb.SetMeta(meta.RegionStateKey(d.regionId), &rspb.RegionLocalState{
+					State:  rspb.PeerState_Normal,
+					Region: region,
+				})
+				d.ctx.storeMeta.regions[region.Id] = region
+				d.insertPeerCache(peer)
+			}
+		case pb.ConfChangeType_RemoveNode:
+			//fmt.Printf("[%d] cc.NodeId %d\n", d.RaftGroup.Raft.GetId(), cc.NodeId)
+			if cc.NodeId == d.RaftGroup.Raft.GetId() {
+				d.destroyPeer()
+				return wb
+			}
+			if region.RemovePeer(cc.NodeId) {
+				fmt.Printf("[%d] removes node :%d\n", d.RaftGroup.Raft.GetId(), cc.NodeId)
+				region.RegionEpoch.ConfVer += 1
+				wb.SetMeta(meta.RegionStateKey(d.regionId), &rspb.RegionLocalState{
+					State:  rspb.PeerState_Normal,
+					Region: region,
+				})
+				d.ctx.storeMeta.regions[region.Id] = region
+				d.removePeerCache(cc.NodeId)
+			}
+
+		}
+
+		if len(d.proposals) > 0 {
+			p := d.proposals[0]
+			d.proposals = d.proposals[1:]
+			if p.index != ent.Index || p.term != ent.Term {
+				NotifyStaleReq(ent.Term, p.cb)
+			}
+			p.cb.Done(&raft_cmdpb.RaftCmdResponse{
+				Header: &raft_cmdpb.RaftResponseHeader{},
+				AdminResponse: &raft_cmdpb.AdminResponse{
+					CmdType:    raft_cmdpb.AdminCmdType_ChangePeer,
+					ChangePeer: &raft_cmdpb.ChangePeerResponse{},
+				},
+			})
+		}
+		if d.IsLeader() {
+			d.HeartbeatScheduler(d.ctx.schedulerTaskSender)
+		}
+
 	}
 
 	return wb
@@ -170,9 +232,16 @@ func (d *peerMsgHandler) HandleCommitEnts(ents []pb.Entry) {
 		for _, ent := range ents {
 			msg := raft_cmdpb.RaftCmdRequest{}
 			if ent.Data != nil {
-				err := msg.Unmarshal(ent.Data)
-				if err != nil {
-					panic(err)
+				if ent.EntryType != pb.EntryType_EntryConfChange {
+					err := msg.Unmarshal(ent.Data)
+					if err != nil {
+						panic(err)
+					}
+				} else {
+					// set it in order to enter d.handleAdminRequest()
+					msg.AdminRequest = &raft_cmdpb.AdminRequest{
+						CmdType: raft_cmdpb.AdminCmdType_ChangePeer,
+					}
 				}
 				if msg.AdminRequest != nil {
 					wb = d.handleAdminRequest(msg, ent, wb)
@@ -278,7 +347,7 @@ func (d *peerMsgHandler) proposeRequest(msg *raft_cmdpb.RaftCmdRequest, cb *mess
 	d.RaftGroup.Propose(data)
 }
 
-func (d *peerMsgHandler) proposeAdminRequest(msg *raft_cmdpb.RaftCmdRequest) {
+func (d *peerMsgHandler) proposeAdminRequest(msg *raft_cmdpb.RaftCmdRequest, cb *message.Callback) {
 	switch msg.AdminRequest.CmdType {
 	case raft_cmdpb.AdminCmdType_CompactLog:
 		data, err := msg.Marshal()
@@ -286,6 +355,39 @@ func (d *peerMsgHandler) proposeAdminRequest(msg *raft_cmdpb.RaftCmdRequest) {
 			panic(err)
 		}
 		d.RaftGroup.Propose(data)
+	case raft_cmdpb.AdminCmdType_TransferLeader:
+		peer := msg.AdminRequest.TransferLeader
+		d.RaftGroup.TransferLeader(peer.Peer.Id)
+		cb.Done(&raft_cmdpb.RaftCmdResponse{
+			Header: &raft_cmdpb.RaftResponseHeader{},
+			AdminResponse: &raft_cmdpb.AdminResponse{
+				CmdType:    raft_cmdpb.AdminCmdType_TransferLeader,
+				ChangePeer: &raft_cmdpb.ChangePeerResponse{},
+			},
+		})
+	case raft_cmdpb.AdminCmdType_ChangePeer:
+		d.proposals = append(d.proposals, &proposal{
+			index: d.nextProposalIndex(),
+			term:  d.Term(),
+			cb:    cb,
+		})
+
+		cmd := msg.AdminRequest.ChangePeer
+		data, err := msg.Marshal()
+		if err != nil {
+			panic(err)
+		}
+
+		cc := pb.ConfChange{
+			NodeId:     cmd.Peer.Id,
+			ChangeType: cmd.ChangeType,
+			Context:    data,
+		}
+
+		err = d.RaftGroup.ProposeConfChange(cc)
+		if err != nil {
+			panic(err)
+		}
 	}
 }
 
@@ -297,10 +399,7 @@ func (d *peerMsgHandler) proposeRaftCommand(msg *raft_cmdpb.RaftCmdRequest, cb *
 	}
 	// Your Code Here (2B).
 	if msg.AdminRequest != nil {
-		if cb != nil {
-			panic("cb may not be nil in admin request")
-		}
-		d.proposeAdminRequest(msg)
+		d.proposeAdminRequest(msg, cb)
 	} else {
 		d.proposeRequest(msg, cb)
 	}
