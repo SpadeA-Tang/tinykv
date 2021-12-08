@@ -1,15 +1,18 @@
 GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./raft ./kv/test_raftstore -run 2C
 === RUN   TestRestoreSnapshot2C
-2021/12/03 04:56:21 raft.go:810: [0;37m[info] [1] receives snapshot msg[0m
+2021/12/08 15:31:23 raft.go:897: [0;37m[info] [1] receives snapshot msg[0m
+[1] receives snapshot from [0]
 --- PASS: TestRestoreSnapshot2C (0.00s)
 === RUN   TestRestoreIgnoreSnapshot2C
 --- PASS: TestRestoreIgnoreSnapshot2C (0.00s)
 === RUN   TestProvideSnap2C
-2021/12/03 04:56:21 raft.go:810: [0;37m[info] [1] receives snapshot msg[0m
+2021/12/08 15:31:23 raft.go:897: [0;37m[info] [1] receives snapshot msg[0m
+[1] receives snapshot from [0]
 [1] becomes leader
 --- PASS: TestProvideSnap2C (0.00s)
 === RUN   TestRestoreFromSnapMsg2C
-2021/12/03 04:56:21 raft.go:810: [0;37m[info] [2] receives snapshot msg[0m
+2021/12/08 15:31:23 raft.go:897: [0;37m[info] [2] receives snapshot msg[0m
+[2] receives snapshot from [1]
 --- PASS: TestRestoreFromSnapMsg2C (0.00s)
 === RUN   TestSlowNodeRestore2C
 [1] becomes leader
@@ -17,45 +20,116 @@ GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./raft ./kv/test_raftstore
 === RUN   TestRawNodeRestartFromSnapshot2C
 --- PASS: TestRawNodeRestartFromSnapshot2C (0.00s)
 PASS
-ok  	github.com/pingcap-incubator/tinykv/raft	0.002s
+ok  	github.com/pingcap-incubator/tinykv/raft	0.003s
+=== RUN   TestOwnSnap2C
+2021/12/08 15:31:24.818506 node.go:193: [0;37m[info] start raft store node, storeID: 1[0m
+2021/12/08 15:31:24.818620 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 >  create peer with ID 1[0m
+2021/12/08 15:31:24.818647 raftstore.go:174: [0;37m[info] start store 1, region_count 1, tombstone_count 0, takes 73.316µs[0m
+2021/12/08 15:31:24.818797 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2021/12/08 15:31:24.818823 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 >  create peer with ID 2[0m
+2021/12/08 15:31:24.818837 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 23.269µs[0m
+2021/12/08 15:31:24.818974 node.go:193: [0;37m[info] start raft store node, storeID: 3[0m
+2021/12/08 15:31:24.818997 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 >  create peer with ID 3[0m
+2021/12/08 15:31:24.819009 raftstore.go:174: [0;37m[info] start store 3, region_count 1, tombstone_count 0, takes 20.583µs[0m
+2021/12/08 15:31:24.819021 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+[1] becomes leader
+2021/12/08 15:31:25.924371 peer_msg_handler.go:177: [0;37m[info] [1] Compact log... truncate index: 21[0m
+2021/12/08 15:31:25.925589 peer_msg_handler.go:177: [0;37m[info] [3] Compact log... truncate index: 21[0m
+2021/12/08 15:31:25.933690 peer_storage.go:182: [0;37m[info] [region 1] 1 requesting snapshot[0m
+2021/12/08 15:31:25.934111 snap.go:549: [0;37m[info] region 1 scan snapshot /tmp/test-raftstore669479046/snap/gen_1_6_25_(default|write|lock).sst, key count 18, size 171[0m
+2021/12/08 15:31:26.025724 peer_msg_handler.go:177: [0;37m[info] [1] Compact log... truncate index: 39[0m
+2021/12/08 15:31:26.027111 peer_msg_handler.go:177: [0;37m[info] [3] Compact log... truncate index: 39[0m
+2021/12/08 15:31:26.033522 peer_storage.go:182: [0;37m[info] [region 1] 1 requesting snapshot[0m
+2021/12/08 15:31:26.034473 snap.go:549: [0;37m[info] region 1 scan snapshot /tmp/test-raftstore669479046/snap/gen_1_6_42_(default|write|lock).sst, key count 34, size 331[0m
+2021/12/08 15:31:26.126434 peer_msg_handler.go:177: [0;37m[info] [1] Compact log... truncate index: 55[0m
+2021/12/08 15:31:26.128041 peer_msg_handler.go:177: [0;37m[info] [3] Compact log... truncate index: 55[0m
+2021/12/08 15:31:26.128761 peer_storage.go:182: [0;37m[info] [region 1] 1 requesting snapshot[0m
+2021/12/08 15:31:26.129800 snap.go:549: [0;37m[info] region 1 scan snapshot /tmp/test-raftstore669479046/snap/gen_1_6_58_(default|write|lock).sst, key count 49, size 481[0m
+2021/12/08 15:31:26.228313 peer_msg_handler.go:177: [0;37m[info] [1] Compact log... truncate index: 71[0m
+2021/12/08 15:31:26.229663 peer_msg_handler.go:177: [0;37m[info] [3] Compact log... truncate index: 71[0m
+2021/12/08 15:31:26.241687 peer_storage.go:182: [0;37m[info] [region 1] 1 requesting snapshot[0m
+2021/12/08 15:31:26.242962 snap.go:549: [0;37m[info] region 1 scan snapshot /tmp/test-raftstore669479046/snap/gen_1_6_75_(default|write|lock).sst, key count 65, size 641[0m
+2021/12/08 15:31:26.324627 peer_msg_handler.go:177: [0;37m[info] [1] Compact log... truncate index: 85[0m
+2021/12/08 15:31:26.327004 peer_msg_handler.go:177: [0;37m[info] [3] Compact log... truncate index: 85[0m
+2021/12/08 15:31:26.330109 peer_storage.go:182: [0;37m[info] [region 1] 1 requesting snapshot[0m
+2021/12/08 15:31:26.330687 snap.go:549: [0;37m[info] region 1 scan snapshot /tmp/test-raftstore669479046/snap/gen_1_6_89_(default|write|lock).sst, key count 78, size 771[0m
+2021/12/08 15:31:26.427713 peer_msg_handler.go:177: [0;37m[info] [1] Compact log... truncate index: 98[0m
+2021/12/08 15:31:26.431204 peer_msg_handler.go:177: [0;37m[info] [3] Compact log... truncate index: 98[0m
+2021/12/08 15:31:26.434666 peer_storage.go:182: [0;37m[info] [region 1] 1 requesting snapshot[0m
+2021/12/08 15:31:26.435765 snap.go:549: [0;37m[info] region 1 scan snapshot /tmp/test-raftstore669479046/snap/gen_1_6_102_(default|write|lock).sst, key count 90, size 891[0m
+Putting finishes, check getting
+2021/12/08 15:31:26.523756 peer_msg_handler.go:177: [0;37m[info] [1] Compact log... truncate index: 111[0m
+2021/12/08 15:31:26.526100 peer_msg_handler.go:177: [0;37m[info] [3] Compact log... truncate index: 111[0m
+2021/12/08 15:31:27.503484 node.go:193: [0;37m[info] start raft store node, storeID: 2[0m
+2021/12/08 15:31:27.503607 peer.go:41: [0;37m[info] region id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 >  create peer with ID 2[0m
+2021/12/08 15:31:27.503636 raftstore.go:174: [0;37m[info] start store 2, region_count 1, tombstone_count 0, takes 57.439µs[0m
+2021/12/08 15:31:27.528411 peer_storage.go:182: [0;37m[info] [region 1] 1 requesting snapshot[0m
+2021/12/08 15:31:27.529016 snap.go:549: [0;37m[info] region 1 scan snapshot /tmp/test-raftstore669479046/snap/gen_1_6_113_(default|write|lock).sst, key count 100, size 992[0m
+2021/12/08 15:31:27.625640 raft.go:897: [0;37m[info] [2] receives snapshot msg[0m
+[2] receives snapshot from [1]
+2021/12/08 15:31:27.625659 peer_storage.go:329: [0;37m[info] [region 1] 2 begin to apply snapshot[0m
+2021/12/08 15:31:27.625687 peer_storage.go:298: [0;37m[info] [region 1] clear peer 1 meta key 1 apply key 1 raft key and 0 raft logs, takes 10.624µs[0m
+2021/12/08 15:31:27.625747 region_task.go:93: [0;37m[info] begin apply snap data. [regionId: 1][0m
+2021/12/08 15:31:27.625765 region_task.go:137: [0;37m[info] succeed in deleting data in range. [regionId: 1, startKey: , endKey: ][0m
+2021/12/08 15:31:27.638318 snap.go:700: [0;37m[info] apply snapshot ingested 1 tables[0m
+2021/12/08 15:31:27.638344 region_task.go:117: [0;37m[info] applying new data. [regionId: 1, timeTakes: 12.510543ms][0m
+2021/12/08 15:31:28.505581 node.go:198: [0;37m[info] stop raft store thread, storeID: 1[0m
+2021/12/08 15:31:28.505668 node.go:198: [0;37m[info] stop raft store thread, storeID: 2[0m
+2021/12/08 15:31:28.505728 node.go:198: [0;37m[info] stop raft store thread, storeID: 3[0m
+--- PASS: TestOwnSnap2C (3.98s)
 === RUN   TestOneSnapshot2C
 [1] becomes leader
-[3] becomes leader
---- PASS: TestOneSnapshot2C (2.39s)
+[2] becomes leader
+[1] receives snapshot from [2]
+--- PASS: TestOneSnapshot2C (4.78s)
 === RUN   TestSnapshotRecover2C
-[2] becomes leader
-[2] becomes leader
 [5] becomes leader
 [2] becomes leader
---- PASS: TestSnapshotRecover2C (29.66s)
+[5] becomes leader
+[5] becomes leader
+--- PASS: TestSnapshotRecover2C (29.81s)
 === RUN   TestSnapshotRecoverManyClients2C
-[5] becomes leader
-[5] becomes leader
-[1] becomes leader
-[1] becomes leader
---- PASS: TestSnapshotRecoverManyClients2C (72.25s)
-=== RUN   TestSnapshotUnreliable2C
-[1] becomes leader
-[1] becomes leader
---- PASS: TestSnapshotUnreliable2C (32.00s)
-=== RUN   TestSnapshotUnreliableRecover2C
-[1] becomes leader
+[4] becomes leader
 [2] becomes leader
 [1] becomes leader
+[5] becomes leader
+--- PASS: TestSnapshotRecoverManyClients2C (59.81s)
+=== RUN   TestSnapshotUnreliable2C
 [3] becomes leader
+[4] receives snapshot from [3]
+[4] becomes leader
+[5] becomes leader
+--- PASS: TestSnapshotUnreliable2C (33.42s)
+=== RUN   TestSnapshotUnreliableRecover2C
 [3] becomes leader
-[3] becomes leader
---- PASS: TestSnapshotUnreliableRecover2C (34.38s)
+[1] becomes leader
+[4] becomes leader
+[2] becomes leader
+[2] becomes leader
+--- PASS: TestSnapshotUnreliableRecover2C (38.03s)
 === RUN   TestSnapshotUnreliableRecoverConcurrentPartition2C
-[1] becomes leader
-[1] becomes leader
-[1] becomes leader
-[1] becomes leader
-[5] becomes leader
-[1] becomes leader
-[1] becomes leader
-[5] becomes leader
 [3] becomes leader
---- PASS: TestSnapshotUnreliableRecoverConcurrentPartition2C (35.26s)
+[4] becomes leader
+[2] receives snapshot from [4]
+[1] receives snapshot from [4]
+[1] becomes leader
+[1] becomes leader
+[2] receives snapshot from [1]
+[3] becomes leader
+[4] receives snapshot from [3]
+[1] receives snapshot from [3]
+[3] becomes leader
+[3] becomes leader
+[5] receives snapshot from [3]
+[1] receives snapshot from [3]
+[4] receives snapshot from [3]
+[3] becomes leader
+[1] becomes leader
+[5] receives snapshot from [1]
+[1] becomes leader
+[4] receives snapshot from [1]
+[5] receives snapshot from [1]
+[1] becomes leader
+--- PASS: TestSnapshotUnreliableRecoverConcurrentPartition2C (31.69s)
 PASS
-ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	205.997s
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	201.577s

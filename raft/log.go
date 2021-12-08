@@ -90,7 +90,7 @@ func newLog(storage Storage) *RaftLog {
 }
 
 func (l *RaftLog) realIdx(logicalIdx uint64) int {
-	if logicalIdx == l.lastIdxOfSnapshot {
+	if logicalIdx <= l.lastIdxOfSnapshot {
 		return -1
 	}
 	realIdx := logicalIdx - l.lastIdxOfSnapshot - 1

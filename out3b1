@@ -1,0 +1,2528 @@
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestConfChangeUnreliableRecover3B|| true
+=== RUN   TestConfChangeUnreliableRecover3B
+[1] becomes leader
+[1] with lastIdx 6 send hb to peers [1 2 3 4 5] 6 6 6 6
+[1] with lastIdx 6 send hb to peers [1 2 3 4 5] 6 6 6 6
+[1] with lastIdx 6 send hb to peers [1 2 3 4 5] 6 6 6 6
+[1] with lastIdx 6 send hb to peers [1 2 3 4 5] 6 6 6 6
+[1] with lastIdx 6 send hb to peers [1 2 3 4 5] 6 6 6 6
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] with lastIdx 40 send hb to peers [1 2 3 4 5] 37 37 37 37
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] with lastIdx 56 send hb to peers [1 2 3 4 5] 54 53 53 53
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] with lastIdx 81 send hb to peers [1 2 3 4 5] 78 78 78 78
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] with lastIdx 110 send hb to peers [1 2 3 4 5] 109 107 108 107
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] with lastIdx 138 send hb to peers [1 2 4 5] 134 133 133
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] with lastIdx 164 send hb to peers [1 2 4 5] 161 162 162
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] with lastIdx 194 send hb to peers [1 2 4 5] 192 193 191
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] with lastIdx 224 send hb to peers [1 4 5] 221 219
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] with lastIdx 258 send hb to peers [1 4 5] 255 256
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] with lastIdx 294 send hb to peers [1 4 5 6] 292 292 0
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] with lastIdx 297 send hb to peers [1 4 5 6] 292 297 0
+[1] current has 6 proposals
+[6] receives snapshot from [1]
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] with lastIdx 323 send hb to peers [1 5 6] 323 321
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] with lastIdx 362 send hb to peers [1 5 6] 357 359
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] with lastIdx 397 send hb to peers [1 5 6] 396 396
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] with lastIdx 437 send hb to peers [1 6] 435
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] with lastIdx 482 send hb to peers [1 6] 477
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] with lastIdx 563 send hb to peers [1]
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] with lastIdx 665 send hb to peers [1]
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 0 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] with lastIdx 679 send hb to peers [1 7] 0
+[1] with lastIdx 679 send hb to peers [1 7] 0
+[1] current has 6 proposals
+[7] receives snapshot from [1]
+[1] with lastIdx 680 send hb to peers [1 7] 0
+[1] current has 7 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] with lastIdx 724 send hb to peers [1 7 8] 724 0
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] with lastIdx 729 send hb to peers [1 7 8] 725 0
+[1] with lastIdx 729 send hb to peers [1 7 8] 725 0
+[1] current has 6 proposals
+[8] receives snapshot from [1]
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+Stale req
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] with lastIdx 737 send hb to peers [1 8] 733
+[1] with lastIdx 737 send hb to peers [1 8] 733
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+Stale req
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 1 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] current has 4 proposals
+[1] current has 3 proposals
+[1] current has 2 proposals
+[1] current has 3 proposals
+[1] current has 4 proposals
+[1] current has 5 proposals
+[1] with lastIdx 757 send hb to peers [1 8 9] 753 0
+[1] with lastIdx 757 send hb to peers [1 8 9] 753 0
+[9] receives snapshot from [1]
+[1] with lastIdx 757 send hb to peers [1 8 9] 753 0
+[1] current has 6 proposals
+[1] with lastIdx 758 send hb to peers [1 8 9] 753 0
+[1] current has 7 proposals
+[1] with lastIdx 758 send hb to peers [1 8 9] 753 0
+[1] current has 8 proposals
+[1] with lastIdx 758 send hb to peers [1 8 9] 753 0
+[1] current has 9 proposals
+[1] with lastIdx 758 send hb to peers [1 8 9] 753 0
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] current has 7 proposals
+[1] current has 6 proposals
+[1] current has 5 proposals
+Stale req
+[1] current has 6 proposals
+[1] current has 7 proposals
+[1] current has 8 proposals
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] with lastIdx 763 send hb to peers [1 8 9 10] 763 758 0
+[1] with lastIdx 763 send hb to peers [1 8 9 10] 763 758 0
+[1] with lastIdx 763 send hb to peers [1 8 9 10] 763 758 0
+[1] current has 11 proposals
+[1] with lastIdx 764 send hb to peers [1 8 9 10] 763 758 0
+[1] current has 12 proposals
+[1] with lastIdx 764 send hb to peers [1 8 9 10] 763 758 0
+[1] current has 13 proposals
+[1] with lastIdx 764 send hb to peers [1 8 9 10] 763 764 0
+[1] current has 14 proposals
+[1] becomes leader
+[1] current has 15 proposals
+[1] current has 16 proposals
+[1] current has 17 proposals
+[1] current has 18 proposals
+[1] current has 19 proposals
+[1] current has 18 proposals
+[1] current has 17 proposals
+[1] current has 16 proposals
+[1] current has 15 proposals
+[1] current has 14 proposals
+[1] current has 13 proposals
+Stale req
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 770 send hb to peers [1 8 9 10 11] 770 770 0 0
+[10] receives snapshot from [1]
+[1] with lastIdx 770 send hb to peers [1 8 9 10 11] 770 770 0 0
+[11] receives snapshot from [1]
+[1] with lastIdx 770 send hb to peers [1 8 9 10 11] 770 770 770 0
+[1] with lastIdx 770 send hb to peers [1 8 9 10 11] 770 770 770 0
+[1] with lastIdx 770 send hb to peers [1 8 9 10 11] 770 770 770 0
+[1] with lastIdx 770 send hb to peers [1 8 9 10 11] 770 770 770 0
+[1] with lastIdx 770 send hb to peers [1 8 9 10 11] 770 770 770 0
+[1] with lastIdx 770 send hb to peers [1 8 9 10 11] 770 770 770 0
+[1] with lastIdx 770 send hb to peers [1 8 9 10 11] 770 770 770 0
+[1] with lastIdx 770 send hb to peers [1 8 9 10 11] 770 770 770 0
+[1] with lastIdx 770 send hb to peers [1 8 9 10 11] 770 770 770 0
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 775 send hb to peers [1 8 9 10 11] 775 775 775 775
+[1] with lastIdx 775 send hb to peers [1 8 9 10 11] 775 775 775 775
+[1] with lastIdx 775 send hb to peers [1 8 9 10 11] 775 775 775 775
+[1] with lastIdx 775 send hb to peers [1 8 9 10 11] 775 775 775 775
+[1] with lastIdx 775 send hb to peers [1 8 9 10 11] 775 775 775 775
+[1] with lastIdx 775 send hb to peers [1 8 9 10 11] 775 775 775 775
+[1] with lastIdx 775 send hb to peers [1 8 9 10 11] 775 775 775 775
+[1] with lastIdx 775 send hb to peers [1 8 9 10 11] 775 775 775 775
+[1] with lastIdx 775 send hb to peers [1 8 9 10 11] 775 775 775 775
+[1] with lastIdx 775 send hb to peers [1 8 9 10 11] 775 775 775 775
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 780 send hb to peers [1 8 9 10 11] 780 780 780 780
+[1] with lastIdx 780 send hb to peers [1 8 9 10 11] 780 780 780 780
+[1] with lastIdx 780 send hb to peers [1 8 9 10 11] 780 780 780 780
+[1] with lastIdx 780 send hb to peers [1 8 9 10 11] 780 780 780 780
+[1] with lastIdx 780 send hb to peers [1 8 9 10 11] 780 780 780 780
+[1] with lastIdx 780 send hb to peers [1 8 9 10 11] 780 780 780 780
+[1] with lastIdx 780 send hb to peers [1 8 9 10 11] 780 780 780 780
+[1] with lastIdx 780 send hb to peers [1 8 9 10 11] 780 780 780 780
+[1] with lastIdx 780 send hb to peers [1 8 9 10 11] 780 780 780 780
+[1] with lastIdx 780 send hb to peers [1 8 9 10 11] 780 780 780 780
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 785 send hb to peers [1 8 9 10 11] 785 785 785 785
+[1] with lastIdx 785 send hb to peers [1 8 9 10 11] 785 785 785 785
+[1] with lastIdx 785 send hb to peers [1 8 9 10 11] 785 785 785 785
+[1] with lastIdx 785 send hb to peers [1 8 9 10 11] 785 785 785 785
+[1] with lastIdx 785 send hb to peers [1 8 9 10 11] 785 785 785 785
+[1] with lastIdx 785 send hb to peers [1 8 9 10 11] 785 785 785 785
+[1] with lastIdx 785 send hb to peers [1 8 9 10 11] 785 785 785 785
+[1] with lastIdx 785 send hb to peers [1 8 9 10 11] 785 785 785 785
+[1] with lastIdx 785 send hb to peers [1 8 9 10 11] 785 785 785 785
+[1] with lastIdx 785 send hb to peers [1 8 9 10 11] 785 785 785 785
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 790 send hb to peers [1 8 9 10 11] 790 790 790 790
+[1] with lastIdx 790 send hb to peers [1 8 9 10 11] 790 790 790 790
+[1] with lastIdx 790 send hb to peers [1 8 9 10 11] 790 790 790 790
+[1] with lastIdx 790 send hb to peers [1 8 9 10 11] 790 790 790 790
+[1] with lastIdx 790 send hb to peers [1 8 9 10 11] 790 790 790 790
+[1] with lastIdx 790 send hb to peers [1 8 9 10 11] 790 790 790 790
+[1] with lastIdx 790 send hb to peers [1 8 9 10 11] 790 790 790 790
+[1] with lastIdx 790 send hb to peers [1 8 9 10 11] 790 790 790 790
+[1] with lastIdx 790 send hb to peers [1 8 9 10 11] 790 790 790 790
+[1] with lastIdx 790 send hb to peers [1 8 9 10 11] 790 790 790 790
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 795 send hb to peers [1 8 9 10 11] 795 795 795 795
+[1] with lastIdx 795 send hb to peers [1 8 9 10 11] 795 795 795 795
+[1] with lastIdx 795 send hb to peers [1 8 9 10 11] 795 795 795 795
+[1] with lastIdx 795 send hb to peers [1 8 9 10 11] 795 795 795 795
+[1] with lastIdx 795 send hb to peers [1 8 9 10 11] 795 795 795 795
+[1] with lastIdx 795 send hb to peers [1 8 9 10 11] 795 795 795 795
+[1] with lastIdx 795 send hb to peers [1 8 9 10 11] 795 795 795 795
+[1] with lastIdx 795 send hb to peers [1 8 9 10 11] 795 795 795 795
+[1] with lastIdx 795 send hb to peers [1 8 9 10 11] 795 795 795 795
+[1] with lastIdx 795 send hb to peers [1 8 9 10 11] 795 795 795 795
+[1] with lastIdx 795 send hb to peers [1 8 9 10 11] 795 795 795 795
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 800 send hb to peers [1 8 9 10 11] 800 800 800 800
+[1] with lastIdx 800 send hb to peers [1 8 9 10 11] 800 800 800 800
+[1] with lastIdx 800 send hb to peers [1 8 9 10 11] 800 800 800 800
+[1] with lastIdx 800 send hb to peers [1 8 9 10 11] 800 800 800 800
+[1] with lastIdx 800 send hb to peers [1 8 9 10 11] 800 800 800 800
+[1] with lastIdx 800 send hb to peers [1 8 9 10 11] 800 800 800 800
+[1] with lastIdx 800 send hb to peers [1 8 9 10 11] 800 800 800 800
+[1] with lastIdx 800 send hb to peers [1 8 9 10 11] 800 800 800 800
+[1] with lastIdx 800 send hb to peers [1 8 9 10 11] 800 800 800 800
+[1] with lastIdx 800 send hb to peers [1 8 9 10 11] 800 800 800 800
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 805 send hb to peers [1 8 9 10 11] 805 805 805 805
+[1] with lastIdx 805 send hb to peers [1 8 9 10 11] 805 805 805 805
+[1] with lastIdx 805 send hb to peers [1 8 9 10 11] 805 805 805 805
+[1] with lastIdx 805 send hb to peers [1 8 9 10 11] 805 805 805 805
+[1] with lastIdx 805 send hb to peers [1 8 9 10 11] 805 805 805 805
+[1] with lastIdx 805 send hb to peers [1 8 9 10 11] 805 805 805 805
+[1] with lastIdx 805 send hb to peers [1 8 9 10 11] 805 805 805 805
+[1] with lastIdx 805 send hb to peers [1 8 9 10 11] 805 805 805 805
+[1] with lastIdx 805 send hb to peers [1 8 9 10 11] 805 805 805 805
+[1] with lastIdx 805 send hb to peers [1 8 9 10 11] 805 805 805 805
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 810 send hb to peers [1 8 9 10 11] 810 810 810 810
+[1] with lastIdx 810 send hb to peers [1 8 9 10 11] 810 810 810 810
+[1] with lastIdx 810 send hb to peers [1 8 9 10 11] 810 810 810 810
+[1] with lastIdx 810 send hb to peers [1 8 9 10 11] 810 810 810 810
+[1] with lastIdx 810 send hb to peers [1 8 9 10 11] 810 810 810 810
+[1] with lastIdx 810 send hb to peers [1 8 9 10 11] 810 810 810 810
+[1] with lastIdx 810 send hb to peers [1 8 9 10 11] 810 810 810 810
+[1] with lastIdx 810 send hb to peers [1 8 9 10 11] 810 810 810 810
+[1] with lastIdx 810 send hb to peers [1 8 9 10 11] 810 810 810 810
+[1] with lastIdx 810 send hb to peers [1 8 9 10 11] 810 810 810 810
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 815 send hb to peers [1 8 9 10 11] 815 815 815 815
+[1] with lastIdx 815 send hb to peers [1 8 9 10 11] 815 815 815 815
+[1] with lastIdx 815 send hb to peers [1 8 9 10 11] 815 815 815 815
+[1] with lastIdx 815 send hb to peers [1 8 9 10 11] 815 815 815 815
+[1] with lastIdx 815 send hb to peers [1 8 9 10 11] 815 815 815 815
+[1] with lastIdx 815 send hb to peers [1 8 9 10 11] 815 815 815 815
+[1] with lastIdx 815 send hb to peers [1 8 9 10 11] 815 815 815 815
+[1] with lastIdx 815 send hb to peers [1 8 9 10 11] 815 815 815 815
+[1] with lastIdx 815 send hb to peers [1 8 9 10 11] 815 815 815 815
+[1] with lastIdx 815 send hb to peers [1 8 9 10 11] 815 815 815 815
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 820 send hb to peers [1 8 9 10 11] 820 820 820 820
+[1] with lastIdx 820 send hb to peers [1 8 9 10 11] 820 820 820 820
+[1] with lastIdx 820 send hb to peers [1 8 9 10 11] 820 820 820 820
+[1] with lastIdx 820 send hb to peers [1 8 9 10 11] 820 820 820 820
+[1] with lastIdx 820 send hb to peers [1 8 9 10 11] 820 820 820 820
+[1] with lastIdx 820 send hb to peers [1 8 9 10 11] 820 820 820 820
+[1] with lastIdx 820 send hb to peers [1 8 9 10 11] 820 820 820 820
+[1] with lastIdx 820 send hb to peers [1 8 9 10 11] 820 820 820 820
+[1] with lastIdx 820 send hb to peers [1 8 9 10 11] 820 820 820 820
+[1] with lastIdx 820 send hb to peers [1 8 9 10 11] 820 820 820 820
+[1] with lastIdx 820 send hb to peers [1 8 9 10 11] 820 820 820 820
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 825 send hb to peers [1 8 9 10 11] 825 825 825 825
+[1] with lastIdx 825 send hb to peers [1 8 9 10 11] 825 825 825 825
+[1] with lastIdx 825 send hb to peers [1 8 9 10 11] 825 825 825 825
+[1] with lastIdx 825 send hb to peers [1 8 9 10 11] 825 825 825 825
+[1] with lastIdx 825 send hb to peers [1 8 9 10 11] 825 825 825 825
+[1] with lastIdx 825 send hb to peers [1 8 9 10 11] 825 825 825 825
+[1] with lastIdx 825 send hb to peers [1 8 9 10 11] 825 825 825 825
+[1] with lastIdx 825 send hb to peers [1 8 9 10 11] 825 825 825 825
+[1] with lastIdx 825 send hb to peers [1 8 9 10 11] 825 825 825 825
+[1] with lastIdx 825 send hb to peers [1 8 9 10 11] 825 825 825 825
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 830 send hb to peers [1 8 9 10 11] 830 830 830 830
+[1] with lastIdx 830 send hb to peers [1 8 9 10 11] 830 830 830 830
+[1] with lastIdx 830 send hb to peers [1 8 9 10 11] 830 830 830 830
+[1] with lastIdx 830 send hb to peers [1 8 9 10 11] 830 830 830 830
+[1] with lastIdx 830 send hb to peers [1 8 9 10 11] 830 830 830 830
+[1] with lastIdx 830 send hb to peers [1 8 9 10 11] 830 830 830 830
+[1] with lastIdx 830 send hb to peers [1 8 9 10 11] 830 830 830 830
+[1] with lastIdx 830 send hb to peers [1 8 9 10 11] 830 830 830 830
+[1] with lastIdx 830 send hb to peers [1 8 9 10 11] 830 830 830 830
+[1] with lastIdx 830 send hb to peers [1 8 9 10 11] 830 830 830 830
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 835 send hb to peers [1 8 9 10 11] 835 835 835 835
+[1] with lastIdx 835 send hb to peers [1 8 9 10 11] 835 835 835 835
+[1] with lastIdx 835 send hb to peers [1 8 9 10 11] 835 835 835 835
+[1] with lastIdx 835 send hb to peers [1 8 9 10 11] 835 835 835 835
+[1] with lastIdx 835 send hb to peers [1 8 9 10 11] 835 835 835 835
+[1] with lastIdx 835 send hb to peers [1 8 9 10 11] 835 835 835 835
+[1] with lastIdx 835 send hb to peers [1 8 9 10 11] 835 835 835 835
+[1] with lastIdx 835 send hb to peers [1 8 9 10 11] 835 835 835 835
+[1] with lastIdx 835 send hb to peers [1 8 9 10 11] 835 835 835 835
+[1] with lastIdx 835 send hb to peers [1 8 9 10 11] 835 835 835 835
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 840 send hb to peers [1 8 9 10 11] 840 840 840 840
+[1] with lastIdx 840 send hb to peers [1 8 9 10 11] 840 840 840 840
+[1] with lastIdx 840 send hb to peers [1 8 9 10 11] 840 840 840 840
+[1] with lastIdx 840 send hb to peers [1 8 9 10 11] 840 840 840 840
+[1] with lastIdx 840 send hb to peers [1 8 9 10 11] 840 840 840 840
+[1] with lastIdx 840 send hb to peers [1 8 9 10 11] 840 840 840 840
+[1] with lastIdx 840 send hb to peers [1 8 9 10 11] 840 840 840 840
+[1] with lastIdx 840 send hb to peers [1 8 9 10 11] 840 840 840 840
+[1] with lastIdx 840 send hb to peers [1 8 9 10 11] 840 840 840 840
+[1] with lastIdx 840 send hb to peers [1 8 9 10 11] 840 840 840 840
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 845 send hb to peers [1 8 9 10 11] 845 845 845 845
+[1] with lastIdx 845 send hb to peers [1 8 9 10 11] 845 845 845 845
+[1] with lastIdx 845 send hb to peers [1 8 9 10 11] 845 845 845 845
+[1] with lastIdx 845 send hb to peers [1 8 9 10 11] 845 845 845 845
+[1] with lastIdx 845 send hb to peers [1 8 9 10 11] 845 845 845 845
+[1] with lastIdx 845 send hb to peers [1 8 9 10 11] 845 845 845 845
+[1] with lastIdx 845 send hb to peers [1 8 9 10 11] 845 845 845 845
+[1] with lastIdx 845 send hb to peers [1 8 9 10 11] 845 845 845 845
+[1] with lastIdx 845 send hb to peers [1 8 9 10 11] 845 845 845 845
+[1] with lastIdx 845 send hb to peers [1 8 9 10 11] 845 845 845 845
+[1] with lastIdx 845 send hb to peers [1 8 9 10 11] 845 845 845 845
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 850 send hb to peers [1 8 9 10 11] 850 850 850 850
+[1] with lastIdx 850 send hb to peers [1 8 9 10 11] 850 850 850 850
+[1] with lastIdx 850 send hb to peers [1 8 9 10 11] 850 850 850 850
+[1] with lastIdx 850 send hb to peers [1 8 9 10 11] 850 850 850 850
+[1] with lastIdx 850 send hb to peers [1 8 9 10 11] 850 850 850 850
+[1] with lastIdx 850 send hb to peers [1 8 9 10 11] 850 850 850 850
+[1] with lastIdx 850 send hb to peers [1 8 9 10 11] 850 850 850 850
+[1] with lastIdx 850 send hb to peers [1 8 9 10 11] 850 850 850 850
+[1] with lastIdx 850 send hb to peers [1 8 9 10 11] 850 850 850 850
+[1] with lastIdx 850 send hb to peers [1 8 9 10 11] 850 850 850 850
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 855 send hb to peers [1 8 9 10 11] 855 855 855 855
+[1] with lastIdx 855 send hb to peers [1 8 9 10 11] 855 855 855 855
+[1] with lastIdx 855 send hb to peers [1 8 9 10 11] 855 855 855 855
+[1] with lastIdx 855 send hb to peers [1 8 9 10 11] 855 855 855 855
+[1] with lastIdx 855 send hb to peers [1 8 9 10 11] 855 855 855 855
+[1] with lastIdx 855 send hb to peers [1 8 9 10 11] 855 855 855 855
+[1] with lastIdx 855 send hb to peers [1 8 9 10 11] 855 855 855 855
+[1] with lastIdx 855 send hb to peers [1 8 9 10 11] 855 855 855 855
+[1] with lastIdx 855 send hb to peers [1 8 9 10 11] 855 855 855 855
+[1] with lastIdx 855 send hb to peers [1 8 9 10 11] 855 855 855 855
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 860 send hb to peers [1 8 9 10 11] 860 860 860 860
+[1] with lastIdx 860 send hb to peers [1 8 9 10 11] 860 860 860 860
+[1] with lastIdx 860 send hb to peers [1 8 9 10 11] 860 860 860 860
+[1] with lastIdx 860 send hb to peers [1 8 9 10 11] 860 860 860 860
+[1] with lastIdx 860 send hb to peers [1 8 9 10 11] 860 860 860 860
+[1] with lastIdx 860 send hb to peers [1 8 9 10 11] 860 860 860 860
+[1] with lastIdx 860 send hb to peers [1 8 9 10 11] 860 860 860 860
+[1] with lastIdx 860 send hb to peers [1 8 9 10 11] 860 860 860 860
+[1] with lastIdx 860 send hb to peers [1 8 9 10 11] 860 860 860 860
+[1] with lastIdx 860 send hb to peers [1 8 9 10 11] 860 860 860 860
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 865 send hb to peers [1 8 9 10 11] 865 865 865 865
+[1] with lastIdx 865 send hb to peers [1 8 9 10 11] 865 865 865 865
+[1] with lastIdx 865 send hb to peers [1 8 9 10 11] 865 865 865 865
+[1] with lastIdx 865 send hb to peers [1 8 9 10 11] 865 865 865 865
+[1] with lastIdx 865 send hb to peers [1 8 9 10 11] 865 865 865 865
+[1] with lastIdx 865 send hb to peers [1 8 9 10 11] 865 865 865 865
+[1] with lastIdx 865 send hb to peers [1 8 9 10 11] 865 865 865 865
+[1] with lastIdx 865 send hb to peers [1 8 9 10 11] 865 865 865 865
+[1] with lastIdx 865 send hb to peers [1 8 9 10 11] 865 865 865 865
+[1] with lastIdx 865 send hb to peers [1 8 9 10 11] 865 865 865 865
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 870 send hb to peers [1 8 9 10 11] 870 870 870 870
+[1] with lastIdx 870 send hb to peers [1 8 9 10 11] 870 870 870 870
+[1] with lastIdx 870 send hb to peers [1 8 9 10 11] 870 870 870 870
+[1] with lastIdx 870 send hb to peers [1 8 9 10 11] 870 870 870 870
+[1] with lastIdx 870 send hb to peers [1 8 9 10 11] 870 870 870 870
+[1] with lastIdx 870 send hb to peers [1 8 9 10 11] 870 870 870 870
+[1] with lastIdx 870 send hb to peers [1 8 9 10 11] 870 870 870 870
+[1] with lastIdx 870 send hb to peers [1 8 9 10 11] 870 870 870 870
+[1] with lastIdx 870 send hb to peers [1 8 9 10 11] 870 870 870 870
+[1] with lastIdx 870 send hb to peers [1 8 9 10 11] 870 870 870 870
+[1] with lastIdx 870 send hb to peers [1 8 9 10 11] 870 870 870 870
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 875 send hb to peers [1 8 9 10 11] 875 875 875 875
+[1] with lastIdx 875 send hb to peers [1 8 9 10 11] 875 875 875 875
+[1] with lastIdx 875 send hb to peers [1 8 9 10 11] 875 875 875 875
+[1] with lastIdx 875 send hb to peers [1 8 9 10 11] 875 875 875 875
+[1] with lastIdx 875 send hb to peers [1 8 9 10 11] 875 875 875 875
+[1] with lastIdx 875 send hb to peers [1 8 9 10 11] 875 875 875 875
+[1] with lastIdx 875 send hb to peers [1 8 9 10 11] 875 875 875 875
+[1] with lastIdx 875 send hb to peers [1 8 9 10 11] 875 875 875 875
+[1] with lastIdx 875 send hb to peers [1 8 9 10 11] 875 875 875 875
+[1] with lastIdx 875 send hb to peers [1 8 9 10 11] 875 875 875 875
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 880 send hb to peers [1 8 9 10 11] 880 880 880 880
+[1] with lastIdx 880 send hb to peers [1 8 9 10 11] 880 880 880 880
+[1] with lastIdx 880 send hb to peers [1 8 9 10 11] 880 880 880 880
+[1] with lastIdx 880 send hb to peers [1 8 9 10 11] 880 880 880 880
+[1] with lastIdx 880 send hb to peers [1 8 9 10 11] 880 880 880 880
+[1] with lastIdx 880 send hb to peers [1 8 9 10 11] 880 880 880 880
+[1] with lastIdx 880 send hb to peers [1 8 9 10 11] 880 880 880 880
+[1] with lastIdx 880 send hb to peers [1 8 9 10 11] 880 880 880 880
+[1] with lastIdx 880 send hb to peers [1 8 9 10 11] 880 880 880 880
+[1] with lastIdx 880 send hb to peers [1 8 9 10 11] 880 880 880 880
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 885 send hb to peers [1 8 9 10 11] 885 885 885 885
+[1] with lastIdx 885 send hb to peers [1 8 9 10 11] 885 885 885 885
+[1] with lastIdx 885 send hb to peers [1 8 9 10 11] 885 885 885 885
+[1] with lastIdx 885 send hb to peers [1 8 9 10 11] 885 885 885 885
+[1] with lastIdx 885 send hb to peers [1 8 9 10 11] 885 885 885 885
+[1] with lastIdx 885 send hb to peers [1 8 9 10 11] 885 885 885 885
+[1] with lastIdx 885 send hb to peers [1 8 9 10 11] 885 885 885 885
+[1] with lastIdx 885 send hb to peers [1 8 9 10 11] 885 885 885 885
+[1] with lastIdx 885 send hb to peers [1 8 9 10 11] 885 885 885 885
+[1] with lastIdx 885 send hb to peers [1 8 9 10 11] 885 885 885 885
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 890 send hb to peers [1 8 9 10 11] 890 890 890 890
+[1] with lastIdx 890 send hb to peers [1 8 9 10 11] 890 890 890 890
+[1] with lastIdx 890 send hb to peers [1 8 9 10 11] 890 890 890 890
+[1] with lastIdx 890 send hb to peers [1 8 9 10 11] 890 890 890 890
+[1] with lastIdx 890 send hb to peers [1 8 9 10 11] 890 890 890 890
+[1] with lastIdx 890 send hb to peers [1 8 9 10 11] 890 890 890 890
+[1] with lastIdx 890 send hb to peers [1 8 9 10 11] 890 890 890 890
+[1] with lastIdx 890 send hb to peers [1 8 9 10 11] 890 890 890 890
+[1] with lastIdx 890 send hb to peers [1 8 9 10 11] 890 890 890 890
+[1] with lastIdx 890 send hb to peers [1 8 9 10 11] 890 890 890 890
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 895 send hb to peers [1 8 9 10 11] 895 895 895 895
+[1] with lastIdx 895 send hb to peers [1 8 9 10 11] 895 895 895 895
+[1] with lastIdx 895 send hb to peers [1 8 9 10 11] 895 895 895 895
+[1] with lastIdx 895 send hb to peers [1 8 9 10 11] 895 895 895 895
+[1] with lastIdx 895 send hb to peers [1 8 9 10 11] 895 895 895 895
+[1] with lastIdx 895 send hb to peers [1 8 9 10 11] 895 895 895 895
+[1] with lastIdx 895 send hb to peers [1 8 9 10 11] 895 895 895 895
+[1] with lastIdx 895 send hb to peers [1 8 9 10 11] 895 895 895 895
+[1] with lastIdx 895 send hb to peers [1 8 9 10 11] 895 895 895 895
+[1] with lastIdx 895 send hb to peers [1 8 9 10 11] 895 895 895 895
+[1] with lastIdx 895 send hb to peers [1 8 9 10 11] 895 895 895 895
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 900 send hb to peers [1 8 9 10 11] 900 900 900 900
+[1] with lastIdx 900 send hb to peers [1 8 9 10 11] 900 900 900 900
+[1] with lastIdx 900 send hb to peers [1 8 9 10 11] 900 900 900 900
+[1] with lastIdx 900 send hb to peers [1 8 9 10 11] 900 900 900 900
+[1] with lastIdx 900 send hb to peers [1 8 9 10 11] 900 900 900 900
+[1] with lastIdx 900 send hb to peers [1 8 9 10 11] 900 900 900 900
+[1] with lastIdx 900 send hb to peers [1 8 9 10 11] 900 900 900 900
+[1] with lastIdx 900 send hb to peers [1 8 9 10 11] 900 900 900 900
+[1] with lastIdx 900 send hb to peers [1 8 9 10 11] 900 900 900 900
+[1] with lastIdx 900 send hb to peers [1 8 9 10 11] 900 900 900 900
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 905 send hb to peers [1 8 9 10 11] 905 905 905 905
+[1] with lastIdx 905 send hb to peers [1 8 9 10 11] 905 905 905 905
+[1] with lastIdx 905 send hb to peers [1 8 9 10 11] 905 905 905 905
+[1] with lastIdx 905 send hb to peers [1 8 9 10 11] 905 905 905 905
+[1] with lastIdx 905 send hb to peers [1 8 9 10 11] 905 905 905 905
+[1] with lastIdx 905 send hb to peers [1 8 9 10 11] 905 905 905 905
+[1] with lastIdx 905 send hb to peers [1 8 9 10 11] 905 905 905 905
+[1] with lastIdx 905 send hb to peers [1 8 9 10 11] 905 905 905 905
+[1] with lastIdx 905 send hb to peers [1 8 9 10 11] 905 905 905 905
+[1] with lastIdx 905 send hb to peers [1 8 9 10 11] 905 905 905 905
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 910 send hb to peers [1 8 9 10 11] 910 910 910 910
+[1] with lastIdx 910 send hb to peers [1 8 9 10 11] 910 910 910 910
+[1] with lastIdx 910 send hb to peers [1 8 9 10 11] 910 910 910 910
+[1] with lastIdx 910 send hb to peers [1 8 9 10 11] 910 910 910 910
+[1] with lastIdx 910 send hb to peers [1 8 9 10 11] 910 910 910 910
+[1] with lastIdx 910 send hb to peers [1 8 9 10 11] 910 910 910 910
+[1] with lastIdx 910 send hb to peers [1 8 9 10 11] 910 910 910 910
+[1] with lastIdx 910 send hb to peers [1 8 9 10 11] 910 910 910 910
+[1] with lastIdx 910 send hb to peers [1 8 9 10 11] 910 910 910 910
+[1] with lastIdx 910 send hb to peers [1 8 9 10 11] 910 910 910 910
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 915 send hb to peers [1 8 9 10 11] 915 915 915 915
+[1] with lastIdx 915 send hb to peers [1 8 9 10 11] 915 915 915 915
+[1] with lastIdx 915 send hb to peers [1 8 9 10 11] 915 915 915 915
+[1] with lastIdx 915 send hb to peers [1 8 9 10 11] 915 915 915 915
+[1] with lastIdx 915 send hb to peers [1 8 9 10 11] 915 915 915 915
+[1] with lastIdx 915 send hb to peers [1 8 9 10 11] 915 915 915 915
+[1] with lastIdx 915 send hb to peers [1 8 9 10 11] 915 915 915 915
+[1] with lastIdx 915 send hb to peers [1 8 9 10 11] 915 915 915 915
+[1] with lastIdx 915 send hb to peers [1 8 9 10 11] 915 915 915 915
+[1] with lastIdx 915 send hb to peers [1 8 9 10 11] 915 915 915 915
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 920 send hb to peers [1 8 9 10 11] 920 920 920 920
+[1] with lastIdx 920 send hb to peers [1 8 9 10 11] 920 920 920 920
+[1] with lastIdx 920 send hb to peers [1 8 9 10 11] 920 920 920 920
+[1] with lastIdx 920 send hb to peers [1 8 9 10 11] 920 920 920 920
+[1] with lastIdx 920 send hb to peers [1 8 9 10 11] 920 920 920 920
+[1] with lastIdx 920 send hb to peers [1 8 9 10 11] 920 920 920 920
+[1] with lastIdx 920 send hb to peers [1 8 9 10 11] 920 920 920 920
+[1] with lastIdx 920 send hb to peers [1 8 9 10 11] 920 920 920 920
+[1] with lastIdx 920 send hb to peers [1 8 9 10 11] 920 920 920 920
+[1] with lastIdx 920 send hb to peers [1 8 9 10 11] 920 920 920 920
+[1] with lastIdx 920 send hb to peers [1 8 9 10 11] 920 920 920 920
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 925 send hb to peers [1 8 9 10 11] 925 925 925 925
+[1] with lastIdx 925 send hb to peers [1 8 9 10 11] 925 925 925 925
+[1] with lastIdx 925 send hb to peers [1 8 9 10 11] 925 925 925 925
+[1] with lastIdx 925 send hb to peers [1 8 9 10 11] 925 925 925 925
+[1] with lastIdx 925 send hb to peers [1 8 9 10 11] 925 925 925 925
+[1] with lastIdx 925 send hb to peers [1 8 9 10 11] 925 925 925 925
+[1] with lastIdx 925 send hb to peers [1 8 9 10 11] 925 925 925 925
+[1] with lastIdx 925 send hb to peers [1 8 9 10 11] 925 925 925 925
+[1] with lastIdx 925 send hb to peers [1 8 9 10 11] 925 925 925 925
+[1] with lastIdx 925 send hb to peers [1 8 9 10 11] 925 925 925 925
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 930 send hb to peers [1 8 9 10 11] 930 930 930 930
+[1] with lastIdx 930 send hb to peers [1 8 9 10 11] 930 930 930 930
+[1] with lastIdx 930 send hb to peers [1 8 9 10 11] 930 930 930 930
+[1] with lastIdx 930 send hb to peers [1 8 9 10 11] 930 930 930 930
+[1] with lastIdx 930 send hb to peers [1 8 9 10 11] 930 930 930 930
+[1] with lastIdx 930 send hb to peers [1 8 9 10 11] 930 930 930 930
+[1] with lastIdx 930 send hb to peers [1 8 9 10 11] 930 930 930 930
+[1] with lastIdx 930 send hb to peers [1 8 9 10 11] 930 930 930 930
+[1] with lastIdx 930 send hb to peers [1 8 9 10 11] 930 930 930 930
+[1] with lastIdx 930 send hb to peers [1 8 9 10 11] 930 930 930 930
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 935 send hb to peers [1 8 9 10 11] 935 935 935 935
+[1] with lastIdx 935 send hb to peers [1 8 9 10 11] 935 935 935 935
+[1] with lastIdx 935 send hb to peers [1 8 9 10 11] 935 935 935 935
+[1] with lastIdx 935 send hb to peers [1 8 9 10 11] 935 935 935 935
+[1] with lastIdx 935 send hb to peers [1 8 9 10 11] 935 935 935 935
+[1] with lastIdx 935 send hb to peers [1 8 9 10 11] 935 935 935 935
+[1] with lastIdx 935 send hb to peers [1 8 9 10 11] 935 935 935 935
+[1] with lastIdx 935 send hb to peers [1 8 9 10 11] 935 935 935 935
+[1] with lastIdx 935 send hb to peers [1 8 9 10 11] 935 935 935 935
+[1] with lastIdx 935 send hb to peers [1 8 9 10 11] 935 935 935 935
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 940 send hb to peers [1 8 9 10 11] 940 940 940 940
+[1] with lastIdx 940 send hb to peers [1 8 9 10 11] 940 940 940 940
+[1] with lastIdx 940 send hb to peers [1 8 9 10 11] 940 940 940 940
+[1] with lastIdx 940 send hb to peers [1 8 9 10 11] 940 940 940 940
+[1] with lastIdx 940 send hb to peers [1 8 9 10 11] 940 940 940 940
+[1] with lastIdx 940 send hb to peers [1 8 9 10 11] 940 940 940 940
+[1] with lastIdx 940 send hb to peers [1 8 9 10 11] 940 940 940 940
+[1] with lastIdx 940 send hb to peers [1 8 9 10 11] 940 940 940 940
+[1] with lastIdx 940 send hb to peers [1 8 9 10 11] 940 940 940 940
+[1] with lastIdx 940 send hb to peers [1 8 9 10 11] 940 940 940 940
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 945 send hb to peers [1 8 9 10 11] 945 945 945 945
+[1] with lastIdx 945 send hb to peers [1 8 9 10 11] 945 945 945 945
+[1] with lastIdx 945 send hb to peers [1 8 9 10 11] 945 945 945 945
+[1] with lastIdx 945 send hb to peers [1 8 9 10 11] 945 945 945 945
+[1] with lastIdx 945 send hb to peers [1 8 9 10 11] 945 945 945 945
+[1] with lastIdx 945 send hb to peers [1 8 9 10 11] 945 945 945 945
+[1] with lastIdx 945 send hb to peers [1 8 9 10 11] 945 945 945 945
+[1] with lastIdx 945 send hb to peers [1 8 9 10 11] 945 945 945 945
+[1] with lastIdx 945 send hb to peers [1 8 9 10 11] 945 945 945 945
+[1] with lastIdx 945 send hb to peers [1 8 9 10 11] 945 945 945 945
+[1] with lastIdx 945 send hb to peers [1 8 9 10 11] 945 945 945 945
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 950 send hb to peers [1 8 9 10 11] 950 950 950 950
+[1] with lastIdx 950 send hb to peers [1 8 9 10 11] 950 950 950 950
+[1] with lastIdx 950 send hb to peers [1 8 9 10 11] 950 950 950 950
+[1] with lastIdx 950 send hb to peers [1 8 9 10 11] 950 950 950 950
+[1] with lastIdx 950 send hb to peers [1 8 9 10 11] 950 950 950 950
+[1] with lastIdx 950 send hb to peers [1 8 9 10 11] 950 950 950 950
+[1] with lastIdx 950 send hb to peers [1 8 9 10 11] 950 950 950 950
+[1] with lastIdx 950 send hb to peers [1 8 9 10 11] 950 950 950 950
+[1] with lastIdx 950 send hb to peers [1 8 9 10 11] 950 950 950 950
+[1] with lastIdx 950 send hb to peers [1 8 9 10 11] 950 950 950 950
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 955 send hb to peers [1 8 9 10 11] 955 955 955 955
+[1] with lastIdx 955 send hb to peers [1 8 9 10 11] 955 955 955 955
+[1] with lastIdx 955 send hb to peers [1 8 9 10 11] 955 955 955 955
+[1] with lastIdx 955 send hb to peers [1 8 9 10 11] 955 955 955 955
+[1] with lastIdx 955 send hb to peers [1 8 9 10 11] 955 955 955 955
+[1] with lastIdx 955 send hb to peers [1 8 9 10 11] 955 955 955 955
+[1] with lastIdx 955 send hb to peers [1 8 9 10 11] 955 955 955 955
+[1] with lastIdx 955 send hb to peers [1 8 9 10 11] 955 955 955 955
+[1] with lastIdx 955 send hb to peers [1 8 9 10 11] 955 955 955 955
+[1] with lastIdx 955 send hb to peers [1 8 9 10 11] 955 955 955 955
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 960 send hb to peers [1 8 9 10 11] 960 960 960 960
+[1] with lastIdx 960 send hb to peers [1 8 9 10 11] 960 960 960 960
+[1] with lastIdx 960 send hb to peers [1 8 9 10 11] 960 960 960 960
+[1] with lastIdx 960 send hb to peers [1 8 9 10 11] 960 960 960 960
+[1] with lastIdx 960 send hb to peers [1 8 9 10 11] 960 960 960 960
+[1] with lastIdx 960 send hb to peers [1 8 9 10 11] 960 960 960 960
+[1] with lastIdx 960 send hb to peers [1 8 9 10 11] 960 960 960 960
+[1] with lastIdx 960 send hb to peers [1 8 9 10 11] 960 960 960 960
+[1] with lastIdx 960 send hb to peers [1 8 9 10 11] 960 960 960 960
+[1] with lastIdx 960 send hb to peers [1 8 9 10 11] 960 960 960 960
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 965 send hb to peers [1 8 9 10 11] 965 965 965 965
+[1] with lastIdx 965 send hb to peers [1 8 9 10 11] 965 965 965 965
+[1] with lastIdx 965 send hb to peers [1 8 9 10 11] 965 965 965 965
+[1] with lastIdx 965 send hb to peers [1 8 9 10 11] 965 965 965 965
+[1] with lastIdx 965 send hb to peers [1 8 9 10 11] 965 965 965 965
+[1] with lastIdx 965 send hb to peers [1 8 9 10 11] 965 965 965 965
+[1] with lastIdx 965 send hb to peers [1 8 9 10 11] 965 965 965 965
+[1] with lastIdx 965 send hb to peers [1 8 9 10 11] 965 965 965 965
+[1] with lastIdx 965 send hb to peers [1 8 9 10 11] 965 965 965 965
+[1] with lastIdx 965 send hb to peers [1 8 9 10 11] 965 965 965 965
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 970 send hb to peers [1 8 9 10 11] 970 970 970 970
+[1] with lastIdx 970 send hb to peers [1 8 9 10 11] 970 970 970 970
+[1] with lastIdx 970 send hb to peers [1 8 9 10 11] 970 970 970 970
+[1] with lastIdx 970 send hb to peers [1 8 9 10 11] 970 970 970 970
+[1] with lastIdx 970 send hb to peers [1 8 9 10 11] 970 970 970 970
+[1] with lastIdx 970 send hb to peers [1 8 9 10 11] 970 970 970 970
+[1] with lastIdx 970 send hb to peers [1 8 9 10 11] 970 970 970 970
+[1] with lastIdx 970 send hb to peers [1 8 9 10 11] 970 970 970 970
+[1] with lastIdx 970 send hb to peers [1 8 9 10 11] 970 970 970 970
+[1] with lastIdx 970 send hb to peers [1 8 9 10 11] 970 970 970 970
+[1] with lastIdx 970 send hb to peers [1 8 9 10 11] 970 970 970 970
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 975 send hb to peers [1 8 9 10 11] 975 975 975 975
+[1] with lastIdx 975 send hb to peers [1 8 9 10 11] 975 975 975 975
+[1] with lastIdx 975 send hb to peers [1 8 9 10 11] 975 975 975 975
+[1] with lastIdx 975 send hb to peers [1 8 9 10 11] 975 975 975 975
+[1] with lastIdx 975 send hb to peers [1 8 9 10 11] 975 975 975 975
+[1] with lastIdx 975 send hb to peers [1 8 9 10 11] 975 975 975 975
+[1] with lastIdx 975 send hb to peers [1 8 9 10 11] 975 975 975 975
+[1] with lastIdx 975 send hb to peers [1 8 9 10 11] 975 975 975 975
+[1] with lastIdx 975 send hb to peers [1 8 9 10 11] 975 975 975 975
+[1] with lastIdx 975 send hb to peers [1 8 9 10 11] 975 975 975 975
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 980 send hb to peers [1 8 9 10 11] 980 980 980 980
+[1] with lastIdx 980 send hb to peers [1 8 9 10 11] 980 980 980 980
+[1] with lastIdx 980 send hb to peers [1 8 9 10 11] 980 980 980 980
+[1] with lastIdx 980 send hb to peers [1 8 9 10 11] 980 980 980 980
+[1] with lastIdx 980 send hb to peers [1 8 9 10 11] 980 980 980 980
+[1] with lastIdx 980 send hb to peers [1 8 9 10 11] 980 980 980 980
+[1] with lastIdx 980 send hb to peers [1 8 9 10 11] 980 980 980 980
+[1] with lastIdx 980 send hb to peers [1 8 9 10 11] 980 980 980 980
+[1] with lastIdx 980 send hb to peers [1 8 9 10 11] 980 980 980 980
+[1] with lastIdx 980 send hb to peers [1 8 9 10 11] 980 980 980 980
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 985 send hb to peers [1 8 9 10 11] 985 985 985 985
+[1] with lastIdx 985 send hb to peers [1 8 9 10 11] 985 985 985 985
+[1] with lastIdx 985 send hb to peers [1 8 9 10 11] 985 985 985 985
+[1] with lastIdx 985 send hb to peers [1 8 9 10 11] 985 985 985 985
+[1] with lastIdx 985 send hb to peers [1 8 9 10 11] 985 985 985 985
+[1] with lastIdx 985 send hb to peers [1 8 9 10 11] 985 985 985 985
+[1] with lastIdx 985 send hb to peers [1 8 9 10 11] 985 985 985 985
+[1] with lastIdx 985 send hb to peers [1 8 9 10 11] 985 985 985 985
+[1] with lastIdx 985 send hb to peers [1 8 9 10 11] 985 985 985 985
+[1] with lastIdx 985 send hb to peers [1 8 9 10 11] 985 985 985 985
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 990 send hb to peers [1 8 9 10 11] 990 990 990 990
+[1] with lastIdx 990 send hb to peers [1 8 9 10 11] 990 990 990 990
+[1] with lastIdx 990 send hb to peers [1 8 9 10 11] 990 990 990 990
+[1] with lastIdx 990 send hb to peers [1 8 9 10 11] 990 990 990 990
+[1] with lastIdx 990 send hb to peers [1 8 9 10 11] 990 990 990 990
+[1] with lastIdx 990 send hb to peers [1 8 9 10 11] 990 990 990 990
+[1] with lastIdx 990 send hb to peers [1 8 9 10 11] 990 990 990 990
+[1] with lastIdx 990 send hb to peers [1 8 9 10 11] 990 990 990 990
+[1] with lastIdx 990 send hb to peers [1 8 9 10 11] 990 990 990 990
+[1] with lastIdx 990 send hb to peers [1 8 9 10 11] 990 990 990 990
+[1] current has 9 proposals
+[1] current has 10 proposals
+[1] current has 11 proposals
+[1] current has 12 proposals
+[1] current has 13 proposals
+[1] current has 12 proposals
+[1] current has 11 proposals
+[1] current has 10 proposals
+[1] current has 9 proposals
+[1] current has 8 proposals
+[1] with lastIdx 995 send hb to peers [1 8 9 10 11] 995 995 995 995
+[1] with lastIdx 995 send hb to peers [1 8 9 10 11] 995 995 995 995
+[1] with lastIdx 995 send hb to peers [1 8 9 10 11] 995 995 995 995
+[1] with lastIdx 995 send hb to peers [1 8 9 10 11] 995 995 995 995
+[1] with lastIdx 995 send hb to peers [1 8 9 10 11] 995 995 995 995
+[1] with lastIdx 995 send hb to peers [1 8 9 10 11] 995 995 995 995
+[1] with lastIdx 995 send hb to peers [1 8 9 10 11] 995 995 995 995
+[1] with lastIdx 995 send hb to peers [1 8 9 10 11] 995 995 995 995
+[1] with lastIdx 995 send hb to peers [1 8 9 10 11] 995 995 995 995
+[1] with lastIdx 995 send hb to peers [1 8 9 10 11] 995 995 995 995
+[1] with lastIdx 995 send hb to peers [1 8 9 10 11] 995 995 995 995
+    test_test.go:44: failure
+panic: request timeout
+
+goroutine 308 [running]:
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.(*Cluster).Request(0xc00020f180, 0xc182b41ed0, 0xa, 0x10, 0xc182b562e0, 0x1, 0x1, 0x12a05f200, 0xc000244000, 0x0)
+	/home/spadea/STUDY/tinykv/kv/test_raftstore/cluster.go:200 +0x3a8
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.(*Cluster).Scan(0xc00020f180, 0xc182b41ed0, 0xa, 0x10, 0xc17c9c9de8, 0xa, 0x20, 0xc121da7e08, 0xa, 0xbc6e53)
+	/home/spadea/STUDY/tinykv/kv/test_raftstore/cluster.go:362 +0x3dc
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.GenericTest.func1(0x0, 0xc000276300)
+	/home/spadea/STUDY/tinykv/kv/test_raftstore/test_test.go:233 +0x76e
+github.com/pingcap-incubator/tinykv/kv/test_raftstore.runClient(0xc000276300, 0x0, 0xc000261080, 0xc17bef4960)
+	/home/spadea/STUDY/tinykv/kv/test_raftstore/test_test.go:27 +0x7a
+created by github.com/pingcap-incubator/tinykv/kv/test_raftstore.SpawnClientsAndWait
+	/home/spadea/STUDY/tinykv/kv/test_raftstore/test_test.go:37 +0xb2
+FAIL	github.com/pingcap-incubator/tinykv/kv/test_raftstore	54.830s
+FAIL

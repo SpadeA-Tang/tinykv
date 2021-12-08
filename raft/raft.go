@@ -238,12 +238,15 @@ func (r *Raft) HardState() pb.HardState {
 }
 
 func (r *Raft) sendHeartbeats() {
+	fmt.Printf("[%d] with lastIdx %d send hb to peers %v", r.id, r.RaftLog.LastIndex(), r.peers)
 	for i := 0; i < len(r.peers); i++ {
 		if r.peers[i] == r.id {
 			continue
 		}
 		r.sendHeartbeat(r.peers[i])
+		fmt.Printf(" %d", r.Prs[r.peers[i]].Match)
 	}
+	fmt.Println()
 }
 
 // sendHeartbeat sends a heartbeat RPC to the given peer.
@@ -634,6 +637,26 @@ func (r *Raft) needSnapshot(nextIdx uint64) bool {
 	return nextIdx <= r.RaftLog.lastIdxOfSnapshot
 }
 
+func (r *Raft) sendSnapshot(to uint64) {
+	// storage.Snapshot() will generate snapshot from disk.
+	//it will need some time, so, in order not to block the go routine, we return
+	//immediately if the snapshot has not been generated completely.
+	//In the next run and when the snapshot has been generated, we send it to the follower
+	snapshot, err := r.RaftLog.storage.Snapshot()
+	if err != nil {
+		return
+	}
+	m := pb.Message{
+		MsgType: pb.MessageType_MsgSnapshot,
+		To: to,
+		From: r.id,
+		Term: r.Term,
+		Snapshot: &snapshot,
+	}
+	// without updating this, the follower may request snapshotting infinitely
+	r.Prs[to].Next = snapshot.Metadata.Index + 1
+	r.msgs = append(r.msgs, m)
+}
 
 // sendAppend sends an append RPC with new entries (if any) and the
 // current commit index to the given peer. Returns true if a message was sent.
@@ -646,24 +669,7 @@ func (r *Raft) sendAppend(to uint64) bool {
 	var m pb.Message
 	if r.needSnapshot(nextIdx) {
 		// handle sending snapshot to followers
-
-		// storage.Snapshot() will generate snapshot from disk.
-		//it will need some time, so, in order not to block the go routine, we return
-		//immediately if the snapshot has not been generated completely.
-		//In the next run and when the snapshot has been generated, we send it to the follower
-		snapshot, err := r.RaftLog.storage.Snapshot()
-		if err != nil {
-			return false
-		}
-		m = pb.Message{
-			MsgType: pb.MessageType_MsgSnapshot,
-			To: to,
-			From: r.id,
-			Term: r.Term,
-			Snapshot: &snapshot,
-		}
-		// without updating this, the follower may request snapshotting infinitely
-		r.Prs[to].Next = snapshot.Metadata.Index + 1
+		r.sendSnapshot(to)
 	} else {
 		// handle normal log replication
 		if nextIdx > lastIdx {
@@ -687,8 +693,8 @@ func (r *Raft) sendAppend(to uint64) bool {
 			Commit:  r.RaftLog.committed,
 			Entries: entries,
 		}
+		r.msgs = append(r.msgs, m)
 	}
-	r.msgs = append(r.msgs, m)
 	return true
 }
 
@@ -782,8 +788,12 @@ func (r *Raft) handleAppendEntries(m pb.Message) {
 			return
 		}
 		// set the term of the conflict entry
-		index := Max(0, r.RaftLog.realIdx(m.Index))
-		reply.ConflictTerm = r.RaftLog.entries[index].Term
+		index := Max(int(r.RaftLog.lastIdxOfSnapshot), r.RaftLog.realIdx(m.Index))
+		if index == int(r.RaftLog.lastIdxOfSnapshot) {
+			reply.ConflictTerm = r.RaftLog.lastTermOfSnapshot
+		} else {
+			reply.ConflictTerm = r.RaftLog.entries[index].Term
+		}
 		// find the first index of that term to speed up matching
 		for i := 0; i < len(r.RaftLog.entries); i++ {
 			if r.RaftLog.entries[i].Term == reply.ConflictTerm {
@@ -866,7 +876,12 @@ func (r *Raft) handleHeartbeatResponse(m pb.Message) {
 	if m.Reject {
 		r.becomeFollower(m.Term, 0)
 	} else {
-		fmt.Printf("[%d] receives appresp from [%d] with index :%d\n", r.id, m.From, m.Index)
+
+		// m.Index == 0 means the follower is a new member and need snapshot
+		if m.Index == 0 {
+			r.sendSnapshot(m.From)
+			return
+		}
 		if m.Index < r.RaftLog.LastIndex() {
 			r.sendAppend(m.From)
 		}
@@ -883,6 +898,7 @@ func (r *Raft) handleSnapshot(m pb.Message) {
 	}
 
 	log.Infof("[%d] receives snapshot msg", r.id)
+	fmt.Printf("[%d] receives snapshot from [%d]\n", r.id, m.From)
 
 	r.RaftLog.lastIdxOfSnapshot = metaData.Index
 	r.RaftLog.lastTermOfSnapshot = metaData.Term

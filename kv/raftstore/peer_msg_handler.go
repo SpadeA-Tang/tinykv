@@ -5,6 +5,7 @@ import (
 	"github.com/pingcap-incubator/tinykv/kv/raftstore/meta"
 	"github.com/pingcap-incubator/tinykv/kv/util/engine_util"
 	pb "github.com/pingcap-incubator/tinykv/proto/pkg/eraftpb"
+	"reflect"
 	"time"
 
 	"github.com/Connor1996/badger/y"
@@ -41,6 +42,18 @@ func newPeerMsgHandler(peer *peer, ctx *GlobalContext) *peerMsgHandler {
 	}
 }
 
+func (d *peerMsgHandler) mayUpdateRegion(res *ApplySnapResult) {
+	if res != nil && !reflect.DeepEqual(res.PrevRegion, res.Region) {
+		d.peerStorage.SetRegion(res.Region)
+		storeMeta := d.ctx.storeMeta
+		storeMeta.Lock()
+		storeMeta.regionRanges.Delete(&regionItem{region: res.PrevRegion})
+		storeMeta.regionRanges.ReplaceOrInsert(&regionItem{region: res.Region})
+		storeMeta.regions[res.Region.GetId()] = res.Region
+		storeMeta.Unlock()
+	}
+}
+
 func (d *peerMsgHandler) HandleRaftReady() {
 	if d.stopped {
 		return
@@ -48,10 +61,11 @@ func (d *peerMsgHandler) HandleRaftReady() {
 	// Your Code Here (2B).
 	if d.RaftGroup.HasReady() {
 		rd := d.RaftGroup.Ready()
-		_, err := d.peerStorage.SaveReadyState(&rd)
+		res, err := d.peerStorage.SaveReadyState(&rd)
 		if err != nil {
 			panic("unimpl")
 		}
+		d.mayUpdateRegion(res)
 		d.Send(d.ctx.trans, rd.Messages)
 		d.HandleCommitEnts(rd.CommittedEntries)
 		d.RaftGroup.Advance(rd)
@@ -72,6 +86,7 @@ func (d *peerMsgHandler) handleRequest(
 			panic(err)
 		}
 	}
+
 	switch req.CmdType {
 	case raft_cmdpb.CmdType_Put:
 		wb.SetCF(req.Put.Cf, req.Put.Key, req.Put.Value)
@@ -92,6 +107,10 @@ func (d *peerMsgHandler) handleProposal(req *raft_cmdpb.Request, ent pb.Entry, w
 	}
 	p := d.proposals[0]
 	d.proposals = d.proposals[1:]
+	fmt.Printf("[%d] current has %d proposals\n", d.RaftGroup.Raft.GetId(), len(d.proposals))
+	if p.index == ent.Index && p.term != ent.Term {
+		panic("here")
+	}
 	if p.index != ent.Index || p.term != ent.Term {
 		NotifyStaleReq(ent.Term, p.cb)
 		return wb
@@ -168,58 +187,76 @@ func (d *peerMsgHandler) handleAdminRequest(
 		if err := msg.Unmarshal(cc.Context); err != nil {
 			panic(err)
 		}
-		d.RaftGroup.ApplyConfChange(cc)
+		var resp *raft_cmdpb.RaftCmdResponse
 
-		switch cc.ChangeType {
-		case pb.ConfChangeType_AddNode:
-			peer := msg.AdminRequest.ChangePeer.Peer
-			if region.AddPeer(peer) {
-				fmt.Printf("[%d] adds node :%d\n", d.RaftGroup.Raft.GetId(), cc.NodeId)
-				//log.Infof("[%d] adds node :%d", d.RaftGroup.Raft.GetId(), cc.NodeId)
-				region.RegionEpoch.ConfVer += 1
-				wb.SetMeta(meta.RegionStateKey(d.regionId), &rspb.RegionLocalState{
-					State:  rspb.PeerState_Normal,
-					Region: region,
-				})
-				d.ctx.storeMeta.regions[region.Id] = region
-				d.insertPeerCache(peer)
-			}
-		case pb.ConfChangeType_RemoveNode:
-			//fmt.Printf("[%d] cc.NodeId %d\n", d.RaftGroup.Raft.GetId(), cc.NodeId)
-			if cc.NodeId == d.RaftGroup.Raft.GetId() {
-				d.destroyPeer()
-				return wb
-			}
-			if region.RemovePeer(cc.NodeId) {
-				fmt.Printf("[%d] removes node :%d\n", d.RaftGroup.Raft.GetId(), cc.NodeId)
-				region.RegionEpoch.ConfVer += 1
-				wb.SetMeta(meta.RegionStateKey(d.regionId), &rspb.RegionLocalState{
-					State:  rspb.PeerState_Normal,
-					Region: region,
-				})
-				d.ctx.storeMeta.regions[region.Id] = region
-				d.removePeerCache(cc.NodeId)
-			}
+		if err, ok := util.CheckRegionEpoch(msg, region, true).(*util.ErrEpochNotMatch); ok {
+			resp = ErrResp(err)
+			fmt.Printf("CheckRegionEpoch fail %v\n", msg.AdminRequest)
+		} else {
+			d.RaftGroup.ApplyConfChange(cc)
+			switch cc.ChangeType {
+			case pb.ConfChangeType_AddNode:
+				pr := msg.AdminRequest.ChangePeer.Peer
+				if region.AddPeer(pr) {
+					//log.Infof("[%d] adds node :%d", d.RaftGroup.Raft.GetId(), cc.NodeId)
+					region.RegionEpoch.ConfVer += 1
+					wb.SetMeta(meta.RegionStateKey(d.regionId), &rspb.RegionLocalState{
+						State:  rspb.PeerState_Normal,
+						Region: region,
+					})
+					d.ctx.storeMeta.Lock()
+					d.ctx.storeMeta.regions[region.Id] = region
+					d.ctx.storeMeta.Unlock()
+					d.insertPeerCache(pr)
+				}
+			case pb.ConfChangeType_RemoveNode:
+				if cc.NodeId == d.RaftGroup.Raft.GetId() {
+					d.destroyPeer()
+					return wb
+				}
+				if region.RemovePeer(cc.NodeId) {
+					region.RegionEpoch.ConfVer += 1
+					//wb.SetMeta(meta.RegionStateKey(d.regionId), &rspb.RegionLocalState{
+					//	State:  rspb.PeerState_Normal,
+					//	Region: region,
+					//})
+					wb.SetMeta(meta.RegionStateKey(d.regionId), &rspb.RegionLocalState{
+						State:  rspb.PeerState_Normal,
+						Region: region,
+					})
+					d.ctx.storeMeta.Lock()
+					d.ctx.storeMeta.regions[region.Id] = region
+					d.ctx.storeMeta.Unlock()
+					d.removePeerCache(cc.NodeId)
+				}
 
-		}
-
-		if len(d.proposals) > 0 {
-			p := d.proposals[0]
-			d.proposals = d.proposals[1:]
-			if p.index != ent.Index || p.term != ent.Term {
-				NotifyStaleReq(ent.Term, p.cb)
 			}
-			p.cb.Done(&raft_cmdpb.RaftCmdResponse{
+			resp = &raft_cmdpb.RaftCmdResponse{
 				Header: &raft_cmdpb.RaftResponseHeader{},
 				AdminResponse: &raft_cmdpb.AdminResponse{
 					CmdType:    raft_cmdpb.AdminCmdType_ChangePeer,
 					ChangePeer: &raft_cmdpb.ChangePeerResponse{},
 				},
-			})
+			}
 		}
-		if d.IsLeader() {
-			d.HeartbeatScheduler(d.ctx.schedulerTaskSender)
+
+		if len(d.proposals) > 0 {
+			p := d.proposals[0]
+			d.proposals = d.proposals[1:]
+			fmt.Printf("[%d] current has %d proposals\n", d.RaftGroup.Raft.GetId(), len(d.proposals))
+			if p.index == ent.Index && p.term != ent.Term {
+				panic("here")
+			}
+			if p.index != ent.Index || p.term != ent.Term {
+				fmt.Println("Stale req")
+				NotifyStaleReq(ent.Term, p.cb)
+			} else {
+				p.cb.Done(resp)
+			}
 		}
+		//if d.IsLeader() {
+		//	d.HeartbeatScheduler(d.ctx.schedulerTaskSender)
+		//}
 
 	}
 
@@ -248,6 +285,10 @@ func (d *peerMsgHandler) HandleCommitEnts(ents []pb.Entry) {
 				} else {
 					wb = d.handleRequest(msg, ent, wb)
 				}
+			}
+			// guess: when node is deleted, d.stopped will be true
+			if d.stopped {
+				return
 			}
 		}
 		d.peerStorage.applyState.AppliedIndex = ents[len(ents)-1].Index
@@ -327,6 +368,7 @@ func (d *peerMsgHandler) proposeRequest(msg *raft_cmdpb.RaftCmdRequest, cb *mess
 		term:  d.Term(),
 		cb:    cb,
 	})
+	fmt.Printf("[%d] current has %d proposals\n", d.RaftGroup.Raft.GetId(), len(d.proposals))
 
 	if len(msg.Requests) == 0 {
 		fmt.Println()
@@ -371,6 +413,7 @@ func (d *peerMsgHandler) proposeAdminRequest(msg *raft_cmdpb.RaftCmdRequest, cb 
 			term:  d.Term(),
 			cb:    cb,
 		})
+		fmt.Printf("[%d] current has %d proposals\n", d.RaftGroup.Raft.GetId(), len(d.proposals))
 
 		cmd := msg.AdminRequest.ChangePeer
 		data, err := msg.Marshal()
