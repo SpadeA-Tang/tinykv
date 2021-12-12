@@ -23,6 +23,14 @@ import (
 
 type PeerTick int
 
+const raft_cmd = false
+
+func dprint(flag bool, format string, a ...interface{}) {
+	if flag {
+		fmt.Printf(format, a)
+	}
+}
+
 const (
 	PeerTickRaft               PeerTick = 0
 	PeerTickRaftLogGC          PeerTick = 1
@@ -103,31 +111,54 @@ func (d *peerMsgHandler) handleRequest(
 }
 
 func (d *peerMsgHandler) handleProposal(req *raft_cmdpb.Request, ent pb.Entry, wb *engine_util.WriteBatch) *engine_util.WriteBatch {
-	if len(d.proposals) == 0 {
+
+	p := d.popProposal(ent.Term, ent.Index)
+	if p == nil {
 		return wb
 	}
-	p := d.proposals[0]
 
-	for len(d.proposals) > 1 && p.index < ent.Index {
-		d.proposals = d.proposals[1:]
-		NotifyStaleReq(ent.Term, p.cb)
-		p = d.proposals[0]
+
+	// p.term must be less than or equal to ent.Term due to the logic in popProposal
+	if p.term != ent.Term {
+		NotifyStaleReq(d.Term(), p.cb)
+		return wb
 	}
+
+	if p.index != ent.Index {
+		for p != nil {
+			fmt.Printf("Normal request p.index %d p.term %d should be equal to ent.index %d ent.term %d\n", p.index, p.term, ent.Index, ent.Term)
+			p = d.popProposal(ent.Term+100, ent.Index)
+		}
+		panic("something wrong")
+	}
+
+
+	//if len(d.proposals) == 0 {
+	//	return wb
+	//}
+	//p := d.proposals[0]
+	//
+	//for len(d.proposals) > 1 && p.index < ent.Index {
+	//	d.proposals = d.proposals[1:]
+	//	NotifyStaleReq(ent.Term, p.cb)
+	//	p = d.proposals[0]
+	//}
 
 	//fmt.Printf("[%d] handle proposal with index %d current has %d proposals\n",
 	//	d.RaftGroup.Raft.GetId(), p.index, len(d.proposals))
 
-	if p.index == ent.Index && p.term != ent.Term {
-		NotifyStaleReq(ent.Term, p.cb)
-		return wb
-	}
+	//if p.index == ent.Index && p.term != ent.Term {
+	//	NotifyStaleReq(ent.Term, p.cb)
+	//	return wb
+	//}
 
-	if p.index != ent.Index || p.term != ent.Term { // not equal means p.index > ent.index
-		fmt.Printf("Stale req p.index %d p.term %d ent.Index %d ent.term %d\n", p.index, p.term, ent.Index, ent.Term)
-		//NotifyStaleReq(ent.Term, p.cb)
-		return wb
-	}
-	d.proposals = d.proposals[1:]
+	//if p.index != ent.Index || p.term != ent.Term { // not equal means p.index > ent.index
+	//	fmt.Printf("Stale req p.index %d p.term %d ent.Index %d ent.term %d\n", p.index, p.term, ent.Index, ent.Term)
+	//	//NotifyStaleReq(ent.Term, p.cb)
+	//	return wb
+	//}
+	//d.proposals = d.proposals[1:]
+
 	responses := []*raft_cmdpb.Response{}
 	res := &raft_cmdpb.RaftCmdResponse{
 		Header: &raft_cmdpb.RaftResponseHeader{},
@@ -151,12 +182,12 @@ func (d *peerMsgHandler) handleProposal(req *raft_cmdpb.Request, ent pb.Entry, w
 			},
 		})
 	case raft_cmdpb.CmdType_Put:
-		fmt.Printf("[%d] has put key %v value %v\n", d.RaftGroup.Raft.GetId(), string(req.Put.Key), string(req.Put.Value))
+		dprint(raft_cmd, "[%d] has put key %v value %v\n", d.RaftGroup.Raft.GetId(), string(req.Put.Key), string(req.Put.Value))
 		responses = append(responses, &raft_cmdpb.Response{
 			CmdType: raft_cmdpb.CmdType_Put,
 		})
 	case raft_cmdpb.CmdType_Delete:
-		fmt.Printf("[%d] has delete key %v\n", d.RaftGroup.Raft.GetId(), string(req.Delete.Key))
+		dprint(raft_cmd, "[%d] has delete key %v\n", d.RaftGroup.Raft.GetId(), string(req.Delete.Key))
 		responses = append(responses, &raft_cmdpb.Response{
 			CmdType: raft_cmdpb.CmdType_Delete,
 		})
@@ -174,6 +205,7 @@ func (d *peerMsgHandler) handleProposal(req *raft_cmdpb.Request, ent pb.Entry, w
 		p.cb.Txn = d.peerStorage.Engines.Kv.NewTransaction(false)
 	}
 	res.Responses = responses
+
 	p.cb.Done(res)
 	return wb
 }
@@ -254,30 +286,43 @@ func (d *peerMsgHandler) handleAdminRequest(
 			}
 		}
 
-		if len(d.proposals) > 0 {
-			p := d.proposals[0]
-			for len(d.proposals) > 1 && p.index < ent.Index {
-				d.proposals = d.proposals[1:]
-				NotifyStaleReq(ent.Term, p.cb)
-				p = d.proposals[0]
-			}
-
-			//fmt.Printf("[%d] handle proposal with index %d current has %d proposals\n",
-			//	d.RaftGroup.Raft.GetId(), p.index, len(d.proposals))
-
-			if p.index == ent.Index && p.term != ent.Term {
-				NotifyStaleReq(ent.Term, p.cb)
-				return wb
-			}
-			if p.index != ent.Index || p.term != ent.Term {
-				fmt.Printf("Stale req p.index %d p.term %d ent.Index %d ent.term %d\n", p.index, p.term, ent.Index, ent.Term)
-				//NotifyStaleReq(ent.Term, p.cb)
-				return wb
+		p := d.popProposal(ent.Term, ent.Index)
+		if p != nil {
+			if p.term == ent.Term {
+				if p.index == ent.Index {
+					p.cb.Done(resp)
+				} else {
+					panic(fmt.Sprintf("Admin request p.index %d should be equal to ent.index %d", p.index, ent.Index))
+				}
 			} else {
-				d.proposals = d.proposals[1:]
-				p.cb.Done(resp)
+				NotifyStaleReq(d.Term(), p.cb)
 			}
 		}
+
+		//if len(d.proposals) > 0 {
+		//	p := d.proposals[0]
+		//	for len(d.proposals) > 1 && p.index < ent.Index {
+		//		d.proposals = d.proposals[1:]
+		//		NotifyStaleReq(ent.Term, p.cb)
+		//		p = d.proposals[0]
+		//	}
+		//
+		//	//fmt.Printf("[%d] handle proposal with index %d current has %d proposals\n",
+		//	//	d.RaftGroup.Raft.GetId(), p.index, len(d.proposals))
+		//
+		//	if p.index == ent.Index && p.term != ent.Term {
+		//		NotifyStaleReq(ent.Term, p.cb)
+		//		return wb
+		//	}
+		//	if p.index != ent.Index || p.term != ent.Term {
+		//		fmt.Printf("Stale req p.index %d p.term %d ent.Index %d ent.term %d\n", p.index, p.term, ent.Index, ent.Term)
+		//		//NotifyStaleReq(ent.Term, p.cb)
+		//		return wb
+		//	} else {
+		//		d.proposals = d.proposals[1:]
+		//		p.cb.Done(resp)
+		//	}
+		//}
 		//if d.IsLeader() {
 		//	d.HeartbeatScheduler(d.ctx.schedulerTaskSender)
 		//}
@@ -285,6 +330,19 @@ func (d *peerMsgHandler) handleAdminRequest(
 	}
 
 	return wb
+}
+
+func (d *peerMsgHandler) popProposal(term uint64, index uint64) *proposal {
+	if len(d.proposals) == 0 {
+		return nil
+	}
+	p := d.proposals[0]
+	if p.term > term || (p.term == term && p.index > index) {
+		return nil
+	} else {
+		d.proposals = d.proposals[1:]
+		return p
+	}
 }
 
 func (d *peerMsgHandler) HandleCommitEnts(ents []pb.Entry) {

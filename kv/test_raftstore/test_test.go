@@ -285,7 +285,6 @@ func GenericTest(t *testing.T, part string, nclients int, unreliable bool, crash
 
 		for cli := 0; cli < nclients; cli++ {
 			log.Infof("read from clients %d\n", cli)
-			fmt.Printf("read from clients %d\n", cli)
 
 			j := <-clnts[cli]
 

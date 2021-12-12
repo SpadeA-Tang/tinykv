@@ -238,15 +238,13 @@ func (r *Raft) HardState() pb.HardState {
 }
 
 func (r *Raft) sendHeartbeats() {
-	fmt.Printf("[%d] with lastIdx %d send hb to peers %v", r.id, r.RaftLog.LastIndex(), r.peers)
+	//fmt.Printf("[%d] with lastIdx %d send hb to peers %v", r.id, r.RaftLog.LastIndex(), r.peers)
 	for i := 0; i < len(r.peers); i++ {
 		if r.peers[i] == r.id {
 			continue
 		}
 		r.sendHeartbeat(r.peers[i])
-		fmt.Printf(" %d", r.Prs[r.peers[i]].Match)
 	}
-	fmt.Println()
 }
 
 // sendHeartbeat sends a heartbeat RPC to the given peer.
