@@ -1,0 +1,2389 @@
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestPersistPartitionUnreliable2B|| true
+=== RUN   TestPersistPartitionUnreliable2B
+[2] becomes leader
+[2] with lastIdx 6 send hb to peers [5 1 2 3 4] 6 6 6 6
+[2] with lastIdx 6 send hb to peers [5 1 2 3 4] 6 6 6 6
+[2] with lastIdx 6 send hb to peers [5 1 2 3 4] 6 6 6 6
+[2] with lastIdx 6 send hb to peers [5 1 2 3 4] 6 6 6 6
+[2] with lastIdx 6 send hb to peers [5 1 2 3 4] 6 6 6 6
+[2] has put key 1 00000000 value x 1 0 y
+[2] has put key 4 00000000 value x 4 0 y
+[2] has put key 3 00000000 value x 3 0 y
+[2] has put key 2 00000000 value x 2 0 y
+[2] has put key 0 00000000 value x 0 0 y
+[2] has put key 1 00000001 value x 1 1 y
+[2] has put key 2 00000001 value x 2 1 y
+[2] has put key 1 00000002 value x 1 2 y
+[2] with lastIdx 21 send hb to peers [5 1 2 3 4] 17 17 17 17
+[2] has put key 4 00000001 value x 4 1 y
+[2] has put key 3 00000001 value x 3 1 y
+[2] has put key 0 00000001 value x 0 1 y
+[2] has put key 4 00000002 value x 4 2 y
+[2] has put key 3 00000002 value x 3 2 y
+[2] with lastIdx 29 send hb to peers [5 1 2 3 4] 26 26 26 26
+[2] has put key 2 00000002 value x 2 2 y
+[2] has put key 1 00000003 value x 1 3 y
+[2] has put key 0 00000002 value x 0 2 y
+[2] has put key 2 00000003 value x 2 3 y
+[2] with lastIdx 36 send hb to peers [5 1 2 3 4] 32 32 32 32
+[2] has put key 0 00000003 value x 0 3 y
+[2] has put key 2 00000004 value x 2 4 y
+[2] has put key 4 00000003 value x 4 3 y
+[2] has put key 2 00000005 value x 2 5 y
+[2] has put key 1 00000004 value x 1 4 y
+[2] with lastIdx 47 send hb to peers [5 1 2 3 4] 42 32 42 32
+[2] has put key 1 00000005 value x 1 5 y
+[2] has put key 4 00000004 value x 4 4 y
+[2] has put key 3 00000003 value x 3 3 y
+[2] has put key 2 00000006 value x 2 6 y
+[2] has put key 4 00000005 value x 4 5 y
+[2] has put key 0 00000004 value x 0 4 y
+[2] has put key 3 00000004 value x 3 4 y
+[2] has put key 2 00000007 value x 2 7 y
+[2] with lastIdx 61 send hb to peers [5 1 2 3 4] 56 32 57 32
+[2] has put key 4 00000006 value x 4 6 y
+[2] has put key 3 00000005 value x 3 5 y
+[2] has put key 0 00000005 value x 0 5 y
+[2] has put key 2 00000008 value x 2 8 y
+[2] has put key 1 00000006 value x 1 6 y
+[2] has put key 0 00000006 value x 0 6 y
+[2] has put key 1 00000007 value x 1 7 y
+[2] has put key 0 00000007 value x 0 7 y
+[2] with lastIdx 75 send hb to peers [5 1 2 3 4] 71 32 70 32
+[2] has put key 1 00000008 value x 1 8 y
+[2] has put key 0 00000008 value x 0 8 y
+[2] has put key 2 00000009 value x 2 9 y
+[2] has put key 2 00000010 value x 2 10 y
+[2] has put key 4 00000007 value x 4 7 y
+[2] has put key 0 00000009 value x 0 9 y
+[2] with lastIdx 90 send hb to peers [5 1 2 3 4] 86 32 85 32
+[2] has put key 1 00000009 value x 1 9 y
+[2] has put key 3 00000006 value x 3 6 y
+[2] has put key 0 00000010 value x 0 10 y
+[2] has put key 2 00000011 value x 2 11 y
+[2] has put key 1 00000010 value x 1 10 y
+[2] has put key 4 00000008 value x 4 8 y
+[2] has put key 2 00000012 value x 2 12 y
+[2] has put key 1 00000011 value x 1 11 y
+[2] has put key 4 00000009 value x 4 9 y
+[2] with lastIdx 103 send hb to peers [5 1 2 3 4] 99 32 98 32
+[2] has put key 2 00000013 value x 2 13 y
+[2] has put key 4 00000010 value x 4 10 y
+[2] has put key 0 00000011 value x 0 11 y
+[2] with lastIdx 110 send hb to peers [5 1 2 3 4] 105 32 105 32
+[2] becomes leader
+[2] has put key 1 00000012 value x 1 12 y
+[2] has put key 0 00000012 value x 0 12 y
+[2] has put key 3 00000007 value x 3 7 y
+[2] has put key 0 00000012 value x 0 12 y
+[2] has put key 3 00000007 value x 3 7 y
+[2] has put key 1 00000012 value x 1 12 y
+[2] has put key 4 00000011 value x 4 11 y
+[2] has put key 0 00000013 value x 0 13 y
+[2] has put key 3 00000008 value x 3 8 y
+[2] has put key 1 00000013 value x 1 13 y
+[2] has put key 0 00000014 value x 0 14 y
+[2] has put key 3 00000009 value x 3 9 y
+[2] has put key 2 00000014 value x 2 14 y
+[2] has put key 0 00000015 value x 0 15 y
+[2] has put key 4 00000012 value x 4 12 y
+[2] has put key 3 00000010 value x 3 10 y
+[2] has put key 1 00000014 value x 1 14 y
+[2] has put key 2 00000015 value x 2 15 y
+[2] has put key 0 00000016 value x 0 16 y
+[2] has put key 1 00000015 value x 1 15 y
+[2] has put key 4 00000013 value x 4 13 y
+[2] has put key 0 00000017 value x 0 17 y
+[2] has put key 3 00000011 value x 3 11 y
+[2] with lastIdx 144 send hb to peers [5 1 2 3 4] 141 32 140 32
+[2] has put key 1 00000016 value x 1 16 y
+[2] has put key 2 00000016 value x 2 16 y
+[2] has put key 4 00000014 value x 4 14 y
+[2] has put key 2 00000017 value x 2 17 y
+[2] has put key 4 00000015 value x 4 15 y
+[2] has put key 0 00000018 value x 0 18 y
+[2] has put key 2 00000018 value x 2 18 y
+[2] has put key 3 00000012 value x 3 12 y
+[2] has put key 4 00000016 value x 4 16 y
+[2] has put key 1 00000017 value x 1 17 y
+[2] has put key 2 00000019 value x 2 19 y
+[2] has put key 1 00000018 value x 1 18 y
+[2] has put key 4 00000017 value x 4 17 y
+[2] with lastIdx 169 send hb to peers [5 1 2 3 4] 167 32 166 32
+[2] has put key 1 00000019 value x 1 19 y
+[2] has put key 4 00000018 value x 4 18 y
+[2] with lastIdx 176 send hb to peers [5 1 2 3 4] 171 32 176 32
+[2] with lastIdx 176 send hb to peers [5 1 2 3 4] 171 32 176 32
+[2] with lastIdx 176 send hb to peers [5 1 2 3 4] 171 32 176 32
+[2] with lastIdx 176 send hb to peers [5 1 2 3 4] 171 32 176 32
+[2] with lastIdx 176 send hb to peers [5 1 2 3 4] 171 32 176 32
+[2] with lastIdx 176 send hb to peers [5 1 2 3 4] 171 32 176 32
+[2] with lastIdx 176 send hb to peers [5 1 2 3 4] 171 32 176 32
+[2] becomes leader
+[2] has put key 1 00000020 value x 1 20 y
+[2] has put key 3 00000013 value x 3 13 y
+[2] has put key 3 00000013 value x 3 13 y
+[2] has put key 1 00000020 value x 1 20 y
+[2] with lastIdx 182 send hb to peers [5 1 2 3 4] 182 182 182 182
+[2] with lastIdx 182 send hb to peers [5 1 2 3 4] 182 182 182 182
+read from clients 0
+[1] becomes leader
+[1] has delete key 0 00000000
+[1] has delete key 0 00000001
+[1] has delete key 0 00000002
+[1] has delete key 0 00000003
+[1] has delete key 0 00000004
+[1] has delete key 0 00000005
+[1] with lastIdx 191 send hb to peers [5 1 2 3 4] 190 190 190 190
+[1] has delete key 0 00000006
+[1] has delete key 0 00000007
+[1] has delete key 0 00000008
+[1] has delete key 0 00000009
+[1] has delete key 0 00000010
+[1] has delete key 0 00000011
+[1] has delete key 0 00000012
+[1] has delete key 0 00000013
+[1] with lastIdx 199 send hb to peers [5 1 2 3 4] 198 198 198 198
+[1] has delete key 0 00000014
+[1] has delete key 0 00000015
+[1] has delete key 0 00000016
+[1] has delete key 0 00000017
+[1] has delete key 0 00000018
+read from clients 1
+[1] with lastIdx 205 send hb to peers [5 1 2 3 4] 204 204 204 204
+[1] has delete key 1 00000000
+[1] has delete key 1 00000001
+[1] has delete key 1 00000002
+[1] has delete key 1 00000003
+[1] has delete key 1 00000004
+[1] has delete key 1 00000005
+[1] has delete key 1 00000006
+[1] with lastIdx 212 send hb to peers [5 1 2 3 4] 211 211 211 211
+[1] has delete key 1 00000007
+[1] has delete key 1 00000008
+[1] has delete key 1 00000009
+[1] has delete key 1 00000010
+[1] with lastIdx 216 send hb to peers [5 1 2 3 4] 215 215 215 215
+[1] has delete key 1 00000011
+[1] has delete key 1 00000012
+[1] has delete key 1 00000013
+[1] has delete key 1 00000014
+[1] has delete key 1 00000015
+[1] has delete key 1 00000016
+[1] has delete key 1 00000017
+[1] with lastIdx 223 send hb to peers [5 1 2 3 4] 222 222 222 222
+[1] has delete key 1 00000018
+[1] has delete key 1 00000019
+[1] has delete key 1 00000020
+read from clients 2
+[1] has delete key 2 00000000
+[1] has delete key 2 00000001
+[1] has delete key 2 00000002
+[1] with lastIdx 230 send hb to peers [5 1 2 3 4] 229 229 229 229
+[1] has delete key 2 00000003
+[1] has delete key 2 00000004
+[1] has delete key 2 00000005
+[1] has delete key 2 00000006
+[1] has delete key 2 00000007
+[1] has delete key 2 00000008
+[1] with lastIdx 236 send hb to peers [5 1 2 3 4] 235 235 235 235
+[1] has delete key 2 00000009
+[1] has delete key 2 00000010
+[1] has delete key 2 00000011
+[1] has delete key 2 00000012
+[1] has delete key 2 00000013
+[1] has delete key 2 00000014
+[1] with lastIdx 241 send hb to peers [5 1 2 3 4] 241 240 241 241
+[1] has delete key 2 00000015
+[1] has delete key 2 00000016
+[1] has delete key 2 00000017
+[1] has delete key 2 00000018
+[1] has delete key 2 00000019
+read from clients 3
+[1] with lastIdx 247 send hb to peers [5 1 2 3 4] 246 246 246 246
+[1] has delete key 3 00000000
+[1] has delete key 3 00000001
+[1] has delete key 3 00000002
+[1] has delete key 3 00000003
+[1] with lastIdx 252 send hb to peers [5 1 2 3 4] 252 251 252 251
+[1] has delete key 3 00000004
+[1] has delete key 3 00000005
+[1] has delete key 3 00000006
+[1] has delete key 3 00000007
+[1] has delete key 3 00000008
+[1] has delete key 3 00000009
+[1] has delete key 3 00000010
+[1] has delete key 3 00000011
+[1] has delete key 3 00000012
+[1] with lastIdx 261 send hb to peers [5 1 2 3 4] 260 260 260 260
+[1] has delete key 3 00000013
+read from clients 4
+[1] has delete key 4 00000000
+[1] has delete key 4 00000001
+[1] has delete key 4 00000002
+[1] has delete key 4 00000003
+[1] has delete key 4 00000004
+[1] has delete key 4 00000005
+[1] has delete key 4 00000006
+[1] with lastIdx 269 send hb to peers [5 1 2 3 4] 268 269 269 269
+[1] has delete key 4 00000007
+[1] has delete key 4 00000008
+[1] has delete key 4 00000009
+[1] has delete key 4 00000010
+[1] has delete key 4 00000011
+[1] has delete key 4 00000012
+[1] has delete key 4 00000013
+[1] has delete key 4 00000014
+[1] with lastIdx 278 send hb to peers [5 1 2 3 4] 277 277 277 277
+[1] has delete key 4 00000015
+[1] has delete key 4 00000016
+[1] has delete key 4 00000017
+[1] has delete key 4 00000018
+[1] has put key 4 00000000 value x 4 0 y
+[1] has put key 0 00000000 value x 0 0 y
+[1] has put key 2 00000000 value x 2 0 y
+[1] has put key 1 00000000 value x 1 0 y
+[1] has put key 3 00000000 value x 3 0 y
+[1] has put key 4 00000001 value x 4 1 y
+[1] has put key 2 00000001 value x 2 1 y
+[1] has put key 3 00000001 value x 3 1 y
+[1] has put key 2 00000002 value x 2 2 y
+[1] has put key 1 00000001 value x 1 1 y
+[1] has put key 3 00000002 value x 3 2 y
+[1] has put key 1 00000002 value x 1 2 y
+[1] with lastIdx 302 send hb to peers [5 1 2 3 4] 301 301 301 301
+[1] has put key 4 00000002 value x 4 2 y
+[1] has put key 2 00000003 value x 2 3 y
+[1] has put key 3 00000003 value x 3 3 y
+[1] has put key 0 00000001 value x 0 1 y
+[1] has put key 2 00000004 value x 2 4 y
+[1] has put key 0 00000002 value x 0 2 y
+[1] has put key 4 00000003 value x 4 3 y
+[1] has put key 1 00000003 value x 1 3 y
+[1] has put key 4 00000004 value x 4 4 y
+[1] has put key 3 00000004 value x 3 4 y
+[1] has put key 1 00000004 value x 1 4 y
+[1] with lastIdx 327 send hb to peers [5 1 2 3 4] 325 325 325 325
+[1] has put key 0 00000003 value x 0 3 y
+[1] has put key 3 00000005 value x 3 5 y
+[1] has put key 1 00000005 value x 1 5 y
+[1] has put key 0 00000004 value x 0 4 y
+[1] has put key 4 00000005 value x 4 5 y
+[1] has put key 1 00000006 value x 1 6 y
+[1] has put key 2 00000005 value x 2 5 y
+[1] has put key 4 00000006 value x 4 6 y
+[1] has put key 1 00000007 value x 1 7 y
+[1] has put key 0 00000005 value x 0 5 y
+[1] has put key 1 00000008 value x 1 8 y
+[1] has put key 2 00000006 value x 2 6 y
+[1] with lastIdx 355 send hb to peers [5 1 2 3 4] 352 352 352 352
+[1] has put key 0 00000006 value x 0 6 y
+[1] has put key 3 00000006 value x 3 6 y
+[1] has put key 0 00000007 value x 0 7 y
+[1] has put key 3 00000007 value x 3 7 y
+[1] has put key 4 00000007 value x 4 7 y
+[1] with lastIdx 367 send hb to peers [5 1 2 3 4] 367 362 360 362
+[1] with lastIdx 367 send hb to peers [5 1 2 3 4] 367 362 360 362
+[1] with lastIdx 367 send hb to peers [5 1 2 3 4] 367 362 360 362
+[1] with lastIdx 367 send hb to peers [5 1 2 3 4] 367 362 360 362
+[1] with lastIdx 367 send hb to peers [5 1 2 3 4] 367 362 360 362
+[1] with lastIdx 367 send hb to peers [5 1 2 3 4] 367 362 360 362
+[1] with lastIdx 367 send hb to peers [5 1 2 3 4] 367 362 360 362
+[1] becomes leader
+[1] has put key 3 00000008 value x 3 8 y
+[1] has put key 2 00000007 value x 2 7 y
+[1] has put key 2 00000007 value x 2 7 y
+[1] has put key 3 00000008 value x 3 8 y
+[1] has put key 1 00000009 value x 1 9 y
+[1] has put key 2 00000008 value x 2 8 y
+[1] has put key 0 00000008 value x 0 8 y
+[1] has put key 1 00000010 value x 1 10 y
+[1] has put key 2 00000009 value x 2 9 y
+[1] with lastIdx 389 send hb to peers [5 1 2 3 4] 385 384 385 362
+[1] has put key 3 00000009 value x 3 9 y
+[1] has put key 1 00000011 value x 1 11 y
+[1] has put key 2 00000010 value x 2 10 y
+[1] has put key 4 00000008 value x 4 8 y
+[1] has put key 3 00000010 value x 3 10 y
+[1] has put key 0 00000009 value x 0 9 y
+[1] has put key 1 00000012 value x 1 12 y
+[1] has put key 2 00000011 value x 2 11 y
+[1] has put key 4 00000009 value x 4 9 y
+[1] has put key 3 00000011 value x 3 11 y
+[1] has put key 0 00000010 value x 0 10 y
+[1] has put key 3 00000012 value x 3 12 y
+[1] has put key 0 00000011 value x 0 11 y
+[1] has put key 1 00000013 value x 1 13 y
+[1] with lastIdx 408 send hb to peers [5 1 2 3 4] 404 386 388 404
+[1] has put key 3 00000013 value x 3 13 y
+[1] has put key 0 00000012 value x 0 12 y
+[1] has put key 1 00000014 value x 1 14 y
+[1] has put key 2 00000012 value x 2 12 y
+[1] has put key 3 00000014 value x 3 14 y
+[1] has put key 4 00000010 value x 4 10 y
+[1] has put key 1 00000015 value x 1 15 y
+[1] with lastIdx 425 send hb to peers [5 1 2 3 4] 420 386 388 420
+[1] has put key 0 00000013 value x 0 13 y
+[1] has put key 1 00000016 value x 1 16 y
+[1] has put key 4 00000011 value x 4 11 y
+[1] has put key 2 00000013 value x 2 13 y
+[1] has put key 3 00000015 value x 3 15 y
+[1] has put key 1 00000017 value x 1 17 y
+[1] has put key 4 00000012 value x 4 12 y
+[1] has put key 2 00000014 value x 2 14 y
+[1] has put key 1 00000018 value x 1 18 y
+[1] has put key 4 00000013 value x 4 13 y
+[1] has put key 1 00000019 value x 1 19 y
+[1] has put key 0 00000014 value x 0 14 y
+[1] with lastIdx 447 send hb to peers [5 1 2 3 4] 443 386 388 443
+[1] has put key 2 00000015 value x 2 15 y
+[1] has put key 3 00000016 value x 3 16 y
+[1] has put key 4 00000014 value x 4 14 y
+[1] has put key 2 00000016 value x 2 16 y
+[1] has put key 1 00000020 value x 1 20 y
+[1] has put key 3 00000017 value x 3 17 y
+[1] has put key 0 00000015 value x 0 15 y
+[1] has put key 1 00000021 value x 1 21 y
+[1] has put key 3 00000018 value x 3 18 y
+[1] has put key 0 00000016 value x 0 16 y
+[1] has put key 4 00000015 value x 4 15 y
+[1] has put key 3 00000019 value x 3 19 y
+[1] has put key 0 00000017 value x 0 17 y
+[1] with lastIdx 465 send hb to peers [5 1 2 3 4] 463 386 388 464
+[1] has put key 1 00000022 value x 1 22 y
+[1] has put key 2 00000017 value x 2 17 y
+[1] has put key 0 00000018 value x 0 18 y
+[1] has put key 3 00000020 value x 3 20 y
+[1] has put key 2 00000018 value x 2 18 y
+[1] has put key 0 00000019 value x 0 19 y
+[1] has put key 3 00000021 value x 3 21 y
+[1] has put key 1 00000023 value x 1 23 y
+[1] has put key 4 00000016 value x 4 16 y
+[1] has put key 1 00000024 value x 1 24 y
+[1] has put key 0 00000020 value x 0 20 y
+[1] has put key 4 00000017 value x 4 17 y
+[1] with lastIdx 488 send hb to peers [5 1 2 3 4] 486 386 388 483
+[1] has put key 1 00000025 value x 1 25 y
+[1] has put key 0 00000021 value x 0 21 y
+[1] has put key 3 00000022 value x 3 22 y
+[1] has put key 0 00000022 value x 0 22 y
+[1] has put key 3 00000023 value x 3 23 y
+[1] has put key 1 00000026 value x 1 26 y
+[1] has put key 0 00000023 value x 0 23 y
+[1] has put key 2 00000019 value x 2 19 y
+[1] has put key 3 00000024 value x 3 24 y
+[1] has put key 3 00000025 value x 3 25 y
+[1] has put key 1 00000027 value x 1 27 y
+[1] has put key 4 00000018 value x 4 18 y
+[1] has put key 0 00000024 value x 0 24 y
+[1] has put key 2 00000020 value x 2 20 y
+[1] with lastIdx 511 send hb to peers [5 1 2 3 4] 506 386 388 507
+[1] has put key 1 00000028 value x 1 28 y
+[1] has put key 3 00000026 value x 3 26 y
+[1] has put key 0 00000025 value x 0 25 y
+[1] has put key 3 00000027 value x 3 27 y
+[1] has put key 0 00000026 value x 0 26 y
+[1] has put key 4 00000019 value x 4 19 y
+[1] has put key 2 00000021 value x 2 21 y
+[2] becomes leader
+Stale req p.index 523 p.term 22 ent.Index 519 ent.term 20
+Stale req p.index 523 p.term 22 ent.Index 520 ent.term 20
+Stale req p.index 523 p.term 22 ent.Index 521 ent.term 20
+[1] has put key 1 00000029 value x 1 29 y
+[2] has put key 4 00000020 value x 4 20 y
+Stale req p.index 522 p.term 20 ent.Index 523 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 524 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 525 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 526 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 527 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 528 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 529 ent.term 22
+[2] has put key 1 00000030 value x 1 30 y
+Stale req p.index 522 p.term 20 ent.Index 530 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 531 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 532 ent.term 22
+[2] has put key 2 00000022 value x 2 22 y
+Stale req p.index 522 p.term 20 ent.Index 533 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 534 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 535 ent.term 22
+[2] has put key 2 00000023 value x 2 23 y
+[2] has put key 4 00000021 value x 4 21 y
+Stale req p.index 522 p.term 20 ent.Index 536 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 537 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 538 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 539 ent.term 22
+[2] with lastIdx 541 send hb to peers [5 1 2 3 4] 539 539 5 537
+Stale req p.index 522 p.term 20 ent.Index 540 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 541 ent.term 22
+[2] has put key 4 00000022 value x 4 22 y
+Stale req p.index 522 p.term 20 ent.Index 542 ent.term 22
+[2] has put key 1 00000031 value x 1 31 y
+[2] has put key 2 00000024 value x 2 24 y
+[2] has put key 4 00000023 value x 4 23 y
+Stale req p.index 522 p.term 20 ent.Index 543 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 544 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 545 ent.term 22
+[2] has put key 3 00000028 value x 3 28 y
+[2] has put key 1 00000032 value x 1 32 y
+[2] has put key 2 00000025 value x 2 25 y
+Stale req p.index 522 p.term 20 ent.Index 546 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 547 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 548 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 549 ent.term 22
+[2] has put key 3 00000029 value x 3 29 y
+Stale req p.index 522 p.term 20 ent.Index 550 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 551 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 552 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 553 ent.term 22
+[2] has put key 3 00000030 value x 3 30 y
+[2] has put key 1 00000033 value x 1 33 y
+Stale req p.index 522 p.term 20 ent.Index 554 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 555 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 556 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 557 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 558 ent.term 22
+[2] with lastIdx 561 send hb to peers [5 1 2 3 4] 560 560 5 559
+Stale req p.index 522 p.term 20 ent.Index 559 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 560 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 561 ent.term 22
+[2] has put key 1 00000034 value x 1 34 y
+[2] has put key 4 00000024 value x 4 24 y
+[2] has put key 2 00000026 value x 2 26 y
+[2] has put key 3 00000031 value x 3 31 y
+Stale req p.index 522 p.term 20 ent.Index 562 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 563 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 564 ent.term 22
+[2] has put key 2 00000027 value x 2 27 y
+Stale req p.index 522 p.term 20 ent.Index 565 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 566 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 567 ent.term 22
+[2] has put key 3 00000032 value x 3 32 y
+Stale req p.index 522 p.term 20 ent.Index 568 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 569 ent.term 22
+[2] has put key 1 00000035 value x 1 35 y
+Stale req p.index 522 p.term 20 ent.Index 570 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 571 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 572 ent.term 22
+[2] has put key 4 00000025 value x 4 25 y
+Stale req p.index 522 p.term 20 ent.Index 573 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 574 ent.term 22
+[2] has put key 3 00000033 value x 3 33 y
+[2] has put key 2 00000028 value x 2 28 y
+Stale req p.index 522 p.term 20 ent.Index 575 ent.term 22
+[2] has put key 1 00000036 value x 1 36 y
+Stale req p.index 522 p.term 20 ent.Index 576 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 577 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 578 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 579 ent.term 22
+[2] has put key 2 00000029 value x 2 29 y
+[2] with lastIdx 581 send hb to peers [5 1 2 3 4] 581 579 5 580
+Stale req p.index 522 p.term 20 ent.Index 580 ent.term 22
+[2] has put key 1 00000037 value x 1 37 y
+Stale req p.index 522 p.term 20 ent.Index 581 ent.term 22
+[2] has put key 2 00000030 value x 2 30 y
+[2] has put key 3 00000034 value x 3 34 y
+Stale req p.index 522 p.term 20 ent.Index 582 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 583 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 584 ent.term 22
+[2] has put key 1 00000038 value x 1 38 y
+Stale req p.index 522 p.term 20 ent.Index 585 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 586 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 587 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 588 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 589 ent.term 22
+[2] has put key 1 00000039 value x 1 39 y
+[2] has put key 4 00000026 value x 4 26 y
+Stale req p.index 522 p.term 20 ent.Index 590 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 591 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 592 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 593 ent.term 22
+[2] has put key 1 00000040 value x 1 40 y
+[2] has put key 4 00000027 value x 4 27 y
+Stale req p.index 522 p.term 20 ent.Index 594 ent.term 22
+[2] has put key 2 00000031 value x 2 31 y
+Stale req p.index 522 p.term 20 ent.Index 595 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 596 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 597 ent.term 22
+[2] has put key 1 00000041 value x 1 41 y
+[2] has put key 3 00000035 value x 3 35 y
+Stale req p.index 522 p.term 20 ent.Index 598 ent.term 22
+[2] has put key 2 00000032 value x 2 32 y
+Stale req p.index 522 p.term 20 ent.Index 599 ent.term 22
+[2] has put key 1 00000042 value x 1 42 y
+[2] has put key 3 00000036 value x 3 36 y
+[2] with lastIdx 603 send hb to peers [5 1 2 3 4] 602 602 5 601
+Stale req p.index 522 p.term 20 ent.Index 600 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 601 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 602 ent.term 22
+[2] has put key 2 00000033 value x 2 33 y
+Stale req p.index 522 p.term 20 ent.Index 603 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 604 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 605 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 606 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 607 ent.term 22
+[2] has put key 1 00000043 value x 1 43 y
+Stale req p.index 522 p.term 20 ent.Index 608 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 609 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 610 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 611 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 612 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 613 ent.term 22
+[2] has put key 2 00000034 value x 2 34 y
+Stale req p.index 522 p.term 20 ent.Index 614 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 615 ent.term 22
+[2] has put key 3 00000037 value x 3 37 y
+Stale req p.index 522 p.term 20 ent.Index 616 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 617 ent.term 22
+[2] has put key 2 00000035 value x 2 35 y
+[2] has put key 4 00000028 value x 4 28 y
+Stale req p.index 522 p.term 20 ent.Index 618 ent.term 22
+[2] with lastIdx 623 send hb to peers [5 1 2 3 4] 618 620 5 620
+Stale req p.index 522 p.term 20 ent.Index 619 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 620 ent.term 22
+[2] has put key 3 00000038 value x 3 38 y
+[2] has put key 1 00000044 value x 1 44 y
+Stale req p.index 522 p.term 20 ent.Index 621 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 622 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 623 ent.term 22
+[2] has put key 4 00000029 value x 4 29 y
+[2] has put key 0 00000027 value x 0 27 y
+Stale req p.index 522 p.term 20 ent.Index 624 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 625 ent.term 22
+[2] has put key 3 00000039 value x 3 39 y
+Stale req p.index 522 p.term 20 ent.Index 626 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 627 ent.term 22
+[2] has put key 4 00000030 value x 4 30 y
+[2] has put key 0 00000028 value x 0 28 y
+[2] has put key 2 00000036 value x 2 36 y
+Stale req p.index 522 p.term 20 ent.Index 628 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 629 ent.term 22
+[2] has put key 3 00000040 value x 3 40 y
+[2] has put key 1 00000045 value x 1 45 y
+Stale req p.index 522 p.term 20 ent.Index 630 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 631 ent.term 22
+[2] has put key 4 00000031 value x 4 31 y
+Stale req p.index 522 p.term 20 ent.Index 632 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 633 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 634 ent.term 22
+[2] has put key 2 00000037 value x 2 37 y
+Stale req p.index 522 p.term 20 ent.Index 635 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 636 ent.term 22
+[2] has put key 3 00000041 value x 3 41 y
+Stale req p.index 522 p.term 20 ent.Index 637 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 638 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 639 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 640 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 641 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 642 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 643 ent.term 22
+[2] has put key 2 00000038 value x 2 38 y
+Stale req p.index 522 p.term 20 ent.Index 644 ent.term 22
+[2] with lastIdx 647 send hb to peers [5 1 2 3 4] 644 644 5 644
+Stale req p.index 522 p.term 20 ent.Index 645 ent.term 22
+[2] has put key 3 00000042 value x 3 42 y
+[2] has put key 4 00000032 value x 4 32 y
+Stale req p.index 522 p.term 20 ent.Index 646 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 647 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 648 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 649 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 650 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 651 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 652 ent.term 22
+[2] has put key 0 00000029 value x 0 29 y
+Stale req p.index 522 p.term 20 ent.Index 653 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 654 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 655 ent.term 22
+[2] has put key 3 00000043 value x 3 43 y
+[2] has put key 0 00000030 value x 0 30 y
+Stale req p.index 522 p.term 20 ent.Index 656 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 657 ent.term 22
+[2] has put key 2 00000039 value x 2 39 y
+[2] has put key 3 00000044 value x 3 44 y
+[2] has put key 0 00000031 value x 0 31 y
+[2] has put key 1 00000046 value x 1 46 y
+Stale req p.index 522 p.term 20 ent.Index 658 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 659 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 660 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 661 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 662 ent.term 22
+[2] has put key 4 00000033 value x 4 33 y
+[2] has put key 2 00000040 value x 2 40 y
+Stale req p.index 522 p.term 20 ent.Index 663 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 664 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 665 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 666 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 667 ent.term 22
+[2] has put key 2 00000041 value x 2 41 y
+[2] with lastIdx 671 send hb to peers [5 1 2 3 4] 668 668 668 668
+Stale req p.index 522 p.term 20 ent.Index 668 ent.term 22
+[2] has put key 0 00000032 value x 0 32 y
+Stale req p.index 522 p.term 20 ent.Index 669 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 670 ent.term 22
+[2] has put key 2 00000042 value x 2 42 y
+Stale req p.index 522 p.term 20 ent.Index 671 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 672 ent.term 22
+[2] has put key 4 00000034 value x 4 34 y
+[2] has put key 0 00000033 value x 0 33 y
+[2] has put key 3 00000045 value x 3 45 y
+Stale req p.index 522 p.term 20 ent.Index 673 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 674 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 675 ent.term 22
+[2] has put key 2 00000043 value x 2 43 y
+Stale req p.index 522 p.term 20 ent.Index 676 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 677 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 678 ent.term 22
+[2] has put key 0 00000034 value x 0 34 y
+Stale req p.index 522 p.term 20 ent.Index 679 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 680 ent.term 22
+[2] has put key 2 00000044 value x 2 44 y
+[2] has put key 1 00000047 value x 1 47 y
+Stale req p.index 522 p.term 20 ent.Index 681 ent.term 22
+[2] has put key 0 00000035 value x 0 35 y
+[2] has put key 4 00000035 value x 4 35 y
+Stale req p.index 522 p.term 20 ent.Index 682 ent.term 22
+[2] has put key 3 00000046 value x 3 46 y
+Stale req p.index 522 p.term 20 ent.Index 683 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 684 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 685 ent.term 22
+[2] has put key 2 00000045 value x 2 45 y
+[2] has put key 1 00000048 value x 1 48 y
+Stale req p.index 522 p.term 20 ent.Index 686 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 687 ent.term 22
+[2] has put key 4 00000036 value x 4 36 y
+[2] has put key 3 00000047 value x 3 47 y
+Stale req p.index 522 p.term 20 ent.Index 688 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 689 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 690 ent.term 22
+[2] has put key 1 00000049 value x 1 49 y
+Stale req p.index 522 p.term 20 ent.Index 691 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 692 ent.term 22
+[2] has put key 0 00000036 value x 0 36 y
+Stale req p.index 522 p.term 20 ent.Index 693 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 694 ent.term 22
+[2] has put key 2 00000046 value x 2 46 y
+Stale req p.index 522 p.term 20 ent.Index 695 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 696 ent.term 22
+[2] has put key 1 00000050 value x 1 50 y
+[2] has put key 4 00000037 value x 4 37 y
+Stale req p.index 522 p.term 20 ent.Index 697 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 698 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 699 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 700 ent.term 22
+[2] with lastIdx 704 send hb to peers [5 1 2 3 4] 700 701 701 700
+Stale req p.index 522 p.term 20 ent.Index 701 ent.term 22
+[2] has put key 1 00000051 value x 1 51 y
+Stale req p.index 522 p.term 20 ent.Index 702 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 703 ent.term 22
+[2] has put key 3 00000048 value x 3 48 y
+Stale req p.index 522 p.term 20 ent.Index 704 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 705 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 706 ent.term 22
+[2] has put key 1 00000052 value x 1 52 y
+[2] has put key 0 00000037 value x 0 37 y
+Stale req p.index 522 p.term 20 ent.Index 707 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 708 ent.term 22
+[2] has put key 2 00000047 value x 2 47 y
+Stale req p.index 522 p.term 20 ent.Index 709 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 710 ent.term 22
+[2] has put key 1 00000053 value x 1 53 y
+[2] has put key 0 00000038 value x 0 38 y
+Stale req p.index 522 p.term 20 ent.Index 711 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 712 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 713 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 714 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 715 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 716 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 717 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 718 ent.term 22
+[2] has put key 4 00000038 value x 4 38 y
+[2] has put key 3 00000049 value x 3 49 y
+Stale req p.index 522 p.term 20 ent.Index 719 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 720 ent.term 22
+[2] has put key 1 00000054 value x 1 54 y
+Stale req p.index 522 p.term 20 ent.Index 721 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 722 ent.term 22
+[2] has put key 4 00000039 value x 4 39 y
+[2] has put key 3 00000050 value x 3 50 y
+Stale req p.index 522 p.term 20 ent.Index 723 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 724 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 725 ent.term 22
+[2] has put key 2 00000048 value x 2 48 y
+Stale req p.index 522 p.term 20 ent.Index 726 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 727 ent.term 22
+[2] with lastIdx 731 send hb to peers [5 1 2 3 4] 727 726 727 726
+[2] has put key 4 00000040 value x 4 40 y
+Stale req p.index 522 p.term 20 ent.Index 728 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 729 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 730 ent.term 22
+[2] has put key 3 00000051 value x 3 51 y
+[2] has put key 1 00000055 value x 1 55 y
+Stale req p.index 522 p.term 20 ent.Index 731 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 732 ent.term 22
+[2] has put key 4 00000041 value x 4 41 y
+[2] has put key 3 00000052 value x 3 52 y
+Stale req p.index 522 p.term 20 ent.Index 733 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 734 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 735 ent.term 22
+[2] has put key 2 00000049 value x 2 49 y
+Stale req p.index 522 p.term 20 ent.Index 736 ent.term 22
+[2] has put key 4 00000042 value x 4 42 y
+[2] has put key 3 00000053 value x 3 53 y
+Stale req p.index 522 p.term 20 ent.Index 737 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 738 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 739 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 740 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 741 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 742 ent.term 22
+[2] has put key 3 00000054 value x 3 54 y
+[2] has put key 0 00000039 value x 0 39 y
+Stale req p.index 522 p.term 20 ent.Index 743 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 744 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 745 ent.term 22
+[2] has put key 2 00000050 value x 2 50 y
+Stale req p.index 522 p.term 20 ent.Index 746 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 747 ent.term 22
+[2] has put key 3 00000055 value x 3 55 y
+Stale req p.index 522 p.term 20 ent.Index 748 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 749 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 750 ent.term 22
+[2] has put key 2 00000051 value x 2 51 y
+Stale req p.index 522 p.term 20 ent.Index 751 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 752 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 753 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 754 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 755 ent.term 22
+[2] has put key 4 00000043 value x 4 43 y
+Stale req p.index 522 p.term 20 ent.Index 756 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 757 ent.term 22
+[2] has put key 3 00000056 value x 3 56 y
+Stale req p.index 522 p.term 20 ent.Index 758 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 759 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 760 ent.term 22
+[2] with lastIdx 762 send hb to peers [5 1 2 3 4] 760 760 760 760
+[2] has put key 2 00000052 value x 2 52 y
+[2] has put key 1 00000056 value x 1 56 y
+Stale req p.index 522 p.term 20 ent.Index 761 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 762 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 763 ent.term 22
+[2] has put key 4 00000044 value x 4 44 y
+Stale req p.index 522 p.term 20 ent.Index 764 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 765 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 766 ent.term 22
+[2] has put key 3 00000057 value x 3 57 y
+Stale req p.index 522 p.term 20 ent.Index 767 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 768 ent.term 22
+[2] has put key 4 00000045 value x 4 45 y
+[2] has put key 2 00000053 value x 2 53 y
+Stale req p.index 522 p.term 20 ent.Index 769 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 770 ent.term 22
+[2] with lastIdx 778 send hb to peers [5 1 2 3 4] 775 775 775 775
+Stale req p.index 522 p.term 20 ent.Index 771 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 772 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 773 ent.term 22
+[2] has put key 4 00000046 value x 4 46 y
+Stale req p.index 522 p.term 20 ent.Index 774 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 775 ent.term 22
+[2] has put key 1 00000057 value x 1 57 y
+Stale req p.index 522 p.term 20 ent.Index 776 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 777 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 778 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 779 ent.term 22
+[2] has put key 0 00000040 value x 0 40 y
+[2] has put key 1 00000058 value x 1 58 y
+Stale req p.index 522 p.term 20 ent.Index 780 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 781 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 782 ent.term 22
+[2] has put key 3 00000058 value x 3 58 y
+[2] has put key 0 00000041 value x 0 41 y
+[2] has put key 4 00000047 value x 4 47 y
+Stale req p.index 522 p.term 20 ent.Index 783 ent.term 22
+[2] has put key 1 00000059 value x 1 59 y
+[2] has put key 2 00000054 value x 2 54 y
+Stale req p.index 522 p.term 20 ent.Index 784 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 785 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 786 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 787 ent.term 22
+[2] has put key 3 00000059 value x 3 59 y
+Stale req p.index 522 p.term 20 ent.Index 788 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 789 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 790 ent.term 22
+[2] has put key 0 00000042 value x 0 42 y
+[2] has put key 2 00000055 value x 2 55 y
+Stale req p.index 522 p.term 20 ent.Index 791 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 792 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 793 ent.term 22
+[2] has put key 2 00000056 value x 2 56 y
+Stale req p.index 522 p.term 20 ent.Index 794 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 795 ent.term 22
+[2] with lastIdx 800 send hb to peers [5 1 2 3 4] 798 798 797 798
+[2] has put key 4 00000048 value x 4 48 y
+[2] has put key 1 00000060 value x 1 60 y
+[2] has put key 3 00000060 value x 3 60 y
+Stale req p.index 522 p.term 20 ent.Index 796 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 797 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 798 ent.term 22
+[2] has put key 2 00000057 value x 2 57 y
+[2] has put key 0 00000043 value x 0 43 y
+[2] has put key 3 00000061 value x 3 61 y
+[2] has put key 1 00000061 value x 1 61 y
+[2] has put key 4 00000049 value x 4 49 y
+[2] has put key 3 00000062 value x 3 62 y
+[2] has put key 1 00000062 value x 1 62 y
+[2] has put key 2 00000058 value x 2 58 y
+[2] has put key 4 00000050 value x 4 50 y
+[2] has put key 0 00000044 value x 0 44 y
+[2] has put key 3 00000063 value x 3 63 y
+[2] has put key 1 00000063 value x 1 63 y
+[2] has put key 2 00000059 value x 2 59 y
+[2] has put key 3 00000064 value x 3 64 y
+[2] with lastIdx 826 send hb to peers [5 1 2 3 4] 800 801 823 823
+[2] has put key 4 00000051 value x 4 51 y
+[2] has put key 2 00000060 value x 2 60 y
+[2] has put key 1 00000064 value x 1 64 y
+[2] has put key 2 00000061 value x 2 61 y
+[2] has put key 3 00000065 value x 3 65 y
+[2] has put key 2 00000062 value x 2 62 y
+[2] has put key 0 00000045 value x 0 45 y
+[2] has put key 2 00000063 value x 2 63 y
+[2] has put key 4 00000052 value x 4 52 y
+[2] has put key 4 00000053 value x 4 53 y
+[2] has put key 3 00000066 value x 3 66 y
+[2] has put key 1 00000065 value x 1 65 y
+[2] with lastIdx 857 send hb to peers [5 1 2 3 4] 800 801 853 853
+[2] has put key 4 00000054 value x 4 54 y
+[2] has put key 4 00000055 value x 4 55 y
+[2] has put key 1 00000066 value x 1 66 y
+[2] has put key 4 00000056 value x 4 56 y
+[2] has put key 4 00000057 value x 4 57 y
+[2] has put key 2 00000064 value x 2 64 y
+[2] has put key 1 00000067 value x 1 67 y
+[2] has put key 3 00000067 value x 3 67 y
+[2] with lastIdx 884 send hb to peers [5 1 2 3 4] 800 801 882 882
+[2] has put key 1 00000068 value x 1 68 y
+[2] has put key 4 00000058 value x 4 58 y
+[2] has put key 2 00000065 value x 2 65 y
+[2] has put key 0 00000046 value x 0 46 y
+[2] has put key 3 00000068 value x 3 68 y
+[2] has put key 1 00000069 value x 1 69 y
+[2] has put key 4 00000059 value x 4 59 y
+[2] has put key 1 00000070 value x 1 70 y
+[2] has put key 4 00000060 value x 4 60 y
+[2] has put key 3 00000069 value x 3 69 y
+[2] has put key 4 00000061 value x 4 61 y
+[2] has put key 0 00000047 value x 0 47 y
+[2] has put key 4 00000062 value x 4 62 y
+[2] with lastIdx 913 send hb to peers [5 1 2 3 4] 800 801 908 908
+[2] has put key 4 00000063 value x 4 63 y
+[2] has put key 3 00000070 value x 3 70 y
+[2] has put key 0 00000048 value x 0 48 y
+[2] has put key 2 00000066 value x 2 66 y
+[2] has put key 1 00000071 value x 1 71 y
+[2] has put key 3 00000071 value x 3 71 y
+[2] has put key 0 00000049 value x 0 49 y
+[2] has put key 4 00000064 value x 4 64 y
+[2] has put key 0 00000050 value x 0 50 y
+[2] has put key 2 00000067 value x 2 67 y
+[2] has put key 4 00000065 value x 4 65 y
+[2] has put key 1 00000072 value x 1 72 y
+[2] has put key 1 00000073 value x 1 73 y
+[2] has put key 2 00000068 value x 2 68 y
+[2] has put key 3 00000072 value x 3 72 y
+[2] with lastIdx 940 send hb to peers [5 1 2 3 4] 800 801 939 939
+[2] has put key 2 00000069 value x 2 69 y
+[2] has put key 4 00000066 value x 4 66 y
+[2] has put key 0 00000051 value x 0 51 y
+[2] has put key 2 00000070 value x 2 70 y
+[2] has put key 4 00000067 value x 4 67 y
+[2] has put key 0 00000052 value x 0 52 y
+[2] has put key 4 00000068 value x 4 68 y
+[2] has put key 0 00000053 value x 0 53 y
+[2] has put key 4 00000069 value x 4 69 y
+[2] has put key 1 00000074 value x 1 74 y
+[2] has put key 2 00000071 value x 2 71 y
+[2] with lastIdx 967 send hb to peers [5 1 2 3 4] 800 801 965 964
+[2] has put key 3 00000073 value x 3 73 y
+[2] has put key 2 00000072 value x 2 72 y
+[2] has put key 0 00000054 value x 0 54 y
+[2] has put key 2 00000073 value x 2 73 y
+[2] has put key 4 00000070 value x 4 70 y
+Stale req p.index 522 p.term 20 ent.Index 799 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 800 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 801 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 802 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 803 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 804 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 805 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 806 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 807 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 808 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 809 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 810 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 811 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 812 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 813 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 814 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 815 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 816 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 817 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 818 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 819 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 820 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 821 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 822 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 823 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 824 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 825 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 826 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 827 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 828 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 829 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 830 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 831 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 832 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 833 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 834 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 835 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 836 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 837 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 838 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 839 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 840 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 841 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 842 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 843 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 844 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 845 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 846 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 847 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 848 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 849 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 850 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 851 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 852 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 853 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 854 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 855 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 856 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 857 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 858 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 859 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 860 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 861 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 862 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 863 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 864 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 865 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 866 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 867 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 868 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 869 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 870 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 871 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 872 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 873 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 874 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 875 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 876 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 877 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 878 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 879 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 880 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 881 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 882 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 883 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 884 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 885 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 886 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 887 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 888 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 889 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 890 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 891 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 892 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 893 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 894 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 895 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 896 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 897 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 898 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 899 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 900 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 901 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 902 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 903 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 904 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 905 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 906 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 907 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 908 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 909 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 910 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 911 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 912 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 913 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 914 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 915 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 916 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 917 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 918 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 919 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 920 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 921 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 922 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 923 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 924 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 925 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 926 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 927 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 928 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 929 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 930 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 931 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 932 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 933 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 934 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 935 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 936 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 937 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 938 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 939 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 940 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 941 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 942 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 943 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 944 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 945 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 946 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 947 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 948 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 949 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 950 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 951 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 952 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 953 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 954 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 955 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 956 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 957 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 958 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 959 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 960 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 961 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 962 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 963 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 964 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 965 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 966 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 967 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 968 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 969 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 970 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 971 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 972 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 973 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 974 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 975 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 976 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 977 ent.term 22
+[2] has put key 4 00000071 value x 4 71 y
+[2] has put key 1 00000075 value x 1 75 y
+[2] has put key 3 00000074 value x 3 74 y
+Stale req p.index 522 p.term 20 ent.Index 978 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 979 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 980 ent.term 22
+[2] has put key 0 00000055 value x 0 55 y
+Stale req p.index 522 p.term 20 ent.Index 981 ent.term 22
+[2] has put key 2 00000074 value x 2 74 y
+Stale req p.index 522 p.term 20 ent.Index 982 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 983 ent.term 22
+[2] has put key 3 00000075 value x 3 75 y
+Stale req p.index 522 p.term 20 ent.Index 984 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 985 ent.term 22
+[2] has put key 0 00000056 value x 0 56 y
+[2] has put key 2 00000075 value x 2 75 y
+Stale req p.index 522 p.term 20 ent.Index 986 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 987 ent.term 22
+[2] has put key 4 00000072 value x 4 72 y
+Stale req p.index 522 p.term 20 ent.Index 988 ent.term 22
+[2] has put key 3 00000076 value x 3 76 y
+[2] has put key 1 00000076 value x 1 76 y
+Stale req p.index 522 p.term 20 ent.Index 989 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 990 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 991 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 992 ent.term 22
+[2] has put key 2 00000076 value x 2 76 y
+[2] with lastIdx 995 send hb to peers [5 1 2 3 4] 993 993 977 977
+Stale req p.index 522 p.term 20 ent.Index 993 ent.term 22
+[2] has put key 3 00000077 value x 3 77 y
+Stale req p.index 522 p.term 20 ent.Index 994 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 995 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 996 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 997 ent.term 22
+[2] has put key 4 00000073 value x 4 73 y
+[2] has put key 3 00000078 value x 3 78 y
+Stale req p.index 522 p.term 20 ent.Index 998 ent.term 22
+[2] has put key 1 00000077 value x 1 77 y
+Stale req p.index 522 p.term 20 ent.Index 999 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 1000 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 1001 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 1002 ent.term 22
+[2] has put key 4 00000074 value x 4 74 y
+[2] has put key 3 00000079 value x 3 79 y
+[2] has put key 1 00000078 value x 1 78 y
+Stale req p.index 522 p.term 20 ent.Index 1003 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 1004 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 1005 ent.term 22
+Stale req p.index 522 p.term 20 ent.Index 1006 ent.term 22
+[2] has put key 2 00000077 value x 2 77 y
+Stale req p.index 522 p.term 20 ent.Index 1007 ent.term 22
+[2] with lastIdx 1007 send hb to peers [5 1 2 3 4] 1007 1007 977 977
+[2] with lastIdx 1007 send hb to peers [5 1 2 3 4] 1007 1007 977 977
+[2] with lastIdx 1007 send hb to peers [5 1 2 3 4] 1007 1007 977 977
+[2] with lastIdx 1007 send hb to peers [5 1 2 3 4] 1007 1007 977 977
+[2] with lastIdx 1007 send hb to peers [5 1 2 3 4] 1007 1007 977 977
+[2] with lastIdx 1007 send hb to peers [5 1 2 3 4] 1007 1007 977 977
+read from clients 0
+[5] becomes leader
+[5] has delete key 0 00000000
+[5] has delete key 0 00000001
+[5] has delete key 0 00000002
+[5] has delete key 0 00000003
+[5] with lastIdx 1014 send hb to peers [5 1 2 3 4] 1013 1013 1013 1014
+[5] has delete key 0 00000004
+[5] has delete key 0 00000005
+[5] has delete key 0 00000006
+[5] has delete key 0 00000007
+[5] has delete key 0 00000008
+[5] has delete key 0 00000009
+[5] has delete key 0 00000010
+[5] has delete key 0 00000011
+[5] has delete key 0 00000012
+[5] has delete key 0 00000013
+[5] with lastIdx 1023 send hb to peers [5 1 2 3 4] 1022 1023 1022 1023
+[5] has delete key 0 00000014
+[5] has delete key 0 00000015
+[5] has delete key 0 00000016
+[5] has delete key 0 00000017
+[5] has delete key 0 00000018
+[5] has delete key 0 00000019
+[5] has delete key 0 00000020
+[5] with lastIdx 1031 send hb to peers [5 1 2 3 4] 1030 1030 1030 1030
+[5] has delete key 0 00000021
+[5] has delete key 0 00000022
+[5] has delete key 0 00000023
+[5] has delete key 0 00000024
+[5] has delete key 0 00000025
+[5] has delete key 0 00000026
+[5] has delete key 0 00000027
+[5] has delete key 0 00000028
+[5] with lastIdx 1038 send hb to peers [5 1 2 3 4] 1038 1038 1037 1038
+[5] has delete key 0 00000029
+[5] has delete key 0 00000030
+[5] has delete key 0 00000031
+[5] has delete key 0 00000032
+[5] has delete key 0 00000033
+[5] has delete key 0 00000034
+[5] has delete key 0 00000035
+[5] has delete key 0 00000036
+[5] has delete key 0 00000037
+[5] with lastIdx 1047 send hb to peers [5 1 2 3 4] 1047 1047 1047 1047
+[5] has delete key 0 00000038
+[5] has delete key 0 00000039
+[5] has delete key 0 00000040
+[5] has delete key 0 00000041
+[5] has delete key 0 00000042
+[5] has delete key 0 00000043
+[5] has delete key 0 00000044
+[5] with lastIdx 1055 send hb to peers [5 1 2 3 4] 1054 1053 1054 1054
+[5] has delete key 0 00000045
+[5] has delete key 0 00000046
+[5] has delete key 0 00000047
+[5] has delete key 0 00000048
+[5] has delete key 0 00000049
+[5] has delete key 0 00000050
+[5] has delete key 0 00000051
+[5] has delete key 0 00000052
+[5] with lastIdx 1062 send hb to peers [5 1 2 3 4] 1062 1061 1061 1062
+[5] has delete key 0 00000053
+[5] has delete key 0 00000054
+[5] has delete key 0 00000055
+[5] has delete key 0 00000056
+read from clients 1
+[5] with lastIdx 1068 send hb to peers [5 1 2 3 4] 1067 1067 1067 1067
+[5] has delete key 1 00000000
+[5] has delete key 1 00000001
+[5] has delete key 1 00000002
+[5] has delete key 1 00000003
+[5] has delete key 1 00000004
+[5] has delete key 1 00000005
+[5] with lastIdx 1074 send hb to peers [5 1 2 3 4] 1073 1073 1073 1073
+[5] has delete key 1 00000006
+[5] has delete key 1 00000007
+[5] has delete key 1 00000008
+[5] has delete key 1 00000009
+[5] has delete key 1 00000010
+[5] has delete key 1 00000011
+[5] has delete key 1 00000012
+[5] with lastIdx 1081 send hb to peers [5 1 2 3 4] 1081 1080 1080 1080
+[5] has delete key 1 00000013
+[5] has delete key 1 00000014
+[5] has delete key 1 00000015
+[5] has delete key 1 00000016
+[5] has delete key 1 00000017
+[5] has delete key 1 00000018
+[5] has delete key 1 00000019
+[5] has delete key 1 00000020
+[5] has delete key 1 00000021
+[5] with lastIdx 1090 send hb to peers [5 1 2 3 4] 1089 1089 1089 1089
+[5] has delete key 1 00000022
+[5] has delete key 1 00000023
+[5] has delete key 1 00000024
+[5] has delete key 1 00000025
+[5] has delete key 1 00000026
+[5] has delete key 1 00000027
+[5] has delete key 1 00000028
+[5] has delete key 1 00000029
+[5] has delete key 1 00000030
+[5] with lastIdx 1098 send hb to peers [5 1 2 3 4] 1098 1097 1098 1097
+[5] has delete key 1 00000031
+[5] has delete key 1 00000032
+[5] has delete key 1 00000033
+[5] has delete key 1 00000034
+[5] has delete key 1 00000035
+[5] has delete key 1 00000036
+[5] has delete key 1 00000037
+[5] has delete key 1 00000038
+[5] with lastIdx 1107 send hb to peers [5 1 2 3 4] 1106 1106 1106 1106
+[5] has delete key 1 00000039
+[5] has delete key 1 00000040
+[5] has delete key 1 00000041
+[5] has delete key 1 00000042
+[5] has delete key 1 00000043
+[5] has delete key 1 00000044
+[5] has delete key 1 00000045
+[5] has delete key 1 00000046
+[5] with lastIdx 1115 send hb to peers [5 1 2 3 4] 1114 1114 1114 1114
+[5] has delete key 1 00000047
+[5] has delete key 1 00000048
+[5] has delete key 1 00000049
+[5] has delete key 1 00000050
+[5] has delete key 1 00000051
+[5] has delete key 1 00000052
+[5] has delete key 1 00000053
+[5] has delete key 1 00000054
+[5] with lastIdx 1123 send hb to peers [5 1 2 3 4] 1122 1122 1122 1122
+[5] has delete key 1 00000055
+[5] has delete key 1 00000056
+[5] has delete key 1 00000057
+[5] has delete key 1 00000058
+[5] has delete key 1 00000059
+[5] has delete key 1 00000060
+[5] has delete key 1 00000061
+[5] with lastIdx 1130 send hb to peers [5 1 2 3 4] 1129 1129 1129 1129
+[5] has delete key 1 00000062
+[5] has delete key 1 00000063
+[5] has delete key 1 00000064
+[5] has delete key 1 00000065
+[5] has delete key 1 00000066
+[5] has delete key 1 00000067
+[5] has delete key 1 00000068
+[5] has delete key 1 00000069
+[5] has delete key 1 00000070
+[5] with lastIdx 1138 send hb to peers [5 1 2 3 4] 1138 1138 1137 1138
+[5] has delete key 1 00000071
+[5] has delete key 1 00000072
+[5] has delete key 1 00000073
+[5] has delete key 1 00000074
+[5] has delete key 1 00000075
+[5] has delete key 1 00000076
+[5] has delete key 1 00000077
+[5] with lastIdx 1146 send hb to peers [5 1 2 3 4] 1145 1145 1145 1145
+[5] has delete key 1 00000078
+read from clients 2
+[5] has delete key 2 00000000
+[5] has delete key 2 00000001
+[5] has delete key 2 00000002
+[5] has delete key 2 00000003
+[5] has delete key 2 00000004
+[5] with lastIdx 1153 send hb to peers [5 1 2 3 4] 1152 1152 1152 1152
+[5] has delete key 2 00000005
+[5] has delete key 2 00000006
+[5] has delete key 2 00000007
+[5] has delete key 2 00000008
+[5] has delete key 2 00000009
+[5] has delete key 2 00000010
+[5] has delete key 2 00000011
+[5] has delete key 2 00000012
+[5] with lastIdx 1161 send hb to peers [5 1 2 3 4] 1160 1160 1160 1160
+[5] has delete key 2 00000013
+[5] has delete key 2 00000014
+[5] has delete key 2 00000015
+[5] has delete key 2 00000016
+[5] has delete key 2 00000017
+[5] has delete key 2 00000018
+[5] has delete key 2 00000019
+[5] has delete key 2 00000020
+[5] has delete key 2 00000021
+[5] with lastIdx 1170 send hb to peers [5 1 2 3 4] 1169 1169 1169 1168
+[5] has delete key 2 00000022
+[5] has delete key 2 00000023
+[5] has delete key 2 00000024
+[5] has delete key 2 00000025
+[5] has delete key 2 00000026
+[5] has delete key 2 00000027
+[5] has delete key 2 00000028
+[5] has delete key 2 00000029
+[5] has delete key 2 00000030
+[5] has delete key 2 00000031
+[5] has delete key 2 00000032
+[5] has delete key 2 00000033
+[5] with lastIdx 1182 send hb to peers [5 1 2 3 4] 1181 1181 1181 1181
+[5] has delete key 2 00000034
+[5] has delete key 2 00000035
+[5] has delete key 2 00000036
+[5] has delete key 2 00000037
+[5] has delete key 2 00000038
+[5] has delete key 2 00000039
+[5] has delete key 2 00000040
+[5] has delete key 2 00000041
+[5] has delete key 2 00000042
+[5] has delete key 2 00000043
+[5] has delete key 2 00000044
+[5] has delete key 2 00000045
+[5] with lastIdx 1193 send hb to peers [5 1 2 3 4] 1192 1193 1193 1193
+[5] has delete key 2 00000046
+[5] has delete key 2 00000047
+[5] has delete key 2 00000048
+[5] has delete key 2 00000049
+[5] has delete key 2 00000050
+[5] has delete key 2 00000051
+[5] has delete key 2 00000052
+[5] has delete key 2 00000053
+[5] has delete key 2 00000054
+[5] has delete key 2 00000055
+[5] has delete key 2 00000056
+[5] with lastIdx 1205 send hb to peers [5 1 2 3 4] 1204 1204 1204 1204
+[5] has delete key 2 00000057
+[5] has delete key 2 00000058
+[5] has delete key 2 00000059
+[5] has delete key 2 00000060
+[5] has delete key 2 00000061
+[5] has delete key 2 00000062
+[5] has delete key 2 00000063
+[5] has delete key 2 00000064
+[5] has delete key 2 00000065
+[5] has delete key 2 00000066
+[5] has delete key 2 00000067
+[5] with lastIdx 1216 send hb to peers [5 1 2 3 4] 1215 1215 1215 1215
+[5] has delete key 2 00000068
+[5] has delete key 2 00000069
+[5] has delete key 2 00000070
+[5] has delete key 2 00000071
+[5] has delete key 2 00000072
+[5] has delete key 2 00000073
+[5] has delete key 2 00000074
+[5] has delete key 2 00000075
+[5] has delete key 2 00000076
+[5] with lastIdx 1225 send hb to peers [5 1 2 3 4] 1224 1224 1224 1224
+[5] has delete key 2 00000077
+read from clients 3
+[5] has delete key 3 00000000
+[5] has delete key 3 00000001
+[5] has delete key 3 00000002
+[5] has delete key 3 00000003
+[5] has delete key 3 00000004
+[5] has delete key 3 00000005
+[5] has delete key 3 00000006
+[5] has delete key 3 00000007
+[5] has delete key 3 00000008
+[5] has delete key 3 00000009
+[5] with lastIdx 1236 send hb to peers [5 1 2 3 4] 1236 1236 1235 1236
+[5] has delete key 3 00000010
+[5] has delete key 3 00000011
+[5] has delete key 3 00000012
+[5] has delete key 3 00000013
+[5] has delete key 3 00000014
+[5] has delete key 3 00000015
+[5] has delete key 3 00000016
+[5] has delete key 3 00000017
+[5] has delete key 3 00000018
+[5] has delete key 3 00000019
+[5] with lastIdx 1247 send hb to peers [5 1 2 3 4] 1246 1246 1247 1247
+[5] has delete key 3 00000020
+[5] has delete key 3 00000021
+[5] has delete key 3 00000022
+[5] has delete key 3 00000023
+[5] has delete key 3 00000024
+[5] has delete key 3 00000025
+[5] has delete key 3 00000026
+[5] has delete key 3 00000027
+[5] has delete key 3 00000028
+[5] has delete key 3 00000029
+[5] has delete key 3 00000030
+[5] has delete key 3 00000031
+[5] with lastIdx 1259 send hb to peers [5 1 2 3 4] 1258 1258 1258 1258
+[5] has delete key 3 00000032
+[5] has delete key 3 00000033
+[5] has delete key 3 00000034
+[5] has delete key 3 00000035
+[5] has delete key 3 00000036
+[5] has delete key 3 00000037
+[5] has delete key 3 00000038
+[5] has delete key 3 00000039
+[5] with lastIdx 1267 send hb to peers [5 1 2 3 4] 1266 1266 1266 1266
+[5] has delete key 3 00000040
+[5] has delete key 3 00000041
+[5] has delete key 3 00000042
+[5] has delete key 3 00000043
+[5] has delete key 3 00000044
+[5] has delete key 3 00000045
+[5] has delete key 3 00000046
+[5] has delete key 3 00000047
+[5] has delete key 3 00000048
+[5] has delete key 3 00000049
+[5] has delete key 3 00000050
+[5] has delete key 3 00000051
+[5] with lastIdx 1278 send hb to peers [5 1 2 3 4] 1278 1277 1278 1278
+[5] has delete key 3 00000052
+[5] has delete key 3 00000053
+[5] has delete key 3 00000054
+[5] has delete key 3 00000055
+[5] has delete key 3 00000056
+[5] has delete key 3 00000057
+[5] has delete key 3 00000058
+[5] with lastIdx 1285 send hb to peers [5 1 2 3 4] 1285 1285 1285 1285
+[5] has delete key 3 00000059
+[5] has delete key 3 00000060
+[5] has delete key 3 00000061
+[5] has delete key 3 00000062
+[5] has delete key 3 00000063
+[5] has delete key 3 00000064
+[5] has delete key 3 00000065
+[5] has delete key 3 00000066
+[5] has delete key 3 00000067
+[5] has delete key 3 00000068
+[5] with lastIdx 1296 send hb to peers [5 1 2 3 4] 1295 1295 1295 1295
+[5] has delete key 3 00000069
+[5] has delete key 3 00000070
+[5] has delete key 3 00000071
+[5] has delete key 3 00000072
+[5] has delete key 3 00000073
+[5] has delete key 3 00000074
+[5] has delete key 3 00000075
+[5] has delete key 3 00000076
+[5] has delete key 3 00000077
+[5] has delete key 3 00000078
+[5] has delete key 3 00000079
+read from clients 4
+[5] with lastIdx 1308 send hb to peers [5 1 2 3 4] 1307 1307 1307 1307
+[5] has delete key 4 00000000
+[5] has delete key 4 00000001
+[5] has delete key 4 00000002
+[5] has delete key 4 00000003
+[5] has delete key 4 00000004
+[5] has delete key 4 00000005
+[5] has delete key 4 00000006
+[5] has delete key 4 00000007
+[5] has delete key 4 00000008
+[5] has delete key 4 00000009
+[5] has delete key 4 00000010
+[5] has delete key 4 00000011
+[5] has delete key 4 00000012
+[5] with lastIdx 1321 send hb to peers [5 1 2 3 4] 1320 1320 1320 1320
+[5] has delete key 4 00000013
+[5] has delete key 4 00000014
+[5] has delete key 4 00000015
+[5] has delete key 4 00000016
+[5] has delete key 4 00000017
+[5] has delete key 4 00000018
+[5] has delete key 4 00000019
+[5] has delete key 4 00000020
+[5] has delete key 4 00000021
+[5] has delete key 4 00000022
+[5] has delete key 4 00000023
+[5] with lastIdx 1332 send hb to peers [5 1 2 3 4] 1331 1331 1331 1331
+[5] has delete key 4 00000024
+[5] has delete key 4 00000025
+[5] has delete key 4 00000026
+[5] has delete key 4 00000027
+[5] has delete key 4 00000028
+[5] has delete key 4 00000029
+[5] has delete key 4 00000030
+[5] has delete key 4 00000031
+[5] has delete key 4 00000032
+[5] has delete key 4 00000033
+[5] has delete key 4 00000034
+[5] has delete key 4 00000035
+[5] with lastIdx 1344 send hb to peers [5 1 2 3 4] 1343 1343 1343 1343
+[5] has delete key 4 00000036
+[5] has delete key 4 00000037
+[5] has delete key 4 00000038
+[5] has delete key 4 00000039
+[5] has delete key 4 00000040
+[5] has delete key 4 00000041
+[5] has delete key 4 00000042
+[5] has delete key 4 00000043
+[5] has delete key 4 00000044
+[5] has delete key 4 00000045
+[5] has delete key 4 00000046
+[5] has delete key 4 00000047
+[5] has delete key 4 00000048
+[5] has delete key 4 00000049
+[5] with lastIdx 1358 send hb to peers [5 1 2 3 4] 1357 1357 1357 1357
+[5] has delete key 4 00000050
+[5] has delete key 4 00000051
+[5] has delete key 4 00000052
+[5] has delete key 4 00000053
+[5] has delete key 4 00000054
+[5] has delete key 4 00000055
+[5] has delete key 4 00000056
+[5] has delete key 4 00000057
+[5] has delete key 4 00000058
+[5] has delete key 4 00000059
+[5] with lastIdx 1368 send hb to peers [5 1 2 3 4] 1367 1367 1367 1367
+[5] has delete key 4 00000060
+[5] has delete key 4 00000061
+[5] has delete key 4 00000062
+[5] has delete key 4 00000063
+[5] has delete key 4 00000064
+[5] has delete key 4 00000065
+[5] has delete key 4 00000066
+[5] has delete key 4 00000067
+[5] has delete key 4 00000068
+[5] has delete key 4 00000069
+[5] has delete key 4 00000070
+[5] has delete key 4 00000071
+[5] with lastIdx 1380 send hb to peers [5 1 2 3 4] 1379 1379 1380 1379
+[5] has delete key 4 00000072
+[5] has delete key 4 00000073
+[5] has delete key 4 00000074
+[5] has put key 4 00000000 value x 4 0 y
+[5] has put key 2 00000000 value x 2 0 y
+[5] has put key 1 00000000 value x 1 0 y
+[5] has put key 3 00000000 value x 3 0 y
+[5] has put key 0 00000000 value x 0 0 y
+[5] has put key 2 00000001 value x 2 1 y
+[5] has put key 4 00000001 value x 4 1 y
+[5] has put key 3 00000001 value x 3 1 y
+[5] has put key 0 00000001 value x 0 1 y
+[5] has put key 4 00000002 value x 4 2 y
+[5] has put key 1 00000001 value x 1 1 y
+[5] has put key 0 00000002 value x 0 2 y
+[5] has put key 3 00000002 value x 3 2 y
+[5] has put key 4 00000003 value x 4 3 y
+[5] has put key 2 00000002 value x 2 2 y
+[5] has put key 0 00000003 value x 0 3 y
+[5] has put key 3 00000003 value x 3 3 y
+[5] has put key 0 00000004 value x 0 4 y
+[5] has put key 3 00000004 value x 3 4 y
+[5] has put key 1 00000002 value x 1 2 y
+[5] has put key 4 00000004 value x 4 4 y
+[5] has put key 2 00000003 value x 2 3 y
+[5] has put key 0 00000005 value x 0 5 y
+[5] has put key 3 00000005 value x 3 5 y
+[5] has put key 1 00000003 value x 1 3 y
+[5] with lastIdx 1417 send hb to peers [5 1 2 3 4] 1412 1412 1412 1412
+[5] has put key 3 00000006 value x 3 6 y
+[5] has put key 0 00000006 value x 0 6 y
+[5] has put key 4 00000005 value x 4 5 y
+[5] has put key 3 00000007 value x 3 7 y
+[5] has put key 0 00000007 value x 0 7 y
+[5] has put key 4 00000006 value x 4 6 y
+[5] has put key 3 00000008 value x 3 8 y
+[5] has put key 0 00000008 value x 0 8 y
+[5] has put key 4 00000007 value x 4 7 y
+[5] has put key 0 00000009 value x 0 9 y
+[5] has put key 0 00000010 value x 0 10 y
+[5] has put key 2 00000004 value x 2 4 y
+[5] has put key 2 00000005 value x 2 5 y
+[5] with lastIdx 1446 send hb to peers [5 1 2 3 4] 1443 1443 1443 1443
+[5] has put key 0 00000011 value x 0 11 y
+[5] has put key 2 00000006 value x 2 6 y
+[5] has put key 1 00000004 value x 1 4 y
+[5] has put key 0 00000012 value x 0 12 y
+[5] has put key 2 00000007 value x 2 7 y
+[5] has put key 1 00000005 value x 1 5 y
+[5] has put key 4 00000008 value x 4 8 y
+[5] has put key 2 00000008 value x 2 8 y
+[5] has put key 1 00000006 value x 1 6 y
+[5] has put key 4 00000009 value x 4 9 y
+[5] with lastIdx 1467 send hb to peers [5 1 2 3 4] 1463 1463 1463 1463
+[5] has put key 0 00000013 value x 0 13 y
+[5] has put key 1 00000007 value x 1 7 y
+[5] has put key 3 00000009 value x 3 9 y
+[5] has put key 4 00000010 value x 4 10 y
+[5] has put key 3 00000010 value x 3 10 y
+[5] has put key 4 00000011 value x 4 11 y
+[5] has put key 2 00000009 value x 2 9 y
+[5] has put key 3 00000011 value x 3 11 y
+[5] with lastIdx 1491 send hb to peers [5 1 2 3 4] 1489 1489 1471 1488
+[5] has put key 0 00000014 value x 0 14 y
+[5] has put key 2 00000010 value x 2 10 y
+[5] has put key 3 00000012 value x 3 12 y
+[5] has put key 4 00000012 value x 4 12 y
+[5] has put key 0 00000015 value x 0 15 y
+[5] has put key 3 00000013 value x 3 13 y
+[5] has put key 1 00000008 value x 1 8 y
+[5] has put key 4 00000013 value x 4 13 y
+[5] has put key 0 00000016 value x 0 16 y
+[5] has put key 1 00000009 value x 1 9 y
+[5] has put key 0 00000017 value x 0 17 y
+[5] has put key 3 00000014 value x 3 14 y
+[5] has put key 1 00000010 value x 1 10 y
+[5] has put key 2 00000011 value x 2 11 y
+[5] with lastIdx 1514 send hb to peers [5 1 2 3 4] 1512 1513 1471 1513
+[5] has put key 4 00000014 value x 4 14 y
+[5] has put key 0 00000018 value x 0 18 y
+[5] has put key 3 00000015 value x 3 15 y
+[5] has put key 2 00000012 value x 2 12 y
+[5] has put key 4 00000015 value x 4 15 y
+[5] has put key 0 00000019 value x 0 19 y
+[5] has put key 3 00000016 value x 3 16 y
+[5] has put key 4 00000016 value x 4 16 y
+[5] has put key 3 00000017 value x 3 17 y
+[5] has put key 2 00000013 value x 2 13 y
+[5] has put key 4 00000017 value x 4 17 y
+[5] has put key 0 00000020 value x 0 20 y
+[5] with lastIdx 1540 send hb to peers [5 1 2 3 4] 1538 1538 1471 1536
+[5] has put key 4 00000018 value x 4 18 y
+[5] has put key 2 00000014 value x 2 14 y
+[5] has put key 0 00000021 value x 0 21 y
+[5] has put key 3 00000018 value x 3 18 y
+[5] has put key 4 00000019 value x 4 19 y
+[5] has put key 2 00000015 value x 2 15 y
+[5] has put key 3 00000019 value x 3 19 y
+[5] has put key 2 00000016 value x 2 16 y
+[5] has put key 3 00000020 value x 3 20 y
+[5] has put key 1 00000011 value x 1 11 y
+[5] has put key 2 00000017 value x 2 17 y
+[5] has put key 0 00000022 value x 0 22 y
+[5] with lastIdx 1560 send hb to peers [5 1 2 3 4] 1559 1559 1471 1559
+[5] has put key 4 00000020 value x 4 20 y
+[5] has put key 2 00000018 value x 2 18 y
+[5] has put key 3 00000021 value x 3 21 y
+[5] has put key 1 00000012 value x 1 12 y
+[5] has put key 2 00000019 value x 2 19 y
+[5] has put key 0 00000023 value x 0 23 y
+[5] has put key 1 00000013 value x 1 13 y
+[5] has put key 4 00000021 value x 4 21 y
+[5] with lastIdx 1580 send hb to peers [5 1 2 3 4] 1577 1577 1471 1577
+[5] has put key 4 00000022 value x 4 22 y
+[5] has put key 3 00000022 value x 3 22 y
+[5] has put key 3 00000023 value x 3 23 y
+[5] has put key 0 00000024 value x 0 24 y
+[5] has put key 2 00000020 value x 2 20 y
+[5] has put key 3 00000024 value x 3 24 y
+[5] has put key 4 00000023 value x 4 23 y
+[5] has put key 0 00000025 value x 0 25 y
+[5] has put key 2 00000021 value x 2 21 y
+[5] has put key 1 00000014 value x 1 14 y
+[5] has put key 3 00000025 value x 3 25 y
+[5] has put key 4 00000024 value x 4 24 y
+[5] with lastIdx 1602 send hb to peers [5 1 2 3 4] 1587 1599 1599 1598
+[5] has put key 0 00000026 value x 0 26 y
+[5] has put key 1 00000015 value x 1 15 y
+[5] has put key 2 00000022 value x 2 22 y
+[5] has put key 0 00000027 value x 0 27 y
+[5] has put key 1 00000016 value x 1 16 y
+[5] has put key 4 00000025 value x 4 25 y
+[5] has put key 3 00000026 value x 3 26 y
+[5] has put key 2 00000023 value x 2 23 y
+[5] has put key 4 00000026 value x 4 26 y
+[5] has put key 3 00000027 value x 3 27 y
+[5] has put key 3 00000028 value x 3 28 y
+[5] has put key 4 00000027 value x 4 27 y
+[5] has put key 1 00000017 value x 1 17 y
+[5] has put key 2 00000024 value x 2 24 y
+[5] with lastIdx 1626 send hb to peers [5 1 2 3 4] 1587 1625 1623 1625
+[5] has put key 0 00000028 value x 0 28 y
+[5] has put key 1 00000018 value x 1 18 y
+[5] has put key 2 00000025 value x 2 25 y
+[5] has put key 4 00000028 value x 4 28 y
+[5] has put key 1 00000019 value x 1 19 y
+[5] has put key 3 00000029 value x 3 29 y
+[5] has put key 0 00000029 value x 0 29 y
+[5] has put key 4 00000029 value x 4 29 y
+[5] has put key 3 00000030 value x 3 30 y
+[5] with lastIdx 1645 send hb to peers [5 1 2 3 4] 1587 1642 1642 1642
+[5] has put key 0 00000030 value x 0 30 y
+[5] has put key 4 00000030 value x 4 30 y
+[5] has put key 3 00000031 value x 3 31 y
+[5] has put key 0 00000031 value x 0 31 y
+[5] has put key 3 00000032 value x 3 32 y
+[5] has put key 0 00000032 value x 0 32 y
+[5] has put key 2 00000026 value x 2 26 y
+[5] has put key 4 00000031 value x 4 31 y
+[5] has put key 3 00000033 value x 3 33 y
+[5] has put key 0 00000033 value x 0 33 y
+[5] has put key 3 00000034 value x 3 34 y
+[5] has put key 1 00000020 value x 1 20 y
+[5] with lastIdx 1666 send hb to peers [5 1 2 3 4] 1587 1664 1664 1663
+[5] has put key 2 00000027 value x 2 27 y
+[5] has put key 0 00000034 value x 0 34 y
+[5] has put key 3 00000035 value x 3 35 y
+[5] has put key 0 00000035 value x 0 35 y
+[5] has put key 1 00000021 value x 1 21 y
+[5] has put key 3 00000036 value x 3 36 y
+[5] has put key 4 00000032 value x 4 32 y
+[5] has put key 2 00000028 value x 2 28 y
+[5] has put key 1 00000022 value x 1 22 y
+[5] has put key 4 00000033 value x 4 33 y
+[5] has put key 2 00000029 value x 2 29 y
+[5] with lastIdx 1688 send hb to peers [5 1 2 3 4] 1587 1684 1685 1684
+[5] has put key 1 00000023 value x 1 23 y
+[5] has put key 0 00000036 value x 0 36 y
+[5] has put key 2 00000030 value x 2 30 y
+[5] has put key 1 00000024 value x 1 24 y
+[5] has put key 3 00000037 value x 3 37 y
+[5] has put key 4 00000034 value x 4 34 y
+[5] has put key 4 00000035 value x 4 35 y
+[5] has put key 3 00000038 value x 3 38 y
+[5] has put key 1 00000025 value x 1 25 y
+[5] has put key 3 00000039 value x 3 39 y
+[5] has put key 0 00000037 value x 0 37 y
+[5] has put key 2 00000031 value x 2 31 y
+[5] has put key 4 00000036 value x 4 36 y
+[5] has put key 0 00000038 value x 0 38 y
+[5] has put key 2 00000032 value x 2 32 y
+[5] has put key 3 00000040 value x 3 40 y
+[5] with lastIdx 1714 send hb to peers [5 1 2 3 4] 1587 1711 1711 1711
+[5] has put key 2 00000033 value x 2 33 y
+[5] has put key 3 00000041 value x 3 41 y
+[5] has put key 4 00000037 value x 4 37 y
+[5] has put key 0 00000039 value x 0 39 y
+[5] has put key 4 00000038 value x 4 38 y
+[5] has put key 1 00000026 value x 1 26 y
+[5] has put key 3 00000042 value x 3 42 y
+[5] has put key 2 00000034 value x 2 34 y
+[5] has put key 2 00000035 value x 2 35 y
+[5] has put key 2 00000036 value x 2 36 y
+[5] with lastIdx 1740 send hb to peers [5 1 2 3 4] 1737 1737 1736 1712
+[5] has put key 0 00000040 value x 0 40 y
+[5] has put key 3 00000043 value x 3 43 y
+[5] has put key 2 00000037 value x 2 37 y
+[5] has put key 1 00000027 value x 1 27 y
+[5] has put key 0 00000041 value x 0 41 y
+[5] has put key 2 00000038 value x 2 38 y
+[5] has put key 4 00000039 value x 4 39 y
+[5] has put key 0 00000042 value x 0 42 y
+[5] has put key 0 00000043 value x 0 43 y
+[5] has put key 2 00000039 value x 2 39 y
+[5] has put key 4 00000040 value x 4 40 y
+[5] has put key 1 00000028 value x 1 28 y
+[5] has put key 3 00000044 value x 3 44 y
+[5] has put key 0 00000044 value x 0 44 y
+[5] with lastIdx 1771 send hb to peers [5 1 2 3 4] 1768 1768 1766 1712
+[5] has put key 2 00000040 value x 2 40 y
+[5] has put key 3 00000045 value x 3 45 y
+[5] has put key 4 00000041 value x 4 41 y
+[5] has put key 4 00000042 value x 4 42 y
+[5] has put key 1 00000029 value x 1 29 y
+[5] has put key 3 00000046 value x 3 46 y
+[5] has put key 0 00000045 value x 0 45 y
+[5] has put key 1 00000030 value x 1 30 y
+[5] has put key 3 00000047 value x 3 47 y
+[5] has put key 0 00000046 value x 0 46 y
+[5] has put key 1 00000031 value x 1 31 y
+[5] has put key 3 00000048 value x 3 48 y
+[5] has put key 4 00000043 value x 4 43 y
+[5] has put key 1 00000032 value x 1 32 y
+[5] has put key 0 00000047 value x 0 47 y
+[5] with lastIdx 1798 send hb to peers [5 1 2 3 4] 1793 1795 1795 1712
+[5] has put key 0 00000048 value x 0 48 y
+[5] has put key 0 00000049 value x 0 49 y
+[5] has put key 4 00000044 value x 4 44 y
+[5] has put key 0 00000050 value x 0 50 y
+[5] has put key 1 00000033 value x 1 33 y
+[5] has put key 2 00000041 value x 2 41 y
+[5] has put key 1 00000034 value x 1 34 y
+[5] has put key 0 00000051 value x 0 51 y
+[5] has put key 2 00000042 value x 2 42 y
+[5] has put key 3 00000049 value x 3 49 y
+[5] with lastIdx 1828 send hb to peers [5 1 2 3 4] 1826 1826 1826 1712
+[5] has put key 3 00000050 value x 3 50 y
+[5] has put key 4 00000045 value x 4 45 y
+[5] has put key 0 00000052 value x 0 52 y
+[5] has put key 3 00000051 value x 3 51 y
+[5] has put key 2 00000043 value x 2 43 y
+[5] has put key 4 00000046 value x 4 46 y
+[5] has put key 1 00000035 value x 1 35 y
+[5] has put key 3 00000052 value x 3 52 y
+[5] has put key 4 00000047 value x 4 47 y
+[5] has put key 0 00000053 value x 0 53 y
+[5] has put key 4 00000048 value x 4 48 y
+[5] has put key 3 00000053 value x 3 53 y
+[5] has put key 2 00000044 value x 2 44 y
+[5] has put key 3 00000054 value x 3 54 y
+[5] has put key 0 00000054 value x 0 54 y
+[5] with lastIdx 1858 send hb to peers [5 1 2 3 4] 1853 1855 1854 1712
+[5] has put key 3 00000055 value x 3 55 y
+[5] has put key 4 00000049 value x 4 49 y
+[5] has put key 2 00000045 value x 2 45 y
+[5] has put key 3 00000056 value x 3 56 y
+[5] has put key 2 00000046 value x 2 46 y
+[5] has put key 0 00000055 value x 0 55 y
+[5] has put key 1 00000036 value x 1 36 y
+[5] has put key 3 00000057 value x 3 57 y
+[5] has put key 0 00000056 value x 0 56 y
+[5] has put key 4 00000050 value x 4 50 y
+[5] has put key 0 00000057 value x 0 57 y
+[5] has put key 4 00000051 value x 4 51 y
+[5] has put key 1 00000037 value x 1 37 y
+[5] with lastIdx 1883 send hb to peers [5 1 2 3 4] 1877 1883 1878 1712
+[5] becomes leader
+[5] has put key 2 00000047 value x 2 47 y
+[5] has put key 4 00000052 value x 4 52 y
+[5] has put key 1 00000038 value x 1 38 y
+[5] has put key 4 00000052 value x 4 52 y
+[5] has put key 1 00000038 value x 1 38 y
+[5] has put key 2 00000047 value x 2 47 y
+[5] has put key 2 00000048 value x 2 48 y
+[5] has put key 1 00000039 value x 1 39 y
+[5] has put key 4 00000053 value x 4 53 y
+[5] has put key 4 00000054 value x 4 54 y
+[5] has put key 0 00000058 value x 0 58 y
+[5] with lastIdx 1912 send hb to peers [5 1 2 3 4] 1877 1907 1908 1908
+[5] has put key 1 00000040 value x 1 40 y
+[5] has put key 2 00000049 value x 2 49 y
+[5] has put key 0 00000059 value x 0 59 y
+[5] has put key 3 00000058 value x 3 58 y
+[5] has put key 2 00000050 value x 2 50 y
+[5] has put key 3 00000059 value x 3 59 y
+[5] has put key 2 00000051 value x 2 51 y
+[5] has put key 1 00000041 value x 1 41 y
+[5] has put key 0 00000060 value x 0 60 y
+[5] has put key 1 00000042 value x 1 42 y
+[5] has put key 0 00000061 value x 0 61 y
+[5] has put key 3 00000060 value x 3 60 y
+[5] has put key 1 00000043 value x 1 43 y
+[5] has put key 0 00000062 value x 0 62 y
+[5] has put key 2 00000052 value x 2 52 y
+[5] has put key 3 00000061 value x 3 61 y
+[5] has put key 1 00000044 value x 1 44 y
+[5] with lastIdx 1939 send hb to peers [5 1 2 3 4] 1877 1938 1938 1938
+[5] has put key 1 00000045 value x 1 45 y
+[5] has put key 0 00000063 value x 0 63 y
+[5] has put key 2 00000053 value x 2 53 y
+[5] has put key 3 00000062 value x 3 62 y
+[5] has put key 0 00000064 value x 0 64 y
+[5] has put key 2 00000054 value x 2 54 y
+[5] has put key 1 00000046 value x 1 46 y
+[5] has put key 4 00000055 value x 4 55 y
+[5] has put key 2 00000055 value x 2 55 y
+[5] has put key 1 00000047 value x 1 47 y
+[5] has put key 0 00000065 value x 0 65 y
+[5] has put key 4 00000056 value x 4 56 y
+[5] has put key 2 00000056 value x 2 56 y
+[5] has put key 4 00000057 value x 4 57 y
+[5] has put key 1 00000048 value x 1 48 y
+[5] with lastIdx 1967 send hb to peers [5 1 2 3 4] 1877 1965 1955 1965
+[5] has put key 4 00000058 value x 4 58 y
+[5] has put key 3 00000063 value x 3 63 y
+[5] has put key 0 00000066 value x 0 66 y
+[5] has put key 2 00000057 value x 2 57 y
+[5] has put key 3 00000064 value x 3 64 y
+[5] has put key 1 00000049 value x 1 49 y
+[5] has put key 3 00000065 value x 3 65 y
+[5] has put key 1 00000050 value x 1 50 y
+[5] has put key 2 00000058 value x 2 58 y
+[5] has put key 3 00000066 value x 3 66 y
+[5] with lastIdx 1989 send hb to peers [5 1 2 3 4] 1877 1987 1955 1987
+[5] has put key 0 00000067 value x 0 67 y
+[5] has put key 4 00000059 value x 4 59 y
+[5] has put key 1 00000051 value x 1 51 y
+[5] has put key 0 00000068 value x 0 68 y
+[5] has put key 0 00000069 value x 0 69 y
+[5] has put key 2 00000059 value x 2 59 y
+[5] has put key 4 00000060 value x 4 60 y
+[5] has put key 0 00000070 value x 0 70 y
+[5] has put key 4 00000061 value x 4 61 y
+[5] has put key 3 00000067 value x 3 67 y
+[5] has put key 4 00000062 value x 4 62 y
+[5] has put key 1 00000052 value x 1 52 y
+[5] with lastIdx 2012 send hb to peers [5 1 2 3 4] 1877 2010 1955 2010
+[5] has put key 3 00000068 value x 3 68 y
+[5] has put key 1 00000053 value x 1 53 y
+[5] has put key 2 00000060 value x 2 60 y
+[5] has put key 4 00000063 value x 4 63 y
+[5] has put key 3 00000069 value x 3 69 y
+[5] has put key 0 00000071 value x 0 71 y
+[5] has put key 2 00000061 value x 2 61 y
+[5] has put key 3 00000070 value x 3 70 y
+[5] with lastIdx 2032 send hb to peers [5 1 2 3 4] 1877 2031 1955 2030
+[5] has put key 2 00000062 value x 2 62 y
+[5] has put key 2 00000063 value x 2 63 y
+[5] has put key 0 00000072 value x 0 72 y
+[5] has put key 2 00000064 value x 2 64 y
+[5] has put key 1 00000054 value x 1 54 y
+[5] has put key 3 00000071 value x 3 71 y
+[5] has put key 2 00000065 value x 2 65 y
+[5] has put key 1 00000055 value x 1 55 y
+[5] has put key 4 00000064 value x 4 64 y
+[5] has put key 2 00000066 value x 2 66 y
+[5] has put key 1 00000056 value x 1 56 y
+[5] with lastIdx 2055 send hb to peers [5 1 2 3 4] 1877 2051 1955 2052
+[5] has put key 4 00000065 value x 4 65 y
+[5] has put key 3 00000072 value x 3 72 y
+[5] has put key 0 00000073 value x 0 73 y
+[5] has put key 2 00000067 value x 2 67 y
+[5] has put key 1 00000057 value x 1 57 y
+[5] has put key 0 00000074 value x 0 74 y
+[5] has put key 2 00000068 value x 2 68 y
+[5] has put key 4 00000066 value x 4 66 y
+[5] has put key 2 00000069 value x 2 69 y
+[5] with lastIdx 2073 send hb to peers [5 1 2 3 4] 1877 2070 1955 2071
+[5] has put key 3 00000073 value x 3 73 y
+[5] has put key 3 00000074 value x 3 74 y
+[5] has put key 4 00000067 value x 4 67 y
+[5] has put key 2 00000070 value x 2 70 y
+[5] has put key 1 00000058 value x 1 58 y
+[5] has put key 4 00000068 value x 4 68 y
+[5] has put key 0 00000075 value x 0 75 y
+[5] has put key 2 00000071 value x 2 71 y
+[5] has put key 3 00000075 value x 3 75 y
+[5] has put key 4 00000069 value x 4 69 y
+[5] has put key 0 00000076 value x 0 76 y
+[5] has put key 3 00000076 value x 3 76 y
+[5] has put key 4 00000070 value x 4 70 y
+[5] with lastIdx 2096 send hb to peers [5 1 2 3 4] 2094 2077 1955 2095
+[5] has put key 0 00000077 value x 0 77 y
+[5] has put key 3 00000077 value x 3 77 y
+[5] has put key 4 00000071 value x 4 71 y
+[5] has put key 1 00000059 value x 1 59 y
+[5] has put key 3 00000078 value x 3 78 y
+[5] has put key 2 00000072 value x 2 72 y
+[5] has put key 4 00000072 value x 4 72 y
+[5] has put key 1 00000060 value x 1 60 y
+[5] has put key 3 00000079 value x 3 79 y
+[5] has put key 2 00000073 value x 2 73 y
+[5] has put key 4 00000073 value x 4 73 y
+[5] has put key 1 00000061 value x 1 61 y
+[5] with lastIdx 2119 send hb to peers [5 1 2 3 4] 2118 2077 1955 2117
+[5] has put key 0 00000078 value x 0 78 y
+[5] has put key 2 00000074 value x 2 74 y
+[5] has put key 1 00000062 value x 1 62 y
+[5] has put key 3 00000080 value x 3 80 y
+[5] has put key 3 00000081 value x 3 81 y
+[5] has put key 0 00000079 value x 0 79 y
+[5] has put key 1 00000063 value x 1 63 y
+[5] with lastIdx 2135 send hb to peers [5 1 2 3 4] 2135 2077 1955 2135
+[5] with lastIdx 2135 send hb to peers [5 1 2 3 4] 2135 2077 1955 2135
+[5] with lastIdx 2135 send hb to peers [5 1 2 3 4] 2135 2077 1955 2135
+[5] with lastIdx 2135 send hb to peers [5 1 2 3 4] 2135 2077 1955 2135
+[5] with lastIdx 2135 send hb to peers [5 1 2 3 4] 2135 2077 1955 2135
+read from clients 0
+[4] becomes leader
+[4] has delete key 0 00000000
+[4] has delete key 0 00000001
+[4] has delete key 0 00000002
+[4] has delete key 0 00000003
+[4] has delete key 0 00000004
+[4] has delete key 0 00000005
+[4] has delete key 0 00000006
+[4] has delete key 0 00000007
+[4] has delete key 0 00000008
+[4] with lastIdx 2146 send hb to peers [5 1 2 3 4] 2146 2146 2146 2146
+[4] has delete key 0 00000009
+[4] has delete key 0 00000010
+[4] has delete key 0 00000011
+[4] has delete key 0 00000012
+[4] has delete key 0 00000013
+[4] has delete key 0 00000014
+[4] has delete key 0 00000015
+[4] has delete key 0 00000016
+[4] has delete key 0 00000017
+[4] has delete key 0 00000018
+[4] has delete key 0 00000019
+[4] with lastIdx 2158 send hb to peers [5 1 2 3 4] 2157 2157 2157 2157
+[4] has delete key 0 00000020
+[4] has delete key 0 00000021
+[4] has delete key 0 00000022
+[4] has delete key 0 00000023
+[4] has delete key 0 00000024
+[4] has delete key 0 00000025
+[4] has delete key 0 00000026
+[4] has delete key 0 00000027
+[4] has delete key 0 00000028
+[4] has delete key 0 00000029
+[4] has delete key 0 00000030
+[4] has delete key 0 00000031
+[4] with lastIdx 2170 send hb to peers [5 1 2 3 4] 2169 2170 2169 2169
+[4] has delete key 0 00000032
+[4] has delete key 0 00000033
+[4] has delete key 0 00000034
+[4] has delete key 0 00000035
+[4] has delete key 0 00000036
+[4] has delete key 0 00000037
+[4] has delete key 0 00000038
+[4] has delete key 0 00000039
+[4] has delete key 0 00000040
+[4] has delete key 0 00000041
+[4] has delete key 0 00000042
+[4] has delete key 0 00000043
+[4] with lastIdx 2182 send hb to peers [5 1 2 3 4] 2181 2181 2181 2182
+[4] has delete key 0 00000044
+[4] has delete key 0 00000045
+[4] has delete key 0 00000046
+[4] has delete key 0 00000047
+[4] has delete key 0 00000048
+[4] has delete key 0 00000049
+[4] has delete key 0 00000050
+[4] has delete key 0 00000051
+[4] has delete key 0 00000052
+[4] has delete key 0 00000053
+[4] has delete key 0 00000054
+[4] has delete key 0 00000055
+[4] has delete key 0 00000056
+[4] with lastIdx 2195 send hb to peers [5 1 2 3 4] 2194 2194 2194 2194
+[4] has delete key 0 00000057
+[4] has delete key 0 00000058
+[4] has delete key 0 00000059
+[4] has delete key 0 00000060
+[4] has delete key 0 00000061
+[4] has delete key 0 00000062
+[4] has delete key 0 00000063
+[4] has delete key 0 00000064
+[4] has delete key 0 00000065
+[4] has delete key 0 00000066
+[4] has delete key 0 00000067
+[4] has delete key 0 00000068
+[4] with lastIdx 2207 send hb to peers [5 1 2 3 4] 2206 2206 2206 2206
+[4] has delete key 0 00000069
+[4] has delete key 0 00000070
+[4] has delete key 0 00000071
+[4] has delete key 0 00000072
+[4] has delete key 0 00000073
+[4] has delete key 0 00000074
+[4] has delete key 0 00000075
+[4] has delete key 0 00000076
+[4] has delete key 0 00000077
+[4] has delete key 0 00000078
+[4] has delete key 0 00000079
+read from clients 1
+[4] has delete key 1 00000000
+[4] with lastIdx 2220 send hb to peers [5 1 2 3 4] 2219 2219 2219 2218
+[4] has delete key 1 00000001
+[4] has delete key 1 00000002
+[4] has delete key 1 00000003
+[4] has delete key 1 00000004
+[4] has delete key 1 00000005
+[4] has delete key 1 00000006
+[4] has delete key 1 00000007
+[4] has delete key 1 00000008
+[4] has delete key 1 00000009
+[4] has delete key 1 00000010
+[4] has delete key 1 00000011
+[4] has delete key 1 00000012
+[4] has delete key 1 00000013
+[4] with lastIdx 2233 send hb to peers [5 1 2 3 4] 2232 2232 2232 2232
+[4] has delete key 1 00000014
+[4] has delete key 1 00000015
+[4] has delete key 1 00000016
+[4] has delete key 1 00000017
+[4] has delete key 1 00000018
+[4] has delete key 1 00000019
+[4] has delete key 1 00000020
+[4] has delete key 1 00000021
+[4] has delete key 1 00000022
+[4] with lastIdx 2242 send hb to peers [5 1 2 3 4] 2241 2241 2241 2241
+[4] has delete key 1 00000023
+[4] has delete key 1 00000024
+[4] has delete key 1 00000025
+[4] has delete key 1 00000026
+[4] has delete key 1 00000027
+[4] has delete key 1 00000028
+[4] has delete key 1 00000029
+[4] has delete key 1 00000030
+[4] has delete key 1 00000031
+[4] has delete key 1 00000032
+[4] has delete key 1 00000033
+[4] has delete key 1 00000034
+[4] with lastIdx 2254 send hb to peers [5 1 2 3 4] 2254 2253 2253 2253
+[4] has delete key 1 00000035
+[4] has delete key 1 00000036
+[4] has delete key 1 00000037
+[4] has delete key 1 00000038
+[4] has delete key 1 00000039
+[4] has delete key 1 00000040
+[4] has delete key 1 00000041
+[4] has delete key 1 00000042
+[4] has delete key 1 00000043
+[4] has delete key 1 00000044
+[4] has delete key 1 00000045
+[4] has delete key 1 00000046
+[4] with lastIdx 2266 send hb to peers [5 1 2 3 4] 2265 2265 2265 2265
+[4] has delete key 1 00000047
+[4] has delete key 1 00000048
+[4] has delete key 1 00000049
+[4] has delete key 1 00000050
+[4] has delete key 1 00000051
+[4] has delete key 1 00000052
+[4] has delete key 1 00000053
+[4] has delete key 1 00000054
+[4] has delete key 1 00000055
+[4] has delete key 1 00000056
+[4] with lastIdx 2275 send hb to peers [5 1 2 3 4] 2275 2275 2275 2275
+[4] has delete key 1 00000057
+[4] has delete key 1 00000058
+[4] has delete key 1 00000059
+[4] has delete key 1 00000060
+[4] has delete key 1 00000061
+[4] has delete key 1 00000062
+[4] has delete key 1 00000063
+read from clients 2
+[4] has delete key 2 00000000
+[4] has delete key 2 00000001
+[4] has delete key 2 00000002
+[4] has delete key 2 00000003
+[4] with lastIdx 2288 send hb to peers [5 1 2 3 4] 2287 2287 2287 2287
+[4] has delete key 2 00000004
+[4] has delete key 2 00000005
+[4] has delete key 2 00000006
+[4] has delete key 2 00000007
+[4] has delete key 2 00000008
+[4] has delete key 2 00000009
+[4] has delete key 2 00000010
+[4] has delete key 2 00000011
+[4] has delete key 2 00000012
+[4] has delete key 2 00000013
+[4] has delete key 2 00000014
+[4] has delete key 2 00000015
+[4] with lastIdx 2300 send hb to peers [5 1 2 3 4] 2299 2299 2299 2299
+[4] has delete key 2 00000016
+[4] has delete key 2 00000017
+[4] has delete key 2 00000018
+[4] has delete key 2 00000019
+[4] has delete key 2 00000020
+[4] has delete key 2 00000021
+[4] has delete key 2 00000022
+[4] has delete key 2 00000023
+[4] has delete key 2 00000024
+[4] has delete key 2 00000025
+[4] has delete key 2 00000026
+[4] has delete key 2 00000027
+[4] with lastIdx 2312 send hb to peers [5 1 2 3 4] 2311 2311 2311 2311
+[4] has delete key 2 00000028
+[4] has delete key 2 00000029
+[4] has delete key 2 00000030
+[4] has delete key 2 00000031
+[4] has delete key 2 00000032
+[4] has delete key 2 00000033
+[4] has delete key 2 00000034
+[4] has delete key 2 00000035
+[4] has delete key 2 00000036
+[4] has delete key 2 00000037
+[4] has delete key 2 00000038
+[4] has delete key 2 00000039
+[4] with lastIdx 2323 send hb to peers [5 1 2 3 4] 2323 2323 2322 2323
+[4] has delete key 2 00000040
+[4] has delete key 2 00000041
+[4] has delete key 2 00000042
+[4] has delete key 2 00000043
+[4] has delete key 2 00000044
+[4] has delete key 2 00000045
+[4] has delete key 2 00000046
+[4] has delete key 2 00000047
+[4] has delete key 2 00000048
+[4] has delete key 2 00000049
+[4] has delete key 2 00000050
+[4] has delete key 2 00000051
+[4] has delete key 2 00000052
+[4] with lastIdx 2336 send hb to peers [5 1 2 3 4] 2336 2336 2336 2336
+[4] has delete key 2 00000053
+[4] has delete key 2 00000054
+[4] has delete key 2 00000055
+[4] has delete key 2 00000056
+[4] has delete key 2 00000057
+[4] has delete key 2 00000058
+[4] has delete key 2 00000059
+[4] has delete key 2 00000060
+[4] has delete key 2 00000061
+[4] has delete key 2 00000062
+[4] has delete key 2 00000063
+[4] has delete key 2 00000064
+[4] with lastIdx 2349 send hb to peers [5 1 2 3 4] 2348 2348 2348 2348
+[4] has delete key 2 00000065
+[4] has delete key 2 00000066
+[4] has delete key 2 00000067
+[4] has delete key 2 00000068
+[4] has delete key 2 00000069
+[4] has delete key 2 00000070
+[4] has delete key 2 00000071
+[4] has delete key 2 00000072
+[4] has delete key 2 00000073
+[4] has delete key 2 00000074
+read from clients 3
+[4] has delete key 3 00000000
+[4] with lastIdx 2361 send hb to peers [5 1 2 3 4] 2360 2360 2360 2360
+[4] has delete key 3 00000001
+[4] has delete key 3 00000002
+[4] has delete key 3 00000003
+[4] has delete key 3 00000004
+[4] has delete key 3 00000005
+[4] has delete key 3 00000006
+[4] has delete key 3 00000007
+[4] has delete key 3 00000008
+[4] has delete key 3 00000009
+[4] has delete key 3 00000010
+[4] has delete key 3 00000011
+[4] has delete key 3 00000012
+[4] has delete key 3 00000013
+[4] with lastIdx 2373 send hb to peers [5 1 2 3 4] 2372 2373 2373 2373
+[4] has delete key 3 00000014
+[4] has delete key 3 00000015
+[4] has delete key 3 00000016
+[4] has delete key 3 00000017
+[4] has delete key 3 00000018
+[4] has delete key 3 00000019
+[4] has delete key 3 00000020
+[4] has delete key 3 00000021
+[4] has delete key 3 00000022
+[4] has delete key 3 00000023
+[4] has delete key 3 00000024
+[4] has delete key 3 00000025
+[4] with lastIdx 2385 send hb to peers [5 1 2 3 4] 2385 2385 2385 2384
+[4] has delete key 3 00000026
+[4] has delete key 3 00000027
+[4] has delete key 3 00000028
+[4] has delete key 3 00000029
+[4] has delete key 3 00000030
+[4] has delete key 3 00000031
+[4] has delete key 3 00000032
+[4] has delete key 3 00000033
+[4] has delete key 3 00000034
+[4] has delete key 3 00000035
+[4] has delete key 3 00000036
+[4] with lastIdx 2396 send hb to peers [5 1 2 3 4] 2395 2395 2396 2396
+[4] has delete key 3 00000037
+[4] has delete key 3 00000038
+[4] has delete key 3 00000039
+[4] has delete key 3 00000040
+[4] has delete key 3 00000041
+[4] has delete key 3 00000042
+[4] has delete key 3 00000043
+[4] has delete key 3 00000044
+[4] has delete key 3 00000045
+[4] has delete key 3 00000046
+[4] with lastIdx 2407 send hb to peers [5 1 2 3 4] 2406 2406 2406 2406
+[4] has delete key 3 00000047
+[4] has delete key 3 00000048
+[4] has delete key 3 00000049
+[4] has delete key 3 00000050
+[4] has delete key 3 00000051
+[4] has delete key 3 00000052
+[4] has delete key 3 00000053
+[4] has delete key 3 00000054
+[4] has delete key 3 00000055
+[4] has delete key 3 00000056
+[4] has delete key 3 00000057
+[4] has delete key 3 00000058
+[4] has delete key 3 00000059
+[4] with lastIdx 2419 send hb to peers [5 1 2 3 4] 2419 2419 2419 2419
+[4] has delete key 3 00000060
+[4] has delete key 3 00000061
+[4] has delete key 3 00000062
+[4] has delete key 3 00000063
+[4] has delete key 3 00000064
+[4] has delete key 3 00000065
+[4] has delete key 3 00000066
+[4] has delete key 3 00000067
+[4] has delete key 3 00000068
+[4] has delete key 3 00000069
+[4] has delete key 3 00000070
+[4] has delete key 3 00000071
+[4] with lastIdx 2431 send hb to peers [5 1 2 3 4] 2431 2431 2431 2430
+[4] has delete key 3 00000072
+[4] has delete key 3 00000073
+[4] has delete key 3 00000074
+[4] has delete key 3 00000075
+[4] has delete key 3 00000076
+[4] has delete key 3 00000077
+[4] has delete key 3 00000078
+[4] has delete key 3 00000079
+[4] has delete key 3 00000080
+[4] has delete key 3 00000081
+read from clients 4
+[4] with lastIdx 2443 send hb to peers [5 1 2 3 4] 2442 2442 2442 2442
+[4] has delete key 4 00000000
+[4] has delete key 4 00000001
+[4] has delete key 4 00000002
+[4] has delete key 4 00000003
+[4] has delete key 4 00000004
+[4] has delete key 4 00000005
+[4] has delete key 4 00000006
+[4] has delete key 4 00000007
+[4] has delete key 4 00000008
+[4] has delete key 4 00000009
+[4] has delete key 4 00000010
+[4] has delete key 4 00000011
+[4] with lastIdx 2455 send hb to peers [5 1 2 3 4] 2454 2454 2454 2454
+[4] has delete key 4 00000012
+[4] has delete key 4 00000013
+[4] has delete key 4 00000014
+[4] has delete key 4 00000015
+[4] has delete key 4 00000016
+[4] has delete key 4 00000017
+[4] has delete key 4 00000018
+[4] has delete key 4 00000019
+[4] has delete key 4 00000020
+[4] has delete key 4 00000021
+[4] has delete key 4 00000022
+[4] has delete key 4 00000023
+[4] with lastIdx 2466 send hb to peers [5 1 2 3 4] 2466 2466 2466 2466
+[4] has delete key 4 00000024
+[4] has delete key 4 00000025
+[4] has delete key 4 00000026
+[4] has delete key 4 00000027
+[4] has delete key 4 00000028
+[4] has delete key 4 00000029
+[4] has delete key 4 00000030
+[4] has delete key 4 00000031
+[4] has delete key 4 00000032
+[4] has delete key 4 00000033
+[4] has delete key 4 00000034
+[4] has delete key 4 00000035
+[4] has delete key 4 00000036
+[4] with lastIdx 2479 send hb to peers [5 1 2 3 4] 2479 2479 2479 2479
+[4] has delete key 4 00000037
+[4] has delete key 4 00000038
+[4] has delete key 4 00000039
+[4] has delete key 4 00000040
+[4] has delete key 4 00000041
+[4] has delete key 4 00000042
+[4] has delete key 4 00000043
+[4] has delete key 4 00000044
+[4] has delete key 4 00000045
+[4] has delete key 4 00000046
+[4] has delete key 4 00000047
+[4] with lastIdx 2491 send hb to peers [5 1 2 3 4] 2490 2490 2490 2490
+[4] has delete key 4 00000048
+[4] has delete key 4 00000049
+[4] has delete key 4 00000050
+[4] has delete key 4 00000051
+[4] has delete key 4 00000052
+[4] has delete key 4 00000053
+[4] has delete key 4 00000054
+[4] has delete key 4 00000055
+[4] has delete key 4 00000056
+[4] has delete key 4 00000057
+[4] has delete key 4 00000058
+[4] has delete key 4 00000059
+[4] with lastIdx 2503 send hb to peers [5 1 2 3 4] 2502 2502 2502 2502
+[4] has delete key 4 00000060
+[4] has delete key 4 00000061
+[4] has delete key 4 00000062
+[4] has delete key 4 00000063
+[4] has delete key 4 00000064
+[4] has delete key 4 00000065
+[4] has delete key 4 00000066
+[4] has delete key 4 00000067
+[4] has delete key 4 00000068
+[4] with lastIdx 2512 send hb to peers [5 1 2 3 4] 2511 2511 2511 2511
+[4] has delete key 4 00000069
+[4] has delete key 4 00000070
+[4] has delete key 4 00000071
+[4] has delete key 4 00000072
+[4] has delete key 4 00000073
+--- PASS: TestPersistPartitionUnreliable2B (33.06s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	33.136s

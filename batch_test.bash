@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for ((i=0; i<=8; i++))
+for ((i=0; i<8; i++))
     do
-    go test > out-$i &
+    make project3b1 > out3b1-$i &
 done
