@@ -13,6 +13,16 @@ type Callback struct {
 	done chan struct{}
 }
 
+func (cb *Callback) AdminDone(cmdType raft_cmdpb.AdminCmdType) {
+	cb.Done(&raft_cmdpb.RaftCmdResponse{
+		Header: &raft_cmdpb.RaftResponseHeader{},
+		AdminResponse: &raft_cmdpb.AdminResponse{
+			CmdType:    cmdType,
+			ChangePeer: &raft_cmdpb.ChangePeerResponse{},
+		},
+	})
+}
+
 func (cb *Callback) Done(resp *raft_cmdpb.RaftCmdResponse) {
 	if cb == nil {
 		return

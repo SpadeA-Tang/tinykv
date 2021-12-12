@@ -1,238 +1,1909 @@
-GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestSnapshotUnreliableRecoverConcurrentPartition2C|| true
-=== RUN   TestSnapshotUnreliableRecoverConcurrentPartition2C
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestConfChangeUnreliable3B|| true
+=== RUN   TestConfChangeUnreliable3B
 [4] becomes leader
-[4] with lastIdx 6 send hb to peers [1 2 3 4 5] 6 6 6 6
-[4] with lastIdx 6 send hb to peers [1 2 3 4 5] 6 6 6 6
-[4] with lastIdx 6 send hb to peers [1 2 3 4 5] 6 6 6 6
-[4] with lastIdx 6 send hb to peers [1 2 3 4 5] 6 6 6 6
-[4] with lastIdx 18 send hb to peers [1 2 3 4 5] 16 16 16 16
-[4] with lastIdx 31 send hb to peers [1 2 3 4 5] 28 28 28 28
-[4] with lastIdx 40 send hb to peers [1 2 3 4 5] 36 36 36 35
-[4] with lastIdx 58 send hb to peers [1 2 3 4 5] 55 54 55 46
-[4] with lastIdx 75 send hb to peers [1 2 3 4 5] 74 72 74 46
-[4] with lastIdx 99 send hb to peers [1 2 3 4 5] 97 97 97 46
-[4] with lastIdx 118 send hb to peers [1 2 3 4 5] 115 115 115 46
-[4] with lastIdx 142 send hb to peers [1 2 3 4 5] 139 140 139 46
-[4] with lastIdx 167 send hb to peers [1 2 3 4 5] 167 165 165 46
-[4] with lastIdx 199 send hb to peers [1 2 3 4 5] 197 197 196 46
-[5] receives snapshot from [4]
-[4] with lastIdx 216 send hb to peers [1 2 3 4 5] 211 216 210 46
-[4] with lastIdx 262 send hb to peers [1 2 3 4 5] 211 259 210 259
-[4] with lastIdx 303 send hb to peers [1 2 3 4 5] 211 301 210 301
-[4] with lastIdx 329 send hb to peers [1 2 3 4 5] 211 326 210 325
-[4] with lastIdx 355 send hb to peers [1 2 3 4 5] 211 354 210 354
-[4] with lastIdx 388 send hb to peers [1 2 3 4 5] 211 387 210 387
-[4] with lastIdx 422 send hb to peers [1 2 3 4 5] 211 420 210 421
-[4] with lastIdx 456 send hb to peers [1 2 3 4 5] 211 453 210 453
-[4] with lastIdx 493 send hb to peers [1 2 3 4 5] 211 492 210 492
-[4] with lastIdx 529 send hb to peers [1 2 3 4 5] 211 526 210 526
-[4] with lastIdx 552 send hb to peers [1 2 3 4 5] 211 550 210 550
-[4] with lastIdx 573 send hb to peers [1 2 3 4 5] 211 572 210 573
-[4] with lastIdx 594 send hb to peers [1 2 3 4 5] 211 591 210 591
-[1] receives snapshot from [4]
-[4] with lastIdx 612 send hb to peers [1 2 3 4 5] 211 607 210 609
-[4] with lastIdx 631 send hb to peers [1 2 3 4 5] 627 628 210 629
-[4] with lastIdx 652 send hb to peers [1 2 3 4 5] 648 649 210 648
-[4] with lastIdx 676 send hb to peers [1 2 3 4 5] 673 673 210 673
-[4] with lastIdx 701 send hb to peers [1 2 3 4 5] 698 697 210 698
-[4] with lastIdx 735 send hb to peers [1 2 3 4 5] 730 731 210 731
-[4] with lastIdx 765 send hb to peers [1 2 3 4 5] 761 760 210 756
-[3] receives snapshot from [4]
-[4] with lastIdx 792 send hb to peers [1 2 3 4 5] 787 789 788 756
-[4] with lastIdx 817 send hb to peers [1 2 3 4 5] 813 814 813 756
-[4] with lastIdx 845 send hb to peers [1 2 3 4 5] 844 844 843 756
-[4] with lastIdx 869 send hb to peers [1 2 3 4 5] 867 867 866 756
-[4] with lastIdx 895 send hb to peers [1 2 3 4 5] 893 892 892 756
-[4] with lastIdx 918 send hb to peers [1 2 3 4 5] 918 918 904 756
-[4] with lastIdx 946 send hb to peers [1 2 3 4 5] 945 944 904 756
-[4] with lastIdx 972 send hb to peers [1 2 3 4 5] 969 969 904 756
-[4] with lastIdx 1001 send hb to peers [1 2 3 4 5] 1000 1000 904 756
-[4] with lastIdx 1027 send hb to peers [1 2 3 4 5] 1025 1025 904 756
-[4] with lastIdx 1086 send hb to peers [1 2 3 4 5] 1084 1084 904 756
-[4] with lastIdx 1117 send hb to peers [1 2 3 4 5] 1113 1114 904 756
-[4] with lastIdx 1117 send hb to peers [1 2 3 4 5] 1113 1114 904 756
-[4] with lastIdx 1117 send hb to peers [1 2 3 4 5] 1113 1114 904 756
-[4] with lastIdx 1117 send hb to peers [1 2 3 4 5] 1113 1114 904 756
-[4] with lastIdx 1117 send hb to peers [1 2 3 4 5] 1113 1114 904 756
-[4] with lastIdx 1117 send hb to peers [1 2 3 4 5] 1113 1114 904 756
-[4] with lastIdx 1117 send hb to peers [1 2 3 4 5] 1113 1114 904 756
-[4] becomes leader
-[3] receives snapshot from [4]
-read from clients 0
-[4] becomes leader
-[4] with lastIdx 1129 send hb to peers [1 2 3 4 5] 1128 1128 1129 1081
-[4] with lastIdx 1135 send hb to peers [1 2 3 4 5] 1134 1133 1134 1081
-[4] with lastIdx 1140 send hb to peers [1 2 3 4 5] 1139 1139 1139 1081
-[4] with lastIdx 1145 send hb to peers [1 2 3 4 5] 1144 1144 1144 1081
-[4] with lastIdx 1150 send hb to peers [1 2 3 4 5] 1150 1150 1149 1081
-[4] with lastIdx 1156 send hb to peers [1 2 3 4 5] 1155 1155 1155 1081
-[4] with lastIdx 1161 send hb to peers [1 2 3 4 5] 1161 1161 1161 1081
-[4] with lastIdx 1167 send hb to peers [1 2 3 4 5] 1166 1166 1166 1081
-[4] with lastIdx 1173 send hb to peers [1 2 3 4 5] 1172 1172 1172 1081
-[4] with lastIdx 1179 send hb to peers [1 2 3 4 5] 1177 1178 1178 1081
-[4] with lastIdx 1184 send hb to peers [1 2 3 4 5] 1183 1184 1184 1081
-[5] receives snapshot from [4]
-[4] with lastIdx 1190 send hb to peers [1 2 3 4 5] 1189 1189 1190 1190
-[4] with lastIdx 1195 send hb to peers [1 2 3 4 5] 1195 1195 1195 1194
-[4] with lastIdx 1201 send hb to peers [1 2 3 4 5] 1200 1200 1200 1201
-[4] with lastIdx 1207 send hb to peers [1 2 3 4 5] 1206 1206 1206 1205
-[4] with lastIdx 1212 send hb to peers [1 2 3 4 5] 1211 1211 1211 1211
-[4] with lastIdx 1217 send hb to peers [1 2 3 4 5] 1216 1216 1216 1216
-[4] with lastIdx 1223 send hb to peers [1 2 3 4 5] 1222 1222 1222 1222
-[4] with lastIdx 1229 send hb to peers [1 2 3 4 5] 1228 1228 1228 1228
-[4] with lastIdx 1234 send hb to peers [1 2 3 4 5] 1233 1233 1233 1233
-[4] with lastIdx 1240 send hb to peers [1 2 3 4 5] 1239 1239 1240 1240
-[4] with lastIdx 1246 send hb to peers [1 2 3 4 5] 1245 1245 1245 1245
-read from clients 1
-[4] with lastIdx 1252 send hb to peers [1 2 3 4 5] 1251 1251 1251 1250
-[4] with lastIdx 1259 send hb to peers [1 2 3 4 5] 1258 1258 1258 1258
-[4] with lastIdx 1267 send hb to peers [1 2 3 4 5] 1266 1266 1267 1266
-[4] with lastIdx 1273 send hb to peers [1 2 3 4 5] 1273 1273 1273 1273
-[4] with lastIdx 1279 send hb to peers [1 2 3 4 5] 1279 1278 1279 1278
-[4] with lastIdx 1286 send hb to peers [1 2 3 4 5] 1285 1286 1285 1286
-[4] with lastIdx 1294 send hb to peers [1 2 3 4 5] 1293 1293 1293 1293
-[4] with lastIdx 1302 send hb to peers [1 2 3 4 5] 1301 1301 1301 1301
-[4] with lastIdx 1309 send hb to peers [1 2 3 4 5] 1309 1308 1309 1309
-[4] with lastIdx 1318 send hb to peers [1 2 3 4 5] 1317 1317 1317 1317
-[4] with lastIdx 1325 send hb to peers [1 2 3 4 5] 1324 1325 1324 1325
-[4] with lastIdx 1336 send hb to peers [1 2 3 4 5] 1334 1335 1334 1335
-read from clients 2
-[4] with lastIdx 1345 send hb to peers [1 2 3 4 5] 1344 1344 1344 1344
-[4] with lastIdx 1354 send hb to peers [1 2 3 4 5] 1353 1353 1353 1353
-[4] with lastIdx 1364 send hb to peers [1 2 3 4 5] 1363 1364 1363 1364
-[4] with lastIdx 1374 send hb to peers [1 2 3 4 5] 1373 1373 1372 1373
-[4] with lastIdx 1381 send hb to peers [1 2 3 4 5] 1380 1380 1381 1381
-[4] with lastIdx 1390 send hb to peers [1 2 3 4 5] 1390 1389 1389 1389
-[4] with lastIdx 1400 send hb to peers [1 2 3 4 5] 1399 1399 1399 1399
-[4] with lastIdx 1407 send hb to peers [1 2 3 4 5] 1406 1406 1406 1406
-[4] with lastIdx 1414 send hb to peers [1 2 3 4 5] 1413 1413 1412 1413
-[4] with lastIdx 1420 send hb to peers [1 2 3 4 5] 1419 1419 1418 1419
-[4] with lastIdx 1427 send hb to peers [1 2 3 4 5] 1426 1425 1426 1426
-[4] with lastIdx 1435 send hb to peers [1 2 3 4 5] 1434 1434 1434 1433
-[4] with lastIdx 1441 send hb to peers [1 2 3 4 5] 1440 1441 1440 1440
-[4] with lastIdx 1448 send hb to peers [1 2 3 4 5] 1447 1447 1447 1447
-read from clients 3
-[4] with lastIdx 1455 send hb to peers [1 2 3 4 5] 1454 1454 1454 1454
-[4] with lastIdx 1463 send hb to peers [1 2 3 4 5] 1462 1462 1462 1462
-[4] with lastIdx 1470 send hb to peers [1 2 3 4 5] 1469 1469 1469 1469
-[4] with lastIdx 1477 send hb to peers [1 2 3 4 5] 1476 1476 1476 1476
-[4] with lastIdx 1487 send hb to peers [1 2 3 4 5] 1486 1486 1486 1486
-[4] with lastIdx 1497 send hb to peers [1 2 3 4 5] 1496 1496 1496 1496
-[4] with lastIdx 1504 send hb to peers [1 2 3 4 5] 1503 1503 1503 1503
-[4] with lastIdx 1512 send hb to peers [1 2 3 4 5] 1512 1512 1512 1512
-[4] with lastIdx 1522 send hb to peers [1 2 3 4 5] 1521 1521 1521 1521
-[4] with lastIdx 1533 send hb to peers [1 2 3 4 5] 1533 1532 1532 1533
-[4] with lastIdx 1551 send hb to peers [1 2 3 4 5] 1549 1550 1550 1550
-[4] with lastIdx 1565 send hb to peers [1 2 3 4 5] 1564 1565 1565 1564
-read from clients 4
-[4] with lastIdx 1575 send hb to peers [1 2 3 4 5] 1575 1574 1575 1575
-[4] with lastIdx 1585 send hb to peers [1 2 3 4 5] 1585 1585 1584 1584
-[4] with lastIdx 1599 send hb to peers [1 2 3 4 5] 1598 1599 1598 1599
-[4] with lastIdx 1617 send hb to peers [1 2 3 4 5] 1616 1616 1616 1617
-[4] with lastIdx 1652 send hb to peers [1 2 3 4 5] 1651 1651 1651 1651
-[4] with lastIdx 1674 send hb to peers [1 2 3 4 5] 1673 1673 1673 1673
-[4] with lastIdx 1687 send hb to peers [1 2 3 4 5] 1687 1687 1687 1687
-[4] with lastIdx 1687 send hb to peers [1 2 3 4 5] 1687 1687 1687 1687
-[4] with lastIdx 1687 send hb to peers [1 2 3 4 5] 1687 1687 1687 1687
-[4] with lastIdx 1687 send hb to peers [1 2 3 4 5] 1687 1687 1687 1687
-[4] with lastIdx 1687 send hb to peers [1 2 3 4 5] 1687 1687 1687 1687
-[4] with lastIdx 1687 send hb to peers [1 2 3 4 5] 1687 1687 1687 1687
-[4] with lastIdx 1687 send hb to peers [1 2 3 4 5] 1687 1687 1687 1687
-[4] with lastIdx 1687 send hb to peers [1 2 3 4 5] 1687 1687 1687 1687
-[4] with lastIdx 1687 send hb to peers [1 2 3 4 5] 1687 1687 1687 1687
-[4] with lastIdx 1687 send hb to peers [1 2 3 4 5] 1687 1687 1687 1687
-[4] with lastIdx 1702 send hb to peers [1 2 3 4 5] 1700 1700 1700 1700
-[4] with lastIdx 1735 send hb to peers [1 2 3 4 5] 1732 1731 1732 1732
-[4] with lastIdx 1766 send hb to peers [1 2 3 4 5] 1765 1765 1762 1765
-[4] with lastIdx 1787 send hb to peers [1 2 3 4 5] 1782 1782 1782 1787
-[4] with lastIdx 1787 send hb to peers [1 2 3 4 5] 1782 1782 1782 1787
-[4] with lastIdx 1787 send hb to peers [1 2 3 4 5] 1782 1782 1782 1787
-[4] with lastIdx 1787 send hb to peers [1 2 3 4 5] 1782 1782 1782 1787
-[4] with lastIdx 1787 send hb to peers [1 2 3 4 5] 1782 1782 1782 1787
-[4] with lastIdx 1787 send hb to peers [1 2 3 4 5] 1782 1782 1782 1787
-[4] with lastIdx 1787 send hb to peers [1 2 3 4 5] 1782 1782 1782 1787
-[3] becomes leader
-[3] with lastIdx 1783 send hb to peers [1 2 3 4 5] 1112 1112 1112 1112
-[3] with lastIdx 1788 send hb to peers [1 2 3 4 5] 1788 1112 1112 1112
-[3] with lastIdx 1788 send hb to peers [1 2 3 4 5] 1788 1112 1112 1112
-[3] with lastIdx 1788 send hb to peers [1 2 3 4 5] 1788 1112 1112 1788
-[3] with lastIdx 1788 send hb to peers [1 2 3 4 5] 1788 1788 1112 1788
-[3] with lastIdx 1788 send hb to peers [1 2 3 4 5] 1788 1788 1788 1788
-[3] with lastIdx 1788 send hb to peers [1 2 3 4 5] 1788 1788 1788 1788
-[3] with lastIdx 1788 send hb to peers [1 2 3 4 5] 1788 1788 1788 1788
-[3] with lastIdx 1788 send hb to peers [1 2 3 4 5] 1788 1788 1788 1788
-read from clients 0
-[2] becomes leader
-read from clients 1
-[2] with lastIdx 1809 send hb to peers [1 2 3 4 5] 1808 1809 1808 1808
-read from clients 2
-read from clients 3
-[2] with lastIdx 1830 send hb to peers [1 2 3 4 5] 1830 1829 1829 1830
-read from clients 4
-[2] with lastIdx 1846 send hb to peers [1 2 3 4 5] 1846 1846 1846 1846
-[2] with lastIdx 1846 send hb to peers [1 2 3 4 5] 1846 1846 1846 1846
-[2] with lastIdx 1846 send hb to peers [1 2 3 4 5] 1846 1846 1846 1846
-[2] with lastIdx 1846 send hb to peers [1 2 3 4 5] 1846 1846 1846 1846
-[2] with lastIdx 1846 send hb to peers [1 2 3 4 5] 1846 1846 1846 1846
-[2] with lastIdx 1846 send hb to peers [1 2 3 4 5] 1846 1846 1846 1846
-[2] with lastIdx 1846 send hb to peers [1 2 3 4 5] 1846 1846 1846 1846
-[2] with lastIdx 1846 send hb to peers [1 2 3 4 5] 1846 1846 1846 1846
-[2] with lastIdx 1846 send hb to peers [1 2 3 4 5] 1846 1846 1846 1846
-[2] with lastIdx 1846 send hb to peers [1 2 3 4 5] 1846 1846 1846 1846
-[2] with lastIdx 1856 send hb to peers [1 2 3 4 5] 1851 1851 1851 1851
-[2] with lastIdx 1890 send hb to peers [1 2 3 4 5] 1887 1887 1887 1887
-[2] with lastIdx 1925 send hb to peers [1 2 3 4 5] 1923 1923 1922 1923
-[2] with lastIdx 1963 send hb to peers [1 2 3 4 5] 1960 1951 1960 1957
-[2] with lastIdx 1992 send hb to peers [1 2 3 4 5] 1989 1951 1989 1989
-[2] with lastIdx 2016 send hb to peers [1 2 3 4 5] 2011 1951 2011 2011
-[2] with lastIdx 2044 send hb to peers [1 2 3 4 5] 2042 1951 2043 2043
-[2] with lastIdx 2071 send hb to peers [1 2 3 4 5] 2067 1951 2066 2067
-[2] with lastIdx 2098 send hb to peers [1 2 3 4 5] 2093 1951 2093 2093
-[2] with lastIdx 2115 send hb to peers [1 2 3 4 5] 2114 1951 2111 2114
-[3] receives snapshot from [2]
-[2] with lastIdx 2135 send hb to peers [1 2 3 4 5] 2132 1951 2124 2133
-[3] becomes leader
+[4] has put key 0 00000000 value x 0 0 y
+[5] has put key 0 00000000 value x 0 0 y
+[3] has put key 0 00000000 value x 0 0 y
+[4] has put key 4 00000000 value x 4 0 y
+[1] has put key 0 00000000 value x 0 0 y
+[2] has put key 0 00000000 value x 0 0 y
+[5] has put key 4 00000000 value x 4 0 y
+[3] has put key 4 00000000 value x 4 0 y
+[2] has put key 4 00000000 value x 4 0 y
+[4] has put key 1 00000000 value x 1 0 y
+[4] has put key 2 00000000 value x 2 0 y
+[1] has put key 4 00000000 value x 4 0 y
+[3] has put key 1 00000000 value x 1 0 y
+[2] has put key 1 00000000 value x 1 0 y
+[5] has put key 1 00000000 value x 1 0 y
+[4] has put key 3 00000000 value x 3 0 y
+[1] has put key 1 00000000 value x 1 0 y
+[2] has put key 2 00000000 value x 2 0 y
+[5] has put key 2 00000000 value x 2 0 y
+[3] has put key 2 00000000 value x 2 0 y
+[2] has put key 3 00000000 value x 3 0 y
+[1] has put key 2 00000000 value x 2 0 y
+[5] has put key 3 00000000 value x 3 0 y
+[3] has put key 3 00000000 value x 3 0 y
+[1] has put key 3 00000000 value x 3 0 y
+[4] has put key 0 00000001 value x 0 1 y
+[4] has put key 4 00000001 value x 4 1 y
+[3] has put key 0 00000001 value x 0 1 y
+[2] has put key 0 00000001 value x 0 1 y
+[5] has put key 0 00000001 value x 0 1 y
+[1] has put key 0 00000001 value x 0 1 y
+[3] has put key 4 00000001 value x 4 1 y
+[2] has put key 4 00000001 value x 4 1 y
+[5] has put key 4 00000001 value x 4 1 y
+[1] has put key 4 00000001 value x 4 1 y
+[4] has put key 1 00000001 value x 1 1 y
+[2] has put key 1 00000001 value x 1 1 y
+[3] has put key 1 00000001 value x 1 1 y
+[5] has put key 1 00000001 value x 1 1 y
+[1] has put key 1 00000001 value x 1 1 y
+[4] has put key 0 00000002 value x 0 2 y
+[4] has put key 4 00000002 value x 4 2 y
+[2] has put key 0 00000002 value x 0 2 y
+[3] has put key 0 00000002 value x 0 2 y
+[2] has put key 4 00000002 value x 4 2 y
+[3] has put key 4 00000002 value x 4 2 y
+[4] has put key 2 00000001 value x 2 1 y
+[5] has put key 0 00000002 value x 0 2 y
+[2] has put key 2 00000001 value x 2 1 y
+[4] has put key 1 00000002 value x 1 2 y
+[1] has put key 0 00000002 value x 0 2 y
+[3] has put key 2 00000001 value x 2 1 y
+[5] has put key 4 00000002 value x 4 2 y
+[1] has put key 4 00000002 value x 4 2 y
+[2] has put key 1 00000002 value x 1 2 y
+[3] has put key 1 00000002 value x 1 2 y
+[5] has put key 2 00000001 value x 2 1 y
+[1] has put key 2 00000001 value x 2 1 y
+[5] has put key 1 00000002 value x 1 2 y
+[1] has put key 1 00000002 value x 1 2 y
+[4] has put key 4 00000003 value x 4 3 y
+[5] has put key 4 00000003 value x 4 3 y
+[1] has put key 4 00000003 value x 4 3 y
+[4] has put key 3 00000001 value x 3 1 y
+[2] has put key 4 00000003 value x 4 3 y
+[4] has put key 0 00000003 value x 0 3 y
+[3] has put key 4 00000003 value x 4 3 y
+[3] has put key 3 00000001 value x 3 1 y
+[5] has put key 3 00000001 value x 3 1 y
+[1] has put key 3 00000001 value x 3 1 y
+[3] has put key 0 00000003 value x 0 3 y
+[2] has put key 3 00000001 value x 3 1 y
+[2] has put key 0 00000003 value x 0 3 y
+[1] has put key 0 00000003 value x 0 3 y
+[5] has put key 0 00000003 value x 0 3 y
+[4] has put key 3 00000002 value x 3 2 y
+[1] has put key 3 00000002 value x 3 2 y
+[5] has put key 3 00000002 value x 3 2 y
+[2] has put key 3 00000002 value x 3 2 y
+[4] has put key 4 00000004 value x 4 4 y
+[1] has put key 4 00000004 value x 4 4 y
+[5] has put key 4 00000004 value x 4 4 y
+[4] has put key 0 00000004 value x 0 4 y
+[2] has put key 4 00000004 value x 4 4 y
+[1] has put key 0 00000004 value x 0 4 y
+[5] has put key 0 00000004 value x 0 4 y
+[2] has put key 0 00000004 value x 0 4 y
+[4] has put key 4 00000005 value x 4 5 y
+[2] has put key 4 00000005 value x 4 5 y
+[1] has put key 4 00000005 value x 4 5 y
+[4] has put key 2 00000002 value x 2 2 y
+[5] has put key 4 00000005 value x 4 5 y
+[4] has put key 0 00000005 value x 0 5 y
+[2] has put key 2 00000002 value x 2 2 y
+[4] has put key 3 00000003 value x 3 3 y
+[1] has put key 2 00000002 value x 2 2 y
+[2] has put key 0 00000005 value x 0 5 y
+[4] has put key 1 00000003 value x 1 3 y
+[1] has put key 0 00000005 value x 0 5 y
+[5] has put key 2 00000002 value x 2 2 y
+[2] has put key 3 00000003 value x 3 3 y
+[1] has put key 3 00000003 value x 3 3 y
+[5] has put key 0 00000005 value x 0 5 y
+[2] has put key 1 00000003 value x 1 3 y
+[1] has put key 1 00000003 value x 1 3 y
+[5] has put key 3 00000003 value x 3 3 y
+[5] has put key 1 00000003 value x 1 3 y
+[4] has put key 2 00000003 value x 2 3 y
+[1] has put key 2 00000003 value x 2 3 y
+[4] has put key 1 00000004 value x 1 4 y
+[4] has put key 4 00000006 value x 4 6 y
+[1] has put key 1 00000004 value x 1 4 y
+[5] has put key 2 00000003 value x 2 3 y
+[5] has put key 1 00000004 value x 1 4 y
+[1] has put key 4 00000006 value x 4 6 y
+[4] has put key 2 00000004 value x 2 4 y
+[5] has put key 4 00000006 value x 4 6 y
+[1] has put key 2 00000004 value x 2 4 y
+[5] has put key 2 00000004 value x 2 4 y
+[4] has put key 2 00000005 value x 2 5 y
+[4] has put key 0 00000006 value x 0 6 y
+[1] has put key 2 00000005 value x 2 5 y
+[1] has put key 0 00000006 value x 0 6 y
+[5] has put key 2 00000005 value x 2 5 y
+[5] has put key 0 00000006 value x 0 6 y
+[4] has put key 4 00000007 value x 4 7 y
+[5] has put key 4 00000007 value x 4 7 y
+[4] has put key 1 00000005 value x 1 5 y
+[4] has put key 3 00000004 value x 3 4 y
+[1] has put key 4 00000007 value x 4 7 y
+[1] has put key 1 00000005 value x 1 5 y
+[1] has put key 3 00000004 value x 3 4 y
+[4] has put key 2 00000006 value x 2 6 y
+[5] has put key 1 00000005 value x 1 5 y
+[1] has put key 2 00000006 value x 2 6 y
+[5] has put key 3 00000004 value x 3 4 y
+[4] has put key 1 00000006 value x 1 6 y
+[1] has put key 1 00000006 value x 1 6 y
+[4] has put key 3 00000005 value x 3 5 y
+[5] has put key 2 00000006 value x 2 6 y
+[1] has put key 3 00000005 value x 3 5 y
+[5] has put key 1 00000006 value x 1 6 y
+[5] has put key 3 00000005 value x 3 5 y
+[4] has put key 4 00000008 value x 4 8 y
+[4] has put key 0 00000007 value x 0 7 y
+[5] has put key 4 00000008 value x 4 8 y
+[5] has put key 0 00000007 value x 0 7 y
+[4] has put key 3 00000006 value x 3 6 y
+[5] has put key 3 00000006 value x 3 6 y
+[4] has put key 4 00000009 value x 4 9 y
+[5] has put key 4 00000009 value x 4 9 y
+[4] has put key 1 00000007 value x 1 7 y
+[5] has put key 1 00000007 value x 1 7 y
+[4] has put key 4 00000010 value x 4 10 y
+[4] has put key 2 00000007 value x 2 7 y
+[5] has put key 4 00000010 value x 4 10 y
+[4] has put key 0 00000008 value x 0 8 y
+[5] has put key 2 00000007 value x 2 7 y
+[5] has put key 0 00000008 value x 0 8 y
+[4] has put key 4 00000011 value x 4 11 y
+[4] has put key 0 00000009 value x 0 9 y
+[5] has put key 4 00000011 value x 4 11 y
+[5] has put key 0 00000009 value x 0 9 y
+[4] has put key 3 00000007 value x 3 7 y
+[4] has put key 4 00000012 value x 4 12 y
+[4] has put key 2 00000008 value x 2 8 y
+[5] has put key 3 00000007 value x 3 7 y
+[5] has put key 4 00000012 value x 4 12 y
+[5] has put key 2 00000008 value x 2 8 y
+[4] has put key 1 00000008 value x 1 8 y
+[4] has put key 2 00000009 value x 2 9 y
+[5] has put key 1 00000008 value x 1 8 y
+[5] has put key 2 00000009 value x 2 9 y
+[5] has put key 3 00000008 value x 3 8 y
+[5] has put key 1 00000009 value x 1 9 y
+region_not_found:<region_id:1 > 
+region_not_found:<region_id:1 > 
+region_not_found:<region_id:1 > 
+region_not_found:<region_id:1 > 
+region_not_found:<region_id:1 > 
 [5] becomes leader
-[5] with lastIdx 2148 send hb to peers [1 2 3 4 5] 1699 2148 1699 1699
-[5] with lastIdx 2148 send hb to peers [1 2 3 4 5] 1699 2148 1699 1699
-[5] with lastIdx 2148 send hb to peers [1 2 3 4 5] 1699 2148 1699 1699
-[5] with lastIdx 2148 send hb to peers [1 2 3 4 5] 1699 2148 1699 1699
-[5] with lastIdx 2148 send hb to peers [1 2 3 4 5] 1699 2148 1699 1699
-[5] with lastIdx 2148 send hb to peers [1 2 3 4 5] 1699 2148 2148 1699
-read from clients 0
-[2] becomes leader
-[2] with lastIdx 2154 send hb to peers [1 2 3 4 5] 2154 2154 2154 2154
-[2] with lastIdx 2162 send hb to peers [1 2 3 4 5] 2161 2161 2161 2161
-[2] with lastIdx 2168 send hb to peers [1 2 3 4 5] 2167 2167 2167 2167
-[2] with lastIdx 2175 send hb to peers [1 2 3 4 5] 2174 2174 2174 2174
-read from clients 1
-[2] with lastIdx 2183 send hb to peers [1 2 3 4 5] 2182 2182 2182 2182
-[2] with lastIdx 2189 send hb to peers [1 2 3 4 5] 2188 2188 2189 2188
-[2] with lastIdx 2197 send hb to peers [1 2 3 4 5] 2196 2196 2196 2196
-[2] with lastIdx 2204 send hb to peers [1 2 3 4 5] 2203 2203 2204 2203
-read from clients 2
-[2] with lastIdx 2212 send hb to peers [1 2 3 4 5] 2211 2211 2211 2211
-[2] with lastIdx 2219 send hb to peers [1 2 3 4 5] 2218 2218 2218 2218
-[2] with lastIdx 2227 send hb to peers [1 2 3 4 5] 2226 2226 2226 2226
-[2] with lastIdx 2235 send hb to peers [1 2 3 4 5] 2234 2234 2234 2234
-read from clients 3
-[2] with lastIdx 2243 send hb to peers [1 2 3 4 5] 2242 2242 2242 2242
-[2] with lastIdx 2252 send hb to peers [1 2 3 4 5] 2250 2251 2251 2251
-[2] with lastIdx 2263 send hb to peers [1 2 3 4 5] 2263 2263 2263 2262
-read from clients 4
-[2] with lastIdx 2274 send hb to peers [1 2 3 4 5] 2274 2273 2274 2274
-[2] with lastIdx 2287 send hb to peers [1 2 3 4 5] 2286 2286 2286 2286
-[2] with lastIdx 2300 send hb to peers [1 2 3 4 5] 2300 2300 2299 2299
-[2] with lastIdx 2300 send hb to peers [1 2 3 4 5] 2300 2300 2300 2300
-[2] with lastIdx 2300 send hb to peers [1 2 3 4 5] 2300 2300 2300 2300
-[2] with lastIdx 2300 send hb to peers [1 2 3 4 5] 2300 2300 2300 2300
-[2] with lastIdx 2300 send hb to peers [1 2 3 4 5] 2300 2300 2300 2300
-[2] with lastIdx 2300 send hb to peers [1 2 3 4 5] 2300 2300 2300 2300
-[2] with lastIdx 2300 send hb to peers [1 2 3 4 5] 2300 2300 2300 2300
-[2] with lastIdx 2300 send hb to peers [1 2 3 4 5] 2300 2300 2300 2300
-[2] with lastIdx 2300 send hb to peers [1 2 3 4 5] 2300 2300 2300 2300
-[2] with lastIdx 2300 send hb to peers [1 2 3 4 5] 2300 2300 2300 2300
-[2] with lastIdx 2300 send hb to peers [1 2 3 4 5] 2300 2300 2300 2300
---- PASS: TestSnapshotUnreliableRecoverConcurrentPartition2C (35.63s)
+[5] has put key 2 00000010 value x 2 10 y
+[5] has put key 0 00000010 value x 0 10 y
+[5] has put key 3 00000008 value x 3 8 y
+[5] has put key 0 00000010 value x 0 10 y
+[5] has put key 2 00000010 value x 2 10 y
+[5] has put key 1 00000009 value x 1 9 y
+[5] has put key 0 00000011 value x 0 11 y
+[5] has put key 2 00000011 value x 2 11 y
+[5] has put key 1 00000010 value x 1 10 y
+[5] has put key 4 00000013 value x 4 13 y
+[5] has put key 3 00000009 value x 3 9 y
+[5] has put key 1 00000011 value x 1 11 y
+[5] has put key 3 00000010 value x 3 10 y
+[5] has put key 2 00000012 value x 2 12 y
+[5] has put key 4 00000014 value x 4 14 y
+[5] has put key 2 00000013 value x 2 13 y
+[5] has put key 3 00000011 value x 3 11 y
+[5] has put key 2 00000014 value x 2 14 y
+[5] has put key 1 00000012 value x 1 12 y
+[5] has put key 3 00000012 value x 3 12 y
+[5] has put key 0 00000012 value x 0 12 y
+[5] has put key 2 00000015 value x 2 15 y
+[5] has put key 1 00000013 value x 1 13 y
+[5] has put key 4 00000015 value x 4 15 y
+[5] has put key 3 00000013 value x 3 13 y
+[5] has put key 0 00000013 value x 0 13 y
+[5] has put key 2 00000016 value x 2 16 y
+[5] has put key 0 00000014 value x 0 14 y
+[5] has put key 3 00000014 value x 3 14 y
+[5] has put key 4 00000016 value x 4 16 y
+[5] has put key 2 00000017 value x 2 17 y
+[5] has put key 0 00000015 value x 0 15 y
+[5] has put key 3 00000015 value x 3 15 y
+[5] has put key 4 00000017 value x 4 17 y
+[5] has put key 1 00000014 value x 1 14 y
+[5] has put key 3 00000016 value x 3 16 y
+[5] has put key 2 00000018 value x 2 18 y
+[5] has put key 4 00000018 value x 4 18 y
+[5] has put key 1 00000015 value x 1 15 y
+[5] has put key 4 00000019 value x 4 19 y
+[5] has put key 1 00000016 value x 1 16 y
+[5] has put key 4 00000020 value x 4 20 y
+[5] has put key 3 00000017 value x 3 17 y
+[5] has put key 0 00000016 value x 0 16 y
+[5] has put key 1 00000017 value x 1 17 y
+[5] has put key 3 00000018 value x 3 18 y
+[6] receives snapshot from [5]
+[5] has put key 2 00000019 value x 2 19 y
+[5] has put key 1 00000018 value x 1 18 y
+[6] has put key 2 00000019 value x 2 19 y
+[5] has put key 4 00000021 value x 4 21 y
+[6] has put key 1 00000018 value x 1 18 y
+[5] has put key 3 00000019 value x 3 19 y
+[6] has put key 4 00000021 value x 4 21 y
+[6] has put key 3 00000019 value x 3 19 y
+[6] has put key 2 00000019 value x 2 19 y
+[6] has put key 4 00000021 value x 4 21 y
+[6] has put key 1 00000018 value x 1 18 y
+[6] has put key 3 00000019 value x 3 19 y
+[6] has put key 2 00000019 value x 2 19 y
+[6] has put key 1 00000018 value x 1 18 y
+[6] has put key 4 00000021 value x 4 21 y
+[6] has put key 3 00000019 value x 3 19 y
+region_not_found:<region_id:1 > 
+region_not_found:<region_id:1 > 
+region_not_found:<region_id:1 > 
+region_not_found:<region_id:1 > 
+region_not_found:<region_id:1 > 
+[6] becomes leader
+[6] has put key 2 00000019 value x 2 19 y
+[6] has put key 3 00000019 value x 3 19 y
+[6] has put key 4 00000021 value x 4 21 y
+[6] has put key 1 00000018 value x 1 18 y
+[6] has put key 2 00000020 value x 2 20 y
+[6] has put key 0 00000017 value x 0 17 y
+[6] has put key 1 00000019 value x 1 19 y
+[6] has put key 2 00000021 value x 2 21 y
+[6] has put key 3 00000020 value x 3 20 y
+[6] has put key 0 00000018 value x 0 18 y
+[6] has put key 1 00000020 value x 1 20 y
+[6] has put key 2 00000022 value x 2 22 y
+[6] has put key 0 00000019 value x 0 19 y
+[6] has put key 4 00000022 value x 4 22 y
+[6] has put key 1 00000021 value x 1 21 y
+[6] has put key 2 00000023 value x 2 23 y
+[6] has put key 4 00000023 value x 4 23 y
+[6] has put key 2 00000024 value x 2 24 y
+[6] has put key 3 00000021 value x 3 21 y
+[6] has put key 2 00000025 value x 2 25 y
+[6] has put key 1 00000022 value x 1 22 y
+[6] has put key 3 00000022 value x 3 22 y
+[6] has put key 2 00000026 value x 2 26 y
+[6] has put key 4 00000024 value x 4 24 y
+[6] has put key 1 00000023 value x 1 23 y
+[6] has put key 2 00000027 value x 2 27 y
+[6] has put key 2 00000028 value x 2 28 y
+[6] has put key 3 00000023 value x 3 23 y
+[6] has put key 1 00000024 value x 1 24 y
+[6] has put key 2 00000029 value x 2 29 y
+[6] has put key 4 00000025 value x 4 25 y
+[6] has put key 1 00000025 value x 1 25 y
+[6] has put key 0 00000020 value x 0 20 y
+[6] has put key 4 00000026 value x 4 26 y
+[6] has put key 1 00000026 value x 1 26 y
+[6] has put key 0 00000021 value x 0 21 y
+[6] has put key 1 00000027 value x 1 27 y
+[6] has put key 0 00000022 value x 0 22 y
+[6] has put key 2 00000030 value x 2 30 y
+[6] has put key 0 00000023 value x 0 23 y
+[6] has put key 2 00000031 value x 2 31 y
+[6] has put key 1 00000028 value x 1 28 y
+[6] has put key 3 00000024 value x 3 24 y
+[6] has put key 0 00000024 value x 0 24 y
+[6] has put key 2 00000032 value x 2 32 y
+[6] has put key 3 00000025 value x 3 25 y
+[6] has put key 1 00000029 value x 1 29 y
+[6] has put key 0 00000025 value x 0 25 y
+[6] has put key 4 00000027 value x 4 27 y
+[6] has put key 2 00000033 value x 2 33 y
+[6] has put key 1 00000030 value x 1 30 y
+[6] has put key 3 00000026 value x 3 26 y
+[6] has put key 4 00000028 value x 4 28 y
+[6] has put key 2 00000034 value x 2 34 y
+[6] has put key 1 00000031 value x 1 31 y
+[6] has put key 0 00000026 value x 0 26 y
+[6] has put key 2 00000035 value x 2 35 y
+[6] has put key 1 00000032 value x 1 32 y
+[6] has put key 4 00000029 value x 4 29 y
+[6] has put key 3 00000027 value x 3 27 y
+[6] has put key 2 00000036 value x 2 36 y
+[6] has put key 1 00000033 value x 1 33 y
+[6] has put key 4 00000030 value x 4 30 y
+[6] has put key 0 00000027 value x 0 27 y
+[6] has put key 2 00000037 value x 2 37 y
+[6] has put key 1 00000034 value x 1 34 y
+[6] has put key 0 00000028 value x 0 28 y
+[6] has put key 1 00000035 value x 1 35 y
+[6] has put key 4 00000031 value x 4 31 y
+[6] has put key 2 00000038 value x 2 38 y
+[6] has put key 4 00000032 value x 4 32 y
+[6] has put key 0 00000029 value x 0 29 y
+[6] has put key 3 00000028 value x 3 28 y
+[6] has put key 1 00000036 value x 1 36 y
+[6] has put key 4 00000033 value x 4 33 y
+[6] has put key 3 00000029 value x 3 29 y
+[6] has put key 1 00000037 value x 1 37 y
+[6] has put key 4 00000034 value x 4 34 y
+[6] has put key 1 00000038 value x 1 38 y
+[6] has put key 2 00000039 value x 2 39 y
+[6] has put key 0 00000030 value x 0 30 y
+[6] has put key 2 00000040 value x 2 40 y
+[6] has put key 4 00000035 value x 4 35 y
+[6] has put key 3 00000030 value x 3 30 y
+[6] has put key 1 00000039 value x 1 39 y
+[6] has put key 2 00000041 value x 2 41 y
+[6] has put key 2 00000042 value x 2 42 y
+[6] has put key 0 00000031 value x 0 31 y
+[6] has put key 2 00000043 value x 2 43 y
+[6] has put key 1 00000040 value x 1 40 y
+[6] has put key 4 00000036 value x 4 36 y
+[6] has put key 2 00000044 value x 2 44 y
+[6] has put key 3 00000031 value x 3 31 y
+[6] has put key 0 00000032 value x 0 32 y
+[6] has put key 4 00000037 value x 4 37 y
+[6] has put key 3 00000032 value x 3 32 y
+[6] has put key 4 00000038 value x 4 38 y
+[6] has put key 2 00000045 value x 2 45 y
+[6] has put key 3 00000033 value x 3 33 y
+[6] has put key 4 00000039 value x 4 39 y
+[6] has put key 1 00000041 value x 1 41 y
+[6] has put key 4 00000040 value x 4 40 y
+[6] has put key 2 00000046 value x 2 46 y
+[7] receives snapshot from [6]
+[6] has put key 4 00000041 value x 4 41 y
+[7] has put key 4 00000041 value x 4 41 y
+[7] has put key 2 00000047 value x 2 47 y
+[6] has put key 2 00000047 value x 2 47 y
+[6] has delete key 0 00000000
+[7] has delete key 0 00000000
+[6] has delete key 0 00000001
+[7] has delete key 0 00000001
+[6] has delete key 0 00000002
+[7] has delete key 0 00000002
+[6] has delete key 0 00000003
+[7] has delete key 0 00000003
+[6] has delete key 0 00000004
+[7] has delete key 0 00000004
+[6] has delete key 0 00000005
+[7] has delete key 0 00000005
+[6] has delete key 0 00000006
+[7] has delete key 0 00000006
+[6] has delete key 0 00000007
+[7] has delete key 0 00000007
+[6] has delete key 0 00000008
+[7] has delete key 0 00000008
+[6] has delete key 0 00000009
+[7] has delete key 0 00000009
+[6] has delete key 0 00000010
+[7] has delete key 0 00000010
+[6] has delete key 0 00000011
+[7] has delete key 0 00000011
+[6] has delete key 0 00000012
+[7] has delete key 0 00000012
+[6] has delete key 0 00000013
+[7] has delete key 0 00000013
+[6] has delete key 0 00000014
+[7] has delete key 0 00000014
+[6] has delete key 0 00000015
+[7] has delete key 0 00000015
+[6] has delete key 0 00000016
+[7] has delete key 0 00000016
+[6] has delete key 0 00000017
+[7] has delete key 0 00000017
+[6] has delete key 0 00000018
+[7] has delete key 0 00000018
+[6] has delete key 0 00000019
+[7] has delete key 0 00000019
+[6] has delete key 0 00000020
+[7] has delete key 0 00000020
+[6] has delete key 0 00000021
+[7] has delete key 0 00000021
+[6] has delete key 0 00000022
+[7] has delete key 0 00000022
+[6] has delete key 0 00000023
+[7] has delete key 0 00000023
+[6] has delete key 0 00000024
+[7] has delete key 0 00000024
+[6] has delete key 0 00000025
+[7] has delete key 0 00000025
+[6] has delete key 0 00000026
+[7] has delete key 0 00000026
+[6] has delete key 0 00000027
+[7] has delete key 0 00000027
+[6] has delete key 0 00000028
+[7] has delete key 0 00000028
+[6] has delete key 0 00000029
+[7] has delete key 0 00000029
+[6] has delete key 0 00000030
+[7] has delete key 0 00000030
+[6] has delete key 0 00000031
+[7] has delete key 0 00000031
+[6] has delete key 0 00000032
+[7] has delete key 0 00000032
+[6] has delete key 1 00000000
+[7] has delete key 1 00000000
+[6] has delete key 1 00000001
+[7] has delete key 1 00000001
+[6] has delete key 1 00000002
+[7] has delete key 1 00000002
+[6] has delete key 1 00000003
+[7] has delete key 1 00000003
+[6] has delete key 1 00000004
+[7] has delete key 1 00000004
+[6] has delete key 1 00000005
+[7] has delete key 1 00000005
+[6] has delete key 1 00000006
+[7] has delete key 1 00000006
+[6] has delete key 1 00000007
+[7] has delete key 1 00000007
+[6] has delete key 1 00000008
+[7] has delete key 1 00000008
+[6] has delete key 1 00000009
+[7] has delete key 1 00000009
+[6] has delete key 1 00000010
+[7] has delete key 1 00000010
+[6] has delete key 1 00000011
+[7] has delete key 1 00000011
+[6] has delete key 1 00000012
+[7] has delete key 1 00000012
+[6] has delete key 1 00000013
+[7] has delete key 1 00000013
+[6] has delete key 1 00000014
+[7] has delete key 1 00000014
+[6] has delete key 1 00000015
+[7] has delete key 1 00000015
+[6] has delete key 1 00000016
+[7] has delete key 1 00000016
+[6] has delete key 1 00000017
+[7] has delete key 1 00000017
+[6] has delete key 1 00000018
+[7] has delete key 1 00000018
+[6] has delete key 1 00000019
+[7] has delete key 1 00000019
+[6] has delete key 1 00000020
+[7] has delete key 1 00000020
+[6] has delete key 1 00000021
+[7] has delete key 1 00000021
+[6] has delete key 1 00000022
+[7] has delete key 1 00000022
+[6] has delete key 1 00000023
+[7] has delete key 1 00000023
+[6] has delete key 1 00000024
+[7] has delete key 1 00000024
+[6] has delete key 1 00000025
+[7] has delete key 1 00000025
+[6] has delete key 1 00000026
+[7] has delete key 1 00000026
+[6] has delete key 1 00000027
+[7] has delete key 1 00000027
+[6] has delete key 1 00000028
+[7] has delete key 1 00000028
+[6] has delete key 1 00000029
+[7] has delete key 1 00000029
+[6] has delete key 1 00000030
+[7] has delete key 1 00000030
+[6] has delete key 1 00000031
+[7] has delete key 1 00000031
+[6] has delete key 1 00000032
+[7] has delete key 1 00000032
+[6] has delete key 1 00000033
+[7] has delete key 1 00000033
+[6] has delete key 1 00000034
+[7] has delete key 1 00000034
+[6] has delete key 1 00000035
+[7] has delete key 1 00000035
+[6] has delete key 1 00000036
+[7] has delete key 1 00000036
+[6] has delete key 1 00000037
+[7] has delete key 1 00000037
+[6] has delete key 1 00000038
+[7] has delete key 1 00000038
+[6] has delete key 1 00000039
+[7] has delete key 1 00000039
+[6] has delete key 1 00000040
+[7] has delete key 1 00000040
+[6] has delete key 1 00000041
+[7] has delete key 1 00000041
+[6] has delete key 2 00000000
+[7] has delete key 2 00000000
+[6] has delete key 2 00000001
+[7] has delete key 2 00000001
+[6] has delete key 2 00000002
+[7] has delete key 2 00000002
+[6] has delete key 2 00000003
+[7] has delete key 2 00000003
+[6] has delete key 2 00000004
+[7] has delete key 2 00000004
+[6] has delete key 2 00000005
+[7] has delete key 2 00000005
+[6] has delete key 2 00000006
+[7] has delete key 2 00000006
+[6] has delete key 2 00000007
+[7] has delete key 2 00000007
+[6] has delete key 2 00000008
+[7] has delete key 2 00000008
+[6] has delete key 2 00000009
+[7] has delete key 2 00000009
+[6] has delete key 2 00000010
+[7] has delete key 2 00000010
+[6] has delete key 2 00000011
+[7] has delete key 2 00000011
+[6] has delete key 2 00000012
+[7] has delete key 2 00000012
+[6] has delete key 2 00000013
+[7] has delete key 2 00000013
+[6] has delete key 2 00000014
+[7] has delete key 2 00000014
+[6] has delete key 2 00000015
+[7] has delete key 2 00000015
+[6] has delete key 2 00000016
+[7] has delete key 2 00000016
+[6] has delete key 2 00000017
+[7] has delete key 2 00000017
+[6] has delete key 2 00000018
+[7] has delete key 2 00000018
+[6] has delete key 2 00000019
+[7] has delete key 2 00000019
+[6] has delete key 2 00000020
+[7] has delete key 2 00000020
+[6] has delete key 2 00000021
+[7] has delete key 2 00000021
+[6] has delete key 2 00000022
+[7] has delete key 2 00000022
+[6] has delete key 2 00000023
+[7] has delete key 2 00000023
+[6] has delete key 2 00000024
+[7] has delete key 2 00000024
+[6] has delete key 2 00000025
+[7] has delete key 2 00000025
+[6] has delete key 2 00000026
+[7] has delete key 2 00000026
+[6] has delete key 2 00000027
+[7] has delete key 2 00000027
+[6] has delete key 2 00000028
+[7] has delete key 2 00000028
+[6] has delete key 2 00000029
+[7] has delete key 2 00000029
+[6] has delete key 2 00000030
+[7] has delete key 2 00000030
+[6] has delete key 2 00000031
+[7] has delete key 2 00000031
+[6] has delete key 2 00000032
+[7] has delete key 2 00000032
+[6] has delete key 2 00000033
+[7] has delete key 2 00000033
+[6] has delete key 2 00000034
+[7] has delete key 2 00000034
+[6] has delete key 2 00000035
+[7] has delete key 2 00000035
+[6] has delete key 2 00000036
+[7] has delete key 2 00000036
+[6] has delete key 2 00000037
+[7] has delete key 2 00000037
+[6] has delete key 2 00000038
+[7] has delete key 2 00000038
+[6] has delete key 2 00000039
+[7] has delete key 2 00000039
+[6] has delete key 2 00000040
+[7] has delete key 2 00000040
+[6] has delete key 2 00000041
+[7] has delete key 2 00000041
+[6] has delete key 2 00000042
+[7] has delete key 2 00000042
+[6] has delete key 2 00000043
+[7] has delete key 2 00000043
+[6] has delete key 2 00000044
+[7] has delete key 2 00000044
+[6] has delete key 2 00000045
+[7] has delete key 2 00000045
+[6] has delete key 2 00000046
+[7] has delete key 2 00000046
+[6] has delete key 2 00000047
+[7] has delete key 2 00000047
+[6] has delete key 3 00000000
+[7] has delete key 3 00000000
+[6] has delete key 3 00000001
+[7] has delete key 3 00000001
+[6] has delete key 3 00000002
+[7] has delete key 3 00000002
+[6] has delete key 3 00000003
+[7] has delete key 3 00000003
+[6] has delete key 3 00000004
+[7] has delete key 3 00000004
+[6] has delete key 3 00000005
+[7] has delete key 3 00000005
+[6] has delete key 3 00000006
+[7] has delete key 3 00000006
+[6] has delete key 3 00000007
+[7] has delete key 3 00000007
+[6] has delete key 3 00000008
+[7] has delete key 3 00000008
+[6] has delete key 3 00000009
+[7] has delete key 3 00000009
+[6] has delete key 3 00000010
+[7] has delete key 3 00000010
+[6] has delete key 3 00000011
+[7] has delete key 3 00000011
+[6] has delete key 3 00000012
+[7] has delete key 3 00000012
+[6] has delete key 3 00000013
+[7] has delete key 3 00000013
+[6] has delete key 3 00000014
+[7] has delete key 3 00000014
+[6] has delete key 3 00000015
+[7] has delete key 3 00000015
+[6] has delete key 3 00000016
+[7] has delete key 3 00000016
+[6] has delete key 3 00000017
+[7] has delete key 3 00000017
+[6] has delete key 3 00000018
+[7] has delete key 3 00000018
+[6] has delete key 3 00000019
+[7] has delete key 3 00000019
+[6] has delete key 3 00000020
+[7] has delete key 3 00000020
+[6] has delete key 3 00000021
+[7] has delete key 3 00000021
+[6] has delete key 3 00000022
+[7] has delete key 3 00000022
+[6] has delete key 3 00000023
+[7] has delete key 3 00000023
+[6] has delete key 3 00000024
+[7] has delete key 3 00000024
+[6] has delete key 3 00000025
+[7] has delete key 3 00000025
+[6] has delete key 3 00000026
+[7] has delete key 3 00000026
+[6] has delete key 3 00000027
+[7] has delete key 3 00000027
+[6] has delete key 3 00000028
+[7] has delete key 3 00000028
+[6] has delete key 3 00000029
+[7] has delete key 3 00000029
+[6] has delete key 3 00000030
+[7] has delete key 3 00000030
+[6] has delete key 3 00000031
+[7] has delete key 3 00000031
+[6] has delete key 3 00000032
+[7] has delete key 3 00000032
+[6] has delete key 3 00000033
+[7] has delete key 3 00000033
+[6] has delete key 4 00000000
+[7] has delete key 4 00000000
+[6] has delete key 4 00000001
+[7] has delete key 4 00000001
+[6] has delete key 4 00000002
+[7] has delete key 4 00000002
+[6] has delete key 4 00000003
+[7] has delete key 4 00000003
+[6] has delete key 4 00000004
+[7] has delete key 4 00000004
+[6] has delete key 4 00000005
+[7] has delete key 4 00000005
+[6] has delete key 4 00000006
+[7] has delete key 4 00000006
+[6] has delete key 4 00000007
+[7] has delete key 4 00000007
+[6] has delete key 4 00000008
+[7] has delete key 4 00000008
+[6] has delete key 4 00000009
+[7] has delete key 4 00000009
+[6] has delete key 4 00000010
+[7] has delete key 4 00000010
+[6] has delete key 4 00000011
+[7] has delete key 4 00000011
+[6] has delete key 4 00000012
+[7] has delete key 4 00000012
+[6] has delete key 4 00000013
+[7] has delete key 4 00000013
+[6] has delete key 4 00000014
+[7] has delete key 4 00000014
+[6] has delete key 4 00000015
+[7] has delete key 4 00000015
+[6] has delete key 4 00000016
+[7] has delete key 4 00000016
+[6] has delete key 4 00000017
+[7] has delete key 4 00000017
+[6] has delete key 4 00000018
+[7] has delete key 4 00000018
+[6] has delete key 4 00000019
+[7] has delete key 4 00000019
+[6] has delete key 4 00000020
+[7] has delete key 4 00000020
+[6] has delete key 4 00000021
+[7] has delete key 4 00000021
+[6] has delete key 4 00000022
+[7] has delete key 4 00000022
+[6] has delete key 4 00000023
+[7] has delete key 4 00000023
+[6] has delete key 4 00000024
+[7] has delete key 4 00000024
+[6] has delete key 4 00000025
+[7] has delete key 4 00000025
+[6] has delete key 4 00000026
+[7] has delete key 4 00000026
+[6] has delete key 4 00000027
+[7] has delete key 4 00000027
+[6] has delete key 4 00000028
+[7] has delete key 4 00000028
+[6] has delete key 4 00000029
+[7] has delete key 4 00000029
+[6] has delete key 4 00000030
+[7] has delete key 4 00000030
+[6] has delete key 4 00000031
+[7] has delete key 4 00000031
+[6] has delete key 4 00000032
+[7] has delete key 4 00000032
+[6] has delete key 4 00000033
+[7] has delete key 4 00000033
+[6] has delete key 4 00000034
+[7] has delete key 4 00000034
+[6] has delete key 4 00000035
+[7] has delete key 4 00000035
+[6] has delete key 4 00000036
+[7] has delete key 4 00000036
+[6] has delete key 4 00000037
+[7] has delete key 4 00000037
+[6] has delete key 4 00000038
+[7] has delete key 4 00000038
+[6] has delete key 4 00000039
+[7] has delete key 4 00000039
+[6] has delete key 4 00000040
+[7] has delete key 4 00000040
+[6] has delete key 4 00000041
+[7] has delete key 4 00000041
+[6] has put key 4 00000000 value x 4 0 y
+[7] has put key 4 00000000 value x 4 0 y
+[6] has put key 0 00000000 value x 0 0 y
+[6] has put key 1 00000000 value x 1 0 y
+[7] has put key 0 00000000 value x 0 0 y
+[6] has put key 2 00000000 value x 2 0 y
+[7] has put key 1 00000000 value x 1 0 y
+[6] has put key 3 00000000 value x 3 0 y
+[7] has put key 2 00000000 value x 2 0 y
+[7] has put key 3 00000000 value x 3 0 y
+[6] has put key 2 00000001 value x 2 1 y
+[6] has put key 3 00000001 value x 3 1 y
+[7] has put key 2 00000001 value x 2 1 y
+[7] has put key 3 00000001 value x 3 1 y
+[6] has put key 4 00000001 value x 4 1 y
+[6] has put key 1 00000001 value x 1 1 y
+[7] has put key 4 00000001 value x 4 1 y
+[6] has put key 2 00000002 value x 2 2 y
+[7] has put key 1 00000001 value x 1 1 y
+[6] has put key 3 00000002 value x 3 2 y
+[7] has put key 2 00000002 value x 2 2 y
+[7] has put key 3 00000002 value x 3 2 y
+[6] has put key 0 00000001 value x 0 1 y
+[6] has put key 3 00000003 value x 3 3 y
+[7] has put key 0 00000001 value x 0 1 y
+[7] has put key 3 00000003 value x 3 3 y
+[6] has put key 4 00000002 value x 4 2 y
+[7] has put key 4 00000002 value x 4 2 y
+[6] has put key 2 00000003 value x 2 3 y
+[7] has put key 2 00000003 value x 2 3 y
+[6] has put key 0 00000002 value x 0 2 y
+[7] has put key 0 00000002 value x 0 2 y
+[6] has put key 1 00000002 value x 1 2 y
+[7] has put key 1 00000002 value x 1 2 y
+[6] has put key 4 00000003 value x 4 3 y
+[7] has put key 4 00000003 value x 4 3 y
+[6] has put key 0 00000003 value x 0 3 y
+[7] has put key 0 00000003 value x 0 3 y
+[6] has put key 1 00000003 value x 1 3 y
+[7] has put key 1 00000003 value x 1 3 y
+[6] has put key 2 00000004 value x 2 4 y
+[7] has put key 2 00000004 value x 2 4 y
+[6] has put key 3 00000004 value x 3 4 y
+[7] has put key 3 00000004 value x 3 4 y
+[6] has put key 4 00000004 value x 4 4 y
+[7] has put key 4 00000004 value x 4 4 y
+[6] has put key 0 00000004 value x 0 4 y
+[7] has put key 0 00000004 value x 0 4 y
+[6] has put key 3 00000005 value x 3 5 y
+[7] has put key 3 00000005 value x 3 5 y
+[6] has put key 2 00000005 value x 2 5 y
+[7] has put key 2 00000005 value x 2 5 y
+[6] has put key 1 00000004 value x 1 4 y
+[7] has put key 1 00000004 value x 1 4 y
+[6] has put key 0 00000005 value x 0 5 y
+[7] has put key 0 00000005 value x 0 5 y
+[6] has put key 3 00000006 value x 3 6 y
+[7] has put key 3 00000006 value x 3 6 y
+[6] has put key 4 00000005 value x 4 5 y
+[7] has put key 4 00000005 value x 4 5 y
+[6] has put key 0 00000006 value x 0 6 y
+[6] has put key 1 00000005 value x 1 5 y
+[7] has put key 0 00000006 value x 0 6 y
+[6] has put key 2 00000006 value x 2 6 y
+[7] has put key 1 00000005 value x 1 5 y
+[6] has put key 3 00000007 value x 3 7 y
+[7] has put key 2 00000006 value x 2 6 y
+[7] has put key 3 00000007 value x 3 7 y
+[6] has put key 1 00000006 value x 1 6 y
+[6] has put key 2 00000007 value x 2 7 y
+[7] has put key 1 00000006 value x 1 6 y
+[7] has put key 2 00000007 value x 2 7 y
+[6] has put key 0 00000007 value x 0 7 y
+[6] has put key 2 00000008 value x 2 8 y
+[7] has put key 0 00000007 value x 0 7 y
+[7] has put key 2 00000008 value x 2 8 y
+[6] has put key 2 00000009 value x 2 9 y
+[7] has put key 2 00000009 value x 2 9 y
+[6] has put key 4 00000006 value x 4 6 y
+[6] has put key 1 00000007 value x 1 7 y
+[7] has put key 4 00000006 value x 4 6 y
+[7] has put key 1 00000007 value x 1 7 y
+[6] has put key 1 00000008 value x 1 8 y
+[7] has put key 1 00000008 value x 1 8 y
+[6] has put key 3 00000008 value x 3 8 y
+[7] has put key 3 00000008 value x 3 8 y
+[6] has put key 2 00000010 value x 2 10 y
+[6] has put key 3 00000009 value x 3 9 y
+[7] has put key 2 00000010 value x 2 10 y
+[7] has put key 3 00000009 value x 3 9 y
+[6] has put key 4 00000007 value x 4 7 y
+[7] has put key 4 00000007 value x 4 7 y
+[6] has put key 2 00000011 value x 2 11 y
+[6] has put key 3 00000010 value x 3 10 y
+[7] has put key 2 00000011 value x 2 11 y
+[7] has put key 3 00000010 value x 3 10 y
+[6] has put key 4 00000008 value x 4 8 y
+[6] has put key 1 00000009 value x 1 9 y
+[7] has put key 4 00000008 value x 4 8 y
+[6] has put key 3 00000011 value x 3 11 y
+[7] has put key 1 00000009 value x 1 9 y
+[7] has put key 3 00000011 value x 3 11 y
+[6] has put key 4 00000009 value x 4 9 y
+[6] has put key 1 00000010 value x 1 10 y
+[7] has put key 4 00000009 value x 4 9 y
+[7] has put key 1 00000010 value x 1 10 y
+[6] has put key 3 00000012 value x 3 12 y
+[7] has put key 3 00000012 value x 3 12 y
+[6] has put key 2 00000012 value x 2 12 y
+[6] has put key 1 00000011 value x 1 11 y
+[6] has put key 0 00000008 value x 0 8 y
+[7] has put key 2 00000012 value x 2 12 y
+[6] has put key 3 00000013 value x 3 13 y
+[7] has put key 1 00000011 value x 1 11 y
+[7] has put key 0 00000008 value x 0 8 y
+[7] has put key 3 00000013 value x 3 13 y
+[6] has put key 4 00000010 value x 4 10 y
+[7] has put key 4 00000010 value x 4 10 y
+[6] has put key 0 00000009 value x 0 9 y
+[7] has put key 0 00000009 value x 0 9 y
+[6] has put key 4 00000011 value x 4 11 y
+[6] has put key 1 00000012 value x 1 12 y
+[7] has put key 4 00000011 value x 4 11 y
+[6] has put key 0 00000010 value x 0 10 y
+[7] has put key 1 00000012 value x 1 12 y
+[6] has put key 3 00000014 value x 3 14 y
+[7] has put key 0 00000010 value x 0 10 y
+[7] has put key 3 00000014 value x 3 14 y
+[6] has put key 4 00000012 value x 4 12 y
+[6] has put key 3 00000015 value x 3 15 y
+[7] has put key 4 00000012 value x 4 12 y
+[7] has put key 3 00000015 value x 3 15 y
+[6] has put key 4 00000013 value x 4 13 y
+[7] has put key 4 00000013 value x 4 13 y
+[6] has put key 0 00000011 value x 0 11 y
+[7] has put key 0 00000011 value x 0 11 y
+[6] has put key 2 00000013 value x 2 13 y
+[7] has put key 2 00000013 value x 2 13 y
+[6] has put key 1 00000013 value x 1 13 y
+[7] has put key 1 00000013 value x 1 13 y
+[6] has put key 4 00000014 value x 4 14 y
+[7] has put key 4 00000014 value x 4 14 y
+[6] has put key 2 00000014 value x 2 14 y
+[6] has put key 0 00000012 value x 0 12 y
+[7] has put key 2 00000014 value x 2 14 y
+[7] has put key 0 00000012 value x 0 12 y
+[6] has put key 1 00000014 value x 1 14 y
+[7] has put key 1 00000014 value x 1 14 y
+[6] has put key 2 00000015 value x 2 15 y
+[7] has put key 2 00000015 value x 2 15 y
+[6] has put key 3 00000016 value x 3 16 y
+[7] has put key 3 00000016 value x 3 16 y
+[6] has put key 1 00000015 value x 1 15 y
+[7] has put key 1 00000015 value x 1 15 y
+[6] has put key 4 00000015 value x 4 15 y
+[7] has put key 4 00000015 value x 4 15 y
+[6] has put key 3 00000017 value x 3 17 y
+[7] has put key 3 00000017 value x 3 17 y
+[6] has put key 2 00000016 value x 2 16 y
+[7] has put key 2 00000016 value x 2 16 y
+[6] has put key 2 00000017 value x 2 17 y
+[7] has put key 2 00000017 value x 2 17 y
+[6] has put key 3 00000018 value x 3 18 y
+[7] has put key 3 00000018 value x 3 18 y
+[6] has put key 4 00000016 value x 4 16 y
+[7] has put key 4 00000016 value x 4 16 y
+[6] has put key 0 00000013 value x 0 13 y
+[7] has put key 0 00000013 value x 0 13 y
+[6] has put key 0 00000014 value x 0 14 y
+[6] has put key 0 00000014 value x 0 14 y
+[7] has put key 0 00000014 value x 0 14 y
+[7] has put key 0 00000014 value x 0 14 y
+[6] has put key 1 00000016 value x 1 16 y
+[6] has put key 4 00000017 value x 4 17 y
+[7] has put key 1 00000016 value x 1 16 y
+[7] has put key 4 00000017 value x 4 17 y
+[6] has put key 0 00000015 value x 0 15 y
+[7] has put key 0 00000015 value x 0 15 y
+[6] has put key 0 00000016 value x 0 16 y
+[7] has put key 0 00000016 value x 0 16 y
+[6] has put key 3 00000019 value x 3 19 y
+[6] has put key 2 00000018 value x 2 18 y
+[7] has put key 3 00000019 value x 3 19 y
+[6] has put key 4 00000018 value x 4 18 y
+[7] has put key 2 00000018 value x 2 18 y
+[7] has put key 4 00000018 value x 4 18 y
+[6] has put key 3 00000020 value x 3 20 y
+[6] has put key 2 00000019 value x 2 19 y
+[7] has put key 3 00000020 value x 3 20 y
+[6] has put key 0 00000017 value x 0 17 y
+[7] has put key 2 00000019 value x 2 19 y
+[7] has put key 0 00000017 value x 0 17 y
+[6] has put key 1 00000017 value x 1 17 y
+[6] has put key 4 00000019 value x 4 19 y
+[7] has put key 1 00000017 value x 1 17 y
+[6] has put key 0 00000018 value x 0 18 y
+[7] has put key 4 00000019 value x 4 19 y
+[7] has put key 0 00000018 value x 0 18 y
+[6] has put key 1 00000018 value x 1 18 y
+[7] has put key 1 00000018 value x 1 18 y
+[6] has put key 3 00000021 value x 3 21 y
+[7] has put key 3 00000021 value x 3 21 y
+[6] has put key 4 00000020 value x 4 20 y
+[7] has put key 4 00000020 value x 4 20 y
+[6] has put key 0 00000019 value x 0 19 y
+[7] has put key 0 00000019 value x 0 19 y
+[6] has put key 1 00000018 value x 1 18 y
+[7] has put key 1 00000018 value x 1 18 y
+[6] has put key 3 00000021 value x 3 21 y
+[7] has put key 3 00000021 value x 3 21 y
+[6] has put key 4 00000020 value x 4 20 y
+[7] has put key 4 00000020 value x 4 20 y
+[6] has put key 0 00000019 value x 0 19 y
+[6] has put key 2 00000020 value x 2 20 y
+[7] has put key 0 00000019 value x 0 19 y
+[6] has put key 4 00000020 value x 4 20 y
+[7] has put key 2 00000020 value x 2 20 y
+[6] has put key 0 00000019 value x 0 19 y
+[7] has put key 4 00000020 value x 4 20 y
+[6] has put key 2 00000020 value x 2 20 y
+[7] has put key 0 00000019 value x 0 19 y
+[7] has put key 2 00000020 value x 2 20 y
+[6] has put key 2 00000021 value x 2 21 y
+[7] has put key 2 00000021 value x 2 21 y
+[6] has put key 3 00000022 value x 3 22 y
+[7] has put key 3 00000022 value x 3 22 y
+[6] has put key 1 00000019 value x 1 19 y
+[7] has put key 1 00000019 value x 1 19 y
+[6] has put key 4 00000021 value x 4 21 y
+[7] has put key 4 00000021 value x 4 21 y
+[6] has put key 3 00000023 value x 3 23 y
+[6] has put key 0 00000020 value x 0 20 y
+[7] has put key 3 00000023 value x 3 23 y
+[7] has put key 0 00000020 value x 0 20 y
+[6] has put key 2 00000022 value x 2 22 y
+[6] has put key 4 00000022 value x 4 22 y
+[6] has put key 1 00000020 value x 1 20 y
+[7] has put key 2 00000022 value x 2 22 y
+[6] has put key 0 00000021 value x 0 21 y
+[7] has put key 4 00000022 value x 4 22 y
+[7] has put key 1 00000020 value x 1 20 y
+[7] has put key 0 00000021 value x 0 21 y
+[6] has put key 2 00000023 value x 2 23 y
+[7] has put key 2 00000023 value x 2 23 y
+[6] becomes leader
+[6] has put key 3 00000024 value x 3 24 y
+[7] has put key 3 00000024 value x 3 24 y
+[6] has put key 4 00000023 value x 4 23 y
+[7] has put key 4 00000023 value x 4 23 y
+[6] has put key 1 00000021 value x 1 21 y
+[7] has put key 1 00000021 value x 1 21 y
+[6] has put key 0 00000022 value x 0 22 y
+[6] has put key 3 00000024 value x 3 24 y
+[7] has put key 0 00000022 value x 0 22 y
+[6] has put key 4 00000023 value x 4 23 y
+[7] has put key 3 00000024 value x 3 24 y
+[6] has put key 1 00000021 value x 1 21 y
+[7] has put key 4 00000023 value x 4 23 y
+[7] has put key 1 00000021 value x 1 21 y
+[6] has put key 0 00000022 value x 0 22 y
+[7] has put key 0 00000022 value x 0 22 y
+[6] has put key 0 00000022 value x 0 22 y
+[7] has put key 0 00000022 value x 0 22 y
+[6] has put key 3 00000024 value x 3 24 y
+[6] has put key 4 00000023 value x 4 23 y
+[7] has put key 3 00000024 value x 3 24 y
+[6] has put key 1 00000021 value x 1 21 y
+[7] has put key 4 00000023 value x 4 23 y
+[7] has put key 1 00000021 value x 1 21 y
+[6] has delete key 0 00000000
+[7] has delete key 0 00000000
+[6] has delete key 0 00000001
+[7] has delete key 0 00000001
+[6] has delete key 0 00000002
+[7] has delete key 0 00000002
+[6] has delete key 0 00000003
+[7] has delete key 0 00000003
+[6] has delete key 0 00000004
+[7] has delete key 0 00000004
+[6] has delete key 0 00000005
+[7] has delete key 0 00000005
+[6] has delete key 0 00000006
+[7] has delete key 0 00000006
+[6] has delete key 0 00000007
+[7] has delete key 0 00000007
+[6] has delete key 0 00000008
+[7] has delete key 0 00000008
+[6] has delete key 0 00000009
+[7] has delete key 0 00000009
+[6] has delete key 0 00000010
+[7] has delete key 0 00000010
+[6] has delete key 0 00000011
+[7] has delete key 0 00000011
+[6] has delete key 0 00000012
+[7] has delete key 0 00000012
+[6] has delete key 0 00000013
+[7] has delete key 0 00000013
+[6] has delete key 0 00000014
+[7] has delete key 0 00000014
+[6] has delete key 0 00000015
+[7] has delete key 0 00000015
+[6] has delete key 0 00000016
+[7] has delete key 0 00000016
+[6] has delete key 0 00000017
+[7] has delete key 0 00000017
+[6] has delete key 0 00000018
+[7] has delete key 0 00000018
+[6] has delete key 0 00000019
+[7] has delete key 0 00000019
+[6] has delete key 0 00000020
+[7] has delete key 0 00000020
+[6] has delete key 0 00000021
+[7] has delete key 0 00000021
+[6] has delete key 0 00000022
+[7] has delete key 0 00000022
+[6] has delete key 1 00000000
+[7] has delete key 1 00000000
+[6] has delete key 1 00000001
+[7] has delete key 1 00000001
+[6] has delete key 1 00000002
+[7] has delete key 1 00000002
+[6] has delete key 1 00000003
+[7] has delete key 1 00000003
+[6] has delete key 1 00000004
+[7] has delete key 1 00000004
+[6] has delete key 1 00000005
+[7] has delete key 1 00000005
+[6] has delete key 1 00000006
+[7] has delete key 1 00000006
+[6] has delete key 1 00000007
+[7] has delete key 1 00000007
+[6] has delete key 1 00000008
+[7] has delete key 1 00000008
+[6] has delete key 1 00000009
+[7] has delete key 1 00000009
+[6] has delete key 1 00000010
+[7] has delete key 1 00000010
+[6] has delete key 1 00000011
+[7] has delete key 1 00000011
+[6] has delete key 1 00000012
+[7] has delete key 1 00000012
+[6] has delete key 1 00000013
+[7] has delete key 1 00000013
+[6] has delete key 1 00000014
+[7] has delete key 1 00000014
+[6] has delete key 1 00000015
+[7] has delete key 1 00000015
+[6] has delete key 1 00000016
+[7] has delete key 1 00000016
+[6] has delete key 1 00000017
+[7] has delete key 1 00000017
+[6] has delete key 1 00000018
+[7] has delete key 1 00000018
+[6] has delete key 1 00000019
+[7] has delete key 1 00000019
+[6] has delete key 1 00000020
+[7] has delete key 1 00000020
+[6] has delete key 1 00000021
+[7] has delete key 1 00000021
+[6] has delete key 2 00000000
+[7] has delete key 2 00000000
+[6] has delete key 2 00000001
+[7] has delete key 2 00000001
+[6] has delete key 2 00000002
+[7] has delete key 2 00000002
+[6] has delete key 2 00000003
+[7] has delete key 2 00000003
+[6] has delete key 2 00000004
+[7] has delete key 2 00000004
+[6] has delete key 2 00000005
+[7] has delete key 2 00000005
+[6] has delete key 2 00000006
+[7] has delete key 2 00000006
+[6] has delete key 2 00000007
+[7] has delete key 2 00000007
+[6] has delete key 2 00000008
+[7] has delete key 2 00000008
+[6] has delete key 2 00000009
+[7] has delete key 2 00000009
+[6] has delete key 2 00000010
+[7] has delete key 2 00000010
+[6] has delete key 2 00000011
+[7] has delete key 2 00000011
+[6] has delete key 2 00000012
+[7] has delete key 2 00000012
+[6] has delete key 2 00000013
+[7] has delete key 2 00000013
+[6] has delete key 2 00000014
+[7] has delete key 2 00000014
+[6] has delete key 2 00000015
+[7] has delete key 2 00000015
+[6] has delete key 2 00000016
+[7] has delete key 2 00000016
+[6] has delete key 2 00000017
+[7] has delete key 2 00000017
+[6] has delete key 2 00000018
+[7] has delete key 2 00000018
+[6] has delete key 2 00000019
+[7] has delete key 2 00000019
+[6] has delete key 2 00000020
+[7] has delete key 2 00000020
+[6] has delete key 2 00000021
+[7] has delete key 2 00000021
+[6] has delete key 2 00000022
+[7] has delete key 2 00000022
+[6] has delete key 2 00000023
+[7] has delete key 2 00000023
+[6] has delete key 3 00000000
+[7] has delete key 3 00000000
+[6] has delete key 3 00000001
+[7] has delete key 3 00000001
+[6] has delete key 3 00000002
+[7] has delete key 3 00000002
+[6] has delete key 3 00000003
+[7] has delete key 3 00000003
+[6] has delete key 3 00000004
+[7] has delete key 3 00000004
+[6] has delete key 3 00000005
+[7] has delete key 3 00000005
+[6] has delete key 3 00000006
+[7] has delete key 3 00000006
+[6] has delete key 3 00000007
+[7] has delete key 3 00000007
+[6] has delete key 3 00000008
+[7] has delete key 3 00000008
+[6] has delete key 3 00000009
+[7] has delete key 3 00000009
+[6] has delete key 3 00000010
+[7] has delete key 3 00000010
+[6] has delete key 3 00000011
+[7] has delete key 3 00000011
+[6] has delete key 3 00000012
+[7] has delete key 3 00000012
+[6] has delete key 3 00000013
+[7] has delete key 3 00000013
+[6] has delete key 3 00000014
+[7] has delete key 3 00000014
+[6] has delete key 3 00000015
+[7] has delete key 3 00000015
+[6] has delete key 3 00000016
+[7] has delete key 3 00000016
+[6] has delete key 3 00000017
+[7] has delete key 3 00000017
+[6] has delete key 3 00000018
+[7] has delete key 3 00000018
+[6] has delete key 3 00000019
+[7] has delete key 3 00000019
+[6] has delete key 3 00000020
+[7] has delete key 3 00000020
+[6] has delete key 3 00000021
+[7] has delete key 3 00000021
+[6] has delete key 3 00000022
+[7] has delete key 3 00000022
+[6] has delete key 3 00000023
+[7] has delete key 3 00000023
+[6] has delete key 3 00000024
+[7] has delete key 3 00000024
+[6] has delete key 4 00000000
+[7] has delete key 4 00000000
+[6] has delete key 4 00000001
+[7] has delete key 4 00000001
+[6] has delete key 4 00000002
+[7] has delete key 4 00000002
+[6] has delete key 4 00000003
+[7] has delete key 4 00000003
+[6] has delete key 4 00000004
+[7] has delete key 4 00000004
+[6] has delete key 4 00000005
+[7] has delete key 4 00000005
+[6] has delete key 4 00000006
+[7] has delete key 4 00000006
+[6] has delete key 4 00000007
+[7] has delete key 4 00000007
+[6] has delete key 4 00000008
+[7] has delete key 4 00000008
+[6] has delete key 4 00000009
+[7] has delete key 4 00000009
+[6] has delete key 4 00000010
+[7] has delete key 4 00000010
+[6] has delete key 4 00000011
+[7] has delete key 4 00000011
+[6] has delete key 4 00000012
+[7] has delete key 4 00000012
+[6] has delete key 4 00000013
+[7] has delete key 4 00000013
+[6] has delete key 4 00000014
+[7] has delete key 4 00000014
+[6] has delete key 4 00000015
+[7] has delete key 4 00000015
+[6] has delete key 4 00000016
+[7] has delete key 4 00000016
+[6] has delete key 4 00000017
+[7] has delete key 4 00000017
+[6] has delete key 4 00000018
+[7] has delete key 4 00000018
+[6] has delete key 4 00000019
+[7] has delete key 4 00000019
+[6] has delete key 4 00000020
+[7] has delete key 4 00000020
+[6] has delete key 4 00000021
+[7] has delete key 4 00000021
+[6] has delete key 4 00000022
+[7] has delete key 4 00000022
+[6] has delete key 4 00000023
+[7] has delete key 4 00000023
+[6] has put key 0 00000000 value x 0 0 y
+[6] has put key 2 00000000 value x 2 0 y
+[7] has put key 0 00000000 value x 0 0 y
+[6] has put key 4 00000000 value x 4 0 y
+[7] has put key 2 00000000 value x 2 0 y
+[6] has put key 1 00000000 value x 1 0 y
+[7] has put key 4 00000000 value x 4 0 y
+[6] has put key 3 00000000 value x 3 0 y
+[7] has put key 1 00000000 value x 1 0 y
+[7] has put key 3 00000000 value x 3 0 y
+[6] has put key 4 00000001 value x 4 1 y
+[7] has put key 4 00000001 value x 4 1 y
+[6] has put key 1 00000001 value x 1 1 y
+[7] has put key 1 00000001 value x 1 1 y
+[6] has put key 0 00000001 value x 0 1 y
+[7] has put key 0 00000001 value x 0 1 y
+[6] has put key 2 00000001 value x 2 1 y
+[7] has put key 2 00000001 value x 2 1 y
+[6] has put key 3 00000001 value x 3 1 y
+[7] has put key 3 00000001 value x 3 1 y
+[6] has put key 1 00000002 value x 1 2 y
+[7] has put key 1 00000002 value x 1 2 y
+[6] has put key 3 00000002 value x 3 2 y
+[7] has put key 3 00000002 value x 3 2 y
+[6] has put key 0 00000002 value x 0 2 y
+[7] has put key 0 00000002 value x 0 2 y
+[6] has put key 1 00000003 value x 1 3 y
+[7] has put key 1 00000003 value x 1 3 y
+[6] has put key 4 00000002 value x 4 2 y
+[7] has put key 4 00000002 value x 4 2 y
+[6] has put key 3 00000003 value x 3 3 y
+[7] has put key 3 00000003 value x 3 3 y
+[6] has put key 4 00000003 value x 4 3 y
+[7] has put key 4 00000003 value x 4 3 y
+[6] has put key 1 00000004 value x 1 4 y
+[7] has put key 1 00000004 value x 1 4 y
+[6] has put key 4 00000004 value x 4 4 y
+[6] has put key 3 00000004 value x 3 4 y
+[7] has put key 4 00000004 value x 4 4 y
+[7] has put key 3 00000004 value x 3 4 y
+[6] has put key 2 00000002 value x 2 2 y
+[6] has put key 4 00000005 value x 4 5 y
+[7] has put key 2 00000002 value x 2 2 y
+[6] has put key 3 00000005 value x 3 5 y
+[7] has put key 4 00000005 value x 4 5 y
+[7] has put key 3 00000005 value x 3 5 y
+[6] has put key 1 00000005 value x 1 5 y
+[7] has put key 1 00000005 value x 1 5 y
+[6] has put key 3 00000006 value x 3 6 y
+[7] has put key 3 00000006 value x 3 6 y
+[6] has put key 1 00000006 value x 1 6 y
+[7] has put key 1 00000006 value x 1 6 y
+[6] has put key 3 00000007 value x 3 7 y
+[7] has put key 3 00000007 value x 3 7 y
+[6] has put key 0 00000003 value x 0 3 y
+[6] has put key 4 00000006 value x 4 6 y
+[7] has put key 0 00000003 value x 0 3 y
+[6] has put key 2 00000003 value x 2 3 y
+[7] has put key 4 00000006 value x 4 6 y
+[7] has put key 2 00000003 value x 2 3 y
+[6] has put key 3 00000008 value x 3 8 y
+[7] has put key 3 00000008 value x 3 8 y
+[6] has put key 1 00000007 value x 1 7 y
+[6] has put key 4 00000007 value x 4 7 y
+[7] has put key 1 00000007 value x 1 7 y
+[7] has put key 4 00000007 value x 4 7 y
+[6] has put key 0 00000004 value x 0 4 y
+[6] has put key 4 00000008 value x 4 8 y
+[7] has put key 0 00000004 value x 0 4 y
+[7] has put key 4 00000008 value x 4 8 y
+[6] has put key 0 00000005 value x 0 5 y
+[7] has put key 0 00000005 value x 0 5 y
+[6] has put key 1 00000008 value x 1 8 y
+[7] has put key 1 00000008 value x 1 8 y
+[6] has put key 4 00000009 value x 4 9 y
+[7] has put key 4 00000009 value x 4 9 y
+[6] has put key 2 00000004 value x 2 4 y
+[7] has put key 2 00000004 value x 2 4 y
+[6] has put key 3 00000009 value x 3 9 y
+[7] has put key 3 00000009 value x 3 9 y
+[6] has put key 3 00000010 value x 3 10 y
+[7] has put key 3 00000010 value x 3 10 y
+[6] has put key 1 00000009 value x 1 9 y
+[7] has put key 1 00000009 value x 1 9 y
+[6] has put key 2 00000005 value x 2 5 y
+[7] has put key 2 00000005 value x 2 5 y
+[6] has put key 4 00000010 value x 4 10 y
+[7] has put key 4 00000010 value x 4 10 y
+[6] has put key 2 00000006 value x 2 6 y
+[6] has put key 3 00000011 value x 3 11 y
+[7] has put key 2 00000006 value x 2 6 y
+[7] has put key 3 00000011 value x 3 11 y
+[6] has put key 1 00000010 value x 1 10 y
+[6] has put key 4 00000011 value x 4 11 y
+[7] has put key 1 00000010 value x 1 10 y
+[7] has put key 4 00000011 value x 4 11 y
+[6] has put key 2 00000007 value x 2 7 y
+[7] has put key 2 00000007 value x 2 7 y
+[6] has put key 4 00000012 value x 4 12 y
+[7] has put key 4 00000012 value x 4 12 y
+[6] has put key 2 00000008 value x 2 8 y
+[7] has put key 2 00000008 value x 2 8 y
+[6] has put key 3 00000012 value x 3 12 y
+[7] has put key 3 00000012 value x 3 12 y
+[6] has put key 1 00000011 value x 1 11 y
+[6] has put key 4 00000013 value x 4 13 y
+[7] has put key 1 00000011 value x 1 11 y
+[7] has put key 4 00000013 value x 4 13 y
+[6] has put key 2 00000009 value x 2 9 y
+[7] has put key 2 00000009 value x 2 9 y
+[6] has put key 1 00000012 value x 1 12 y
+[7] has put key 1 00000012 value x 1 12 y
+[6] has put key 4 00000014 value x 4 14 y
+[7] has put key 4 00000014 value x 4 14 y
+[6] has put key 3 00000013 value x 3 13 y
+[6] has put key 0 00000006 value x 0 6 y
+[7] has put key 3 00000013 value x 3 13 y
+[6] has put key 1 00000013 value x 1 13 y
+[7] has put key 0 00000006 value x 0 6 y
+[7] has put key 1 00000013 value x 1 13 y
+[6] has put key 3 00000014 value x 3 14 y
+[7] has put key 3 00000014 value x 3 14 y
+[6] has put key 4 00000015 value x 4 15 y
+[7] has put key 4 00000015 value x 4 15 y
+[6] has put key 0 00000007 value x 0 7 y
+[6] has put key 1 00000014 value x 1 14 y
+[7] has put key 0 00000007 value x 0 7 y
+[7] has put key 1 00000014 value x 1 14 y
+[6] has put key 2 00000010 value x 2 10 y
+[7] has put key 2 00000010 value x 2 10 y
+[6] has put key 0 00000008 value x 0 8 y
+[7] has put key 0 00000008 value x 0 8 y
+[6] has put key 1 00000015 value x 1 15 y
+[6] has put key 4 00000016 value x 4 16 y
+[7] has put key 1 00000015 value x 1 15 y
+[7] has put key 4 00000016 value x 4 16 y
+[6] has put key 2 00000011 value x 2 11 y
+[7] has put key 2 00000011 value x 2 11 y
+[6] has put key 0 00000009 value x 0 9 y
+[6] has put key 1 00000016 value x 1 16 y
+[7] has put key 0 00000009 value x 0 9 y
+[7] has put key 1 00000016 value x 1 16 y
+[6] has put key 0 00000010 value x 0 10 y
+[7] has put key 0 00000010 value x 0 10 y
+[6] has put key 4 00000017 value x 4 17 y
+[7] has put key 4 00000017 value x 4 17 y
+[6] has put key 2 00000012 value x 2 12 y
+[7] has put key 2 00000012 value x 2 12 y
+[6] has put key 0 00000011 value x 0 11 y
+[6] has put key 4 00000018 value x 4 18 y
+[7] has put key 0 00000011 value x 0 11 y
+[7] has put key 4 00000018 value x 4 18 y
+[6] has put key 3 00000015 value x 3 15 y
+[6] has put key 0 00000012 value x 0 12 y
+[7] has put key 3 00000015 value x 3 15 y
+[7] has put key 0 00000012 value x 0 12 y
+[6] has put key 2 00000013 value x 2 13 y
+[7] has put key 2 00000013 value x 2 13 y
+[6] has put key 1 00000017 value x 1 17 y
+[7] has put key 1 00000017 value x 1 17 y
+[6] has put key 0 00000013 value x 0 13 y
+[7] has put key 0 00000013 value x 0 13 y
+[6] has put key 3 00000016 value x 3 16 y
+[7] has put key 3 00000016 value x 3 16 y
+[6] has put key 1 00000018 value x 1 18 y
+[7] has put key 1 00000018 value x 1 18 y
+[6] has put key 4 00000019 value x 4 19 y
+[7] has put key 4 00000019 value x 4 19 y
+[6] has put key 2 00000014 value x 2 14 y
+[7] has put key 2 00000014 value x 2 14 y
+[6] has put key 4 00000020 value x 4 20 y
+[6] has put key 2 00000015 value x 2 15 y
+[7] has put key 4 00000020 value x 4 20 y
+[7] has put key 2 00000015 value x 2 15 y
+[6] has put key 3 00000017 value x 3 17 y
+[7] has put key 3 00000017 value x 3 17 y
+[6] has put key 1 00000019 value x 1 19 y
+[7] has put key 1 00000019 value x 1 19 y
+[6] has put key 2 00000016 value x 2 16 y
+[7] has put key 2 00000016 value x 2 16 y
+[6] has put key 4 00000021 value x 4 21 y
+[7] has put key 4 00000021 value x 4 21 y
+[6] has put key 2 00000017 value x 2 17 y
+[6] has put key 0 00000014 value x 0 14 y
+[7] has put key 2 00000017 value x 2 17 y
+[6] has put key 3 00000018 value x 3 18 y
+[7] has put key 0 00000014 value x 0 14 y
+[7] has put key 3 00000018 value x 3 18 y
+[6] has put key 2 00000018 value x 2 18 y
+[6] has put key 4 00000022 value x 4 22 y
+[7] has put key 2 00000018 value x 2 18 y
+[7] has put key 4 00000022 value x 4 22 y
+[6] has put key 2 00000019 value x 2 19 y
+[7] has put key 2 00000019 value x 2 19 y
+[6] has put key 3 00000019 value x 3 19 y
+[7] has put key 3 00000019 value x 3 19 y
+[6] has put key 0 00000015 value x 0 15 y
+[7] has put key 0 00000015 value x 0 15 y
+[6] has put key 1 00000020 value x 1 20 y
+[6] has put key 3 00000020 value x 3 20 y
+[7] has put key 1 00000020 value x 1 20 y
+[6] has put key 4 00000023 value x 4 23 y
+[7] has put key 3 00000020 value x 3 20 y
+[7] has put key 4 00000023 value x 4 23 y
+[6] has put key 3 00000021 value x 3 21 y
+[7] has put key 3 00000021 value x 3 21 y
+[6] has put key 1 00000021 value x 1 21 y
+[6] has put key 2 00000020 value x 2 20 y
+[7] has put key 1 00000021 value x 1 21 y
+[6] has put key 4 00000024 value x 4 24 y
+[7] has put key 2 00000020 value x 2 20 y
+[7] has put key 4 00000024 value x 4 24 y
+[6] has put key 2 00000021 value x 2 21 y
+[7] has put key 2 00000021 value x 2 21 y
+[6] has put key 4 00000025 value x 4 25 y
+[7] has put key 4 00000025 value x 4 25 y
+[6] has put key 3 00000022 value x 3 22 y
+[7] has put key 3 00000022 value x 3 22 y
+[6] has put key 0 00000016 value x 0 16 y
+[7] has put key 0 00000016 value x 0 16 y
+[6] has put key 1 00000022 value x 1 22 y
+[6] has put key 0 00000017 value x 0 17 y
+[7] has put key 1 00000022 value x 1 22 y
+[7] has put key 0 00000017 value x 0 17 y
+[6] has put key 1 00000023 value x 1 23 y
+[7] has put key 1 00000023 value x 1 23 y
+[6] has put key 4 00000026 value x 4 26 y
+[7] has put key 4 00000026 value x 4 26 y
+[6] has put key 0 00000018 value x 0 18 y
+[7] has put key 0 00000018 value x 0 18 y
+[6] has put key 3 00000023 value x 3 23 y
+[7] has put key 3 00000023 value x 3 23 y
+[6] has put key 1 00000024 value x 1 24 y
+[7] has put key 1 00000024 value x 1 24 y
+[6] has put key 3 00000024 value x 3 24 y
+[6] has put key 1 00000025 value x 1 25 y
+[7] has put key 3 00000024 value x 3 24 y
+[6] has put key 2 00000022 value x 2 22 y
+[7] has put key 1 00000025 value x 1 25 y
+[6] has put key 4 00000027 value x 4 27 y
+[7] has put key 2 00000022 value x 2 22 y
+[7] has put key 4 00000027 value x 4 27 y
+[6] has put key 3 00000025 value x 3 25 y
+[7] has put key 3 00000025 value x 3 25 y
+[6] has put key 2 00000023 value x 2 23 y
+[6] has put key 4 00000028 value x 4 28 y
+[7] has put key 2 00000023 value x 2 23 y
+[7] has put key 4 00000028 value x 4 28 y
+[6] has put key 1 00000026 value x 1 26 y
+[7] has put key 1 00000026 value x 1 26 y
+[6] has put key 0 00000019 value x 0 19 y
+[7] has put key 0 00000019 value x 0 19 y
+[6] has put key 0 00000020 value x 0 20 y
+[6] has put key 2 00000024 value x 2 24 y
+[7] has put key 0 00000020 value x 0 20 y
+[6] has put key 4 00000029 value x 4 29 y
+[7] has put key 2 00000024 value x 2 24 y
+[7] has put key 4 00000029 value x 4 29 y
+[6] has put key 1 00000027 value x 1 27 y
+[6] has put key 0 00000021 value x 0 21 y
+[7] has put key 1 00000027 value x 1 27 y
+[6] has put key 2 00000025 value x 2 25 y
+[7] has put key 0 00000021 value x 0 21 y
+[6] has put key 4 00000030 value x 4 30 y
+[7] has put key 2 00000025 value x 2 25 y
+[7] has put key 4 00000030 value x 4 30 y
+[6] has put key 3 00000026 value x 3 26 y
+[6] has put key 1 00000028 value x 1 28 y
+[7] has put key 3 00000026 value x 3 26 y
+[6] has put key 0 00000022 value x 0 22 y
+[7] has put key 1 00000028 value x 1 28 y
+[7] has put key 0 00000022 value x 0 22 y
+[6] has put key 2 00000026 value x 2 26 y
+[7] has put key 2 00000026 value x 2 26 y
+[6] has put key 2 00000027 value x 2 27 y
+[7] has put key 2 00000027 value x 2 27 y
+[6] has put key 3 00000027 value x 3 27 y
+[6] has put key 1 00000029 value x 1 29 y
+[7] has put key 3 00000027 value x 3 27 y
+[7] has put key 1 00000029 value x 1 29 y
+[6] has put key 3 00000028 value x 3 28 y
+[6] has put key 4 00000031 value x 4 31 y
+[7] has put key 3 00000028 value x 3 28 y
+[6] has put key 4 00000031 value x 4 31 y
+[7] has put key 4 00000031 value x 4 31 y
+[6] has put key 3 00000028 value x 3 28 y
+[7] has put key 4 00000031 value x 4 31 y
+[7] has put key 3 00000028 value x 3 28 y
+[6] has put key 4 00000032 value x 4 32 y
+[6] has put key 3 00000029 value x 3 29 y
+[7] has put key 4 00000032 value x 4 32 y
+[7] has put key 3 00000029 value x 3 29 y
+[6] has put key 1 00000030 value x 1 30 y
+[7] has put key 1 00000030 value x 1 30 y
+[6] has put key 1 00000031 value x 1 31 y
+[6] has put key 3 00000030 value x 3 30 y
+[7] has put key 1 00000031 value x 1 31 y
+[6] has put key 4 00000033 value x 4 33 y
+[7] has put key 3 00000030 value x 3 30 y
+[7] has put key 4 00000033 value x 4 33 y
+[6] has put key 1 00000031 value x 1 31 y
+[6] has put key 3 00000030 value x 3 30 y
+[7] has put key 1 00000031 value x 1 31 y
+[7] has put key 3 00000030 value x 3 30 y
+[6] has put key 4 00000033 value x 4 33 y
+[7] has put key 4 00000033 value x 4 33 y
+[6] has put key 3 00000031 value x 3 31 y
+[7] has put key 3 00000031 value x 3 31 y
+[6] has put key 4 00000034 value x 4 34 y
+[7] has put key 4 00000034 value x 4 34 y
+[6] has put key 0 00000023 value x 0 23 y
+[7] has put key 0 00000023 value x 0 23 y
+[6] has put key 1 00000032 value x 1 32 y
+[6] has put key 3 00000032 value x 3 32 y
+[6] has put key 2 00000028 value x 2 28 y
+[6] has put key 0 00000024 value x 0 24 y
+[7] has put key 1 00000032 value x 1 32 y
+[7] has put key 3 00000032 value x 3 32 y
+[7] has put key 2 00000028 value x 2 28 y
+[7] has put key 0 00000024 value x 0 24 y
+[6] has put key 3 00000033 value x 3 33 y
+[6] has put key 2 00000029 value x 2 29 y
+[7] has put key 3 00000033 value x 3 33 y
+[7] has put key 2 00000029 value x 2 29 y
+[6] has put key 0 00000025 value x 0 25 y
+[7] has put key 0 00000025 value x 0 25 y
+[6] has delete key 0 00000000
+[7] has delete key 0 00000000
+[6] has delete key 0 00000001
+[7] has delete key 0 00000001
+[6] has delete key 0 00000002
+[7] has delete key 0 00000002
+[6] has delete key 0 00000003
+[7] has delete key 0 00000003
+[6] has delete key 0 00000004
+[7] has delete key 0 00000004
+[6] has delete key 0 00000005
+[7] has delete key 0 00000005
+[6] has delete key 0 00000006
+[7] has delete key 0 00000006
+[6] has delete key 0 00000007
+[7] has delete key 0 00000007
+[6] has delete key 0 00000008
+[7] has delete key 0 00000008
+[6] has delete key 0 00000009
+[7] has delete key 0 00000009
+[6] has delete key 0 00000010
+[7] has delete key 0 00000010
+[6] has delete key 0 00000011
+[7] has delete key 0 00000011
+[6] has delete key 0 00000012
+[7] has delete key 0 00000012
+[6] has delete key 0 00000013
+[7] has delete key 0 00000013
+[6] has delete key 0 00000014
+[7] has delete key 0 00000014
+[6] has delete key 0 00000015
+[7] has delete key 0 00000015
+[6] has delete key 0 00000016
+[7] has delete key 0 00000016
+[6] has delete key 0 00000017
+[7] has delete key 0 00000017
+[6] has delete key 0 00000018
+[7] has delete key 0 00000018
+[6] has delete key 0 00000019
+[7] has delete key 0 00000019
+[6] has delete key 0 00000020
+[7] has delete key 0 00000020
+[6] has delete key 0 00000021
+[7] has delete key 0 00000021
+[6] has delete key 0 00000022
+[7] has delete key 0 00000022
+[6] has delete key 0 00000023
+[7] has delete key 0 00000023
+[6] has delete key 0 00000024
+[7] has delete key 0 00000024
+[6] has delete key 0 00000025
+[7] has delete key 0 00000025
+[6] has delete key 1 00000000
+[7] has delete key 1 00000000
+[6] has delete key 1 00000001
+[7] has delete key 1 00000001
+[6] has delete key 1 00000002
+[7] has delete key 1 00000002
+[6] has delete key 1 00000003
+[7] has delete key 1 00000003
+[6] has delete key 1 00000004
+[7] has delete key 1 00000004
+[6] has delete key 1 00000005
+[7] has delete key 1 00000005
+[6] has delete key 1 00000006
+[7] has delete key 1 00000006
+[6] has delete key 1 00000007
+[7] has delete key 1 00000007
+[6] has delete key 1 00000008
+[7] has delete key 1 00000008
+[6] has delete key 1 00000009
+[7] has delete key 1 00000009
+[6] has delete key 1 00000010
+[7] has delete key 1 00000010
+[6] has delete key 1 00000011
+[7] has delete key 1 00000011
+[6] has delete key 1 00000012
+[7] has delete key 1 00000012
+[6] has delete key 1 00000013
+[7] has delete key 1 00000013
+[6] has delete key 1 00000014
+[7] has delete key 1 00000014
+[6] has delete key 1 00000015
+[7] has delete key 1 00000015
+[6] has delete key 1 00000016
+[7] has delete key 1 00000016
+[6] has delete key 1 00000017
+[7] has delete key 1 00000017
+[6] has delete key 1 00000018
+[7] has delete key 1 00000018
+[6] has delete key 1 00000019
+[7] has delete key 1 00000019
+[6] has delete key 1 00000020
+[7] has delete key 1 00000020
+[6] has delete key 1 00000021
+[7] has delete key 1 00000021
+[6] has delete key 1 00000022
+[7] has delete key 1 00000022
+[6] has delete key 1 00000023
+[7] has delete key 1 00000023
+[6] has delete key 1 00000024
+[7] has delete key 1 00000024
+[6] has delete key 1 00000025
+[7] has delete key 1 00000025
+[6] has delete key 1 00000026
+[7] has delete key 1 00000026
+[6] has delete key 1 00000027
+[7] has delete key 1 00000027
+[6] has delete key 1 00000028
+[7] has delete key 1 00000028
+[6] has delete key 1 00000029
+[7] has delete key 1 00000029
+[6] has delete key 1 00000030
+[7] has delete key 1 00000030
+[6] has delete key 1 00000031
+[7] has delete key 1 00000031
+[6] has delete key 1 00000032
+[7] has delete key 1 00000032
+[6] has delete key 2 00000000
+[7] has delete key 2 00000000
+[6] has delete key 2 00000001
+[7] has delete key 2 00000001
+[6] has delete key 2 00000002
+[7] has delete key 2 00000002
+[6] has delete key 2 00000003
+[7] has delete key 2 00000003
+[6] has delete key 2 00000004
+[7] has delete key 2 00000004
+[6] has delete key 2 00000005
+[7] has delete key 2 00000005
+[6] has delete key 2 00000006
+[7] has delete key 2 00000006
+[6] has delete key 2 00000007
+[7] has delete key 2 00000007
+[6] has delete key 2 00000008
+[7] has delete key 2 00000008
+[6] has delete key 2 00000009
+[7] has delete key 2 00000009
+[6] has delete key 2 00000010
+[7] has delete key 2 00000010
+[6] has delete key 2 00000011
+[7] has delete key 2 00000011
+[6] has delete key 2 00000012
+[7] has delete key 2 00000012
+[6] has delete key 2 00000013
+[7] has delete key 2 00000013
+[6] has delete key 2 00000014
+[7] has delete key 2 00000014
+[6] has delete key 2 00000015
+[7] has delete key 2 00000015
+[6] has delete key 2 00000016
+[7] has delete key 2 00000016
+[6] has delete key 2 00000017
+[7] has delete key 2 00000017
+[6] has delete key 2 00000018
+[7] has delete key 2 00000018
+[6] has delete key 2 00000019
+[7] has delete key 2 00000019
+[6] has delete key 2 00000020
+[7] has delete key 2 00000020
+[6] has delete key 2 00000021
+[7] has delete key 2 00000021
+[6] has delete key 2 00000022
+[7] has delete key 2 00000022
+[6] has delete key 2 00000023
+[7] has delete key 2 00000023
+[6] has delete key 2 00000024
+[7] has delete key 2 00000024
+[6] has delete key 2 00000025
+[7] has delete key 2 00000025
+[6] has delete key 2 00000026
+[7] has delete key 2 00000026
+[6] has delete key 2 00000027
+[7] has delete key 2 00000027
+[6] has delete key 2 00000028
+[7] has delete key 2 00000028
+[6] has delete key 2 00000029
+[7] has delete key 2 00000029
+[6] has delete key 3 00000000
+[7] has delete key 3 00000000
+[6] has delete key 3 00000001
+[7] has delete key 3 00000001
+[6] has delete key 3 00000002
+[7] has delete key 3 00000002
+[6] has delete key 3 00000003
+[7] has delete key 3 00000003
+[6] has delete key 3 00000004
+[7] has delete key 3 00000004
+[6] has delete key 3 00000005
+[7] has delete key 3 00000005
+[6] has delete key 3 00000006
+[7] has delete key 3 00000006
+[6] has delete key 3 00000007
+[7] has delete key 3 00000007
+[6] has delete key 3 00000008
+[7] has delete key 3 00000008
+[6] has delete key 3 00000009
+[7] has delete key 3 00000009
+[6] has delete key 3 00000010
+[7] has delete key 3 00000010
+[6] has delete key 3 00000011
+[7] has delete key 3 00000011
+[6] has delete key 3 00000012
+[7] has delete key 3 00000012
+[6] has delete key 3 00000013
+[7] has delete key 3 00000013
+[6] has delete key 3 00000014
+[7] has delete key 3 00000014
+[6] has delete key 3 00000015
+[7] has delete key 3 00000015
+[6] has delete key 3 00000016
+[7] has delete key 3 00000016
+[6] has delete key 3 00000017
+[7] has delete key 3 00000017
+[6] has delete key 3 00000018
+[7] has delete key 3 00000018
+[6] has delete key 3 00000019
+[7] has delete key 3 00000019
+[6] has delete key 3 00000020
+[7] has delete key 3 00000020
+[6] has delete key 3 00000021
+[7] has delete key 3 00000021
+[6] has delete key 3 00000022
+[7] has delete key 3 00000022
+[6] has delete key 3 00000023
+[7] has delete key 3 00000023
+[6] has delete key 3 00000024
+[7] has delete key 3 00000024
+[6] has delete key 3 00000025
+[7] has delete key 3 00000025
+[6] has delete key 3 00000026
+[7] has delete key 3 00000026
+[6] has delete key 3 00000027
+[7] has delete key 3 00000027
+[6] has delete key 3 00000028
+[7] has delete key 3 00000028
+[6] has delete key 3 00000029
+[7] has delete key 3 00000029
+[6] has delete key 3 00000030
+[7] has delete key 3 00000030
+[6] has delete key 3 00000031
+[7] has delete key 3 00000031
+[6] has delete key 3 00000032
+[7] has delete key 3 00000032
+[6] has delete key 3 00000033
+[7] has delete key 3 00000033
+[6] has delete key 4 00000000
+[7] has delete key 4 00000000
+[6] has delete key 4 00000001
+[7] has delete key 4 00000001
+[6] has delete key 4 00000002
+[7] has delete key 4 00000002
+[6] has delete key 4 00000003
+[7] has delete key 4 00000003
+[6] has delete key 4 00000004
+[7] has delete key 4 00000004
+[6] has delete key 4 00000005
+[7] has delete key 4 00000005
+[6] has delete key 4 00000006
+[7] has delete key 4 00000006
+[6] has delete key 4 00000007
+[7] has delete key 4 00000007
+[6] has delete key 4 00000008
+[7] has delete key 4 00000008
+[6] has delete key 4 00000009
+[7] has delete key 4 00000009
+[6] has delete key 4 00000010
+[7] has delete key 4 00000010
+[6] has delete key 4 00000011
+[7] has delete key 4 00000011
+[6] has delete key 4 00000012
+[7] has delete key 4 00000012
+[6] has delete key 4 00000013
+[7] has delete key 4 00000013
+[6] has delete key 4 00000014
+[7] has delete key 4 00000014
+[6] has delete key 4 00000015
+[7] has delete key 4 00000015
+[6] has delete key 4 00000016
+[7] has delete key 4 00000016
+[6] has delete key 4 00000017
+[7] has delete key 4 00000017
+[6] has delete key 4 00000018
+[7] has delete key 4 00000018
+[6] has delete key 4 00000019
+[7] has delete key 4 00000019
+[6] has delete key 4 00000020
+[7] has delete key 4 00000020
+[6] has delete key 4 00000021
+[7] has delete key 4 00000021
+[6] has delete key 4 00000022
+[7] has delete key 4 00000022
+[6] has delete key 4 00000023
+[7] has delete key 4 00000023
+[6] has delete key 4 00000024
+[7] has delete key 4 00000024
+[6] has delete key 4 00000025
+[7] has delete key 4 00000025
+[6] has delete key 4 00000026
+[7] has delete key 4 00000026
+[6] has delete key 4 00000027
+[7] has delete key 4 00000027
+[6] has delete key 4 00000028
+[7] has delete key 4 00000028
+[6] has delete key 4 00000029
+[7] has delete key 4 00000029
+[6] has delete key 4 00000030
+[7] has delete key 4 00000030
+[6] has delete key 4 00000031
+[7] has delete key 4 00000031
+[6] has delete key 4 00000032
+[7] has delete key 4 00000032
+[6] has delete key 4 00000033
+[7] has delete key 4 00000033
+[6] has delete key 4 00000034
+[7] has delete key 4 00000034
+--- PASS: TestConfChangeUnreliable3B (34.22s)
 PASS
-ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	35.748s
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	34.254s

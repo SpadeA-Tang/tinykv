@@ -1,269 +1,213 @@
-GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestSnapshotUnreliableRecoverConcurrentPartition2C|| true
-=== RUN   TestSnapshotUnreliableRecoverConcurrentPartition2C
-[1] becomes leader
-[1] with lastIdx 6 send hb to peers [4 5 1 2 3] 6 6 6 6
-[1] with lastIdx 6 send hb to peers [4 5 1 2 3] 6 6 6 6
-[1] with lastIdx 6 send hb to peers [4 5 1 2 3] 6 6 6 6
-[1] with lastIdx 6 send hb to peers [4 5 1 2 3] 6 6 6 6
-[1] with lastIdx 6 send hb to peers [4 5 1 2 3] 6 6 6 6
-[1] with lastIdx 31 send hb to peers [4 5 1 2 3] 28 28 28 28
-[1] with lastIdx 46 send hb to peers [4 5 1 2 3] 42 42 42 43
-[1] with lastIdx 58 send hb to peers [4 5 1 2 3] 58 58 58 58
-[1] with lastIdx 73 send hb to peers [4 5 1 2 3] 58 71 58 71
-[1] with lastIdx 94 send hb to peers [4 5 1 2 3] 58 90 58 90
-[1] with lastIdx 114 send hb to peers [4 5 1 2 3] 58 109 58 109
-[1] with lastIdx 134 send hb to peers [4 5 1 2 3] 58 132 58 132
-[1] with lastIdx 138 send hb to peers [4 5 1 2 3] 58 138 58 137
-[1] with lastIdx 138 send hb to peers [4 5 1 2 3] 58 138 58 137
-[1] with lastIdx 138 send hb to peers [4 5 1 2 3] 58 138 58 137
-[1] with lastIdx 138 send hb to peers [4 5 1 2 3] 58 138 58 137
-[1] with lastIdx 138 send hb to peers [4 5 1 2 3] 58 138 58 137
-[4] receives snapshot from [1]
-[1] with lastIdx 138 send hb to peers [4 5 1 2 3] 58 138 58 137
-[1] with lastIdx 138 send hb to peers [4 5 1 2 3] 58 138 58 137
-[1] with lastIdx 138 send hb to peers [4 5 1 2 3] 58 138 58 137
-[3] becomes leader
-[3] with lastIdx 139 send hb to peers [4 5 1 2 3] 5 5 5 5
-[3] with lastIdx 144 send hb to peers [4 5 1 2 3] 144 5 5 5
-[3] with lastIdx 144 send hb to peers [4 5 1 2 3] 144 5 5 5
-[3] with lastIdx 164 send hb to peers [4 5 1 2 3] 161 161 163 5
-[3] with lastIdx 187 send hb to peers [4 5 1 2 3] 183 184 184 5
-[3] with lastIdx 207 send hb to peers [4 5 1 2 3] 204 204 205 5
-[3] with lastIdx 228 send hb to peers [4 5 1 2 3] 223 226 226 5
-[2] receives snapshot from [3]
-[2] receives snapshot from [3]
-[3] with lastIdx 244 send hb to peers [4 5 1 2 3] 223 242 242 242
-[3] with lastIdx 264 send hb to peers [4 5 1 2 3] 223 261 263 263
-[3] with lastIdx 289 send hb to peers [4 5 1 2 3] 223 285 285 286
-[3] with lastIdx 320 send hb to peers [4 5 1 2 3] 223 318 319 318
-[3] with lastIdx 348 send hb to peers [4 5 1 2 3] 223 346 343 345
-[3] with lastIdx 373 send hb to peers [4 5 1 2 3] 223 368 370 351
-[3] with lastIdx 398 send hb to peers [4 5 1 2 3] 223 396 393 351
-[3] with lastIdx 424 send hb to peers [4 5 1 2 3] 223 420 419 351
-[3] with lastIdx 450 send hb to peers [4 5 1 2 3] 223 447 446 351
-[3] with lastIdx 472 send hb to peers [4 5 1 2 3] 223 470 469 351
-[3] with lastIdx 493 send hb to peers [4 5 1 2 3] 223 490 489 351
-[3] with lastIdx 508 send hb to peers [4 5 1 2 3] 223 503 503 351
-[3] with lastIdx 508 send hb to peers [4 5 1 2 3] 223 503 503 351
-[3] with lastIdx 508 send hb to peers [4 5 1 2 3] 223 503 503 351
-[3] with lastIdx 508 send hb to peers [4 5 1 2 3] 223 503 503 351
-[3] with lastIdx 508 send hb to peers [4 5 1 2 3] 223 503 503 351
-[3] with lastIdx 508 send hb to peers [4 5 1 2 3] 223 503 503 351
-[3] with lastIdx 508 send hb to peers [4 5 1 2 3] 223 503 503 351
-[1] becomes leader
-[1] with lastIdx 504 send hb to peers [4 5 1 2 3] 58 138 58 137
-[4] receives snapshot from [1]
-[1] with lastIdx 509 send hb to peers [4 5 1 2 3] 509 509 58 137
-read from clients 0
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestConfChangeUnreliable3B|| true
+=== RUN   TestConfChangeUnreliable3B
 [5] becomes leader
-[2] receives snapshot from [5]
-[5] with lastIdx 532 send hb to peers [4 5 1 2 3] 532 532 532 532
-[5] with lastIdx 550 send hb to peers [4 5 1 2 3] 550 550 550 550
-[5] with lastIdx 562 send hb to peers [4 5 1 2 3] 562 561 561 562
-read from clients 1
-[5] with lastIdx 572 send hb to peers [4 5 1 2 3] 572 572 572 572
-[5] with lastIdx 580 send hb to peers [4 5 1 2 3] 579 580 580 580
-[5] with lastIdx 588 send hb to peers [4 5 1 2 3] 587 587 587 588
-[5] with lastIdx 597 send hb to peers [4 5 1 2 3] 596 596 596 596
-[5] with lastIdx 605 send hb to peers [4 5 1 2 3] 604 604 604 604
-[5] with lastIdx 612 send hb to peers [4 5 1 2 3] 611 611 611 611
-[5] with lastIdx 618 send hb to peers [4 5 1 2 3] 617 617 617 616
-read from clients 2
-[5] with lastIdx 624 send hb to peers [4 5 1 2 3] 623 623 623 623
-[5] with lastIdx 631 send hb to peers [4 5 1 2 3] 630 630 629 630
-[5] with lastIdx 637 send hb to peers [4 5 1 2 3] 636 636 636 636
-[5] with lastIdx 642 send hb to peers [4 5 1 2 3] 642 642 642 641
-[5] with lastIdx 648 send hb to peers [4 5 1 2 3] 647 647 647 647
-[5] with lastIdx 654 send hb to peers [4 5 1 2 3] 653 653 653 653
-[5] with lastIdx 659 send hb to peers [4 5 1 2 3] 658 658 658 658
-[5] with lastIdx 664 send hb to peers [4 5 1 2 3] 663 663 663 663
-[5] with lastIdx 668 send hb to peers [4 5 1 2 3] 668 668 668 667
-read from clients 3
-[5] with lastIdx 673 send hb to peers [4 5 1 2 3] 672 672 672 672
-[5] with lastIdx 679 send hb to peers [4 5 1 2 3] 678 678 678 678
-[5] with lastIdx 684 send hb to peers [4 5 1 2 3] 683 683 683 683
-[5] with lastIdx 689 send hb to peers [4 5 1 2 3] 688 688 688 688
-[5] with lastIdx 695 send hb to peers [4 5 1 2 3] 694 694 694 694
-[5] with lastIdx 700 send hb to peers [4 5 1 2 3] 700 700 699 700
-[5] with lastIdx 705 send hb to peers [4 5 1 2 3] 704 704 704 704
-[5] with lastIdx 710 send hb to peers [4 5 1 2 3] 710 710 710 710
-[5] with lastIdx 715 send hb to peers [4 5 1 2 3] 715 715 714 715
-[5] with lastIdx 721 send hb to peers [4 5 1 2 3] 720 720 720 720
-read from clients 4
-[5] with lastIdx 728 send hb to peers [4 5 1 2 3] 726 727 727 727
-[5] with lastIdx 734 send hb to peers [4 5 1 2 3] 733 733 733 733
-[5] with lastIdx 740 send hb to peers [4 5 1 2 3] 739 739 739 739
-[5] with lastIdx 745 send hb to peers [4 5 1 2 3] 745 745 744 744
-[5] with lastIdx 752 send hb to peers [4 5 1 2 3] 751 751 751 751
-[5] with lastIdx 758 send hb to peers [4 5 1 2 3] 758 757 758 758
-[5] with lastIdx 765 send hb to peers [4 5 1 2 3] 764 764 764 764
-[5] with lastIdx 770 send hb to peers [4 5 1 2 3] 770 770 770 770
-[5] with lastIdx 770 send hb to peers [4 5 1 2 3] 770 770 770 770
-[5] with lastIdx 770 send hb to peers [4 5 1 2 3] 770 770 770 770
-[5] with lastIdx 770 send hb to peers [4 5 1 2 3] 770 770 770 770
-[5] with lastIdx 770 send hb to peers [4 5 1 2 3] 770 770 770 770
-[5] with lastIdx 770 send hb to peers [4 5 1 2 3] 770 770 770 770
-[5] with lastIdx 770 send hb to peers [4 5 1 2 3] 770 770 770 770
-[5] with lastIdx 770 send hb to peers [4 5 1 2 3] 770 770 770 770
-[5] with lastIdx 770 send hb to peers [4 5 1 2 3] 770 770 770 770
-[5] with lastIdx 770 send hb to peers [4 5 1 2 3] 770 770 770 770
-[5] with lastIdx 780 send hb to peers [4 5 1 2 3] 776 775 776 775
-[5] with lastIdx 806 send hb to peers [4 5 1 2 3] 802 803 803 803
-[5] with lastIdx 836 send hb to peers [4 5 1 2 3] 833 833 833 833
-[5] with lastIdx 861 send hb to peers [4 5 1 2 3] 859 851 851 859
-[5] with lastIdx 879 send hb to peers [4 5 1 2 3] 877 851 851 877
-[5] with lastIdx 897 send hb to peers [4 5 1 2 3] 893 851 851 896
-[5] with lastIdx 918 send hb to peers [4 5 1 2 3] 914 851 851 915
-[5] with lastIdx 936 send hb to peers [4 5 1 2 3] 935 851 851 935
-[5] with lastIdx 954 send hb to peers [4 5 1 2 3] 952 851 851 952
-[5] with lastIdx 967 send hb to peers [4 5 1 2 3] 962 851 851 966
-[5] with lastIdx 972 send hb to peers [4 5 1 2 3] 967 851 851 967
-[5] becomes leader
-[1] receives snapshot from [5]
-[5] with lastIdx 993 send hb to peers [4 5 1 2 3] 990 990 851 967
-[5] with lastIdx 1006 send hb to peers [4 5 1 2 3] 1006 1001 851 967
-[5] with lastIdx 1006 send hb to peers [4 5 1 2 3] 1006 1001 851 967
-[5] with lastIdx 1006 send hb to peers [4 5 1 2 3] 1006 1001 851 967
-[5] with lastIdx 1006 send hb to peers [4 5 1 2 3] 1006 1001 851 967
-[5] with lastIdx 1006 send hb to peers [4 5 1 2 3] 1006 1001 851 967
-[5] with lastIdx 1006 send hb to peers [4 5 1 2 3] 1006 1001 851 967
-[1] becomes leader
-[1] with lastIdx 1004 send hb to peers [4 5 1 2 3] 967 967 967 1004
-[5] with lastIdx 1006 send hb to peers [4 5 1 2 3] 1006 1001 851 967
-[1] with lastIdx 1004 send hb to peers [4 5 1 2 3] 967 967 967 1004
-[1] with lastIdx 1004 send hb to peers [4 5 1 2 3] 967 967 967 1004
-[1] with lastIdx 1004 send hb to peers [4 5 1 2 3] 967 967 967 1004
-[1] with lastIdx 1026 send hb to peers [4 5 1 2 3] 1023 1022 967 1004
-[1] with lastIdx 1071 send hb to peers [4 5 1 2 3] 1068 1067 967 1004
-[2] receives snapshot from [1]
-[1] with lastIdx 1124 send hb to peers [4 5 1 2 3] 1123 1123 1121 1004
-[1] with lastIdx 1151 send hb to peers [4 5 1 2 3] 1135 1146 1146 1004
-[1] with lastIdx 1181 send hb to peers [4 5 1 2 3] 1135 1178 1178 1004
-[1] with lastIdx 1205 send hb to peers [4 5 1 2 3] 1135 1201 1201 1004
-[1] with lastIdx 1232 send hb to peers [4 5 1 2 3] 1135 1228 1228 1004
-[1] with lastIdx 1257 send hb to peers [4 5 1 2 3] 1135 1255 1255 1004
-[1] with lastIdx 1277 send hb to peers [4 5 1 2 3] 1135 1275 1275 1004
-[1] with lastIdx 1301 send hb to peers [4 5 1 2 3] 1135 1298 1298 1004
-[2] becomes leader
-[2] with lastIdx 1302 send hb to peers [4 5 1 2 3] 1101 1101 1101 1101
-[4] receives snapshot from [2]
-read from clients 0
-[5] becomes leader
-[3] receives snapshot from [5]
-[5] with lastIdx 1318 send hb to peers [4 5 1 2 3] 1318 1318 1318 1318
-[5] with lastIdx 1331 send hb to peers [4 5 1 2 3] 1331 1331 1330 1331
-[5] with lastIdx 1343 send hb to peers [4 5 1 2 3] 1342 1342 1342 1342
-[5] with lastIdx 1354 send hb to peers [4 5 1 2 3] 1353 1353 1353 1353
-[5] with lastIdx 1364 send hb to peers [4 5 1 2 3] 1363 1363 1363 1363
-read from clients 1
-[5] with lastIdx 1374 send hb to peers [4 5 1 2 3] 1373 1373 1373 1373
-[5] with lastIdx 1384 send hb to peers [4 5 1 2 3] 1383 1383 1383 1383
-[5] with lastIdx 1394 send hb to peers [4 5 1 2 3] 1393 1393 1393 1393
-[5] with lastIdx 1404 send hb to peers [4 5 1 2 3] 1403 1403 1403 1403
-[5] with lastIdx 1415 send hb to peers [4 5 1 2 3] 1414 1414 1414 1414
-read from clients 2
-[5] with lastIdx 1426 send hb to peers [4 5 1 2 3] 1425 1425 1425 1425
-[5] with lastIdx 1434 send hb to peers [4 5 1 2 3] 1433 1433 1433 1433
-[5] with lastIdx 1442 send hb to peers [4 5 1 2 3] 1441 1441 1441 1441
-[5] with lastIdx 1450 send hb to peers [4 5 1 2 3] 1449 1450 1450 1450
-[5] with lastIdx 1458 send hb to peers [4 5 1 2 3] 1457 1457 1457 1457
-[5] with lastIdx 1465 send hb to peers [4 5 1 2 3] 1464 1464 1464 1464
-read from clients 3
-[5] with lastIdx 1472 send hb to peers [4 5 1 2 3] 1471 1471 1471 1471
-[5] with lastIdx 1481 send hb to peers [4 5 1 2 3] 1480 1480 1480 1480
-[5] with lastIdx 1489 send hb to peers [4 5 1 2 3] 1488 1488 1488 1488
-[5] with lastIdx 1498 send hb to peers [4 5 1 2 3] 1497 1497 1497 1497
-[5] with lastIdx 1506 send hb to peers [4 5 1 2 3] 1505 1504 1505 1505
-[5] with lastIdx 1513 send hb to peers [4 5 1 2 3] 1512 1512 1513 1512
-read from clients 4
-[5] with lastIdx 1523 send hb to peers [4 5 1 2 3] 1522 1522 1522 1522
-[5] with lastIdx 1532 send hb to peers [4 5 1 2 3] 1532 1531 1532 1531
-[5] with lastIdx 1540 send hb to peers [4 5 1 2 3] 1540 1540 1540 1540
-[5] with lastIdx 1549 send hb to peers [4 5 1 2 3] 1548 1548 1548 1548
-[5] with lastIdx 1559 send hb to peers [4 5 1 2 3] 1558 1558 1558 1558
-[5] with lastIdx 1568 send hb to peers [4 5 1 2 3] 1568 1567 1568 1567
-[5] with lastIdx 1568 send hb to peers [4 5 1 2 3] 1568 1568 1568 1568
-[5] with lastIdx 1568 send hb to peers [4 5 1 2 3] 1568 1568 1568 1568
-[5] with lastIdx 1568 send hb to peers [4 5 1 2 3] 1568 1568 1568 1568
-[5] with lastIdx 1568 send hb to peers [4 5 1 2 3] 1568 1568 1568 1568
-[5] with lastIdx 1568 send hb to peers [4 5 1 2 3] 1568 1568 1568 1568
-[5] with lastIdx 1568 send hb to peers [4 5 1 2 3] 1568 1568 1568 1568
-[5] with lastIdx 1568 send hb to peers [4 5 1 2 3] 1568 1568 1568 1568
-[5] with lastIdx 1568 send hb to peers [4 5 1 2 3] 1568 1568 1568 1568
-[5] with lastIdx 1568 send hb to peers [4 5 1 2 3] 1568 1568 1568 1568
-[5] with lastIdx 1568 send hb to peers [4 5 1 2 3] 1568 1568 1568 1568
-[5] with lastIdx 1620 send hb to peers [4 5 1 2 3] 1618 1619 1619 1619
-[5] with lastIdx 1667 send hb to peers [4 5 1 2 3] 1662 1662 1662 1662
-[5] with lastIdx 1694 send hb to peers [4 5 1 2 3] 1692 1691 1691 1691
-[5] with lastIdx 1713 send hb to peers [4 5 1 2 3] 1713 1711 1711 1692
-[5] with lastIdx 1731 send hb to peers [4 5 1 2 3] 1728 1730 1728 1692
-[5] with lastIdx 1749 send hb to peers [4 5 1 2 3] 1744 1743 1744 1692
-[5] with lastIdx 1764 send hb to peers [4 5 1 2 3] 1761 1762 1761 1692
-[5] with lastIdx 1784 send hb to peers [4 5 1 2 3] 1783 1783 1783 1692
-[5] with lastIdx 1807 send hb to peers [4 5 1 2 3] 1807 1802 1802 1692
-[5] becomes leader
-[5] with lastIdx 1832 send hb to peers [4 5 1 2 3] 1829 1802 1830 1692
-[5] with lastIdx 1856 send hb to peers [4 5 1 2 3] 1855 1802 1854 1692
-[5] with lastIdx 1878 send hb to peers [4 5 1 2 3] 1876 1802 1876 1692
-[5] with lastIdx 1898 send hb to peers [4 5 1 2 3] 1896 1802 1895 1692
-[5] with lastIdx 1911 send hb to peers [4 5 1 2 3] 1906 1802 1911 1692
-[1] receives snapshot from [5]
-[5] with lastIdx 1911 send hb to peers [4 5 1 2 3] 1906 1802 1911 1692
-[5] with lastIdx 1930 send hb to peers [4 5 1 2 3] 1906 1926 1925 1692
-[5] with lastIdx 1952 send hb to peers [4 5 1 2 3] 1906 1947 1951 1692
-[5] with lastIdx 1970 send hb to peers [4 5 1 2 3] 1906 1966 1966 1692
-[5] with lastIdx 1983 send hb to peers [4 5 1 2 3] 1906 1981 1979 1692
-[1] becomes leader
-[4] receives snapshot from [1]
-[1] with lastIdx 1990 send hb to peers [4 5 1 2 3] 1906 1906 1906 1906
-[3] receives snapshot from [1]
-[1] with lastIdx 2006 send hb to peers [4 5 1 2 3] 1995 2003 1995 2003
-[1] with lastIdx 2017 send hb to peers [4 5 1 2 3] 1995 2016 1995 2015
-[1] with lastIdx 2030 send hb to peers [4 5 1 2 3] 1995 2030 1995 2030
-[1] with lastIdx 2030 send hb to peers [4 5 1 2 3] 1995 2030 1995 2030
-[1] with lastIdx 2030 send hb to peers [4 5 1 2 3] 1995 2030 1995 2030
-[1] with lastIdx 2030 send hb to peers [4 5 1 2 3] 1995 2030 1995 2030
-[1] with lastIdx 2030 send hb to peers [4 5 1 2 3] 1995 2030 1995 2030
-[3] becomes leader
-read from clients 0
-[3] becomes leader
-[3] with lastIdx 2045 send hb to peers [4 5 1 2 3] 2045 2044 2045 2044
-[3] with lastIdx 2069 send hb to peers [4 5 1 2 3] 2068 2068 2068 2068
-read from clients 1
-[3] with lastIdx 2099 send hb to peers [4 5 1 2 3] 2098 2099 2099 2099
-[3] with lastIdx 2122 send hb to peers [4 5 1 2 3] 2121 2121 2121 2121
-read from clients 2
-[3] with lastIdx 2136 send hb to peers [4 5 1 2 3] 2135 2135 2135 2135
-[3] with lastIdx 2146 send hb to peers [4 5 1 2 3] 2145 2145 2145 2145
-[3] with lastIdx 2154 send hb to peers [4 5 1 2 3] 2154 2154 2153 2153
-[3] with lastIdx 2162 send hb to peers [4 5 1 2 3] 2161 2162 2161 2161
-[3] with lastIdx 2171 send hb to peers [4 5 1 2 3] 2171 2171 2171 2171
-read from clients 3
-[3] with lastIdx 2178 send hb to peers [4 5 1 2 3] 2177 2178 2178 2177
-[3] with lastIdx 2186 send hb to peers [4 5 1 2 3] 2185 2185 2185 2185
-[3] with lastIdx 2192 send hb to peers [4 5 1 2 3] 2191 2192 2191 2192
-[3] with lastIdx 2199 send hb to peers [4 5 1 2 3] 2198 2198 2198 2198
-[3] with lastIdx 2206 send hb to peers [4 5 1 2 3] 2205 2205 2204 2205
-[3] with lastIdx 2213 send hb to peers [4 5 1 2 3] 2213 2213 2213 2213
-[3] with lastIdx 2220 send hb to peers [4 5 1 2 3] 2219 2219 2219 2219
-read from clients 4
-[3] with lastIdx 2227 send hb to peers [4 5 1 2 3] 2226 2226 2226 2226
-[3] with lastIdx 2233 send hb to peers [4 5 1 2 3] 2232 2232 2232 2232
-[3] with lastIdx 2240 send hb to peers [4 5 1 2 3] 2239 2239 2239 2239
-[3] with lastIdx 2248 send hb to peers [4 5 1 2 3] 2248 2247 2248 2247
-[3] with lastIdx 2256 send hb to peers [4 5 1 2 3] 2256 2255 2255 2255
-[3] with lastIdx 2264 send hb to peers [4 5 1 2 3] 2263 2263 2263 2263
-[3] with lastIdx 2273 send hb to peers [4 5 1 2 3] 2272 2272 2273 2273
-[3] with lastIdx 2274 send hb to peers [4 5 1 2 3] 2274 2274 2274 2274
-[3] with lastIdx 2274 send hb to peers [4 5 1 2 3] 2274 2274 2274 2274
-[3] with lastIdx 2274 send hb to peers [4 5 1 2 3] 2274 2274 2274 2274
-[3] with lastIdx 2274 send hb to peers [4 5 1 2 3] 2274 2274 2274 2274
-[3] with lastIdx 2274 send hb to peers [4 5 1 2 3] 2274 2274 2274 2274
-[3] with lastIdx 2274 send hb to peers [4 5 1 2 3] 2274 2274 2274 2274
-[3] with lastIdx 2274 send hb to peers [4 5 1 2 3] 2274 2274 2274 2274
-[3] with lastIdx 2274 send hb to peers [4 5 1 2 3] 2274 2274 2274 2274
-[3] with lastIdx 2274 send hb to peers [4 5 1 2 3] 2274 2274 2274 2274
-[3] with lastIdx 2274 send hb to peers [4 5 1 2 3] 2274 2274 2274 2274
---- PASS: TestSnapshotUnreliableRecoverConcurrentPartition2C (35.37s)
-PASS
-ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	35.431s
+[5] has put key 4 00000000 value x 4 0 y
+[4] has put key 4 00000000 value x 4 0 y
+[3] has put key 4 00000000 value x 4 0 y
+[5] has put key 2 00000000 value x 2 0 y
+[5] has put key 1 00000000 value x 1 0 y
+[2] has put key 4 00000000 value x 4 0 y
+[4] has put key 2 00000000 value x 2 0 y
+[1] has put key 4 00000000 value x 4 0 y
+[2] has put key 2 00000000 value x 2 0 y
+[5] has put key 3 00000000 value x 3 0 y
+[1] has put key 2 00000000 value x 2 0 y
+[4] has put key 1 00000000 value x 1 0 y
+[3] has put key 2 00000000 value x 2 0 y
+[5] has put key 0 00000000 value x 0 0 y
+[2] has put key 1 00000000 value x 1 0 y
+[4] has put key 3 00000000 value x 3 0 y
+[1] has put key 1 00000000 value x 1 0 y
+[3] has put key 1 00000000 value x 1 0 y
+[1] has put key 3 00000000 value x 3 0 y
+[2] has put key 3 00000000 value x 3 0 y
+[4] has put key 0 00000000 value x 0 0 y
+[3] has put key 3 00000000 value x 3 0 y
+[1] has put key 0 00000000 value x 0 0 y
+[2] has put key 0 00000000 value x 0 0 y
+[3] has put key 0 00000000 value x 0 0 y
+[5] has put key 4 00000001 value x 4 1 y
+[4] has put key 4 00000001 value x 4 1 y
+[1] has put key 4 00000001 value x 4 1 y
+[2] has put key 4 00000001 value x 4 1 y
+[3] has put key 4 00000001 value x 4 1 y
+[5] has put key 2 00000001 value x 2 1 y
+[4] has put key 2 00000001 value x 2 1 y
+[5] has put key 1 00000001 value x 1 1 y
+[2] has put key 2 00000001 value x 2 1 y
+[4] has put key 1 00000001 value x 1 1 y
+[5] has put key 3 00000001 value x 3 1 y
+[1] has put key 2 00000001 value x 2 1 y
+[2] has put key 1 00000001 value x 1 1 y
+[4] has put key 3 00000001 value x 3 1 y
+[2] has put key 3 00000001 value x 3 1 y
+[1] has put key 1 00000001 value x 1 1 y
+[1] has put key 3 00000001 value x 3 1 y
+[3] has put key 2 00000001 value x 2 1 y
+[3] has put key 1 00000001 value x 1 1 y
+[3] has put key 3 00000001 value x 3 1 y
+[5] has put key 0 00000001 value x 0 1 y
+[2] has put key 0 00000001 value x 0 1 y
+[4] has put key 0 00000001 value x 0 1 y
+[1] has put key 0 00000001 value x 0 1 y
+[3] has put key 0 00000001 value x 0 1 y
+[5] has put key 4 00000002 value x 4 2 y
+[2] has put key 4 00000002 value x 4 2 y
+[1] has put key 4 00000002 value x 4 2 y
+[4] has put key 4 00000002 value x 4 2 y
+[3] has put key 4 00000002 value x 4 2 y
+[5] has put key 2 00000002 value x 2 2 y
+[5] has put key 3 00000002 value x 3 2 y
+[1] has put key 2 00000002 value x 2 2 y
+[2] has put key 2 00000002 value x 2 2 y
+[4] has put key 2 00000002 value x 2 2 y
+[2] has put key 3 00000002 value x 3 2 y
+[1] has put key 3 00000002 value x 3 2 y
+[4] has put key 3 00000002 value x 3 2 y
+[5] has put key 4 00000003 value x 4 3 y
+[2] has put key 4 00000003 value x 4 3 y
+[3] has put key 2 00000002 value x 2 2 y
+[1] has put key 4 00000003 value x 4 3 y
+[4] has put key 4 00000003 value x 4 3 y
+[3] has put key 3 00000002 value x 3 2 y
+[3] has put key 4 00000003 value x 4 3 y
+[5] has put key 0 00000002 value x 0 2 y
+[1] has put key 0 00000002 value x 0 2 y
+[3] has put key 0 00000002 value x 0 2 y
+[4] has put key 0 00000002 value x 0 2 y
+[5] has put key 3 00000003 value x 3 3 y
+[5] has put key 1 00000002 value x 1 2 y
+[3] has put key 3 00000003 value x 3 3 y
+[4] has put key 3 00000003 value x 3 3 y
+[3] has put key 1 00000002 value x 1 2 y
+[1] has put key 3 00000003 value x 3 3 y
+[5] has put key 0 00000003 value x 0 3 y
+[1] has put key 1 00000002 value x 1 2 y
+[4] has put key 1 00000002 value x 1 2 y
+[3] has put key 0 00000003 value x 0 3 y
+[4] has put key 0 00000003 value x 0 3 y
+[1] has put key 0 00000003 value x 0 3 y
+[5] has put key 4 00000004 value x 4 4 y
+[5] has put key 3 00000004 value x 3 4 y
+[3] has put key 4 00000004 value x 4 4 y
+[5] has put key 2 00000003 value x 2 3 y
+[4] has put key 4 00000004 value x 4 4 y
+[3] has put key 3 00000004 value x 3 4 y
+[3] has put key 2 00000003 value x 2 3 y
+[4] has put key 3 00000004 value x 3 4 y
+[4] has put key 2 00000003 value x 2 3 y
+[5] has put key 0 00000004 value x 0 4 y
+[1] has put key 4 00000004 value x 4 4 y
+[3] has put key 0 00000004 value x 0 4 y
+[1] has put key 3 00000004 value x 3 4 y
+[4] has put key 0 00000004 value x 0 4 y
+[1] has put key 2 00000003 value x 2 3 y
+[5] has put key 4 00000005 value x 4 5 y
+[5] has put key 3 00000005 value x 3 5 y
+[1] has put key 0 00000004 value x 0 4 y
+[3] has put key 4 00000005 value x 4 5 y
+[5] has put key 2 00000004 value x 2 4 y
+[3] has put key 3 00000005 value x 3 5 y
+[5] has put key 0 00000005 value x 0 5 y
+[4] has put key 4 00000005 value x 4 5 y
+[3] has put key 2 00000004 value x 2 4 y
+[4] has put key 3 00000005 value x 3 5 y
+[3] has put key 0 00000005 value x 0 5 y
+[5] has put key 3 00000006 value x 3 6 y
+[4] has put key 2 00000004 value x 2 4 y
+[4] has put key 0 00000005 value x 0 5 y
+[5] has put key 2 00000005 value x 2 5 y
+[3] has put key 3 00000006 value x 3 6 y
+[3] has put key 2 00000005 value x 2 5 y
+[4] has put key 3 00000006 value x 3 6 y
+[4] has put key 2 00000005 value x 2 5 y
+[5] has put key 3 00000007 value x 3 7 y
+[5] has put key 2 00000006 value x 2 6 y
+[3] has put key 3 00000007 value x 3 7 y
+[5] has put key 1 00000003 value x 1 3 y
+[3] has put key 2 00000006 value x 2 6 y
+[4] has put key 3 00000007 value x 3 7 y
+[3] has put key 1 00000003 value x 1 3 y
+[4] has put key 2 00000006 value x 2 6 y
+[4] has put key 1 00000003 value x 1 3 y
+[5] has put key 4 00000006 value x 4 6 y
+[5] has put key 1 00000004 value x 1 4 y
+[4] has put key 4 00000006 value x 4 6 y
+[4] has put key 1 00000004 value x 1 4 y
+[5] has put key 4 00000007 value x 4 7 y
+[4] has put key 4 00000007 value x 4 7 y
+[5] has put key 1 00000005 value x 1 5 y
+[4] has put key 1 00000005 value x 1 5 y
+[5] has put key 4 00000008 value x 4 8 y
+[4] has put key 4 00000008 value x 4 8 y
+[5] has put key 3 00000008 value x 3 8 y
+[4] has put key 3 00000008 value x 3 8 y
+[5] has put key 0 00000006 value x 0 6 y
+[4] has put key 0 00000006 value x 0 6 y
+[5] has put key 3 00000009 value x 3 9 y
+[4] has put key 3 00000009 value x 3 9 y
+[5] has put key 2 00000007 value x 2 7 y
+[4] has put key 2 00000007 value x 2 7 y
+[5] has put key 1 00000006 value x 1 6 y
+[4] has put key 1 00000006 value x 1 6 y
+[5] has put key 0 00000007 value x 0 7 y
+[5] has put key 3 00000010 value x 3 10 y
+[4] has put key 0 00000007 value x 0 7 y
+[5] has put key 2 00000008 value x 2 8 y
+[4] has put key 3 00000010 value x 3 10 y
+[4] has put key 2 00000008 value x 2 8 y
+[5] has put key 0 00000008 value x 0 8 y
+[5] has put key 4 00000009 value x 4 9 y
+[4] has put key 0 00000008 value x 0 8 y
+[5] has put key 2 00000009 value x 2 9 y
+[4] has put key 4 00000009 value x 4 9 y
+[4] has put key 2 00000009 value x 2 9 y
+[5] has put key 0 00000009 value x 0 9 y
+[5] has put key 2 00000010 value x 2 10 y
+[5] has put key 1 00000007 value x 1 7 y
+[4] has put key 0 00000009 value x 0 9 y
+[4] has put key 2 00000010 value x 2 10 y
+[4] has put key 1 00000007 value x 1 7 y
+[5] has put key 3 00000011 value x 3 11 y
+[5] has put key 4 00000010 value x 4 10 y
+[4] has put key 3 00000011 value x 3 11 y
+[4] has put key 4 00000010 value x 4 10 y
+[6] receives snapshot from [5]
+[5] has put key 1 00000008 value x 1 8 y
+[4] has put key 1 00000008 value x 1 8 y
+[5] has put key 3 00000012 value x 3 12 y
+[4] has put key 3 00000012 value x 3 12 y
+[5] has put key 4 00000011 value x 4 11 y
+[4] has put key 4 00000011 value x 4 11 y
+[6] receives snapshot from [5]
+[5] has put key 2 00000011 value x 2 11 y
+[4] has put key 2 00000011 value x 2 11 y
+[6] has put key 1 00000008 value x 1 8 y
+[6] has put key 3 00000012 value x 3 12 y
+[5] has put key 1 00000009 value x 1 9 y
+[6] has put key 4 00000011 value x 4 11 y
+[4] has put key 1 00000009 value x 1 9 y
+[6] has put key 2 00000011 value x 2 11 y
+[6] has put key 1 00000009 value x 1 9 y
+[5] has put key 2 00000012 value x 2 12 y
+[6] has put key 2 00000012 value x 2 12 y
+[6] has put key 1 00000010 value x 1 10 y
+region_not_found:<region_id:1 > 
+region_not_found:<region_id:1 > 
+region_not_found:<region_id:1 > 
+region_not_found:<region_id:1 > 
+[6] becomes leader
+[4] has put key 2 00000012 value x 2 12 y
+[6] has put key 0 00000010 value x 0 10 y
+[4] has put key 1 00000010 value x 1 10 y
+[6] has put key 0 00000010 value x 0 10 y
+[6] has put key 1 00000010 value x 1 10 y
+[4] has put key 0 00000010 value x 0 10 y
+[4] has put key 0 00000010 value x 0 10 y
+[6] has put key 0 00000011 value x 0 11 y
+2021/12/13 00:05:22.879994 test_test.go:236: [0;31m[fatal] get wrong value, client 2
+want:x 2 0 yx 2 1 yx 2 2 yx 2 3 yx 2 4 yx 2 5 yx 2 6 yx 2 7 yx 2 8 yx 2 9 yx 2 10 yx 2 11 yx 2 12 y
+got: x 2 0 yx 2 1 yx 2 2 yx 2 3 yx 2 4 yx 2 5 yx 2 6 yx 2 7 yx 2 8 yx 2 9 yx 2 10 yx 2 12 y
+[0m
+FAIL	github.com/pingcap-incubator/tinykv/kv/test_raftstore	4.247s
+FAIL
