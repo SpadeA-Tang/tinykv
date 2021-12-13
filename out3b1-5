@@ -1,1909 +1,916 @@
-GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestConfChangeUnreliable3B|| true
-=== RUN   TestConfChangeUnreliable3B
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestConfChangeSnapshotUnreliableRecoverConcurrentPartition3B|| true
+=== RUN   TestConfChangeSnapshotUnreliableRecoverConcurrentPartition3B
 [4] becomes leader
-[4] has put key 0 00000000 value x 0 0 y
-[5] has put key 0 00000000 value x 0 0 y
-[3] has put key 0 00000000 value x 0 0 y
+[4] with lastIdx 6 send hb to peers [1 2 3 4 5]  6  6  6  6
+[4] with lastIdx 6 send hb to peers [1 2 3 4 5]  6  6  6  6
+[4] with lastIdx 6 send hb to peers [1 2 3 4 5]  6  6  6  6
+[4] with lastIdx 6 send hb to peers [1 2 3 4 5]  6  6  6  6
+[4] propose cmd Put potential next index 7 with key 4 00000000 with value x 4 0 y
+[4] propose cmd Put potential next index 8 with key 0 00000000 with value x 0 0 y
+[4] propose cmd Put potential next index 9 with key 2 00000000 with value x 2 0 y
+[4] propose cmd Put potential next index 10 with key 1 00000000 with value x 1 0 y
+[4] propose cmd Put potential next index 11 with key 3 00000000 with value x 3 0 y
 [4] has put key 4 00000000 value x 4 0 y
-[1] has put key 0 00000000 value x 0 0 y
-[2] has put key 0 00000000 value x 0 0 y
-[5] has put key 4 00000000 value x 4 0 y
-[3] has put key 4 00000000 value x 4 0 y
-[2] has put key 4 00000000 value x 4 0 y
-[4] has put key 1 00000000 value x 1 0 y
-[4] has put key 2 00000000 value x 2 0 y
 [1] has put key 4 00000000 value x 4 0 y
-[3] has put key 1 00000000 value x 1 0 y
-[2] has put key 1 00000000 value x 1 0 y
-[5] has put key 1 00000000 value x 1 0 y
+[3] has put key 4 00000000 value x 4 0 y
+[5] has put key 4 00000000 value x 4 0 y
+[4] entry index 7 current proposal:  8 9 10 11
+[4] propose cmd Put potential next index 12 with key 4 00000001 with value x 4 1 y
+[4] with lastIdx 12 send hb to peers [1 2 3 4 5]  11  11  11  11
+[4] has put key 0 00000000 value x 0 0 y
+[1] has put key 0 00000000 value x 0 0 y
+[3] has put key 0 00000000 value x 0 0 y
+[4] entry index 8 current proposal:  9 10 11 12[5] has put key 0 00000000 value x 0 0 y
+[2] has put key 4 00000000 value x 4 0 y
+
+[4] has put key 2 00000000 value x 2 0 y
+[2] has put key 0 00000000 value x 0 0 y
+[4] entry index 9 current proposal:  10 11 12
+[4] has put key 1 00000000 value x 1 0 y
+[5] has put key 2 00000000 value x 2 0 y
+[1] has put key 2 00000000 value x 2 0 y
+[3] has put key 2 00000000 value x 2 0 y
+[2] has put key 2 00000000 value x 2 0 y
+[4] entry index 10 current proposal:  11 12
 [4] has put key 3 00000000 value x 3 0 y
 [1] has put key 1 00000000 value x 1 0 y
-[2] has put key 2 00000000 value x 2 0 y
-[5] has put key 2 00000000 value x 2 0 y
-[3] has put key 2 00000000 value x 2 0 y
-[2] has put key 3 00000000 value x 3 0 y
-[1] has put key 2 00000000 value x 2 0 y
-[5] has put key 3 00000000 value x 3 0 y
-[3] has put key 3 00000000 value x 3 0 y
+[5] has put key 1 00000000 value x 1 0 y
+[3] has put key 1 00000000 value x 1 0 y
+[2] has put key 1 00000000 value x 1 0 y
 [1] has put key 3 00000000 value x 3 0 y
-[4] has put key 0 00000001 value x 0 1 y
+[4] entry index 11 current proposal:  12
+[3] has put key 3 00000000 value x 3 0 y
+[5] has put key 3 00000000 value x 3 0 y
+[2] has put key 3 00000000 value x 3 0 y
+[4] propose cmd Snap potential next index 13
+[4] propose cmd Snap potential next index 14
+[4] propose cmd Snap potential next index 15
+[4] propose cmd Snap potential next index 16
+[4] with lastIdx 16 send hb to peers [1 2 3 4 5]  12  12  12  12
 [4] has put key 4 00000001 value x 4 1 y
-[3] has put key 0 00000001 value x 0 1 y
-[2] has put key 0 00000001 value x 0 1 y
-[5] has put key 0 00000001 value x 0 1 y
-[1] has put key 0 00000001 value x 0 1 y
-[3] has put key 4 00000001 value x 4 1 y
-[2] has put key 4 00000001 value x 4 1 y
+[4] entry index 12 current proposal:  13 14 15 16
 [5] has put key 4 00000001 value x 4 1 y
+[3] has put key 4 00000001 value x 4 1 y
 [1] has put key 4 00000001 value x 4 1 y
-[4] has put key 1 00000001 value x 1 1 y
-[2] has put key 1 00000001 value x 1 1 y
-[3] has put key 1 00000001 value x 1 1 y
-[5] has put key 1 00000001 value x 1 1 y
-[1] has put key 1 00000001 value x 1 1 y
-[4] has put key 0 00000002 value x 0 2 y
+[2] has put key 4 00000001 value x 4 1 y
+[4] propose cmd Put potential next index 17 with key 4 00000002 with value x 4 2 y
+[4] entry index 13 current proposal:  14 15 16 17
+[4] entry index 14 current proposal:  15 16 17
+[4] entry index 15 current proposal:  16 17
+[4] entry index 16 current proposal:  17
+[4] propose cmd Snap potential next index 18
+[4] propose cmd Snap potential next index 19
+[4] propose cmd Put potential next index 20 with key 1 00000001 with value x 1 1 y
+[4] propose cmd Put potential next index 21 with key 3 00000001 with value x 3 1 y
 [4] has put key 4 00000002 value x 4 2 y
-[2] has put key 0 00000002 value x 0 2 y
-[3] has put key 0 00000002 value x 0 2 y
-[2] has put key 4 00000002 value x 4 2 y
-[3] has put key 4 00000002 value x 4 2 y
-[4] has put key 2 00000001 value x 2 1 y
-[5] has put key 0 00000002 value x 0 2 y
-[2] has put key 2 00000001 value x 2 1 y
-[4] has put key 1 00000002 value x 1 2 y
-[1] has put key 0 00000002 value x 0 2 y
-[3] has put key 2 00000001 value x 2 1 y
-[5] has put key 4 00000002 value x 4 2 y
 [1] has put key 4 00000002 value x 4 2 y
-[2] has put key 1 00000002 value x 1 2 y
-[3] has put key 1 00000002 value x 1 2 y
-[5] has put key 2 00000001 value x 2 1 y
-[1] has put key 2 00000001 value x 2 1 y
-[5] has put key 1 00000002 value x 1 2 y
-[1] has put key 1 00000002 value x 1 2 y
-[4] has put key 4 00000003 value x 4 3 y
-[5] has put key 4 00000003 value x 4 3 y
-[1] has put key 4 00000003 value x 4 3 y
+[5] has put key 4 00000002 value x 4 2 y
+[3] has put key 4 00000002 value x 4 2 y
+[4] entry index 17 current proposal:  18 19 20 21
+[4] with lastIdx 21 send hb to peers [1 2 3 4 5]  17  17  17  17
+[4] propose cmd Snap potential next index 22
+[4] entry index 18 current proposal:  19 20 21 22
+[4] entry index 19 current proposal:  20 21 22
+[4] has put key 1 00000001 value x 1 1 y
+[3] has put key 1 00000001 value x 1 1 y
+[1] has put key 1 00000001 value x 1 1 y
+[4] entry index 20 current proposal:  21 22
 [4] has put key 3 00000001 value x 3 1 y
-[2] has put key 4 00000003 value x 4 3 y
-[4] has put key 0 00000003 value x 0 3 y
-[3] has put key 4 00000003 value x 4 3 y
+[5] has put key 1 00000001 value x 1 1 y
 [3] has put key 3 00000001 value x 3 1 y
 [5] has put key 3 00000001 value x 3 1 y
+[4] entry index 21 current proposal:  22
 [1] has put key 3 00000001 value x 3 1 y
-[3] has put key 0 00000003 value x 0 3 y
-[2] has put key 3 00000001 value x 3 1 y
-[2] has put key 0 00000003 value x 0 3 y
-[1] has put key 0 00000003 value x 0 3 y
-[5] has put key 0 00000003 value x 0 3 y
+[4] propose cmd Snap potential next index 23
+[4] propose cmd Snap potential next index 24
+[4] propose cmd Snap potential next index 25
+[4] propose cmd Snap potential next index 26
+[4] with lastIdx 26 send hb to peers [1 2 3 4 5]  21  21  21  22
+[4] entry index 22 current proposal:  23 24 25 26
+[4] propose cmd Snap potential next index 27
+[4] entry index 23 current proposal:  24 25 26 27
+[4] entry index 24 current proposal:  25 26 27
+[4] entry index 25 current proposal:  26 27
+[4] entry index 26 current proposal:  27
+[4] propose cmd Snap potential next index 28
+[4] propose cmd Snap potential next index 29
+[4] propose cmd Put potential next index 30 with key 0 00000001 with value x 0 1 y
+[4] propose cmd Put potential next index 31 with key 3 00000002 with value x 3 2 y
+[4] propose cmd ChangePeer potential next index 32
+[4] entry index 27 current proposal:  28 29 30 31
+[4] propose cmd Put potential next index 33 with key 4 00000003 with value x 4 3 y
+[4] entry index 28 current proposal:  29 30 31 33
+[4] entry index 29 current proposal:  30 31 33
+[4] has put key 0 00000001 value x 0 1 y
+[4] entry index 30 current proposal:  31 33
 [4] has put key 3 00000002 value x 3 2 y
+[1] has put key 0 00000001 value x 0 1 y
+[5] has put key 0 00000001 value x 0 1 y
+[4] entry index 31 current proposal:  33
+[3] has put key 0 00000001 value x 0 1 y
 [1] has put key 3 00000002 value x 3 2 y
 [5] has put key 3 00000002 value x 3 2 y
-[2] has put key 3 00000002 value x 3 2 y
+[4] propose cmd Snap potential next index 34
+[4] propose cmd Snap potential next index 35
+[4] with lastIdx 35 send hb to peers [1 2 3 4 5]  32  21  32  31
+[4] propose cmd Put potential next index 36 with key 0 00000002 with value x 0 2 y
+[4] propose cmd Snap potential next index 37
+[3] has put key 3 00000002 value x 3 2 y
+[4] has put key 4 00000003 value x 4 3 y
+[4] entry index 33 current proposal:  34 35 36 37
+[5] has put key 4 00000003 value x 4 3 y
+[1] has put key 4 00000003 value x 4 3 y
+[4] propose cmd Snap potential next index 38
+[4] entry index 34 current proposal:  35 36 37 38
+[4] entry index 35 current proposal:  36 37 38
+[4] has put key 0 00000002 value x 0 2 y
+[4] entry index 36 current proposal:  37 38
+[4] entry index 37 current proposal:  38
+[3] has put key 4 00000003 value x 4 3 y
+[4] propose cmd ChangePeer potential next index 39
+[4] propose cmd Snap potential next index 40
+[4] propose cmd Snap potential next index 41
+[4] propose cmd Snap potential next index 42
+[4] propose cmd Put potential next index 43 with key 3 00000003 with value x 3 3 y
+[1] has put key 0 00000002 value x 0 2 y
+[5] has put key 0 00000002 value x 0 2 y
+[4] with lastIdx 43 send hb to peers [1 2 4 5]  37  21  37
+[4] entry index 38 current proposal:  40 41 42 43
+[4] propose cmd Put potential next index 44 with key 4 00000004 with value x 4 4 y
+[4] entry index 40 current proposal:  41 42 43 44
+[4] entry index 41 current proposal:  42 43 44
+[4] entry index 42 current proposal:  43 44
+[4] has put key 3 00000003 value x 3 3 y
+[1] has put key 3 00000003 value x 3 3 y
+[4] entry index 43 current proposal:  44
+[5] has put key 3 00000003 value x 3 3 y
+[4] propose cmd Snap potential next index 45
+[4] propose cmd Put potential next index 46 with key 0 00000003 with value x 0 3 y
+[4] propose cmd Put potential next index 47 with key 1 00000002 with value x 1 2 y
+[4] propose cmd Put potential next index 48 with key 3 00000004 with value x 3 4 y
 [4] has put key 4 00000004 value x 4 4 y
 [1] has put key 4 00000004 value x 4 4 y
 [5] has put key 4 00000004 value x 4 4 y
+[4] entry index 44 current proposal:  45 46 47 48
+[4] propose cmd ChangePeer potential next index 49
+[4] propose cmd Snap potential next index 49
+[4] entry index 45 current proposal:  46 47 48 49
+[4] propose cmd Put potential next index 50 with key 2 00000001 with value x 2 1 y
+[4] has put key 0 00000003 value x 0 3 y
+[4] entry index 46 current proposal:  47 48 49 50
+[4] has put key 1 00000002 value x 1 2 y
+[1] has put key 0 00000003 value x 0 3 y
+[5] has put key 0 00000003 value x 0 3 y
+[1] has put key 1 00000002 value x 1 2 y
+[4] entry index 47 current proposal:  48 49 50
+[4] has put key 3 00000004 value x 3 4 y
+[5] has put key 1 00000002 value x 1 2 y
+[1] has put key 3 00000004 value x 3 4 y
+[5] has put key 3 00000004 value x 3 4 y
+[4] entry index 48 current proposal:  49 50
+[4] entry index 49 current proposal:  50
+[4] with lastIdx 50 send hb to peers [1 2 4 5]  49  21  49
+[4] propose cmd Snap potential next index 51
+[4] propose cmd Put potential next index 52 with key 1 00000003 with value x 1 3 y
+[4] propose cmd Put potential next index 53 with key 3 00000005 with value x 3 5 y
+[4] propose cmd Snap potential next index 54
+[4] has put key 2 00000001 value x 2 1 y
+[5] has put key 2 00000001 value x 2 1 y
+[4] entry index 50 current proposal:  51 52 53 54
+[4] propose cmd Snap potential next index 55
+[1] has put key 2 00000001 value x 2 1 y
+[4] entry index 51 current proposal:  52 53 54 55
+[4] propose cmd Snap potential next index 56
+[4] has put key 1 00000003 value x 1 3 y
+[4] entry index 52 current proposal:  53 54 55 56
+[4] has put key 3 00000005 value x 3 5 y
+[1] has put key 1 00000003 value x 1 3 y
+[5] has put key 1 00000003 value x 1 3 y
+[4] entry index 53 current proposal:  54 55 56
+[4] entry index 54 current proposal:  55 56
+[4] entry index 55 current proposal:  56
+[1] has put key 3 00000005 value x 3 5 y
+[5] has put key 3 00000005 value x 3 5 y
+[4] propose cmd ChangePeer potential next index 57
+[4] propose cmd Snap potential next index 57
+[4] propose cmd Put potential next index 58 with key 2 00000002 with value x 2 2 y
+[4] propose cmd Put potential next index 59 with key 4 00000005 with value x 4 5 y
+[4] propose cmd Snap potential next index 60
+[4] with lastIdx 60 send hb to peers [1 2 4 5]  56  21  55
+[4] entry index 56 current proposal:  57 58 59 60
+[4] entry index 57 current proposal:  58 59 60
+[4] has put key 2 00000002 value x 2 2 y
+[4] entry index 58 current proposal:  59 60
+[4] has put key 4 00000005 value x 4 5 y
+[5] has put key 2 00000002 value x 2 2 y
+[1] has put key 2 00000002 value x 2 2 y
+[4] entry index 59 current proposal:  60
+[4] entry index 60 current proposal: 
+[5] has put key 4 00000005 value x 4 5 y
+[1] has put key 4 00000005 value x 4 5 y
+[4] propose cmd Snap potential next index 61
+[4] propose cmd Snap potential next index 62
+[4] propose cmd Put potential next index 63 with key 2 00000003 with value x 2 3 y
+[4] propose cmd Snap potential next index 64
+[4] propose cmd Put potential next index 65 with key 3 00000006 with value x 3 6 y
+[4] entry index 61 current proposal:  62 63 64 65
+[4] entry index 62 current proposal:  63 64 65
+[4] has put key 2 00000003 value x 2 3 y
+[5] has put key 2 00000003 value x 2 3 y
+[1] has put key 2 00000003 value x 2 3 y
+[5] has put key 3 00000006 value x 3 6 y
+[1] has put key 3 00000006 value x 3 6 y
+[4] entry index 63 current proposal:  64 65
+[4] entry index 64 current proposal:  65
+[4] has put key 3 00000006 value x 3 6 y
+[4] entry index 65 current proposal: 
+[4] propose cmd Put potential next index 66 with key 0 00000004 with value x 0 4 y
+[4] propose cmd Put potential next index 67 with key 1 00000004 with value x 1 4 y
+[4] propose cmd Put potential next index 68 with key 2 00000004 with value x 2 4 y
+[4] propose cmd Put potential next index 69 with key 4 00000006 with value x 4 6 y
+[4] propose cmd Snap potential next index 70
+[4] propose cmd ChangePeer potential next index 71
 [4] has put key 0 00000004 value x 0 4 y
-[2] has put key 4 00000004 value x 4 4 y
 [1] has put key 0 00000004 value x 0 4 y
 [5] has put key 0 00000004 value x 0 4 y
-[2] has put key 0 00000004 value x 0 4 y
-[4] has put key 4 00000005 value x 4 5 y
-[2] has put key 4 00000005 value x 4 5 y
-[1] has put key 4 00000005 value x 4 5 y
-[4] has put key 2 00000002 value x 2 2 y
-[5] has put key 4 00000005 value x 4 5 y
-[4] has put key 0 00000005 value x 0 5 y
-[2] has put key 2 00000002 value x 2 2 y
-[4] has put key 3 00000003 value x 3 3 y
-[1] has put key 2 00000002 value x 2 2 y
-[2] has put key 0 00000005 value x 0 5 y
-[4] has put key 1 00000003 value x 1 3 y
-[1] has put key 0 00000005 value x 0 5 y
-[5] has put key 2 00000002 value x 2 2 y
-[2] has put key 3 00000003 value x 3 3 y
-[1] has put key 3 00000003 value x 3 3 y
-[5] has put key 0 00000005 value x 0 5 y
-[2] has put key 1 00000003 value x 1 3 y
-[1] has put key 1 00000003 value x 1 3 y
-[5] has put key 3 00000003 value x 3 3 y
-[5] has put key 1 00000003 value x 1 3 y
-[4] has put key 2 00000003 value x 2 3 y
-[1] has put key 2 00000003 value x 2 3 y
+[4] entry index 66 current proposal:  67 68 69 70
+[4] propose cmd Put potential next index 71 with key 0 00000005 with value x 0 5 y
 [4] has put key 1 00000004 value x 1 4 y
-[4] has put key 4 00000006 value x 4 6 y
-[1] has put key 1 00000004 value x 1 4 y
-[5] has put key 2 00000003 value x 2 3 y
-[5] has put key 1 00000004 value x 1 4 y
-[1] has put key 4 00000006 value x 4 6 y
+[4] entry index 67 current proposal:  68 69 70 71
 [4] has put key 2 00000004 value x 2 4 y
-[5] has put key 4 00000006 value x 4 6 y
-[1] has put key 2 00000004 value x 2 4 y
+[5] has put key 1 00000004 value x 1 4 y
+[1] has put key 1 00000004 value x 1 4 y
+[4] entry index 68 current proposal:  69 70 71
+[4] has put key 4 00000006 value x 4 6 y
 [5] has put key 2 00000004 value x 2 4 y
-[4] has put key 2 00000005 value x 2 5 y
-[4] has put key 0 00000006 value x 0 6 y
+[4] entry index 69 current proposal:  70 71
+[4] entry index 70 current proposal:  71
+[5] has put key 4 00000006 value x 4 6 y
+[4] with lastIdx 71 send hb to peers [1 2 4 5]  70  21  70
+[4] propose cmd Snap potential next index 72
+[4] propose cmd Put potential next index 73 with key 2 00000005 with value x 2 5 y
+[4] propose cmd Snap potential next index 74
+[4] propose cmd Put potential next index 75 with key 3 00000007 with value x 3 7 y
+[1] has put key 2 00000004 value x 2 4 y
+[1] has put key 4 00000006 value x 4 6 y
+[4] has put key 0 00000005 value x 0 5 y
+[4] entry index 71 current proposal:  72 73 74 75
+[4] propose cmd Put potential next index 76 with key 0 00000006 with value x 0 6 y
+[5] has put key 0 00000005 value x 0 5 y
+[4] propose cmd ChangePeer potential next index 77
+[1] has put key 0 00000005 value x 0 5 y
+[4] with lastIdx 76 send hb to peers [1 2 4 5]  76  21  71
+[4] propose cmd ChangePeer potential next index 77
+[4] with lastIdx 76 send hb to peers [1 2 4 5]  76  21  71
+[4] propose cmd ChangePeer potential next index 77
+[4] with lastIdx 76 send hb to peers [1 2 4 5]  76  21  71
+[4] propose cmd ChangePeer potential next index 77
+[4] with lastIdx 76 send hb to peers [1 2 4 5]  76  21  71
+[4] propose cmd ChangePeer potential next index 77
+[4] with lastIdx 76 send hb to peers [1 2 4 5]  76  21  71
+[4] propose cmd ChangePeer potential next index 77
+[4] with lastIdx 76 send hb to peers [1 2 4 5]  76  21  71
+[4] propose cmd ChangePeer potential next index 77
+[4] with lastIdx 76 send hb to peers [1 2 4 5]  76  21  71
+can't call command header:<region_id:1 peer:<id:4 store_id:4 > region_epoch:<conf_ver:1 version:1 > > requests:<cmd_type:Snap snap:<> >  on leader 4 of region 1
+can't call command header:<region_id:1 peer:<id:4 store_id:4 > region_epoch:<conf_ver:1 version:1 > > requests:<cmd_type:Put put:<cf:"default" key:"2 00000005" value:"x 2 5 y" > >  on leader 4 of region 1
+can't call command header:<region_id:1 peer:<id:3 store_id:3 > region_epoch:<conf_ver:1 version:1 > > requests:<cmd_type:Put put:<cf:"default" key:"2 00000005" value:"x 2 5 y" > >  on leader 3 of region 1
+can't call command header:<region_id:1 peer:<id:4 store_id:4 > region_epoch:<conf_ver:1 version:1 > > requests:<cmd_type:Snap snap:<> >  on leader 4 of region 1
+can't call command header:<region_id:1 peer:<id:3 store_id:3 > region_epoch:<conf_ver:1 version:1 > > requests:<cmd_type:Snap snap:<> >  on leader 3 of region 1
+can't call command header:<region_id:1 peer:<id:4 store_id:4 > region_epoch:<conf_ver:1 version:1 > > requests:<cmd_type:Put put:<cf:"default" key:"3 00000007" value:"x 3 7 y" > >  on leader 4 of region 1
+can't call command header:<region_id:1 peer:<id:3 store_id:3 > region_epoch:<conf_ver:1 version:1 > > requests:<cmd_type:Put put:<cf:"default" key:"3 00000007" value:"x 3 7 y" > >  on leader 3 of region 1
+can't call command header:<region_id:1 peer:<id:4 store_id:4 > region_epoch:<conf_ver:1 version:1 > > requests:<cmd_type:Put put:<cf:"default" key:"0 00000006" value:"x 0 6 y" > >  on leader 4 of region 1
+[1] becomes leader
+[1] propose cmd Snap potential next index 78
+[1] propose cmd Put potential next index 79 with key 2 00000005 with value x 2 5 y
+[1] propose cmd Put potential next index 80 with key 3 00000007 with value x 3 7 y
+[1] propose cmd Snap potential next index 81
+[1] propose cmd Put potential next index 82 with key 0 00000006 with value x 0 6 y
+[2] has put key 4 00000002 value x 4 2 y
 [1] has put key 2 00000005 value x 2 5 y
-[1] has put key 0 00000006 value x 0 6 y
+[2] has put key 1 00000001 value x 1 1 y
+[4] entry index 72 current proposal:  73 74 75 76
+[4] has put key 2 00000005 value x 2 5 y
 [5] has put key 2 00000005 value x 2 5 y
+[2] has put key 3 00000001 value x 3 1 y
+[1] has put key 3 00000007 value x 3 7 y
+[4] entry index 73 current proposal:  74 75 76
+[4] entry index 74 current proposal:  75 76
+[4] has put key 3 00000007 value x 3 7 y
+[5] has put key 3 00000007 value x 3 7 y
+[2] has put key 0 00000001 value x 0 1 y
+[1] has put key 0 00000006 value x 0 6 y
 [5] has put key 0 00000006 value x 0 6 y
-[4] has put key 4 00000007 value x 4 7 y
-[5] has put key 4 00000007 value x 4 7 y
-[4] has put key 1 00000005 value x 1 5 y
-[4] has put key 3 00000004 value x 3 4 y
+[4] entry index 75 current proposal:  76
+[4] has put key 0 00000006 value x 0 6 y
+[2] has put key 3 00000002 value x 3 2 y
+[4] entry index 76 current proposal: 
+[2] has put key 4 00000003 value x 4 3 y
+[1] entry index 78 current proposal:  79 80 81 82
+[1] has put key 2 00000005 value x 2 5 y
+[1] entry index 79 current proposal:  80 81 82
+[5] has put key 2 00000005 value x 2 5 y
+[2] has put key 0 00000002 value x 0 2 y
+[1] propose cmd Put potential next index 83 with key 4 00000007 with value x 4 7 y
+[4] has put key 2 00000005 value x 2 5 y
+[1] has put key 3 00000007 value x 3 7 y
+[2] has put key 3 00000003 value x 3 3 y
+[1] entry index 80 current proposal:  81 82 83
+[1] entry index 81 current proposal:  82 83
+[1] has put key 0 00000006 value x 0 6 y
+[5] has put key 3 00000007 value x 3 7 y
+[2] has put key 4 00000004 value x 4 4 y
+[1] entry index 82 current proposal:  83
+[5] has put key 0 00000006 value x 0 6 y
+[4] has put key 3 00000007 value x 3 7 y
+[2] has put key 0 00000003 value x 0 3 y
+[1] propose cmd Put potential next index 84 with key 2 00000006 with value x 2 6 y
+[1] propose cmd Snap potential next index 85
+[1] propose cmd Put potential next index 86 with key 1 00000005 with value x 1 5 y
+[4] has put key 0 00000006 value x 0 6 y
+[2] has put key 1 00000002 value x 1 2 y
+[1] propose cmd ChangePeer potential next index 87
+[2] has put key 3 00000004 value x 3 4 y
+[1] propose cmd Put potential next index 88 with key 0 00000007 with value x 0 7 y
+[2] has put key 2 00000001 value x 2 1 y
+[2] has put key 1 00000003 value x 1 3 y
+[2] has put key 3 00000005 value x 3 5 y
 [1] has put key 4 00000007 value x 4 7 y
+[2] has put key 2 00000002 value x 2 2 y
+[1] entry index 83 current proposal:  84 85 86 88
+[1] has put key 2 00000006 value x 2 6 y
+[5] has put key 4 00000007 value x 4 7 y
+[4] has put key 4 00000007 value x 4 7 y
+[5] has put key 2 00000006 value x 2 6 y
+[1] entry index 84 current proposal:  85 86 88
+[1] entry index 85 current proposal:  86 88
 [1] has put key 1 00000005 value x 1 5 y
-[1] has put key 3 00000004 value x 3 4 y
+[2] has put key 4 00000005 value x 4 5 y
 [4] has put key 2 00000006 value x 2 6 y
 [5] has put key 1 00000005 value x 1 5 y
-[1] has put key 2 00000006 value x 2 6 y
-[5] has put key 3 00000004 value x 3 4 y
-[4] has put key 1 00000006 value x 1 6 y
-[1] has put key 1 00000006 value x 1 6 y
-[4] has put key 3 00000005 value x 3 5 y
-[5] has put key 2 00000006 value x 2 6 y
-[1] has put key 3 00000005 value x 3 5 y
-[5] has put key 1 00000006 value x 1 6 y
-[5] has put key 3 00000005 value x 3 5 y
-[4] has put key 4 00000008 value x 4 8 y
+[2] has put key 2 00000003 value x 2 3 y
+[1] entry index 86 current proposal:  88
+[4] has put key 1 00000005 value x 1 5 y
+[2] has put key 3 00000006 value x 3 6 y
+[1] propose cmd Put potential next index 89 with key 4 00000008 with value x 4 8 y
+[1] propose cmd Snap potential next index 90
+[1] propose cmd Snap potential next index 91
+[1] propose cmd Put potential next index 92 with key 1 00000006 with value x 1 6 y
+[2] has put key 0 00000004 value x 0 4 y
+[2] has put key 1 00000004 value x 1 4 y
+[1] has put key 0 00000007 value x 0 7 y
+[2] has put key 2 00000004 value x 2 4 y
 [4] has put key 0 00000007 value x 0 7 y
-[5] has put key 4 00000008 value x 4 8 y
+[1] entry index 88 current proposal:  89 90 91 92
+[2] has put key 4 00000006 value x 4 6 y
 [5] has put key 0 00000007 value x 0 7 y
-[4] has put key 3 00000006 value x 3 6 y
-[5] has put key 3 00000006 value x 3 6 y
-[4] has put key 4 00000009 value x 4 9 y
-[5] has put key 4 00000009 value x 4 9 y
-[4] has put key 1 00000007 value x 1 7 y
-[5] has put key 1 00000007 value x 1 7 y
-[4] has put key 4 00000010 value x 4 10 y
-[4] has put key 2 00000007 value x 2 7 y
-[5] has put key 4 00000010 value x 4 10 y
-[4] has put key 0 00000008 value x 0 8 y
-[5] has put key 2 00000007 value x 2 7 y
+[1] propose cmd Put potential next index 93 with key 0 00000008 with value x 0 8 y
+[1] with lastIdx 93 send hb to peers [1 2 4 5]  77  89  92
+[2] has put key 0 00000005 value x 0 5 y
+[1] has put key 4 00000008 value x 4 8 y
+[5] has put key 4 00000008 value x 4 8 y
+[1] entry index 89 current proposal:  90 91 92 93
+[1] entry index 90 current proposal:  91 92 93
+[1] entry index 91 current proposal:  92 93
+[1] has put key 1 00000006 value x 1 6 y
+[2] has put key 2 00000005 value x 2 5 y
+[4] has put key 4 00000008 value x 4 8 y
+[2] has put key 3 00000007 value x 3 7 y
+[1] entry index 92 current proposal:  93
+[5] has put key 1 00000006 value x 1 6 y
+[4] has put key 1 00000006 value x 1 6 y
+[2] has put key 0 00000006 value x 0 6 y
+[1] propose cmd Put potential next index 94 with key 4 00000009 with value x 4 9 y
+[1] propose cmd Put potential next index 95 with key 2 00000007 with value x 2 7 y
+[1] propose cmd Put potential next index 96 with key 3 00000008 with value x 3 8 y
+[1] propose cmd Snap potential next index 97
+[2] has put key 2 00000005 value x 2 5 y
+[1] has put key 0 00000008 value x 0 8 y
+[2] has put key 3 00000007 value x 3 7 y
 [5] has put key 0 00000008 value x 0 8 y
-[4] has put key 4 00000011 value x 4 11 y
-[4] has put key 0 00000009 value x 0 9 y
-[5] has put key 4 00000011 value x 4 11 y
-[5] has put key 0 00000009 value x 0 9 y
-[4] has put key 3 00000007 value x 3 7 y
-[4] has put key 4 00000012 value x 4 12 y
-[4] has put key 2 00000008 value x 2 8 y
-[5] has put key 3 00000007 value x 3 7 y
-[5] has put key 4 00000012 value x 4 12 y
+[1] entry index 93 current proposal:  94 95 96 97
+[4] has put key 0 00000008 value x 0 8 y
+[2] has put key 0 00000006 value x 0 6 y
+[1] propose cmd Snap potential next index 98
+[2] has put key 4 00000007 value x 4 7 y
+[1] has put key 4 00000009 value x 4 9 y
+[2] has put key 2 00000006 value x 2 6 y
+[5] has put key 4 00000009 value x 4 9 y
+[1] entry index 94 current proposal:  95 96 97 98[4] has put key 4 00000009 value x 4 9 y
+[2] has put key 1 00000005 value x 1 5 y
+
+[1] has put key 2 00000007 value x 2 7 y
+[5] has put key 2 00000007 value x 2 7 y
+[4] has put key 2 00000007 value x 2 7 y
+[1] entry index 95 current proposal:  96 97 98
+[1] has put key 3 00000008 value x 3 8 y
+[1] entry index 96 current proposal:  97 98
+[1] entry index 97 current proposal:  98
+[4] has put key 3 00000008 value x 3 8 y
+[5] has put key 3 00000008 value x 3 8 y
+[1] propose cmd Put potential next index 99 with key 4 00000010 with value x 4 10 y
+[1] propose cmd Put potential next index 100 with key 2 00000008 with value x 2 8 y
+[1] propose cmd Put potential next index 101 with key 3 00000009 with value x 3 9 y
+[1] propose cmd Snap potential next index 102
+[2] has put key 0 00000007 value x 0 7 y
+[1] entry index 98 current proposal:  99 100 101 102
+[1] propose cmd ChangePeer potential next index 103
+[1] propose cmd Put potential next index 103 with key 0 00000009 with value x 0 9 y
+[2] has put key 4 00000008 value x 4 8 y
+[2] has put key 1 00000006 value x 1 6 y
+[2] has put key 0 00000008 value x 0 8 y
+[1] has put key 4 00000010 value x 4 10 y
+[2] has put key 4 00000009 value x 4 9 y
+[1] entry index 99 current proposal:  100 101 102 103
+[1] has put key 2 00000008 value x 2 8 y
+[5] has put key 4 00000010 value x 4 10 y
+[2] has put key 2 00000007 value x 2 7 y
 [5] has put key 2 00000008 value x 2 8 y
-[4] has put key 1 00000008 value x 1 8 y
-[4] has put key 2 00000009 value x 2 9 y
-[5] has put key 1 00000008 value x 1 8 y
-[5] has put key 2 00000009 value x 2 9 y
-[5] has put key 3 00000008 value x 3 8 y
-[5] has put key 1 00000009 value x 1 9 y
-region_not_found:<region_id:1 > 
-region_not_found:<region_id:1 > 
-region_not_found:<region_id:1 > 
-region_not_found:<region_id:1 > 
-region_not_found:<region_id:1 > 
-[5] becomes leader
-[5] has put key 2 00000010 value x 2 10 y
-[5] has put key 0 00000010 value x 0 10 y
-[5] has put key 3 00000008 value x 3 8 y
-[5] has put key 0 00000010 value x 0 10 y
-[5] has put key 2 00000010 value x 2 10 y
-[5] has put key 1 00000009 value x 1 9 y
-[5] has put key 0 00000011 value x 0 11 y
-[5] has put key 2 00000011 value x 2 11 y
-[5] has put key 1 00000010 value x 1 10 y
-[5] has put key 4 00000013 value x 4 13 y
+[4] has put key 4 00000010 value x 4 10 y
+[1] entry index 100 current proposal:  101 102 103
+[1] has put key 3 00000009 value x 3 9 y
+[2] has put key 3 00000008 value x 3 8 y
 [5] has put key 3 00000009 value x 3 9 y
-[5] has put key 1 00000011 value x 1 11 y
+[4] has put key 2 00000008 value x 2 8 y
+[1] entry index 101 current proposal:  102 103
+[1] entry index 102 current proposal:  103
+[4] has put key 3 00000009 value x 3 9 y
+[1] propose cmd Snap potential next index 104
+[1] propose cmd Put potential next index 105 with key 2 00000009 with value x 2 9 y
+[1] propose cmd Put potential next index 106 with key 3 00000010 with value x 3 10 y
+[1] propose cmd Put potential next index 107 with key 1 00000007 with value x 1 7 y
+[1] has put key 0 00000009 value x 0 9 y
+[2] has put key 4 00000010 value x 4 10 y
+[1] entry index 103 current proposal:  104 105 106 107
+[5] has put key 0 00000009 value x 0 9 y
+[2] has put key 2 00000008 value x 2 8 y
+[4] has put key 0 00000009 value x 0 9 y
+[1] propose cmd Snap potential next index 108
+[1] with lastIdx 108 send hb to peers [1 2 4 5]  103  103  107
+[2] has put key 3 00000009 value x 3 9 y
+[1] entry index 104 current proposal:  105 106 107 108
+[1] has put key 2 00000009 value x 2 9 y
+[5] has put key 2 00000009 value x 2 9 y
+[1] entry index 105 current proposal:  106 107 108
+[1] has put key 3 00000010 value x 3 10 y
+[4] has put key 2 00000009 value x 2 9 y
 [5] has put key 3 00000010 value x 3 10 y
-[5] has put key 2 00000012 value x 2 12 y
-[5] has put key 4 00000014 value x 4 14 y
-[5] has put key 2 00000013 value x 2 13 y
+[1] entry index 106 current proposal:  107 108
+[1] has put key 1 00000007 value x 1 7 y
+[2] has put key 0 00000009 value x 0 9 y
+[5] has put key 1 00000007 value x 1 7 y
+[4] has put key 3 00000010 value x 3 10 y
+[1] entry index 107 current proposal:  108
+[4] has put key 1 00000007 value x 1 7 y
+[1] propose cmd Snap potential next index 109
+[1] propose cmd Snap potential next index 110
+[1] propose cmd Put potential next index 111 with key 3 00000011 with value x 3 11 y
+[1] propose cmd Put potential next index 112 with key 1 00000008 with value x 1 8 y
+[1] entry index 108 current proposal:  109 110 111 112
+[1] propose cmd Snap potential next index 113
+[2] has put key 2 00000009 value x 2 9 y
+[2] has put key 3 00000010 value x 3 10 y
+[1] entry index 109 current proposal:  110 111 112 113
+[1] entry index 110 current proposal:  111 112 113
+[1] has put key 3 00000011 value x 3 11 y
+[2] has put key 1 00000007 value x 1 7 y
+[4] has put key 3 00000011 value x 3 11 y
+[1] entry index 111 current proposal:  112 113
+[1] has put key 1 00000008 value x 1 8 y
+[4] has put key 1 00000008 value x 1 8 y
+[1] entry index 112 current proposal:  113
+[2] has put key 3 00000011 value x 3 11 y
+[1] propose cmd Snap potential next index 114
+[1] propose cmd Snap potential next index 115
+[1] propose cmd Snap potential next index 116
+[1] propose cmd Snap potential next index 117
+[1] propose cmd CompactLog potential next index 118
+[2] has put key 1 00000008 value x 1 8 y
+[1] propose cmd ChangePeer potential next index 119
 [5] has put key 3 00000011 value x 3 11 y
-[5] has put key 2 00000014 value x 2 14 y
-[5] has put key 1 00000012 value x 1 12 y
+[1] entry index 113 current proposal:  114 115 116 117
+[1] entry index 114 current proposal:  115 116 117
+[1] entry index 115 current proposal:  116 117
+[5] has put key 1 00000008 value x 1 8 y
+[1] propose cmd Snap potential next index 119
+[1] propose cmd Put potential next index 120 with key 4 00000011 with value x 4 11 y
+[1] propose cmd Snap potential next index 121
+[1] entry index 116 current proposal:  117 119 120 121
+[1] entry index 117 current proposal:  119 120 121
+[1] propose cmd Put potential next index 122 with key 1 00000009 with value x 1 9 y
+[1] propose cmd Put potential next index 123 with key 3 00000012 with value x 3 12 y
+[1] entry index 119 current proposal:  120 121 122 123
+[1] has put key 4 00000011 value x 4 11 y
+[1] entry index 120 current proposal:  121 122 123
+[1] entry index 121 current proposal:  122 123
+[4] has put key 4 00000011 value x 4 11 y
+[5] has put key 4 00000011 value x 4 11 y
+[1] propose cmd Put potential next index 124 with key 0 00000010 with value x 0 10 y
+[1] propose cmd Snap potential next index 125
+[1] propose cmd Snap potential next index 126
+[1] has put key 1 00000009 value x 1 9 y
+[1] entry index 122 current proposal:  123 124 125 126
+[1] has put key 3 00000012 value x 3 12 y
+[5] has put key 1 00000009 value x 1 9 y
+[4] has put key 1 00000009 value x 1 9 y
+[1] entry index 123 current proposal:  124 125 126
+[1] propose cmd Put potential next index 127 with key 1 00000010 with value x 1 10 y
+[1] with lastIdx 127 send hb to peers [1 2 4 5]  118  126  124
+[1] propose cmd Put potential next index 128 with key 3 00000013 with value x 3 13 y
 [5] has put key 3 00000012 value x 3 12 y
-[5] has put key 0 00000012 value x 0 12 y
-[5] has put key 2 00000015 value x 2 15 y
-[5] has put key 1 00000013 value x 1 13 y
-[5] has put key 4 00000015 value x 4 15 y
+[1] has put key 0 00000010 value x 0 10 y
+[1] entry index 124 current proposal:  125 126 127 128
+[4] has put key 3 00000012 value x 3 12 y
+[1] propose cmd Put potential next index 129 with key 0 00000011 with value x 0 11 y
+[4] has put key 0 00000010 value x 0 10 y
+[5] has put key 0 00000010 value x 0 10 y
+[1] entry index 125 current proposal:  126 127 128 129
+[1] entry index 126 current proposal:  127 128 129
+[1] propose cmd Snap potential next index 130
+[1] propose cmd Snap potential next index 131
+[1] has put key 1 00000010 value x 1 10 y
+[5] has put key 1 00000010 value x 1 10 y
+[1] entry index 127 current proposal:  128 129 130 131
+[4] has put key 1 00000010 value x 1 10 y
+[1] propose cmd Snap potential next index 132
+[1] has put key 3 00000013 value x 3 13 y
+[1] entry index 128 current proposal:  129 130 131 132
+[1] has put key 0 00000011 value x 0 11 y
+[4] has put key 3 00000013 value x 3 13 y
 [5] has put key 3 00000013 value x 3 13 y
-[5] has put key 0 00000013 value x 0 13 y
-[5] has put key 2 00000016 value x 2 16 y
-[5] has put key 0 00000014 value x 0 14 y
+[1] entry index 129 current proposal:  130 131 132
+[1] entry index 130 current proposal:  131 132
+[1] entry index 131 current proposal:  132
+[4] has put key 0 00000011 value x 0 11 y
+[5] has put key 0 00000011 value x 0 11 y
+[1] propose cmd Put potential next index 133 with key 3 00000014 with value x 3 14 y
+[1] propose cmd Snap potential next index 134
+[1] propose cmd Put potential next index 135 with key 0 00000012 with value x 0 12 y
+[1] propose cmd Put potential next index 136 with key 2 00000010 with value x 2 10 y
+[1] entry index 132 current proposal:  133 134 135 136
+[1] propose cmd Snap potential next index 137
+[1] propose cmd ChangePeer potential next index 138
+[1] has put key 3 00000014 value x 3 14 y
+[1] entry index 133 current proposal:  134 135 136 137
+[1] entry index 134 current proposal:  135 136 137
+[1] has put key 0 00000012 value x 0 12 y
 [5] has put key 3 00000014 value x 3 14 y
-[5] has put key 4 00000016 value x 4 16 y
-[5] has put key 2 00000017 value x 2 17 y
-[5] has put key 0 00000015 value x 0 15 y
+[4] has put key 3 00000014 value x 3 14 y
+[1] entry index 135 current proposal:  136 137
+[1] has put key 2 00000010 value x 2 10 y
+[5] has put key 0 00000012 value x 0 12 y
+[4] has put key 0 00000012 value x 0 12 y
+[1] entry index 136 current proposal:  137
+[5] has put key 2 00000010 value x 2 10 y
+[4] has put key 2 00000010 value x 2 10 y
+[1] propose cmd Snap potential next index 138
+[1] propose cmd Put potential next index 139 with key 4 00000012 with value x 4 12 y
+[1] propose cmd Put potential next index 140 with key 0 00000013 with value x 0 13 y
+[1] propose cmd Snap potential next index 141
+[1] entry index 137 current proposal:  138 139 140 141
+[1] propose cmd Snap potential next index 142
+[1] entry index 138 current proposal:  139 140 141 142
+[1] has put key 4 00000012 value x 4 12 y
+[1] entry index 139 current proposal:  140 141 142
+[1] has put key 0 00000013 value x 0 13 y
+[4] has put key 4 00000012 value x 4 12 y
+[5] has put key 4 00000012 value x 4 12 y
+[1] entry index 140 current proposal:  141 142
+[1] entry index 141 current proposal:  142
+[4] has put key 0 00000013 value x 0 13 y
+[5] has put key 0 00000013 value x 0 13 y
+[1] propose cmd Put potential next index 143 with key 3 00000015 with value x 3 15 y
+[1] propose cmd Put potential next index 144 with key 4 00000013 with value x 4 13 y
+[1] propose cmd Snap potential next index 145
+[1] propose cmd Put potential next index 146 with key 2 00000011 with value x 2 11 y
+[1] entry index 142 current proposal:  143 144 145 146
+[1] propose cmd Snap potential next index 147
+[1] with lastIdx 147 send hb to peers [1 2 4 5]  118  143  142
+[1] has put key 3 00000015 value x 3 15 y
+[1] entry index 143 current proposal:  144 145 146 147
+[4] has put key 3 00000015 value x 3 15 y
 [5] has put key 3 00000015 value x 3 15 y
-[5] has put key 4 00000017 value x 4 17 y
-[5] has put key 1 00000014 value x 1 14 y
+[1] propose cmd Put potential next index 148 with key 3 00000016 with value x 3 16 y
+[1] has put key 4 00000013 value x 4 13 y
+[5] has put key 4 00000013 value x 4 13 y
+[1] entry index 144 current proposal:  145 146 147 148
+[1] entry index 145 current proposal:  146 147 148
+[1] has put key 2 00000011 value x 2 11 y
+[4] has put key 4 00000013 value x 4 13 y
+[1] entry index 146 current proposal:  147 148
+[1] entry index 147 current proposal:  148
+[5] has put key 2 00000011 value x 2 11 y
+[4] has put key 2 00000011 value x 2 11 y
+[1] propose cmd Put potential next index 149 with key 4 00000014 with value x 4 14 y
+[1] propose cmd Snap potential next index 150
+[1] propose cmd Snap potential next index 151
+[1] propose cmd Snap potential next index 152
+[1] has put key 3 00000016 value x 3 16 y
 [5] has put key 3 00000016 value x 3 16 y
-[5] has put key 2 00000018 value x 2 18 y
-[5] has put key 4 00000018 value x 4 18 y
-[5] has put key 1 00000015 value x 1 15 y
-[5] has put key 4 00000019 value x 4 19 y
-[5] has put key 1 00000016 value x 1 16 y
-[5] has put key 4 00000020 value x 4 20 y
+[1] entry index 148 current proposal:  149 150 151 152
+[4] has put key 3 00000016 value x 3 16 y
+[1] propose cmd Put potential next index 153 with key 3 00000017 with value x 3 17 y
+[1] has put key 4 00000014 value x 4 14 y
+[1] entry index 149 current proposal:  150 151 152 153
+[1] entry index 150 current proposal:  151 152 153
+[1] entry index 151 current proposal:  152 153
+[1] entry index 152 current proposal:  153
+[5] has put key 4 00000014 value x 4 14 y
+[4] has put key 4 00000014 value x 4 14 y
+[1] propose cmd Put potential next index 154 with key 4 00000015 with value x 4 15 y
+[1] propose cmd Put potential next index 155 with key 2 00000012 with value x 2 12 y
+[1] propose cmd Snap potential next index 156
+[1] propose cmd Put potential next index 157 with key 1 00000011 with value x 1 11 y
+[1] propose cmd ChangePeer potential next index 158
+[1] has put key 3 00000017 value x 3 17 y
+[1] entry index 153 current proposal:  154 155 156 157
+[1] has put key 4 00000015 value x 4 15 y
+[4] has put key 3 00000017 value x 3 17 y
 [5] has put key 3 00000017 value x 3 17 y
-[5] has put key 0 00000016 value x 0 16 y
-[5] has put key 1 00000017 value x 1 17 y
+[4] has put key 4 00000015 value x 4 15 y
+[1] entry index 154 current proposal: [5] has put key 4 00000015 value x 4 15 y
+ 155 156 157
+[1] propose cmd Snap potential next index 158
+[1] propose cmd Snap potential next index 159
+[1] has put key 2 00000012 value x 2 12 y
+[5] has put key 2 00000012 value x 2 12 y
+[4] has put key 2 00000012 value x 2 12 y
+[1] entry index 155 current proposal:  156 157 158 159
+[1] entry index 156 current proposal:  157 158 159
+[1] has put key 1 00000011 value x 1 11 y
+[5] has put key 1 00000011 value x 1 11 y
+[4] has put key 1 00000011 value x 1 11 y
+[1] entry index 157 current proposal:  158 159
+[1] propose cmd Snap potential next index 160
+[1] propose cmd Snap potential next index 161
+[1] propose cmd Snap potential next index 162
+[1] entry index 158 current proposal:  159 160 161 162
+[1] entry index 159 current proposal:  160 161 162
+[1] entry index 160 current proposal:  161 162
+[1] entry index 161 current proposal:  162
+[1] entry index 162 current proposal: 
+[1] propose cmd Snap potential next index 163
+[1] propose cmd Put potential next index 164 with key 3 00000018 with value x 3 18 y
+[1] propose cmd Put potential next index 165 with key 0 00000014 with value x 0 14 y
+[1] propose cmd Snap potential next index 166
+[1] propose cmd Snap potential next index 167
+[1] entry index 163 current proposal:  164 165 166 167
+[1] has put key 3 00000018 value x 3 18 y
+[1] entry index 164 current proposal:  165 166 167
+[1] has put key 0 00000014 value x 0 14 y
 [5] has put key 3 00000018 value x 3 18 y
-[6] receives snapshot from [5]
-[5] has put key 2 00000019 value x 2 19 y
-[5] has put key 1 00000018 value x 1 18 y
-[6] has put key 2 00000019 value x 2 19 y
-[5] has put key 4 00000021 value x 4 21 y
-[6] has put key 1 00000018 value x 1 18 y
+[4] has put key 3 00000018 value x 3 18 y
+[1] entry index 165 current proposal:  166 167
+[5] has put key 0 00000014 value x 0 14 y
+[1] propose cmd Put potential next index 168 with key 4 00000016 with value x 4 16 y
+[1] propose cmd Snap potential next index 169
+[1] with lastIdx 169 send hb to peers [1 2 4 5]  118  167  165
+[1] propose cmd Snap potential next index 170
+[4] has put key 0 00000014 value x 0 14 y
+[1] entry index 166 current proposal:  167 168 169 170
+[1] entry index 167 current proposal:  168 169 170
+[1] has put key 4 00000016 value x 4 16 y
+[1] entry index 168 current proposal:  169 170
+[1] entry index 169 current proposal:  170
+[1] entry index 170 current proposal: 
+[5] has put key 4 00000016 value x 4 16 y
+[4] has put key 4 00000016 value x 4 16 y
+[1] propose cmd Snap potential next index 171
+[1] propose cmd Snap potential next index 172
+[1] propose cmd Snap potential next index 173
+[1] propose cmd Put potential next index 174 with key 3 00000019 with value x 3 19 y
+[1] propose cmd Put potential next index 175 with key 0 00000015 with value x 0 15 y
+[1] entry index 171 current proposal:  172 173 174 175
+[1] propose cmd Snap potential next index 176
+[1] entry index 172 current proposal:  173 174 175 176
+[1] entry index 173 current proposal:  174 175 176
+[1] has put key 3 00000019 value x 3 19 y
+[4] has put key 3 00000019 value x 3 19 y
 [5] has put key 3 00000019 value x 3 19 y
-[6] has put key 4 00000021 value x 4 21 y
-[6] has put key 3 00000019 value x 3 19 y
-[6] has put key 2 00000019 value x 2 19 y
-[6] has put key 4 00000021 value x 4 21 y
-[6] has put key 1 00000018 value x 1 18 y
-[6] has put key 3 00000019 value x 3 19 y
-[6] has put key 2 00000019 value x 2 19 y
-[6] has put key 1 00000018 value x 1 18 y
-[6] has put key 4 00000021 value x 4 21 y
-[6] has put key 3 00000019 value x 3 19 y
-region_not_found:<region_id:1 > 
-region_not_found:<region_id:1 > 
-region_not_found:<region_id:1 > 
-region_not_found:<region_id:1 > 
-region_not_found:<region_id:1 > 
-[6] becomes leader
-[6] has put key 2 00000019 value x 2 19 y
-[6] has put key 3 00000019 value x 3 19 y
-[6] has put key 4 00000021 value x 4 21 y
-[6] has put key 1 00000018 value x 1 18 y
-[6] has put key 2 00000020 value x 2 20 y
-[6] has put key 0 00000017 value x 0 17 y
-[6] has put key 1 00000019 value x 1 19 y
-[6] has put key 2 00000021 value x 2 21 y
-[6] has put key 3 00000020 value x 3 20 y
-[6] has put key 0 00000018 value x 0 18 y
-[6] has put key 1 00000020 value x 1 20 y
-[6] has put key 2 00000022 value x 2 22 y
-[6] has put key 0 00000019 value x 0 19 y
-[6] has put key 4 00000022 value x 4 22 y
-[6] has put key 1 00000021 value x 1 21 y
-[6] has put key 2 00000023 value x 2 23 y
-[6] has put key 4 00000023 value x 4 23 y
-[6] has put key 2 00000024 value x 2 24 y
-[6] has put key 3 00000021 value x 3 21 y
-[6] has put key 2 00000025 value x 2 25 y
-[6] has put key 1 00000022 value x 1 22 y
-[6] has put key 3 00000022 value x 3 22 y
-[6] has put key 2 00000026 value x 2 26 y
-[6] has put key 4 00000024 value x 4 24 y
-[6] has put key 1 00000023 value x 1 23 y
-[6] has put key 2 00000027 value x 2 27 y
-[6] has put key 2 00000028 value x 2 28 y
-[6] has put key 3 00000023 value x 3 23 y
-[6] has put key 1 00000024 value x 1 24 y
-[6] has put key 2 00000029 value x 2 29 y
-[6] has put key 4 00000025 value x 4 25 y
-[6] has put key 1 00000025 value x 1 25 y
-[6] has put key 0 00000020 value x 0 20 y
-[6] has put key 4 00000026 value x 4 26 y
-[6] has put key 1 00000026 value x 1 26 y
-[6] has put key 0 00000021 value x 0 21 y
-[6] has put key 1 00000027 value x 1 27 y
-[6] has put key 0 00000022 value x 0 22 y
-[6] has put key 2 00000030 value x 2 30 y
-[6] has put key 0 00000023 value x 0 23 y
-[6] has put key 2 00000031 value x 2 31 y
-[6] has put key 1 00000028 value x 1 28 y
-[6] has put key 3 00000024 value x 3 24 y
-[6] has put key 0 00000024 value x 0 24 y
-[6] has put key 2 00000032 value x 2 32 y
-[6] has put key 3 00000025 value x 3 25 y
-[6] has put key 1 00000029 value x 1 29 y
-[6] has put key 0 00000025 value x 0 25 y
-[6] has put key 4 00000027 value x 4 27 y
-[6] has put key 2 00000033 value x 2 33 y
-[6] has put key 1 00000030 value x 1 30 y
-[6] has put key 3 00000026 value x 3 26 y
-[6] has put key 4 00000028 value x 4 28 y
-[6] has put key 2 00000034 value x 2 34 y
-[6] has put key 1 00000031 value x 1 31 y
-[6] has put key 0 00000026 value x 0 26 y
-[6] has put key 2 00000035 value x 2 35 y
-[6] has put key 1 00000032 value x 1 32 y
-[6] has put key 4 00000029 value x 4 29 y
-[6] has put key 3 00000027 value x 3 27 y
-[6] has put key 2 00000036 value x 2 36 y
-[6] has put key 1 00000033 value x 1 33 y
-[6] has put key 4 00000030 value x 4 30 y
-[6] has put key 0 00000027 value x 0 27 y
-[6] has put key 2 00000037 value x 2 37 y
-[6] has put key 1 00000034 value x 1 34 y
-[6] has put key 0 00000028 value x 0 28 y
-[6] has put key 1 00000035 value x 1 35 y
-[6] has put key 4 00000031 value x 4 31 y
-[6] has put key 2 00000038 value x 2 38 y
-[6] has put key 4 00000032 value x 4 32 y
-[6] has put key 0 00000029 value x 0 29 y
-[6] has put key 3 00000028 value x 3 28 y
-[6] has put key 1 00000036 value x 1 36 y
-[6] has put key 4 00000033 value x 4 33 y
-[6] has put key 3 00000029 value x 3 29 y
-[6] has put key 1 00000037 value x 1 37 y
-[6] has put key 4 00000034 value x 4 34 y
-[6] has put key 1 00000038 value x 1 38 y
-[6] has put key 2 00000039 value x 2 39 y
-[6] has put key 0 00000030 value x 0 30 y
-[6] has put key 2 00000040 value x 2 40 y
-[6] has put key 4 00000035 value x 4 35 y
-[6] has put key 3 00000030 value x 3 30 y
-[6] has put key 1 00000039 value x 1 39 y
-[6] has put key 2 00000041 value x 2 41 y
-[6] has put key 2 00000042 value x 2 42 y
-[6] has put key 0 00000031 value x 0 31 y
-[6] has put key 2 00000043 value x 2 43 y
-[6] has put key 1 00000040 value x 1 40 y
-[6] has put key 4 00000036 value x 4 36 y
-[6] has put key 2 00000044 value x 2 44 y
-[6] has put key 3 00000031 value x 3 31 y
-[6] has put key 0 00000032 value x 0 32 y
-[6] has put key 4 00000037 value x 4 37 y
-[6] has put key 3 00000032 value x 3 32 y
-[6] has put key 4 00000038 value x 4 38 y
-[6] has put key 2 00000045 value x 2 45 y
-[6] has put key 3 00000033 value x 3 33 y
-[6] has put key 4 00000039 value x 4 39 y
-[6] has put key 1 00000041 value x 1 41 y
-[6] has put key 4 00000040 value x 4 40 y
-[6] has put key 2 00000046 value x 2 46 y
-[7] receives snapshot from [6]
-[6] has put key 4 00000041 value x 4 41 y
-[7] has put key 4 00000041 value x 4 41 y
-[7] has put key 2 00000047 value x 2 47 y
-[6] has put key 2 00000047 value x 2 47 y
-[6] has delete key 0 00000000
-[7] has delete key 0 00000000
-[6] has delete key 0 00000001
-[7] has delete key 0 00000001
-[6] has delete key 0 00000002
-[7] has delete key 0 00000002
-[6] has delete key 0 00000003
-[7] has delete key 0 00000003
-[6] has delete key 0 00000004
-[7] has delete key 0 00000004
-[6] has delete key 0 00000005
-[7] has delete key 0 00000005
-[6] has delete key 0 00000006
-[7] has delete key 0 00000006
-[6] has delete key 0 00000007
-[7] has delete key 0 00000007
-[6] has delete key 0 00000008
-[7] has delete key 0 00000008
-[6] has delete key 0 00000009
-[7] has delete key 0 00000009
-[6] has delete key 0 00000010
-[7] has delete key 0 00000010
-[6] has delete key 0 00000011
-[7] has delete key 0 00000011
-[6] has delete key 0 00000012
-[7] has delete key 0 00000012
-[6] has delete key 0 00000013
-[7] has delete key 0 00000013
-[6] has delete key 0 00000014
-[7] has delete key 0 00000014
-[6] has delete key 0 00000015
-[7] has delete key 0 00000015
-[6] has delete key 0 00000016
-[7] has delete key 0 00000016
-[6] has delete key 0 00000017
-[7] has delete key 0 00000017
-[6] has delete key 0 00000018
-[7] has delete key 0 00000018
-[6] has delete key 0 00000019
-[7] has delete key 0 00000019
-[6] has delete key 0 00000020
-[7] has delete key 0 00000020
-[6] has delete key 0 00000021
-[7] has delete key 0 00000021
-[6] has delete key 0 00000022
-[7] has delete key 0 00000022
-[6] has delete key 0 00000023
-[7] has delete key 0 00000023
-[6] has delete key 0 00000024
-[7] has delete key 0 00000024
-[6] has delete key 0 00000025
-[7] has delete key 0 00000025
-[6] has delete key 0 00000026
-[7] has delete key 0 00000026
-[6] has delete key 0 00000027
-[7] has delete key 0 00000027
-[6] has delete key 0 00000028
-[7] has delete key 0 00000028
-[6] has delete key 0 00000029
-[7] has delete key 0 00000029
-[6] has delete key 0 00000030
-[7] has delete key 0 00000030
-[6] has delete key 0 00000031
-[7] has delete key 0 00000031
-[6] has delete key 0 00000032
-[7] has delete key 0 00000032
-[6] has delete key 1 00000000
-[7] has delete key 1 00000000
-[6] has delete key 1 00000001
-[7] has delete key 1 00000001
-[6] has delete key 1 00000002
-[7] has delete key 1 00000002
-[6] has delete key 1 00000003
-[7] has delete key 1 00000003
-[6] has delete key 1 00000004
-[7] has delete key 1 00000004
-[6] has delete key 1 00000005
-[7] has delete key 1 00000005
-[6] has delete key 1 00000006
-[7] has delete key 1 00000006
-[6] has delete key 1 00000007
-[7] has delete key 1 00000007
-[6] has delete key 1 00000008
-[7] has delete key 1 00000008
-[6] has delete key 1 00000009
-[7] has delete key 1 00000009
-[6] has delete key 1 00000010
-[7] has delete key 1 00000010
-[6] has delete key 1 00000011
-[7] has delete key 1 00000011
-[6] has delete key 1 00000012
-[7] has delete key 1 00000012
-[6] has delete key 1 00000013
-[7] has delete key 1 00000013
-[6] has delete key 1 00000014
-[7] has delete key 1 00000014
-[6] has delete key 1 00000015
-[7] has delete key 1 00000015
-[6] has delete key 1 00000016
-[7] has delete key 1 00000016
-[6] has delete key 1 00000017
-[7] has delete key 1 00000017
-[6] has delete key 1 00000018
-[7] has delete key 1 00000018
-[6] has delete key 1 00000019
-[7] has delete key 1 00000019
-[6] has delete key 1 00000020
-[7] has delete key 1 00000020
-[6] has delete key 1 00000021
-[7] has delete key 1 00000021
-[6] has delete key 1 00000022
-[7] has delete key 1 00000022
-[6] has delete key 1 00000023
-[7] has delete key 1 00000023
-[6] has delete key 1 00000024
-[7] has delete key 1 00000024
-[6] has delete key 1 00000025
-[7] has delete key 1 00000025
-[6] has delete key 1 00000026
-[7] has delete key 1 00000026
-[6] has delete key 1 00000027
-[7] has delete key 1 00000027
-[6] has delete key 1 00000028
-[7] has delete key 1 00000028
-[6] has delete key 1 00000029
-[7] has delete key 1 00000029
-[6] has delete key 1 00000030
-[7] has delete key 1 00000030
-[6] has delete key 1 00000031
-[7] has delete key 1 00000031
-[6] has delete key 1 00000032
-[7] has delete key 1 00000032
-[6] has delete key 1 00000033
-[7] has delete key 1 00000033
-[6] has delete key 1 00000034
-[7] has delete key 1 00000034
-[6] has delete key 1 00000035
-[7] has delete key 1 00000035
-[6] has delete key 1 00000036
-[7] has delete key 1 00000036
-[6] has delete key 1 00000037
-[7] has delete key 1 00000037
-[6] has delete key 1 00000038
-[7] has delete key 1 00000038
-[6] has delete key 1 00000039
-[7] has delete key 1 00000039
-[6] has delete key 1 00000040
-[7] has delete key 1 00000040
-[6] has delete key 1 00000041
-[7] has delete key 1 00000041
-[6] has delete key 2 00000000
-[7] has delete key 2 00000000
-[6] has delete key 2 00000001
-[7] has delete key 2 00000001
-[6] has delete key 2 00000002
-[7] has delete key 2 00000002
-[6] has delete key 2 00000003
-[7] has delete key 2 00000003
-[6] has delete key 2 00000004
-[7] has delete key 2 00000004
-[6] has delete key 2 00000005
-[7] has delete key 2 00000005
-[6] has delete key 2 00000006
-[7] has delete key 2 00000006
-[6] has delete key 2 00000007
-[7] has delete key 2 00000007
-[6] has delete key 2 00000008
-[7] has delete key 2 00000008
-[6] has delete key 2 00000009
-[7] has delete key 2 00000009
-[6] has delete key 2 00000010
-[7] has delete key 2 00000010
-[6] has delete key 2 00000011
-[7] has delete key 2 00000011
-[6] has delete key 2 00000012
-[7] has delete key 2 00000012
-[6] has delete key 2 00000013
-[7] has delete key 2 00000013
-[6] has delete key 2 00000014
-[7] has delete key 2 00000014
-[6] has delete key 2 00000015
-[7] has delete key 2 00000015
-[6] has delete key 2 00000016
-[7] has delete key 2 00000016
-[6] has delete key 2 00000017
-[7] has delete key 2 00000017
-[6] has delete key 2 00000018
-[7] has delete key 2 00000018
-[6] has delete key 2 00000019
-[7] has delete key 2 00000019
-[6] has delete key 2 00000020
-[7] has delete key 2 00000020
-[6] has delete key 2 00000021
-[7] has delete key 2 00000021
-[6] has delete key 2 00000022
-[7] has delete key 2 00000022
-[6] has delete key 2 00000023
-[7] has delete key 2 00000023
-[6] has delete key 2 00000024
-[7] has delete key 2 00000024
-[6] has delete key 2 00000025
-[7] has delete key 2 00000025
-[6] has delete key 2 00000026
-[7] has delete key 2 00000026
-[6] has delete key 2 00000027
-[7] has delete key 2 00000027
-[6] has delete key 2 00000028
-[7] has delete key 2 00000028
-[6] has delete key 2 00000029
-[7] has delete key 2 00000029
-[6] has delete key 2 00000030
-[7] has delete key 2 00000030
-[6] has delete key 2 00000031
-[7] has delete key 2 00000031
-[6] has delete key 2 00000032
-[7] has delete key 2 00000032
-[6] has delete key 2 00000033
-[7] has delete key 2 00000033
-[6] has delete key 2 00000034
-[7] has delete key 2 00000034
-[6] has delete key 2 00000035
-[7] has delete key 2 00000035
-[6] has delete key 2 00000036
-[7] has delete key 2 00000036
-[6] has delete key 2 00000037
-[7] has delete key 2 00000037
-[6] has delete key 2 00000038
-[7] has delete key 2 00000038
-[6] has delete key 2 00000039
-[7] has delete key 2 00000039
-[6] has delete key 2 00000040
-[7] has delete key 2 00000040
-[6] has delete key 2 00000041
-[7] has delete key 2 00000041
-[6] has delete key 2 00000042
-[7] has delete key 2 00000042
-[6] has delete key 2 00000043
-[7] has delete key 2 00000043
-[6] has delete key 2 00000044
-[7] has delete key 2 00000044
-[6] has delete key 2 00000045
-[7] has delete key 2 00000045
-[6] has delete key 2 00000046
-[7] has delete key 2 00000046
-[6] has delete key 2 00000047
-[7] has delete key 2 00000047
-[6] has delete key 3 00000000
-[7] has delete key 3 00000000
-[6] has delete key 3 00000001
-[7] has delete key 3 00000001
-[6] has delete key 3 00000002
-[7] has delete key 3 00000002
-[6] has delete key 3 00000003
-[7] has delete key 3 00000003
-[6] has delete key 3 00000004
-[7] has delete key 3 00000004
-[6] has delete key 3 00000005
-[7] has delete key 3 00000005
-[6] has delete key 3 00000006
-[7] has delete key 3 00000006
-[6] has delete key 3 00000007
-[7] has delete key 3 00000007
-[6] has delete key 3 00000008
-[7] has delete key 3 00000008
-[6] has delete key 3 00000009
-[7] has delete key 3 00000009
-[6] has delete key 3 00000010
-[7] has delete key 3 00000010
-[6] has delete key 3 00000011
-[7] has delete key 3 00000011
-[6] has delete key 3 00000012
-[7] has delete key 3 00000012
-[6] has delete key 3 00000013
-[7] has delete key 3 00000013
-[6] has delete key 3 00000014
-[7] has delete key 3 00000014
-[6] has delete key 3 00000015
-[7] has delete key 3 00000015
-[6] has delete key 3 00000016
-[7] has delete key 3 00000016
-[6] has delete key 3 00000017
-[7] has delete key 3 00000017
-[6] has delete key 3 00000018
-[7] has delete key 3 00000018
-[6] has delete key 3 00000019
-[7] has delete key 3 00000019
-[6] has delete key 3 00000020
-[7] has delete key 3 00000020
-[6] has delete key 3 00000021
-[7] has delete key 3 00000021
-[6] has delete key 3 00000022
-[7] has delete key 3 00000022
-[6] has delete key 3 00000023
-[7] has delete key 3 00000023
-[6] has delete key 3 00000024
-[7] has delete key 3 00000024
-[6] has delete key 3 00000025
-[7] has delete key 3 00000025
-[6] has delete key 3 00000026
-[7] has delete key 3 00000026
-[6] has delete key 3 00000027
-[7] has delete key 3 00000027
-[6] has delete key 3 00000028
-[7] has delete key 3 00000028
-[6] has delete key 3 00000029
-[7] has delete key 3 00000029
-[6] has delete key 3 00000030
-[7] has delete key 3 00000030
-[6] has delete key 3 00000031
-[7] has delete key 3 00000031
-[6] has delete key 3 00000032
-[7] has delete key 3 00000032
-[6] has delete key 3 00000033
-[7] has delete key 3 00000033
-[6] has delete key 4 00000000
-[7] has delete key 4 00000000
-[6] has delete key 4 00000001
-[7] has delete key 4 00000001
-[6] has delete key 4 00000002
-[7] has delete key 4 00000002
-[6] has delete key 4 00000003
-[7] has delete key 4 00000003
-[6] has delete key 4 00000004
-[7] has delete key 4 00000004
-[6] has delete key 4 00000005
-[7] has delete key 4 00000005
-[6] has delete key 4 00000006
-[7] has delete key 4 00000006
-[6] has delete key 4 00000007
-[7] has delete key 4 00000007
-[6] has delete key 4 00000008
-[7] has delete key 4 00000008
-[6] has delete key 4 00000009
-[7] has delete key 4 00000009
-[6] has delete key 4 00000010
-[7] has delete key 4 00000010
-[6] has delete key 4 00000011
-[7] has delete key 4 00000011
-[6] has delete key 4 00000012
-[7] has delete key 4 00000012
-[6] has delete key 4 00000013
-[7] has delete key 4 00000013
-[6] has delete key 4 00000014
-[7] has delete key 4 00000014
-[6] has delete key 4 00000015
-[7] has delete key 4 00000015
-[6] has delete key 4 00000016
-[7] has delete key 4 00000016
-[6] has delete key 4 00000017
-[7] has delete key 4 00000017
-[6] has delete key 4 00000018
-[7] has delete key 4 00000018
-[6] has delete key 4 00000019
-[7] has delete key 4 00000019
-[6] has delete key 4 00000020
-[7] has delete key 4 00000020
-[6] has delete key 4 00000021
-[7] has delete key 4 00000021
-[6] has delete key 4 00000022
-[7] has delete key 4 00000022
-[6] has delete key 4 00000023
-[7] has delete key 4 00000023
-[6] has delete key 4 00000024
-[7] has delete key 4 00000024
-[6] has delete key 4 00000025
-[7] has delete key 4 00000025
-[6] has delete key 4 00000026
-[7] has delete key 4 00000026
-[6] has delete key 4 00000027
-[7] has delete key 4 00000027
-[6] has delete key 4 00000028
-[7] has delete key 4 00000028
-[6] has delete key 4 00000029
-[7] has delete key 4 00000029
-[6] has delete key 4 00000030
-[7] has delete key 4 00000030
-[6] has delete key 4 00000031
-[7] has delete key 4 00000031
-[6] has delete key 4 00000032
-[7] has delete key 4 00000032
-[6] has delete key 4 00000033
-[7] has delete key 4 00000033
-[6] has delete key 4 00000034
-[7] has delete key 4 00000034
-[6] has delete key 4 00000035
-[7] has delete key 4 00000035
-[6] has delete key 4 00000036
-[7] has delete key 4 00000036
-[6] has delete key 4 00000037
-[7] has delete key 4 00000037
-[6] has delete key 4 00000038
-[7] has delete key 4 00000038
-[6] has delete key 4 00000039
-[7] has delete key 4 00000039
-[6] has delete key 4 00000040
-[7] has delete key 4 00000040
-[6] has delete key 4 00000041
-[7] has delete key 4 00000041
-[6] has put key 4 00000000 value x 4 0 y
-[7] has put key 4 00000000 value x 4 0 y
-[6] has put key 0 00000000 value x 0 0 y
-[6] has put key 1 00000000 value x 1 0 y
-[7] has put key 0 00000000 value x 0 0 y
-[6] has put key 2 00000000 value x 2 0 y
-[7] has put key 1 00000000 value x 1 0 y
-[6] has put key 3 00000000 value x 3 0 y
-[7] has put key 2 00000000 value x 2 0 y
-[7] has put key 3 00000000 value x 3 0 y
-[6] has put key 2 00000001 value x 2 1 y
-[6] has put key 3 00000001 value x 3 1 y
-[7] has put key 2 00000001 value x 2 1 y
-[7] has put key 3 00000001 value x 3 1 y
-[6] has put key 4 00000001 value x 4 1 y
-[6] has put key 1 00000001 value x 1 1 y
-[7] has put key 4 00000001 value x 4 1 y
-[6] has put key 2 00000002 value x 2 2 y
-[7] has put key 1 00000001 value x 1 1 y
-[6] has put key 3 00000002 value x 3 2 y
-[7] has put key 2 00000002 value x 2 2 y
-[7] has put key 3 00000002 value x 3 2 y
-[6] has put key 0 00000001 value x 0 1 y
-[6] has put key 3 00000003 value x 3 3 y
-[7] has put key 0 00000001 value x 0 1 y
-[7] has put key 3 00000003 value x 3 3 y
-[6] has put key 4 00000002 value x 4 2 y
-[7] has put key 4 00000002 value x 4 2 y
-[6] has put key 2 00000003 value x 2 3 y
-[7] has put key 2 00000003 value x 2 3 y
-[6] has put key 0 00000002 value x 0 2 y
-[7] has put key 0 00000002 value x 0 2 y
-[6] has put key 1 00000002 value x 1 2 y
-[7] has put key 1 00000002 value x 1 2 y
-[6] has put key 4 00000003 value x 4 3 y
-[7] has put key 4 00000003 value x 4 3 y
-[6] has put key 0 00000003 value x 0 3 y
-[7] has put key 0 00000003 value x 0 3 y
-[6] has put key 1 00000003 value x 1 3 y
-[7] has put key 1 00000003 value x 1 3 y
-[6] has put key 2 00000004 value x 2 4 y
-[7] has put key 2 00000004 value x 2 4 y
-[6] has put key 3 00000004 value x 3 4 y
-[7] has put key 3 00000004 value x 3 4 y
-[6] has put key 4 00000004 value x 4 4 y
-[7] has put key 4 00000004 value x 4 4 y
-[6] has put key 0 00000004 value x 0 4 y
-[7] has put key 0 00000004 value x 0 4 y
-[6] has put key 3 00000005 value x 3 5 y
-[7] has put key 3 00000005 value x 3 5 y
-[6] has put key 2 00000005 value x 2 5 y
-[7] has put key 2 00000005 value x 2 5 y
-[6] has put key 1 00000004 value x 1 4 y
-[7] has put key 1 00000004 value x 1 4 y
-[6] has put key 0 00000005 value x 0 5 y
-[7] has put key 0 00000005 value x 0 5 y
-[6] has put key 3 00000006 value x 3 6 y
-[7] has put key 3 00000006 value x 3 6 y
-[6] has put key 4 00000005 value x 4 5 y
-[7] has put key 4 00000005 value x 4 5 y
-[6] has put key 0 00000006 value x 0 6 y
-[6] has put key 1 00000005 value x 1 5 y
-[7] has put key 0 00000006 value x 0 6 y
-[6] has put key 2 00000006 value x 2 6 y
-[7] has put key 1 00000005 value x 1 5 y
-[6] has put key 3 00000007 value x 3 7 y
-[7] has put key 2 00000006 value x 2 6 y
-[7] has put key 3 00000007 value x 3 7 y
-[6] has put key 1 00000006 value x 1 6 y
-[6] has put key 2 00000007 value x 2 7 y
-[7] has put key 1 00000006 value x 1 6 y
-[7] has put key 2 00000007 value x 2 7 y
-[6] has put key 0 00000007 value x 0 7 y
-[6] has put key 2 00000008 value x 2 8 y
-[7] has put key 0 00000007 value x 0 7 y
-[7] has put key 2 00000008 value x 2 8 y
-[6] has put key 2 00000009 value x 2 9 y
-[7] has put key 2 00000009 value x 2 9 y
-[6] has put key 4 00000006 value x 4 6 y
-[6] has put key 1 00000007 value x 1 7 y
-[7] has put key 4 00000006 value x 4 6 y
-[7] has put key 1 00000007 value x 1 7 y
-[6] has put key 1 00000008 value x 1 8 y
-[7] has put key 1 00000008 value x 1 8 y
-[6] has put key 3 00000008 value x 3 8 y
-[7] has put key 3 00000008 value x 3 8 y
-[6] has put key 2 00000010 value x 2 10 y
-[6] has put key 3 00000009 value x 3 9 y
-[7] has put key 2 00000010 value x 2 10 y
-[7] has put key 3 00000009 value x 3 9 y
-[6] has put key 4 00000007 value x 4 7 y
-[7] has put key 4 00000007 value x 4 7 y
-[6] has put key 2 00000011 value x 2 11 y
-[6] has put key 3 00000010 value x 3 10 y
-[7] has put key 2 00000011 value x 2 11 y
-[7] has put key 3 00000010 value x 3 10 y
-[6] has put key 4 00000008 value x 4 8 y
-[6] has put key 1 00000009 value x 1 9 y
-[7] has put key 4 00000008 value x 4 8 y
-[6] has put key 3 00000011 value x 3 11 y
-[7] has put key 1 00000009 value x 1 9 y
-[7] has put key 3 00000011 value x 3 11 y
-[6] has put key 4 00000009 value x 4 9 y
-[6] has put key 1 00000010 value x 1 10 y
-[7] has put key 4 00000009 value x 4 9 y
-[7] has put key 1 00000010 value x 1 10 y
-[6] has put key 3 00000012 value x 3 12 y
-[7] has put key 3 00000012 value x 3 12 y
-[6] has put key 2 00000012 value x 2 12 y
-[6] has put key 1 00000011 value x 1 11 y
-[6] has put key 0 00000008 value x 0 8 y
-[7] has put key 2 00000012 value x 2 12 y
-[6] has put key 3 00000013 value x 3 13 y
-[7] has put key 1 00000011 value x 1 11 y
-[7] has put key 0 00000008 value x 0 8 y
-[7] has put key 3 00000013 value x 3 13 y
-[6] has put key 4 00000010 value x 4 10 y
-[7] has put key 4 00000010 value x 4 10 y
-[6] has put key 0 00000009 value x 0 9 y
-[7] has put key 0 00000009 value x 0 9 y
-[6] has put key 4 00000011 value x 4 11 y
-[6] has put key 1 00000012 value x 1 12 y
-[7] has put key 4 00000011 value x 4 11 y
-[6] has put key 0 00000010 value x 0 10 y
-[7] has put key 1 00000012 value x 1 12 y
-[6] has put key 3 00000014 value x 3 14 y
-[7] has put key 0 00000010 value x 0 10 y
-[7] has put key 3 00000014 value x 3 14 y
-[6] has put key 4 00000012 value x 4 12 y
-[6] has put key 3 00000015 value x 3 15 y
-[7] has put key 4 00000012 value x 4 12 y
-[7] has put key 3 00000015 value x 3 15 y
-[6] has put key 4 00000013 value x 4 13 y
-[7] has put key 4 00000013 value x 4 13 y
-[6] has put key 0 00000011 value x 0 11 y
-[7] has put key 0 00000011 value x 0 11 y
-[6] has put key 2 00000013 value x 2 13 y
-[7] has put key 2 00000013 value x 2 13 y
-[6] has put key 1 00000013 value x 1 13 y
-[7] has put key 1 00000013 value x 1 13 y
-[6] has put key 4 00000014 value x 4 14 y
-[7] has put key 4 00000014 value x 4 14 y
-[6] has put key 2 00000014 value x 2 14 y
-[6] has put key 0 00000012 value x 0 12 y
-[7] has put key 2 00000014 value x 2 14 y
-[7] has put key 0 00000012 value x 0 12 y
-[6] has put key 1 00000014 value x 1 14 y
-[7] has put key 1 00000014 value x 1 14 y
-[6] has put key 2 00000015 value x 2 15 y
-[7] has put key 2 00000015 value x 2 15 y
-[6] has put key 3 00000016 value x 3 16 y
-[7] has put key 3 00000016 value x 3 16 y
-[6] has put key 1 00000015 value x 1 15 y
-[7] has put key 1 00000015 value x 1 15 y
-[6] has put key 4 00000015 value x 4 15 y
-[7] has put key 4 00000015 value x 4 15 y
-[6] has put key 3 00000017 value x 3 17 y
-[7] has put key 3 00000017 value x 3 17 y
-[6] has put key 2 00000016 value x 2 16 y
-[7] has put key 2 00000016 value x 2 16 y
-[6] has put key 2 00000017 value x 2 17 y
-[7] has put key 2 00000017 value x 2 17 y
-[6] has put key 3 00000018 value x 3 18 y
-[7] has put key 3 00000018 value x 3 18 y
-[6] has put key 4 00000016 value x 4 16 y
-[7] has put key 4 00000016 value x 4 16 y
-[6] has put key 0 00000013 value x 0 13 y
-[7] has put key 0 00000013 value x 0 13 y
-[6] has put key 0 00000014 value x 0 14 y
-[6] has put key 0 00000014 value x 0 14 y
-[7] has put key 0 00000014 value x 0 14 y
-[7] has put key 0 00000014 value x 0 14 y
-[6] has put key 1 00000016 value x 1 16 y
-[6] has put key 4 00000017 value x 4 17 y
-[7] has put key 1 00000016 value x 1 16 y
-[7] has put key 4 00000017 value x 4 17 y
-[6] has put key 0 00000015 value x 0 15 y
-[7] has put key 0 00000015 value x 0 15 y
-[6] has put key 0 00000016 value x 0 16 y
-[7] has put key 0 00000016 value x 0 16 y
-[6] has put key 3 00000019 value x 3 19 y
-[6] has put key 2 00000018 value x 2 18 y
-[7] has put key 3 00000019 value x 3 19 y
-[6] has put key 4 00000018 value x 4 18 y
-[7] has put key 2 00000018 value x 2 18 y
-[7] has put key 4 00000018 value x 4 18 y
-[6] has put key 3 00000020 value x 3 20 y
-[6] has put key 2 00000019 value x 2 19 y
-[7] has put key 3 00000020 value x 3 20 y
-[6] has put key 0 00000017 value x 0 17 y
-[7] has put key 2 00000019 value x 2 19 y
-[7] has put key 0 00000017 value x 0 17 y
-[6] has put key 1 00000017 value x 1 17 y
-[6] has put key 4 00000019 value x 4 19 y
-[7] has put key 1 00000017 value x 1 17 y
-[6] has put key 0 00000018 value x 0 18 y
-[7] has put key 4 00000019 value x 4 19 y
-[7] has put key 0 00000018 value x 0 18 y
-[6] has put key 1 00000018 value x 1 18 y
-[7] has put key 1 00000018 value x 1 18 y
-[6] has put key 3 00000021 value x 3 21 y
-[7] has put key 3 00000021 value x 3 21 y
-[6] has put key 4 00000020 value x 4 20 y
-[7] has put key 4 00000020 value x 4 20 y
-[6] has put key 0 00000019 value x 0 19 y
-[7] has put key 0 00000019 value x 0 19 y
-[6] has put key 1 00000018 value x 1 18 y
-[7] has put key 1 00000018 value x 1 18 y
-[6] has put key 3 00000021 value x 3 21 y
-[7] has put key 3 00000021 value x 3 21 y
-[6] has put key 4 00000020 value x 4 20 y
-[7] has put key 4 00000020 value x 4 20 y
-[6] has put key 0 00000019 value x 0 19 y
-[6] has put key 2 00000020 value x 2 20 y
-[7] has put key 0 00000019 value x 0 19 y
-[6] has put key 4 00000020 value x 4 20 y
-[7] has put key 2 00000020 value x 2 20 y
-[6] has put key 0 00000019 value x 0 19 y
-[7] has put key 4 00000020 value x 4 20 y
-[6] has put key 2 00000020 value x 2 20 y
-[7] has put key 0 00000019 value x 0 19 y
-[7] has put key 2 00000020 value x 2 20 y
-[6] has put key 2 00000021 value x 2 21 y
-[7] has put key 2 00000021 value x 2 21 y
-[6] has put key 3 00000022 value x 3 22 y
-[7] has put key 3 00000022 value x 3 22 y
-[6] has put key 1 00000019 value x 1 19 y
-[7] has put key 1 00000019 value x 1 19 y
-[6] has put key 4 00000021 value x 4 21 y
-[7] has put key 4 00000021 value x 4 21 y
-[6] has put key 3 00000023 value x 3 23 y
-[6] has put key 0 00000020 value x 0 20 y
-[7] has put key 3 00000023 value x 3 23 y
-[7] has put key 0 00000020 value x 0 20 y
-[6] has put key 2 00000022 value x 2 22 y
-[6] has put key 4 00000022 value x 4 22 y
-[6] has put key 1 00000020 value x 1 20 y
-[7] has put key 2 00000022 value x 2 22 y
-[6] has put key 0 00000021 value x 0 21 y
-[7] has put key 4 00000022 value x 4 22 y
-[7] has put key 1 00000020 value x 1 20 y
-[7] has put key 0 00000021 value x 0 21 y
-[6] has put key 2 00000023 value x 2 23 y
-[7] has put key 2 00000023 value x 2 23 y
-[6] becomes leader
-[6] has put key 3 00000024 value x 3 24 y
-[7] has put key 3 00000024 value x 3 24 y
-[6] has put key 4 00000023 value x 4 23 y
-[7] has put key 4 00000023 value x 4 23 y
-[6] has put key 1 00000021 value x 1 21 y
-[7] has put key 1 00000021 value x 1 21 y
-[6] has put key 0 00000022 value x 0 22 y
-[6] has put key 3 00000024 value x 3 24 y
-[7] has put key 0 00000022 value x 0 22 y
-[6] has put key 4 00000023 value x 4 23 y
-[7] has put key 3 00000024 value x 3 24 y
-[6] has put key 1 00000021 value x 1 21 y
-[7] has put key 4 00000023 value x 4 23 y
-[7] has put key 1 00000021 value x 1 21 y
-[6] has put key 0 00000022 value x 0 22 y
-[7] has put key 0 00000022 value x 0 22 y
-[6] has put key 0 00000022 value x 0 22 y
-[7] has put key 0 00000022 value x 0 22 y
-[6] has put key 3 00000024 value x 3 24 y
-[6] has put key 4 00000023 value x 4 23 y
-[7] has put key 3 00000024 value x 3 24 y
-[6] has put key 1 00000021 value x 1 21 y
-[7] has put key 4 00000023 value x 4 23 y
-[7] has put key 1 00000021 value x 1 21 y
-[6] has delete key 0 00000000
-[7] has delete key 0 00000000
-[6] has delete key 0 00000001
-[7] has delete key 0 00000001
-[6] has delete key 0 00000002
-[7] has delete key 0 00000002
-[6] has delete key 0 00000003
-[7] has delete key 0 00000003
-[6] has delete key 0 00000004
-[7] has delete key 0 00000004
-[6] has delete key 0 00000005
-[7] has delete key 0 00000005
-[6] has delete key 0 00000006
-[7] has delete key 0 00000006
-[6] has delete key 0 00000007
-[7] has delete key 0 00000007
-[6] has delete key 0 00000008
-[7] has delete key 0 00000008
-[6] has delete key 0 00000009
-[7] has delete key 0 00000009
-[6] has delete key 0 00000010
-[7] has delete key 0 00000010
-[6] has delete key 0 00000011
-[7] has delete key 0 00000011
-[6] has delete key 0 00000012
-[7] has delete key 0 00000012
-[6] has delete key 0 00000013
-[7] has delete key 0 00000013
-[6] has delete key 0 00000014
-[7] has delete key 0 00000014
-[6] has delete key 0 00000015
-[7] has delete key 0 00000015
-[6] has delete key 0 00000016
-[7] has delete key 0 00000016
-[6] has delete key 0 00000017
-[7] has delete key 0 00000017
-[6] has delete key 0 00000018
-[7] has delete key 0 00000018
-[6] has delete key 0 00000019
-[7] has delete key 0 00000019
-[6] has delete key 0 00000020
-[7] has delete key 0 00000020
-[6] has delete key 0 00000021
-[7] has delete key 0 00000021
-[6] has delete key 0 00000022
-[7] has delete key 0 00000022
-[6] has delete key 1 00000000
-[7] has delete key 1 00000000
-[6] has delete key 1 00000001
-[7] has delete key 1 00000001
-[6] has delete key 1 00000002
-[7] has delete key 1 00000002
-[6] has delete key 1 00000003
-[7] has delete key 1 00000003
-[6] has delete key 1 00000004
-[7] has delete key 1 00000004
-[6] has delete key 1 00000005
-[7] has delete key 1 00000005
-[6] has delete key 1 00000006
-[7] has delete key 1 00000006
-[6] has delete key 1 00000007
-[7] has delete key 1 00000007
-[6] has delete key 1 00000008
-[7] has delete key 1 00000008
-[6] has delete key 1 00000009
-[7] has delete key 1 00000009
-[6] has delete key 1 00000010
-[7] has delete key 1 00000010
-[6] has delete key 1 00000011
-[7] has delete key 1 00000011
-[6] has delete key 1 00000012
-[7] has delete key 1 00000012
-[6] has delete key 1 00000013
-[7] has delete key 1 00000013
-[6] has delete key 1 00000014
-[7] has delete key 1 00000014
-[6] has delete key 1 00000015
-[7] has delete key 1 00000015
-[6] has delete key 1 00000016
-[7] has delete key 1 00000016
-[6] has delete key 1 00000017
-[7] has delete key 1 00000017
-[6] has delete key 1 00000018
-[7] has delete key 1 00000018
-[6] has delete key 1 00000019
-[7] has delete key 1 00000019
-[6] has delete key 1 00000020
-[7] has delete key 1 00000020
-[6] has delete key 1 00000021
-[7] has delete key 1 00000021
-[6] has delete key 2 00000000
-[7] has delete key 2 00000000
-[6] has delete key 2 00000001
-[7] has delete key 2 00000001
-[6] has delete key 2 00000002
-[7] has delete key 2 00000002
-[6] has delete key 2 00000003
-[7] has delete key 2 00000003
-[6] has delete key 2 00000004
-[7] has delete key 2 00000004
-[6] has delete key 2 00000005
-[7] has delete key 2 00000005
-[6] has delete key 2 00000006
-[7] has delete key 2 00000006
-[6] has delete key 2 00000007
-[7] has delete key 2 00000007
-[6] has delete key 2 00000008
-[7] has delete key 2 00000008
-[6] has delete key 2 00000009
-[7] has delete key 2 00000009
-[6] has delete key 2 00000010
-[7] has delete key 2 00000010
-[6] has delete key 2 00000011
-[7] has delete key 2 00000011
-[6] has delete key 2 00000012
-[7] has delete key 2 00000012
-[6] has delete key 2 00000013
-[7] has delete key 2 00000013
-[6] has delete key 2 00000014
-[7] has delete key 2 00000014
-[6] has delete key 2 00000015
-[7] has delete key 2 00000015
-[6] has delete key 2 00000016
-[7] has delete key 2 00000016
-[6] has delete key 2 00000017
-[7] has delete key 2 00000017
-[6] has delete key 2 00000018
-[7] has delete key 2 00000018
-[6] has delete key 2 00000019
-[7] has delete key 2 00000019
-[6] has delete key 2 00000020
-[7] has delete key 2 00000020
-[6] has delete key 2 00000021
-[7] has delete key 2 00000021
-[6] has delete key 2 00000022
-[7] has delete key 2 00000022
-[6] has delete key 2 00000023
-[7] has delete key 2 00000023
-[6] has delete key 3 00000000
-[7] has delete key 3 00000000
-[6] has delete key 3 00000001
-[7] has delete key 3 00000001
-[6] has delete key 3 00000002
-[7] has delete key 3 00000002
-[6] has delete key 3 00000003
-[7] has delete key 3 00000003
-[6] has delete key 3 00000004
-[7] has delete key 3 00000004
-[6] has delete key 3 00000005
-[7] has delete key 3 00000005
-[6] has delete key 3 00000006
-[7] has delete key 3 00000006
-[6] has delete key 3 00000007
-[7] has delete key 3 00000007
-[6] has delete key 3 00000008
-[7] has delete key 3 00000008
-[6] has delete key 3 00000009
-[7] has delete key 3 00000009
-[6] has delete key 3 00000010
-[7] has delete key 3 00000010
-[6] has delete key 3 00000011
-[7] has delete key 3 00000011
-[6] has delete key 3 00000012
-[7] has delete key 3 00000012
-[6] has delete key 3 00000013
-[7] has delete key 3 00000013
-[6] has delete key 3 00000014
-[7] has delete key 3 00000014
-[6] has delete key 3 00000015
-[7] has delete key 3 00000015
-[6] has delete key 3 00000016
-[7] has delete key 3 00000016
-[6] has delete key 3 00000017
-[7] has delete key 3 00000017
-[6] has delete key 3 00000018
-[7] has delete key 3 00000018
-[6] has delete key 3 00000019
-[7] has delete key 3 00000019
-[6] has delete key 3 00000020
-[7] has delete key 3 00000020
-[6] has delete key 3 00000021
-[7] has delete key 3 00000021
-[6] has delete key 3 00000022
-[7] has delete key 3 00000022
-[6] has delete key 3 00000023
-[7] has delete key 3 00000023
-[6] has delete key 3 00000024
-[7] has delete key 3 00000024
-[6] has delete key 4 00000000
-[7] has delete key 4 00000000
-[6] has delete key 4 00000001
-[7] has delete key 4 00000001
-[6] has delete key 4 00000002
-[7] has delete key 4 00000002
-[6] has delete key 4 00000003
-[7] has delete key 4 00000003
-[6] has delete key 4 00000004
-[7] has delete key 4 00000004
-[6] has delete key 4 00000005
-[7] has delete key 4 00000005
-[6] has delete key 4 00000006
-[7] has delete key 4 00000006
-[6] has delete key 4 00000007
-[7] has delete key 4 00000007
-[6] has delete key 4 00000008
-[7] has delete key 4 00000008
-[6] has delete key 4 00000009
-[7] has delete key 4 00000009
-[6] has delete key 4 00000010
-[7] has delete key 4 00000010
-[6] has delete key 4 00000011
-[7] has delete key 4 00000011
-[6] has delete key 4 00000012
-[7] has delete key 4 00000012
-[6] has delete key 4 00000013
-[7] has delete key 4 00000013
-[6] has delete key 4 00000014
-[7] has delete key 4 00000014
-[6] has delete key 4 00000015
-[7] has delete key 4 00000015
-[6] has delete key 4 00000016
-[7] has delete key 4 00000016
-[6] has delete key 4 00000017
-[7] has delete key 4 00000017
-[6] has delete key 4 00000018
-[7] has delete key 4 00000018
-[6] has delete key 4 00000019
-[7] has delete key 4 00000019
-[6] has delete key 4 00000020
-[7] has delete key 4 00000020
-[6] has delete key 4 00000021
-[7] has delete key 4 00000021
-[6] has delete key 4 00000022
-[7] has delete key 4 00000022
-[6] has delete key 4 00000023
-[7] has delete key 4 00000023
-[6] has put key 0 00000000 value x 0 0 y
-[6] has put key 2 00000000 value x 2 0 y
-[7] has put key 0 00000000 value x 0 0 y
-[6] has put key 4 00000000 value x 4 0 y
-[7] has put key 2 00000000 value x 2 0 y
-[6] has put key 1 00000000 value x 1 0 y
-[7] has put key 4 00000000 value x 4 0 y
-[6] has put key 3 00000000 value x 3 0 y
-[7] has put key 1 00000000 value x 1 0 y
-[7] has put key 3 00000000 value x 3 0 y
-[6] has put key 4 00000001 value x 4 1 y
-[7] has put key 4 00000001 value x 4 1 y
-[6] has put key 1 00000001 value x 1 1 y
-[7] has put key 1 00000001 value x 1 1 y
-[6] has put key 0 00000001 value x 0 1 y
-[7] has put key 0 00000001 value x 0 1 y
-[6] has put key 2 00000001 value x 2 1 y
-[7] has put key 2 00000001 value x 2 1 y
-[6] has put key 3 00000001 value x 3 1 y
-[7] has put key 3 00000001 value x 3 1 y
-[6] has put key 1 00000002 value x 1 2 y
-[7] has put key 1 00000002 value x 1 2 y
-[6] has put key 3 00000002 value x 3 2 y
-[7] has put key 3 00000002 value x 3 2 y
-[6] has put key 0 00000002 value x 0 2 y
-[7] has put key 0 00000002 value x 0 2 y
-[6] has put key 1 00000003 value x 1 3 y
-[7] has put key 1 00000003 value x 1 3 y
-[6] has put key 4 00000002 value x 4 2 y
-[7] has put key 4 00000002 value x 4 2 y
-[6] has put key 3 00000003 value x 3 3 y
-[7] has put key 3 00000003 value x 3 3 y
-[6] has put key 4 00000003 value x 4 3 y
-[7] has put key 4 00000003 value x 4 3 y
-[6] has put key 1 00000004 value x 1 4 y
-[7] has put key 1 00000004 value x 1 4 y
-[6] has put key 4 00000004 value x 4 4 y
-[6] has put key 3 00000004 value x 3 4 y
-[7] has put key 4 00000004 value x 4 4 y
-[7] has put key 3 00000004 value x 3 4 y
-[6] has put key 2 00000002 value x 2 2 y
-[6] has put key 4 00000005 value x 4 5 y
-[7] has put key 2 00000002 value x 2 2 y
-[6] has put key 3 00000005 value x 3 5 y
-[7] has put key 4 00000005 value x 4 5 y
-[7] has put key 3 00000005 value x 3 5 y
-[6] has put key 1 00000005 value x 1 5 y
-[7] has put key 1 00000005 value x 1 5 y
-[6] has put key 3 00000006 value x 3 6 y
-[7] has put key 3 00000006 value x 3 6 y
-[6] has put key 1 00000006 value x 1 6 y
-[7] has put key 1 00000006 value x 1 6 y
-[6] has put key 3 00000007 value x 3 7 y
-[7] has put key 3 00000007 value x 3 7 y
-[6] has put key 0 00000003 value x 0 3 y
-[6] has put key 4 00000006 value x 4 6 y
-[7] has put key 0 00000003 value x 0 3 y
-[6] has put key 2 00000003 value x 2 3 y
-[7] has put key 4 00000006 value x 4 6 y
-[7] has put key 2 00000003 value x 2 3 y
-[6] has put key 3 00000008 value x 3 8 y
-[7] has put key 3 00000008 value x 3 8 y
-[6] has put key 1 00000007 value x 1 7 y
-[6] has put key 4 00000007 value x 4 7 y
-[7] has put key 1 00000007 value x 1 7 y
-[7] has put key 4 00000007 value x 4 7 y
-[6] has put key 0 00000004 value x 0 4 y
-[6] has put key 4 00000008 value x 4 8 y
-[7] has put key 0 00000004 value x 0 4 y
-[7] has put key 4 00000008 value x 4 8 y
-[6] has put key 0 00000005 value x 0 5 y
-[7] has put key 0 00000005 value x 0 5 y
-[6] has put key 1 00000008 value x 1 8 y
-[7] has put key 1 00000008 value x 1 8 y
-[6] has put key 4 00000009 value x 4 9 y
-[7] has put key 4 00000009 value x 4 9 y
-[6] has put key 2 00000004 value x 2 4 y
-[7] has put key 2 00000004 value x 2 4 y
-[6] has put key 3 00000009 value x 3 9 y
-[7] has put key 3 00000009 value x 3 9 y
-[6] has put key 3 00000010 value x 3 10 y
-[7] has put key 3 00000010 value x 3 10 y
-[6] has put key 1 00000009 value x 1 9 y
-[7] has put key 1 00000009 value x 1 9 y
-[6] has put key 2 00000005 value x 2 5 y
-[7] has put key 2 00000005 value x 2 5 y
-[6] has put key 4 00000010 value x 4 10 y
-[7] has put key 4 00000010 value x 4 10 y
-[6] has put key 2 00000006 value x 2 6 y
-[6] has put key 3 00000011 value x 3 11 y
-[7] has put key 2 00000006 value x 2 6 y
-[7] has put key 3 00000011 value x 3 11 y
-[6] has put key 1 00000010 value x 1 10 y
-[6] has put key 4 00000011 value x 4 11 y
-[7] has put key 1 00000010 value x 1 10 y
-[7] has put key 4 00000011 value x 4 11 y
-[6] has put key 2 00000007 value x 2 7 y
-[7] has put key 2 00000007 value x 2 7 y
-[6] has put key 4 00000012 value x 4 12 y
-[7] has put key 4 00000012 value x 4 12 y
-[6] has put key 2 00000008 value x 2 8 y
-[7] has put key 2 00000008 value x 2 8 y
-[6] has put key 3 00000012 value x 3 12 y
-[7] has put key 3 00000012 value x 3 12 y
-[6] has put key 1 00000011 value x 1 11 y
-[6] has put key 4 00000013 value x 4 13 y
-[7] has put key 1 00000011 value x 1 11 y
-[7] has put key 4 00000013 value x 4 13 y
-[6] has put key 2 00000009 value x 2 9 y
-[7] has put key 2 00000009 value x 2 9 y
-[6] has put key 1 00000012 value x 1 12 y
-[7] has put key 1 00000012 value x 1 12 y
-[6] has put key 4 00000014 value x 4 14 y
-[7] has put key 4 00000014 value x 4 14 y
-[6] has put key 3 00000013 value x 3 13 y
-[6] has put key 0 00000006 value x 0 6 y
-[7] has put key 3 00000013 value x 3 13 y
-[6] has put key 1 00000013 value x 1 13 y
-[7] has put key 0 00000006 value x 0 6 y
-[7] has put key 1 00000013 value x 1 13 y
-[6] has put key 3 00000014 value x 3 14 y
-[7] has put key 3 00000014 value x 3 14 y
-[6] has put key 4 00000015 value x 4 15 y
-[7] has put key 4 00000015 value x 4 15 y
-[6] has put key 0 00000007 value x 0 7 y
-[6] has put key 1 00000014 value x 1 14 y
-[7] has put key 0 00000007 value x 0 7 y
-[7] has put key 1 00000014 value x 1 14 y
-[6] has put key 2 00000010 value x 2 10 y
-[7] has put key 2 00000010 value x 2 10 y
-[6] has put key 0 00000008 value x 0 8 y
-[7] has put key 0 00000008 value x 0 8 y
-[6] has put key 1 00000015 value x 1 15 y
-[6] has put key 4 00000016 value x 4 16 y
-[7] has put key 1 00000015 value x 1 15 y
-[7] has put key 4 00000016 value x 4 16 y
-[6] has put key 2 00000011 value x 2 11 y
-[7] has put key 2 00000011 value x 2 11 y
-[6] has put key 0 00000009 value x 0 9 y
-[6] has put key 1 00000016 value x 1 16 y
-[7] has put key 0 00000009 value x 0 9 y
-[7] has put key 1 00000016 value x 1 16 y
-[6] has put key 0 00000010 value x 0 10 y
-[7] has put key 0 00000010 value x 0 10 y
-[6] has put key 4 00000017 value x 4 17 y
-[7] has put key 4 00000017 value x 4 17 y
-[6] has put key 2 00000012 value x 2 12 y
-[7] has put key 2 00000012 value x 2 12 y
-[6] has put key 0 00000011 value x 0 11 y
-[6] has put key 4 00000018 value x 4 18 y
-[7] has put key 0 00000011 value x 0 11 y
-[7] has put key 4 00000018 value x 4 18 y
-[6] has put key 3 00000015 value x 3 15 y
-[6] has put key 0 00000012 value x 0 12 y
-[7] has put key 3 00000015 value x 3 15 y
-[7] has put key 0 00000012 value x 0 12 y
-[6] has put key 2 00000013 value x 2 13 y
-[7] has put key 2 00000013 value x 2 13 y
-[6] has put key 1 00000017 value x 1 17 y
-[7] has put key 1 00000017 value x 1 17 y
-[6] has put key 0 00000013 value x 0 13 y
-[7] has put key 0 00000013 value x 0 13 y
-[6] has put key 3 00000016 value x 3 16 y
-[7] has put key 3 00000016 value x 3 16 y
-[6] has put key 1 00000018 value x 1 18 y
-[7] has put key 1 00000018 value x 1 18 y
-[6] has put key 4 00000019 value x 4 19 y
-[7] has put key 4 00000019 value x 4 19 y
-[6] has put key 2 00000014 value x 2 14 y
-[7] has put key 2 00000014 value x 2 14 y
-[6] has put key 4 00000020 value x 4 20 y
-[6] has put key 2 00000015 value x 2 15 y
-[7] has put key 4 00000020 value x 4 20 y
-[7] has put key 2 00000015 value x 2 15 y
-[6] has put key 3 00000017 value x 3 17 y
-[7] has put key 3 00000017 value x 3 17 y
-[6] has put key 1 00000019 value x 1 19 y
-[7] has put key 1 00000019 value x 1 19 y
-[6] has put key 2 00000016 value x 2 16 y
-[7] has put key 2 00000016 value x 2 16 y
-[6] has put key 4 00000021 value x 4 21 y
-[7] has put key 4 00000021 value x 4 21 y
-[6] has put key 2 00000017 value x 2 17 y
-[6] has put key 0 00000014 value x 0 14 y
-[7] has put key 2 00000017 value x 2 17 y
-[6] has put key 3 00000018 value x 3 18 y
-[7] has put key 0 00000014 value x 0 14 y
-[7] has put key 3 00000018 value x 3 18 y
-[6] has put key 2 00000018 value x 2 18 y
-[6] has put key 4 00000022 value x 4 22 y
-[7] has put key 2 00000018 value x 2 18 y
-[7] has put key 4 00000022 value x 4 22 y
-[6] has put key 2 00000019 value x 2 19 y
-[7] has put key 2 00000019 value x 2 19 y
-[6] has put key 3 00000019 value x 3 19 y
-[7] has put key 3 00000019 value x 3 19 y
-[6] has put key 0 00000015 value x 0 15 y
-[7] has put key 0 00000015 value x 0 15 y
-[6] has put key 1 00000020 value x 1 20 y
-[6] has put key 3 00000020 value x 3 20 y
-[7] has put key 1 00000020 value x 1 20 y
-[6] has put key 4 00000023 value x 4 23 y
-[7] has put key 3 00000020 value x 3 20 y
-[7] has put key 4 00000023 value x 4 23 y
-[6] has put key 3 00000021 value x 3 21 y
-[7] has put key 3 00000021 value x 3 21 y
-[6] has put key 1 00000021 value x 1 21 y
-[6] has put key 2 00000020 value x 2 20 y
-[7] has put key 1 00000021 value x 1 21 y
-[6] has put key 4 00000024 value x 4 24 y
-[7] has put key 2 00000020 value x 2 20 y
-[7] has put key 4 00000024 value x 4 24 y
-[6] has put key 2 00000021 value x 2 21 y
-[7] has put key 2 00000021 value x 2 21 y
-[6] has put key 4 00000025 value x 4 25 y
-[7] has put key 4 00000025 value x 4 25 y
-[6] has put key 3 00000022 value x 3 22 y
-[7] has put key 3 00000022 value x 3 22 y
-[6] has put key 0 00000016 value x 0 16 y
-[7] has put key 0 00000016 value x 0 16 y
-[6] has put key 1 00000022 value x 1 22 y
-[6] has put key 0 00000017 value x 0 17 y
-[7] has put key 1 00000022 value x 1 22 y
-[7] has put key 0 00000017 value x 0 17 y
-[6] has put key 1 00000023 value x 1 23 y
-[7] has put key 1 00000023 value x 1 23 y
-[6] has put key 4 00000026 value x 4 26 y
-[7] has put key 4 00000026 value x 4 26 y
-[6] has put key 0 00000018 value x 0 18 y
-[7] has put key 0 00000018 value x 0 18 y
-[6] has put key 3 00000023 value x 3 23 y
-[7] has put key 3 00000023 value x 3 23 y
-[6] has put key 1 00000024 value x 1 24 y
-[7] has put key 1 00000024 value x 1 24 y
-[6] has put key 3 00000024 value x 3 24 y
-[6] has put key 1 00000025 value x 1 25 y
-[7] has put key 3 00000024 value x 3 24 y
-[6] has put key 2 00000022 value x 2 22 y
-[7] has put key 1 00000025 value x 1 25 y
-[6] has put key 4 00000027 value x 4 27 y
-[7] has put key 2 00000022 value x 2 22 y
-[7] has put key 4 00000027 value x 4 27 y
-[6] has put key 3 00000025 value x 3 25 y
-[7] has put key 3 00000025 value x 3 25 y
-[6] has put key 2 00000023 value x 2 23 y
-[6] has put key 4 00000028 value x 4 28 y
-[7] has put key 2 00000023 value x 2 23 y
-[7] has put key 4 00000028 value x 4 28 y
-[6] has put key 1 00000026 value x 1 26 y
-[7] has put key 1 00000026 value x 1 26 y
-[6] has put key 0 00000019 value x 0 19 y
-[7] has put key 0 00000019 value x 0 19 y
-[6] has put key 0 00000020 value x 0 20 y
-[6] has put key 2 00000024 value x 2 24 y
-[7] has put key 0 00000020 value x 0 20 y
-[6] has put key 4 00000029 value x 4 29 y
-[7] has put key 2 00000024 value x 2 24 y
-[7] has put key 4 00000029 value x 4 29 y
-[6] has put key 1 00000027 value x 1 27 y
-[6] has put key 0 00000021 value x 0 21 y
-[7] has put key 1 00000027 value x 1 27 y
-[6] has put key 2 00000025 value x 2 25 y
-[7] has put key 0 00000021 value x 0 21 y
-[6] has put key 4 00000030 value x 4 30 y
-[7] has put key 2 00000025 value x 2 25 y
-[7] has put key 4 00000030 value x 4 30 y
-[6] has put key 3 00000026 value x 3 26 y
-[6] has put key 1 00000028 value x 1 28 y
-[7] has put key 3 00000026 value x 3 26 y
-[6] has put key 0 00000022 value x 0 22 y
-[7] has put key 1 00000028 value x 1 28 y
-[7] has put key 0 00000022 value x 0 22 y
-[6] has put key 2 00000026 value x 2 26 y
-[7] has put key 2 00000026 value x 2 26 y
-[6] has put key 2 00000027 value x 2 27 y
-[7] has put key 2 00000027 value x 2 27 y
-[6] has put key 3 00000027 value x 3 27 y
-[6] has put key 1 00000029 value x 1 29 y
-[7] has put key 3 00000027 value x 3 27 y
-[7] has put key 1 00000029 value x 1 29 y
-[6] has put key 3 00000028 value x 3 28 y
-[6] has put key 4 00000031 value x 4 31 y
-[7] has put key 3 00000028 value x 3 28 y
-[6] has put key 4 00000031 value x 4 31 y
-[7] has put key 4 00000031 value x 4 31 y
-[6] has put key 3 00000028 value x 3 28 y
-[7] has put key 4 00000031 value x 4 31 y
-[7] has put key 3 00000028 value x 3 28 y
-[6] has put key 4 00000032 value x 4 32 y
-[6] has put key 3 00000029 value x 3 29 y
-[7] has put key 4 00000032 value x 4 32 y
-[7] has put key 3 00000029 value x 3 29 y
-[6] has put key 1 00000030 value x 1 30 y
-[7] has put key 1 00000030 value x 1 30 y
-[6] has put key 1 00000031 value x 1 31 y
-[6] has put key 3 00000030 value x 3 30 y
-[7] has put key 1 00000031 value x 1 31 y
-[6] has put key 4 00000033 value x 4 33 y
-[7] has put key 3 00000030 value x 3 30 y
-[7] has put key 4 00000033 value x 4 33 y
-[6] has put key 1 00000031 value x 1 31 y
-[6] has put key 3 00000030 value x 3 30 y
-[7] has put key 1 00000031 value x 1 31 y
-[7] has put key 3 00000030 value x 3 30 y
-[6] has put key 4 00000033 value x 4 33 y
-[7] has put key 4 00000033 value x 4 33 y
-[6] has put key 3 00000031 value x 3 31 y
-[7] has put key 3 00000031 value x 3 31 y
-[6] has put key 4 00000034 value x 4 34 y
-[7] has put key 4 00000034 value x 4 34 y
-[6] has put key 0 00000023 value x 0 23 y
-[7] has put key 0 00000023 value x 0 23 y
-[6] has put key 1 00000032 value x 1 32 y
-[6] has put key 3 00000032 value x 3 32 y
-[6] has put key 2 00000028 value x 2 28 y
-[6] has put key 0 00000024 value x 0 24 y
-[7] has put key 1 00000032 value x 1 32 y
-[7] has put key 3 00000032 value x 3 32 y
-[7] has put key 2 00000028 value x 2 28 y
-[7] has put key 0 00000024 value x 0 24 y
-[6] has put key 3 00000033 value x 3 33 y
-[6] has put key 2 00000029 value x 2 29 y
-[7] has put key 3 00000033 value x 3 33 y
-[7] has put key 2 00000029 value x 2 29 y
-[6] has put key 0 00000025 value x 0 25 y
-[7] has put key 0 00000025 value x 0 25 y
-[6] has delete key 0 00000000
-[7] has delete key 0 00000000
-[6] has delete key 0 00000001
-[7] has delete key 0 00000001
-[6] has delete key 0 00000002
-[7] has delete key 0 00000002
-[6] has delete key 0 00000003
-[7] has delete key 0 00000003
-[6] has delete key 0 00000004
-[7] has delete key 0 00000004
-[6] has delete key 0 00000005
-[7] has delete key 0 00000005
-[6] has delete key 0 00000006
-[7] has delete key 0 00000006
-[6] has delete key 0 00000007
-[7] has delete key 0 00000007
-[6] has delete key 0 00000008
-[7] has delete key 0 00000008
-[6] has delete key 0 00000009
-[7] has delete key 0 00000009
-[6] has delete key 0 00000010
-[7] has delete key 0 00000010
-[6] has delete key 0 00000011
-[7] has delete key 0 00000011
-[6] has delete key 0 00000012
-[7] has delete key 0 00000012
-[6] has delete key 0 00000013
-[7] has delete key 0 00000013
-[6] has delete key 0 00000014
-[7] has delete key 0 00000014
-[6] has delete key 0 00000015
-[7] has delete key 0 00000015
-[6] has delete key 0 00000016
-[7] has delete key 0 00000016
-[6] has delete key 0 00000017
-[7] has delete key 0 00000017
-[6] has delete key 0 00000018
-[7] has delete key 0 00000018
-[6] has delete key 0 00000019
-[7] has delete key 0 00000019
-[6] has delete key 0 00000020
-[7] has delete key 0 00000020
-[6] has delete key 0 00000021
-[7] has delete key 0 00000021
-[6] has delete key 0 00000022
-[7] has delete key 0 00000022
-[6] has delete key 0 00000023
-[7] has delete key 0 00000023
-[6] has delete key 0 00000024
-[7] has delete key 0 00000024
-[6] has delete key 0 00000025
-[7] has delete key 0 00000025
-[6] has delete key 1 00000000
-[7] has delete key 1 00000000
-[6] has delete key 1 00000001
-[7] has delete key 1 00000001
-[6] has delete key 1 00000002
-[7] has delete key 1 00000002
-[6] has delete key 1 00000003
-[7] has delete key 1 00000003
-[6] has delete key 1 00000004
-[7] has delete key 1 00000004
-[6] has delete key 1 00000005
-[7] has delete key 1 00000005
-[6] has delete key 1 00000006
-[7] has delete key 1 00000006
-[6] has delete key 1 00000007
-[7] has delete key 1 00000007
-[6] has delete key 1 00000008
-[7] has delete key 1 00000008
-[6] has delete key 1 00000009
-[7] has delete key 1 00000009
-[6] has delete key 1 00000010
-[7] has delete key 1 00000010
-[6] has delete key 1 00000011
-[7] has delete key 1 00000011
-[6] has delete key 1 00000012
-[7] has delete key 1 00000012
-[6] has delete key 1 00000013
-[7] has delete key 1 00000013
-[6] has delete key 1 00000014
-[7] has delete key 1 00000014
-[6] has delete key 1 00000015
-[7] has delete key 1 00000015
-[6] has delete key 1 00000016
-[7] has delete key 1 00000016
-[6] has delete key 1 00000017
-[7] has delete key 1 00000017
-[6] has delete key 1 00000018
-[7] has delete key 1 00000018
-[6] has delete key 1 00000019
-[7] has delete key 1 00000019
-[6] has delete key 1 00000020
-[7] has delete key 1 00000020
-[6] has delete key 1 00000021
-[7] has delete key 1 00000021
-[6] has delete key 1 00000022
-[7] has delete key 1 00000022
-[6] has delete key 1 00000023
-[7] has delete key 1 00000023
-[6] has delete key 1 00000024
-[7] has delete key 1 00000024
-[6] has delete key 1 00000025
-[7] has delete key 1 00000025
-[6] has delete key 1 00000026
-[7] has delete key 1 00000026
-[6] has delete key 1 00000027
-[7] has delete key 1 00000027
-[6] has delete key 1 00000028
-[7] has delete key 1 00000028
-[6] has delete key 1 00000029
-[7] has delete key 1 00000029
-[6] has delete key 1 00000030
-[7] has delete key 1 00000030
-[6] has delete key 1 00000031
-[7] has delete key 1 00000031
-[6] has delete key 1 00000032
-[7] has delete key 1 00000032
-[6] has delete key 2 00000000
-[7] has delete key 2 00000000
-[6] has delete key 2 00000001
-[7] has delete key 2 00000001
-[6] has delete key 2 00000002
-[7] has delete key 2 00000002
-[6] has delete key 2 00000003
-[7] has delete key 2 00000003
-[6] has delete key 2 00000004
-[7] has delete key 2 00000004
-[6] has delete key 2 00000005
-[7] has delete key 2 00000005
-[6] has delete key 2 00000006
-[7] has delete key 2 00000006
-[6] has delete key 2 00000007
-[7] has delete key 2 00000007
-[6] has delete key 2 00000008
-[7] has delete key 2 00000008
-[6] has delete key 2 00000009
-[7] has delete key 2 00000009
-[6] has delete key 2 00000010
-[7] has delete key 2 00000010
-[6] has delete key 2 00000011
-[7] has delete key 2 00000011
-[6] has delete key 2 00000012
-[7] has delete key 2 00000012
-[6] has delete key 2 00000013
-[7] has delete key 2 00000013
-[6] has delete key 2 00000014
-[7] has delete key 2 00000014
-[6] has delete key 2 00000015
-[7] has delete key 2 00000015
-[6] has delete key 2 00000016
-[7] has delete key 2 00000016
-[6] has delete key 2 00000017
-[7] has delete key 2 00000017
-[6] has delete key 2 00000018
-[7] has delete key 2 00000018
-[6] has delete key 2 00000019
-[7] has delete key 2 00000019
-[6] has delete key 2 00000020
-[7] has delete key 2 00000020
-[6] has delete key 2 00000021
-[7] has delete key 2 00000021
-[6] has delete key 2 00000022
-[7] has delete key 2 00000022
-[6] has delete key 2 00000023
-[7] has delete key 2 00000023
-[6] has delete key 2 00000024
-[7] has delete key 2 00000024
-[6] has delete key 2 00000025
-[7] has delete key 2 00000025
-[6] has delete key 2 00000026
-[7] has delete key 2 00000026
-[6] has delete key 2 00000027
-[7] has delete key 2 00000027
-[6] has delete key 2 00000028
-[7] has delete key 2 00000028
-[6] has delete key 2 00000029
-[7] has delete key 2 00000029
-[6] has delete key 3 00000000
-[7] has delete key 3 00000000
-[6] has delete key 3 00000001
-[7] has delete key 3 00000001
-[6] has delete key 3 00000002
-[7] has delete key 3 00000002
-[6] has delete key 3 00000003
-[7] has delete key 3 00000003
-[6] has delete key 3 00000004
-[7] has delete key 3 00000004
-[6] has delete key 3 00000005
-[7] has delete key 3 00000005
-[6] has delete key 3 00000006
-[7] has delete key 3 00000006
-[6] has delete key 3 00000007
-[7] has delete key 3 00000007
-[6] has delete key 3 00000008
-[7] has delete key 3 00000008
-[6] has delete key 3 00000009
-[7] has delete key 3 00000009
-[6] has delete key 3 00000010
-[7] has delete key 3 00000010
-[6] has delete key 3 00000011
-[7] has delete key 3 00000011
-[6] has delete key 3 00000012
-[7] has delete key 3 00000012
-[6] has delete key 3 00000013
-[7] has delete key 3 00000013
-[6] has delete key 3 00000014
-[7] has delete key 3 00000014
-[6] has delete key 3 00000015
-[7] has delete key 3 00000015
-[6] has delete key 3 00000016
-[7] has delete key 3 00000016
-[6] has delete key 3 00000017
-[7] has delete key 3 00000017
-[6] has delete key 3 00000018
-[7] has delete key 3 00000018
-[6] has delete key 3 00000019
-[7] has delete key 3 00000019
-[6] has delete key 3 00000020
-[7] has delete key 3 00000020
-[6] has delete key 3 00000021
-[7] has delete key 3 00000021
-[6] has delete key 3 00000022
-[7] has delete key 3 00000022
-[6] has delete key 3 00000023
-[7] has delete key 3 00000023
-[6] has delete key 3 00000024
-[7] has delete key 3 00000024
-[6] has delete key 3 00000025
-[7] has delete key 3 00000025
-[6] has delete key 3 00000026
-[7] has delete key 3 00000026
-[6] has delete key 3 00000027
-[7] has delete key 3 00000027
-[6] has delete key 3 00000028
-[7] has delete key 3 00000028
-[6] has delete key 3 00000029
-[7] has delete key 3 00000029
-[6] has delete key 3 00000030
-[7] has delete key 3 00000030
-[6] has delete key 3 00000031
-[7] has delete key 3 00000031
-[6] has delete key 3 00000032
-[7] has delete key 3 00000032
-[6] has delete key 3 00000033
-[7] has delete key 3 00000033
-[6] has delete key 4 00000000
-[7] has delete key 4 00000000
-[6] has delete key 4 00000001
-[7] has delete key 4 00000001
-[6] has delete key 4 00000002
-[7] has delete key 4 00000002
-[6] has delete key 4 00000003
-[7] has delete key 4 00000003
-[6] has delete key 4 00000004
-[7] has delete key 4 00000004
-[6] has delete key 4 00000005
-[7] has delete key 4 00000005
-[6] has delete key 4 00000006
-[7] has delete key 4 00000006
-[6] has delete key 4 00000007
-[7] has delete key 4 00000007
-[6] has delete key 4 00000008
-[7] has delete key 4 00000008
-[6] has delete key 4 00000009
-[7] has delete key 4 00000009
-[6] has delete key 4 00000010
-[7] has delete key 4 00000010
-[6] has delete key 4 00000011
-[7] has delete key 4 00000011
-[6] has delete key 4 00000012
-[7] has delete key 4 00000012
-[6] has delete key 4 00000013
-[7] has delete key 4 00000013
-[6] has delete key 4 00000014
-[7] has delete key 4 00000014
-[6] has delete key 4 00000015
-[7] has delete key 4 00000015
-[6] has delete key 4 00000016
-[7] has delete key 4 00000016
-[6] has delete key 4 00000017
-[7] has delete key 4 00000017
-[6] has delete key 4 00000018
-[7] has delete key 4 00000018
-[6] has delete key 4 00000019
-[7] has delete key 4 00000019
-[6] has delete key 4 00000020
-[7] has delete key 4 00000020
-[6] has delete key 4 00000021
-[7] has delete key 4 00000021
-[6] has delete key 4 00000022
-[7] has delete key 4 00000022
-[6] has delete key 4 00000023
-[7] has delete key 4 00000023
-[6] has delete key 4 00000024
-[7] has delete key 4 00000024
-[6] has delete key 4 00000025
-[7] has delete key 4 00000025
-[6] has delete key 4 00000026
-[7] has delete key 4 00000026
-[6] has delete key 4 00000027
-[7] has delete key 4 00000027
-[6] has delete key 4 00000028
-[7] has delete key 4 00000028
-[6] has delete key 4 00000029
-[7] has delete key 4 00000029
-[6] has delete key 4 00000030
-[7] has delete key 4 00000030
-[6] has delete key 4 00000031
-[7] has delete key 4 00000031
-[6] has delete key 4 00000032
-[7] has delete key 4 00000032
-[6] has delete key 4 00000033
-[7] has delete key 4 00000033
-[6] has delete key 4 00000034
-[7] has delete key 4 00000034
---- PASS: TestConfChangeUnreliable3B (34.22s)
-PASS
-ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	34.254s
+[4] has put key 0 00000015 value x 0 15 y
+[1] entry index 174 current proposal:  175 176
+[1] has put key 0 00000015 value x 0 15 y
+[1] entry index 175 current proposal:  176
+[5] has put key 0 00000015 value x 0 15 y
+[1] propose cmd Snap potential next index 177
+[1] propose cmd Put potential next index 178 with key 4 00000017 with value x 4 17 y
+[1] propose cmd Put potential next index 179 with key 3 00000020 with value x 3 20 y
+[1] propose cmd Snap potential next index 180
+[1] entry index 176 current proposal:  177 178 179 180
+[1] propose cmd Put potential next index 181 with key 2 00000013 with value x 2 13 y
+[1] entry index 177 current proposal:  178 179 180 181
+[1] has put key 4 00000017 value x 4 17 y
+[4] has put key 4 00000017 value x 4 17 y
+[1] entry index 178 current proposal:  179 180 181
+[1] has put key 3 00000020 value x 3 20 y
+[4] has put key 3 00000020 value x 3 20 y
+[1] entry index 179 current proposal:  180 181
+[1] entry index 180 current proposal:  181
+[1] propose cmd ChangePeer potential next index 182
+[1] propose cmd Put potential next index 182 with key 1 00000012 with value x 1 12 y
+[1] propose cmd Snap potential next index 183
+[1] propose cmd Put potential next index 184 with key 3 00000021 with value x 3 21 y
+[1] propose cmd Snap potential next index 185
+[5] has put key 4 00000017 value x 4 17 y
+[5] has put key 3 00000020 value x 3 20 y
+[1] has put key 2 00000013 value x 2 13 y
+[1] entry index 181 current proposal:  182 183 184 185
+[5] has put key 2 00000013 value x 2 13 y
+[4] has put key 2 00000013 value x 2 13 y
+[1] propose cmd Put potential next index 186 with key 2 00000014 with value x 2 14 y
+[1] has put key 1 00000012 value x 1 12 y
+[5] has put key 1 00000012 value x 1 12 y
+[1] entry index 182 current proposal:  183 184 185 186
+[1] entry index 183 current proposal:  184 185 186
+[1] has put key 3 00000021 value x 3 21 y
+[5] has put key 3 00000021 value x 3 21 y
+[1] entry index 184 current proposal:  185 186
+[1] entry index 185 current proposal:  186
+[4] has put key 1 00000012 value x 1 12 y
+[1] propose cmd Snap potential next index 187
+[1] propose cmd Snap potential next index 188
+[1] propose cmd Put potential next index 189 with key 3 00000022 with value x 3 22 y
+[1] propose cmd Snap potential next index 190
+[4] has put key 3 00000021 value x 3 21 y
+[1] has put key 2 00000014 value x 2 14 y
+[1] entry index 186 current proposal:  187 188 189 190
+[4] has put key 2 00000014 value x 2 14 y
+[5] has put key 2 00000014 value x 2 14 y
+[1] with lastIdx 190 send hb to peers [1 2 4 5]  118  186  186
+[1] propose cmd Put potential next index 191 with key 2 00000015 with value x 2 15 y
+[1] entry index 187 current proposal:  188 189 190 191
+[1] propose cmd Put potential next index 192 with key 1 00000013 with value x 1 13 y
+[1] entry index 188 current proposal:  189 190 191 192
+[1] has put key 3 00000022 value x 3 22 y
+[1] entry index 189 current proposal:  190 191 192
+[1] entry index 190 current proposal:  191 192
+[5] has put key 3 00000022 value x 3 22 y
+[4] has put key 3 00000022 value x 3 22 y
+[1] propose cmd Put potential next index 193 with key 4 00000018 with value x 4 18 y
+[1] propose cmd Put potential next index 194 with key 3 00000023 with value x 3 23 y
+[1] propose cmd Put potential next index 195 with key 0 00000016 with value x 0 16 y
+[1] has put key 2 00000015 value x 2 15 y
+[4] has put key 2 00000015 value x 2 15 y
+[1] entry index 191 current proposal:  192 193 194 195
+[1] has put key 1 00000013 value x 1 13 y
+[5] has put key 2 00000015 value x 2 15 y
+[4] has put key 1 00000013 value x 1 13 y
+[1] entry index 192 current proposal:  193 194 195
+[1] has put key 4 00000018 value x 4 18 y
+[5] has put key 1 00000013 value x 1 13 y
+[4] has put key 4 00000018 value x 4 18 y
+[1] entry index 193 current proposal:  194 195
+[5] has put key 4 00000018 value x 4 18 y
+[1] propose cmd Put potential next index 196 with key 2 00000016 with value x 2 16 y
+[1] propose cmd Snap potential next index 197
+[1] propose cmd Put potential next index 198 with key 4 00000019 with value x 4 19 y
+[1] has put key 3 00000023 value x 3 23 y
+[4] has put key 3 00000023 value x 3 23 y
+[1] entry index 194 current proposal:  195 196 197 198
+[1] has put key 0 00000016 value x 0 16 y
+[5] has put key 3 00000023 value x 3 23 y
+[4] has put key 0 00000016 value x 0 16 y
+[1] entry index 195 current proposal:  196 197 198
+[5] has put key 0 00000016 value x 0 16 y
+[1] propose cmd Snap potential next index 199
+[1] propose cmd Snap potential next index 200
+[1] has put key 2 00000016 value x 2 16 y
+[4] has put key 2 00000016 value x 2 16 y
+[1] entry index 196 current proposal:  197 198 199 200
+[1] entry index 197 current proposal:  198 199 200
+[5] has put key 2 00000016 value x 2 16 y
+[1] has put key 4 00000019 value x 4 19 y
+[4] has put key 4 00000019 value x 4 19 y
+[5] has put key 4 00000019 value x 4 19 y
+[1] entry index 198 current proposal:  199 200
+[1] propose cmd Snap potential next index 201
+[1] propose cmd Put potential next index 202 with key 2 00000017 with value x 2 17 y
+[1] propose cmd Put potential next index 203 with key 4 00000020 with value x 4 20 y
+[1] entry index 199 current proposal:  200 201 202 203
+[1] propose cmd ChangePeer potential next index 204
+[1] propose cmd Snap potential next index 204
+[1] entry index 200 current proposal:  201 202 203 204
+[1] entry index 201 current proposal:  202 203 204
+[1] has put key 2 00000017 value x 2 17 y
+[5] has put key 2 00000017 value x 2 17 y
+[4] has put key 2 00000017 value x 2 17 y
+[1] entry index 202 current proposal:  203 204
+[1] has put key 4 00000020 value x 4 20 y
+[5] has put key 4 00000020 value x 4 20 y
+[4] has put key 4 00000020 value x 4 20 y
+[1] entry index 203 current proposal:  204
+[1] propose cmd Put potential next index 205 with key 1 00000014 with value x 1 14 y
+[1] propose cmd Snap potential next index 206
+[1] propose cmd Snap potential next index 207
+[1] propose cmd Put potential next index 208 with key 4 00000021 with value x 4 21 y
+[1] entry index 204 current proposal:  205 206 207 208
+[1] propose cmd Snap potential next index 209
+[1] has put key 1 00000014 value x 1 14 y
+[4] has put key 1 00000014 value x 1 14 y
+[1] entry index 205 current proposal:  206 207 208 209
+[1] entry index 206 current proposal:  207 208 209
+[1] entry index 207 current proposal:  208 209
+[5] has put key 1 00000014 value x 1 14 y
+[1] propose cmd Put potential next index 210 with key 1 00000015 with value x 1 15 y
+[1] propose cmd Put potential next index 211 with key 0 00000017 with value x 0 17 y
+[1] propose cmd Snap potential next index 212
+[4] has put key 4 00000021 value x 4 21 y
+[1] has put key 4 00000021 value x 4 21 y
+[5] has put key 4 00000021 value x 4 21 y
+[1] entry index 208 current proposal:  209 210 211 212
+[1] entry index 209 current proposal:  210 211 212
+[1] propose cmd Snap potential next index 213
+[1] propose cmd Put potential next index 214 with key 3 00000024 with value x 3 24 y
+[1] has put key 1 00000015 value x 1 15 y
+[5] has put key 1 00000015 value x 1 15 y
+[1] entry index 210 current proposal:  211 212 213 214
+[1] has put key 0 00000017 value x 0 17 y
+[5] has put key 0 00000017 value x 0 17 y
+[4] has put key 1 00000015 value x 1 15 y
+[1] entry index 211 current proposal:  212 213 214
+[1] entry index 212 current proposal:  213 214
+[4] has put key 0 00000017 value x 0 17 y
+[1] propose cmd Snap potential next index 215
+[1] propose cmd Put potential next index 216 with key 0 00000018 with value x 0 18 y
+[1] propose cmd Put potential next index 217 with key 2 00000018 with value x 2 18 y
+[1] with lastIdx 217 send hb to peers [1 2 4 5]  118  214  214
+[1] propose cmd CompactLog potential next index 218
+[5] has put key 3 00000024 value x 3 24 y
+[1] entry index 213 current proposal:  214 215 216 217
+[1] has put key 3 00000024 value x 3 24 y
+[4] has put key 3 00000024 value x 3 24 y
+[1] entry index 214 current proposal:  215 216 217
+[1] propose cmd Put potential next index 219 with key 4 00000022 with value x 4 22 y
+[1] propose cmd Snap potential next index 220
+[1] entry index 215 current proposal:  216 217 219 220
+[1] has put key 0 00000018 value x 0 18 y
+[1] entry index 216 current proposal:  217 219 220
+[1] has put key 2 00000018 value x 2 18 y
+[5] has put key 0 00000018 value x 0 18 y
+[4] has put key 0 00000018 value x 0 18 y
+[1] entry index 217 current proposal:  219 220
+[5] has put key 2 00000018 value x 2 18 y
+[4] has put key 2 00000018 value x 2 18 y
+[1] propose cmd Snap potential next index 221
+[1] propose cmd Snap potential next index 222
+[1] propose cmd Snap potential next index 223
+[1] has put key 4 00000022 value x 4 22 y
+[1] entry index 219 current proposal:  220 221 222 223
+[1] entry index 220 current proposal:  221 222 223
+[4] has put key 4 00000022 value x 4 22 y
+[5] has put key 4 00000022 value x 4 22 y
+[1] propose cmd Snap potential next index 224
+[1] propose cmd Put potential next index 225 with key 3 00000025 with value x 3 25 y
+[1] entry index 221 current proposal:  222 223 224 225
+[1] entry index 222 current proposal:  223 224 225
+[1] entry index 223 current proposal:  224 225
+[1] propose cmd Put potential next index 226 with key 1 00000016 with value x 1 16 y
+[1] propose cmd Snap potential next index 227
+[1] propose cmd Snap potential next index 228
+[1] entry index 224 current proposal:  225 226 227 228
+[1] has put key 3 00000025 value x 3 25 y
+[1] entry index 225 current proposal:  226 227 228
+[1] has put key 1 00000016 value x 1 16 y
+[4] has put key 3 00000025 value x 3 25 y
+[1] entry index 226 current proposal:  227 228
+[1] entry index 227 current proposal:  228
+[5] has put key 3 00000025 value x 3 25 y
+[4] has put key 1 00000016 value x 1 16 y
+[1] propose cmd Put potential next index 229 with key 4 00000023 with value x 4 23 y
+[1] propose cmd Put potential next index 230 with key 3 00000026 with value x 3 26 y
+[1] propose cmd Snap potential next index 231
+[1] propose cmd Snap potential next index 232
+[5] has put key 1 00000016 value x 1 16 y
+[1] propose cmd ChangePeer potential next index 233
+[1] entry index 228 current proposal:  229 230 231 232
+[1] has put key 4 00000023 value x 4 23 y
+[5] has put key 4 00000023 value x 4 23 y
+[4] has put key 4 00000023 value x 4 23 y
+[1] entry index 229 current proposal:  230 231 232
+[1] has put key 3 00000026 value x 3 26 y
+[5] has put key 3 00000026 value x 3 26 y
+[4] has put key 3 00000026 value x 3 26 y
+[1] entry index 230 current proposal:  231 232
+[1] entry index 231 current proposal:  232
+[1] entry index 232 current proposal: 
+[1] propose cmd Snap potential next index 233
+[1] propose cmd Put potential next index 234 with key 4 00000024 with value x 4 24 y
+[1] propose cmd Put potential next index 235 with key 3 00000027 with value x 3 27 y
+[1] propose cmd Put potential next index 236 with key 1 00000017 with value x 1 17 y
+[1] propose cmd Put potential next index 237 with key 0 00000019 with value x 0 19 y
+[1] with lastIdx 237 send hb to peers [1 2 4 5]  118  232  237
+panic: [region 1] 2 meta corrupted id:1 region_epoch:<conf_ver:2 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 >  != id:1 region_epoch:<conf_ver:1 version:1 > peers:<id:1 store_id:1 > peers:<id:2 store_id:2 > peers:<id:3 store_id:3 > peers:<id:4 store_id:4 > peers:<id:5 store_id:5 > 
+
+goroutine 251 [running]:
+github.com/pingcap-incubator/tinykv/kv/raftstore.(*peerMsgHandler).checkSnapshot(0xc00435fe38, 0xc18bfbd600, 0x0, 0x0, 0x0)
+	/home/spadea/STUDY/tinykv/kv/raftstore/peer_msg_handler.go:907 +0x83f
+github.com/pingcap-incubator/tinykv/kv/raftstore.(*peerMsgHandler).onRaftMsg(0xc00435fe38, 0xc18bfbd600, 0xc00435fd40, 0xdc15acd7)
+	/home/spadea/STUDY/tinykv/kv/raftstore/peer_msg_handler.go:741 +0x29d
+github.com/pingcap-incubator/tinykv/kv/raftstore.(*peerMsgHandler).HandleMsg(0xc00435fe38, 0x3, 0x1, 0xba91e0, 0xc18bfbd600)
+	/home/spadea/STUDY/tinykv/kv/raftstore/peer_msg_handler.go:505 +0x9c
+github.com/pingcap-incubator/tinykv/kv/raftstore.(*raftWorker).run(0xc000242960, 0xc000238360, 0xc00019a540)
+	/home/spadea/STUDY/tinykv/kv/raftstore/raft_worker.go:56 +0x4ff
+created by github.com/pingcap-incubator/tinykv/kv/raftstore.(*Raftstore).startWorkers
+	/home/spadea/STUDY/tinykv/kv/raftstore/raftstore.go:270 +0xe6
+FAIL	github.com/pingcap-incubator/tinykv/kv/test_raftstore	4.691s
+FAIL

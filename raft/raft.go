@@ -238,13 +238,15 @@ func (r *Raft) HardState() pb.HardState {
 }
 
 func (r *Raft) sendHeartbeats() {
-	//fmt.Printf("[%d] with lastIdx %d send hb to peers %v", r.id, r.RaftLog.LastIndex(), r.peers)
+	fmt.Printf("[%d] with lastIdx %d send hb to peers %v", r.id, r.RaftLog.LastIndex(), r.peers)
 	for i := 0; i < len(r.peers); i++ {
 		if r.peers[i] == r.id {
 			continue
 		}
 		r.sendHeartbeat(r.peers[i])
+		fmt.Printf("  %d", r.Prs[r.peers[i]].Match)
 	}
+	fmt.Println()
 }
 
 // sendHeartbeat sends a heartbeat RPC to the given peer.
@@ -913,16 +915,16 @@ func (r *Raft) handleSnapshot(m pb.Message) {
 		}
 	}
 	r.becomeFollower(m.Term, m.From)
-	//// response
-	//resp := pb.Message{
-	//	MsgType: pb.MessageType_MsgAppendResponse,
-	//	From:    r.id,
-	//	To:      m.From,
-	//	Reject:  false,
-	//	Term:    r.Term,
-	//	Index:   r.RaftLog.LastIndex(),
-	//}
-	//r.msgs = append(r.msgs, resp)
+	// response
+	resp := pb.Message{
+		MsgType: pb.MessageType_MsgAppendResponse,
+		From:    r.id,
+		To:      m.From,
+		Reject:  false,
+		Term:    r.Term,
+		Index:   r.RaftLog.LastIndex(),
+	}
+	r.msgs = append(r.msgs, resp)
 }
 
 // addNode add a new node to raft group

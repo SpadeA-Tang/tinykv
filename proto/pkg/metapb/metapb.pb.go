@@ -252,6 +252,10 @@ func (m *Region) RemovePeer(id uint64) bool {
 
 func (m *Region) AddPeer(peer *Peer) bool {
 	for _, pr := range m.Peers {
+		if pr.StoreId == peer.StoreId && pr.Id != peer.Id ||
+			pr.StoreId != peer.StoreId && pr.Id == peer.Id {
+			panic("")
+		}
 		if pr.Id == peer.Id {
 			return false
 		}
