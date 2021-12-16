@@ -725,6 +725,9 @@ func (r *Raft) handleMsgPropose(m pb.Message) {
 // handleAppendEntries handle AppendEntries RPC request
 func (r *Raft) handleAppendEntries(m pb.Message) {
 	if m.CommitUse {
+		if m.Commit > r.RaftLog.LastIndex() {
+			panic("Something wrong")
+		}
 		r.RaftLog.committed = max(r.RaftLog.committed, m.Commit)
 		return
 	}
