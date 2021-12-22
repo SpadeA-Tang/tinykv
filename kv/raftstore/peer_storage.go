@@ -383,6 +383,7 @@ func (ps *PeerStorage) SaveReadyState(ready *raft.Ready) (*ApplySnapResult, erro
 	var err error
 	if !raft.IsEmptySnap(&ready.Snapshot) {
 		res, err = ps.ApplySnapshot(&ready.Snapshot, kvWb, raftWb)
+		//fmt.Printf("Finish snapshot")
 		if err != nil {
 			panic(err)
 		}

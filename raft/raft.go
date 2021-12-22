@@ -16,7 +16,7 @@ package raft
 
 import (
 	"errors"
-	"fmt"
+	//"fmt"
 	"github.com/Connor1996/badger/y"
 	"github.com/pingcap-incubator/tinykv/log"
 	pb "github.com/pingcap-incubator/tinykv/proto/pkg/eraftpb"
@@ -204,7 +204,6 @@ func newRaft(c *Config) *Raft {
 	raft.Vote = state.Vote
 	raft.RaftLog.committed = state.Commit
 
-
 	lastIdx := raft.RaftLog.LastIndex()
 	for _, p := range raft.peers {
 		// init Progroess for each peer
@@ -238,15 +237,15 @@ func (r *Raft) HardState() pb.HardState {
 }
 
 func (r *Raft) sendHeartbeats() {
-	fmt.Printf("[%d] with lastIdx %d send hb to peers %v", r.id, r.RaftLog.LastIndex(), r.peers)
+	//fmt.Printf("[%d] with lastIdx %d send hb to peers %v", r.id, r.RaftLog.LastIndex(), r.peers)
 	for i := 0; i < len(r.peers); i++ {
 		if r.peers[i] == r.id {
 			continue
 		}
 		r.sendHeartbeat(r.peers[i])
-		fmt.Printf("  %d", r.Prs[r.peers[i]].Match)
+		//fmt.Printf("  %d", r.Prs[r.peers[i]].Match)
 	}
-	fmt.Println()
+	//fmt.Println()
 }
 
 // sendHeartbeat sends a heartbeat RPC to the given peer.
@@ -393,7 +392,7 @@ func (r *Raft) becomeLeader() {
 	// Your Code Here (2A).
 	// NOTE: Leader should propose a noop entry on its term
 
-	fmt.Printf("[%v] becomes leader\n", r.id)
+	//fmt.Printf("[%v] becomes leader\n", r.id)
 
 	r.State = StateLeader
 	r.leadTransferee = None
@@ -550,8 +549,8 @@ func (r *Raft) handleMsgAppendResponse(m pb.Message) {
 		if m.From == r.leadTransferee && r.Prs[m.From].Match == r.RaftLog.LastIndex() {
 			r.msgs = append(r.msgs, pb.Message{
 				MsgType: pb.MessageType_MsgTimeoutNow,
-				To: m.From,
-				From: r.id,
+				To:      m.From,
+				From:    r.id,
 			})
 		}
 
@@ -587,6 +586,8 @@ func (r *Raft) handleMsgAppendResponse(m pb.Message) {
 		}
 		if counts > (len(r.peers) / 2) {
 			r.RaftLog.committed = m.Index
+			//fmt.Printf("[%d] update commit index %d current last Index %d\n",
+			//	r.id, r.RaftLog.committed, r.RaftLog.LastIndex())
 			for _, p := range peers {
 				msg.To = p
 				msg.Commit = m.Index
@@ -647,10 +648,10 @@ func (r *Raft) sendSnapshot(to uint64) {
 		return
 	}
 	m := pb.Message{
-		MsgType: pb.MessageType_MsgSnapshot,
-		To: to,
-		From: r.id,
-		Term: r.Term,
+		MsgType:  pb.MessageType_MsgSnapshot,
+		To:       to,
+		From:     r.id,
+		Term:     r.Term,
 		Snapshot: &snapshot,
 	}
 	// without updating this, the follower may request snapshotting infinitely
@@ -693,6 +694,8 @@ func (r *Raft) sendAppend(to uint64) bool {
 			Commit:  r.RaftLog.committed,
 			Entries: entries,
 		}
+		//fmt.Printf("[%d] send entries %d-%d to [%d]\n", r.id, entries[0].Index, entries[len(entries)-1].Index,
+		//	m.To)
 		r.msgs = append(r.msgs, m)
 	}
 	return true
@@ -848,6 +851,11 @@ func (r *Raft) handleAppendEntries(m pb.Message) {
 		// update to the leader's commitIndex, but should not exceed the index of last new entry
 		// also, it should be larger than the current commit index
 		r.RaftLog.committed = max(min(m.Commit, lastNewEntIndex), r.RaftLog.committed)
+		//fmt.Printf("[%d] update commit index %d current last Index %d 111 \n",
+		//	r.id, r.RaftLog.committed, r.RaftLog.LastIndex())
+		if r.RaftLog.committed > r.RaftLog.LastIndex() {
+			panic("Something wrong")
+		}
 	}
 }
 
@@ -901,7 +909,7 @@ func (r *Raft) handleSnapshot(m pb.Message) {
 	}
 
 	log.Infof("[%d] receives snapshot msg", r.id)
-	fmt.Printf("[%d] receives snapshot from [%d]\n", r.id, m.From)
+	//fmt.Printf("[%d] receives snapshot from [%d]\n", r.id, m.From)
 
 	r.RaftLog.lastIdxOfSnapshot = metaData.Index
 	r.RaftLog.lastTermOfSnapshot = metaData.Term
@@ -940,7 +948,7 @@ func (r *Raft) addNode(id uint64) {
 	r.peers = append(r.peers, id)
 	r.Prs[id] = &Progress{
 		Match: 0,
-		Next: r.RaftLog.LastIndex(),
+		Next:  r.RaftLog.LastIndex(),
 	}
 	r.PendingConfIndex = None
 }
@@ -965,8 +973,10 @@ func (r *Raft) removeNode(id uint64) {
 				}
 			}
 			term, _ := r.RaftLog.Term(idx)
-			if term == r.Term && matched > len(r.peers) / 2 {
+			if term == r.Term && matched > len(r.peers)/2 {
 				r.RaftLog.committed = idx
+				//fmt.Printf("[%d] update commit index %d current last Index %d\n",
+				//	r.id, r.RaftLog.committed, r.RaftLog.LastIndex())
 				newCommit = true
 			}
 		}
@@ -980,7 +990,7 @@ func (r *Raft) removeNode(id uint64) {
 func (r *Raft) removePeer(id uint64) {
 	for idx, peer := range r.peers {
 		if id == peer {
-			r.peers = append(r.peers[:idx], r.peers[idx + 1:]...)
+			r.peers = append(r.peers[:idx], r.peers[idx+1:]...)
 		}
 	}
 }

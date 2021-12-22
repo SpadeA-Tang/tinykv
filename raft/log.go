@@ -15,6 +15,7 @@
 package raft
 
 import (
+	"fmt"
 	pb "github.com/pingcap-incubator/tinykv/proto/pkg/eraftpb"
 )
 
@@ -95,7 +96,7 @@ func (l *RaftLog) realIdx(logicalIdx uint64) int {
 	}
 	realIdx := logicalIdx - l.lastIdxOfSnapshot - 1
 	if realIdx >= uint64(len(l.entries)) {
-		panic("something wrong")
+		panic(fmt.Sprintf("something wrong logicalIdx %d last index %d", logicalIdx, l.LastIndex()))
 	}
 	return int(realIdx)
 }

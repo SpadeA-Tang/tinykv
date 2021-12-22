@@ -728,6 +728,7 @@ func TestOneSplit3B(t *testing.T) {
 			s2: []uint64{5},
 		},
 	)
+	fmt.Println("Filter............")
 
 	// write some data to trigger split
 	for i := 100; i < 200; i++ {
@@ -736,6 +737,8 @@ func TestOneSplit3B(t *testing.T) {
 
 	time.Sleep(200 * time.Millisecond)
 	cluster.ClearFilters()
+
+	fmt.Println("Clear Filter............")
 
 	left := cluster.GetRegion([]byte("k1"))
 	right := cluster.GetRegion([]byte("k2"))

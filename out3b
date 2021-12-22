@@ -1,0 +1,80 @@
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestTransferLeader3B|| true
+=== RUN   TestTransferLeader3B
+--- PASS: TestTransferLeader3B (1.52s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	1.547s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestBasicConfChange3B|| true
+=== RUN   TestBasicConfChange3B
+--- PASS: TestBasicConfChange3B (3.56s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	3.590s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestConfChangeRecover3B|| true
+=== RUN   TestConfChangeRecover3B
+--- PASS: TestConfChangeRecover3B (29.06s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	29.104s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestConfChangeRecoverManyClients3B|| true
+=== RUN   TestConfChangeRecoverManyClients3B
+--- PASS: TestConfChangeRecoverManyClients3B (48.15s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	48.232s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestConfChangeUnreliable3B|| true
+=== RUN   TestConfChangeUnreliable3B
+--- PASS: TestConfChangeUnreliable3B (27.01s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	27.057s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestConfChangeUnreliableRecover3B|| true
+=== RUN   TestConfChangeUnreliableRecover3B
+--- PASS: TestConfChangeUnreliableRecover3B (37.62s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	37.736s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestConfChangeSnapshotUnreliableRecover3B|| true
+=== RUN   TestConfChangeSnapshotUnreliableRecover3B
+--- PASS: TestConfChangeSnapshotUnreliableRecover3B (39.40s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	39.480s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestConfChangeSnapshotUnreliableRecoverConcurrentPartition3B|| true
+=== RUN   TestConfChangeSnapshotUnreliableRecoverConcurrentPartition3B
+CheckRegionEpoch fail cmd_type:ChangePeer change_peer:<change_type:RemoveNode peer:<id:1 store_id:1 > > 
+CheckRegionEpoch fail cmd_type:ChangePeer change_peer:<change_type:RemoveNode peer:<id:1 store_id:1 > > 
+CheckRegionEpoch fail cmd_type:ChangePeer change_peer:<change_type:RemoveNode peer:<id:1 store_id:1 > > 
+--- PASS: TestConfChangeSnapshotUnreliableRecoverConcurrentPartition3B (33.13s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	33.209s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestOneSplit3B|| true
+=== RUN   TestOneSplit3B
+Filter............
+Clear Filter............
+--- PASS: TestOneSplit3B (4.02s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	4.062s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestSplitRecover3B|| true
+=== RUN   TestSplitRecover3B
+--- PASS: TestSplitRecover3B (24.23s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	24.315s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestSplitRecoverManyClients3B|| true
+=== RUN   TestSplitRecoverManyClients3B
+--- PASS: TestSplitRecoverManyClients3B (60.02s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	60.129s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestSplitUnreliable3B|| true
+=== RUN   TestSplitUnreliable3B
+--- PASS: TestSplitUnreliable3B (31.92s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	32.053s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestSplitUnreliableRecover3B|| true
+=== RUN   TestSplitUnreliableRecover3B
+--- PASS: TestSplitUnreliableRecover3B (32.10s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	32.185s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestSplitConfChangeSnapshotUnreliableRecover3B|| true
+=== RUN   TestSplitConfChangeSnapshotUnreliableRecover3B
+--- PASS: TestSplitConfChangeSnapshotUnreliableRecover3B (53.26s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	53.392s
+GO111MODULE=on go test -v --count=1 --parallel=1 -p=1 ./kv/test_raftstore -run ^TestSplitConfChangeSnapshotUnreliableRecoverConcurrentPartition3B|| true
+=== RUN   TestSplitConfChangeSnapshotUnreliableRecoverConcurrentPartition3B
+--- PASS: TestSplitConfChangeSnapshotUnreliableRecoverConcurrentPartition3B (31.55s)
+PASS
+ok  	github.com/pingcap-incubator/tinykv/kv/test_raftstore	31.722s

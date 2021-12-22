@@ -276,11 +276,44 @@ func (c *RaftCluster) handleStoreHeartbeat(stats *schedulerpb.StoreStats) error 
 	return nil
 }
 
+func (c *RaftCluster) updateRegion(region *core.RegionInfo) error {
+	err := c.putRegion(region)
+	if err != nil {
+		return err
+	}
+	for id, _ := range region.GetStoreIds() {
+		c.updateStoreStatusLocked(id)
+	}
+	return nil
+}
+
 // processRegionHeartbeat updates the region information.
 func (c *RaftCluster) processRegionHeartbeat(region *core.RegionInfo) error {
 	// Your Code Here (3C).
-
-	return nil
+	r := c.GetRegion(region.GetID())
+	regionEpoch := region.GetRegionEpoch()
+	if regionEpoch == nil {
+		return nil
+	}
+	if r != nil {
+		rEpoch := r.GetRegionEpoch()
+		if regionEpoch.Version < rEpoch.Version ||
+			regionEpoch.Version < rEpoch.ConfVer {
+			// stale heartbeat
+			return ErrRegionIsStale(region.GetMeta(), r.GetMeta())
+		}
+	} else {
+		overlapRegions := c.ScanRegions(region.GetStartKey(), region.GetEndKey(), 0)
+		for _, r := range overlapRegions {
+			rEpoch := r.GetRegionEpoch()
+			if regionEpoch.Version < rEpoch.Version ||
+				regionEpoch.Version < rEpoch.ConfVer {
+				// stale heartbeat
+				return ErrRegionIsStale(region.GetMeta(), r.GetMeta())
+			}
+		}
+	}
+	return c.updateRegion(region)
 }
 
 func (c *RaftCluster) updateStoreStatusLocked(id uint64) {

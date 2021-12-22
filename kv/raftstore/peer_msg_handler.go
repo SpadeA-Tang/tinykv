@@ -24,7 +24,7 @@ import (
 
 type PeerTick int
 
-const raft_cmd = true
+const raft_cmd = false
 
 func dprint(flag bool, format string, a ...interface{}) {
 	if flag {
@@ -291,6 +291,7 @@ func validSplitKey(key []byte, start []byte, end []byte) bool {
 }
 
 func (d *peerMsgHandler) regionSplit(region *metapb.Region, req *raft_cmdpb.SplitRequest) *metapb.Region {
+	//fmt.Printf("[%d] splits region\n", d.RaftGroup.Raft.GetId())
 	newRegion := metapb.Region{
 		Id:       req.GetNewRegionId(),
 		StartKey: req.SplitKey,
@@ -304,6 +305,7 @@ func (d *peerMsgHandler) regionSplit(region *metapb.Region, req *raft_cmdpb.Spli
 	// todo: check
 	peerIds := req.GetNewPeerIds()
 	peers := make([]*metapb.Peer, len(peerIds))
+
 	if len(peers) == 0 {
 		panic("Something wrong")
 	}
@@ -368,8 +370,7 @@ func (d *peerMsgHandler) handleAdminRequest(
 			case pb.ConfChangeType_AddNode:
 				pr := msg.AdminRequest.ChangePeer.Peer
 				if region.AddPeer(pr) {
-					//log.Infof("[%d] adds node :%d", d.RaftGroup.Raft.GetId(), cc.NodeId)
-					//region.Peers = append(region.Peers, pr)
+					//fmt.Printf("[%d] adds node :%d\n", d.RaftGroup.Raft.GetId(), cc.NodeId)
 					region.RegionEpoch.ConfVer += 1
 					meta.WriteRegionState(wb_tmp, region, rspb.PeerState_Normal)
 					err := wb_tmp.WriteToDB(d.peerStorage.Engines.Kv)
@@ -382,6 +383,7 @@ func (d *peerMsgHandler) handleAdminRequest(
 				}
 			case pb.ConfChangeType_RemoveNode:
 				if region.RemovePeer(cc.NodeId) {
+					//fmt.Printf("[%d] removes node :%d\n", d.RaftGroup.Raft.GetId(), cc.NodeId)
 					if cc.NodeId == d.RaftGroup.Raft.GetId() {
 						d.ctx.storeMeta.setRegion(region, d.peer)
 						d.destroyPeer()
@@ -408,6 +410,9 @@ func (d *peerMsgHandler) handleAdminRequest(
 		if !validSplitKey(splitKey, region.StartKey, region.EndKey) {
 			return wb
 		}
+		if len(region.GetPeers()) != len(msg.AdminRequest.Split.GetNewPeerIds()) {
+			return wb
+		}
 		newRegion := d.regionSplit(region, msg.AdminRequest.Split)
 		newPeer, err := createPeer(d.Meta.StoreId, d.ctx.cfg, d.ctx.regionTaskSender, d.peerStorage.Engines, newRegion)
 		if err != nil {
@@ -421,7 +426,16 @@ func (d *peerMsgHandler) handleAdminRequest(
 			message.Msg{RegionID: newRegion.Id, Type: message.MsgTypeStart}); err != nil {
 			panic(err)
 		}
-		fmt.Println("Split finished")
+		//p := d.popProposal(ent.Term, ent.Index)
+		//if p != nil {
+		//	if p.index != ent.Index {
+		//		panic("Something wrong")
+		//	}
+		//	p.cb.Done()
+		//}
+
+		//fmt.Printf("[%d] Split finished\n", d.RaftGroup.Raft.GetId())
+
 	}
 	return wb
 }
@@ -435,15 +449,21 @@ func (d *peerMsgHandler) popProposal(term uint64, index uint64) *proposal {
 		return nil
 	} else {
 		d.proposals = d.proposals[1:]
-		fmt.Printf("[%d] entry index %d current proposal: ", d.RaftGroup.Raft.GetId(), index)
-		for _, prop := range d.proposals {
-			fmt.Printf(" %d", prop.index)
-		}
+		//fmt.Printf("[%d] entry index %d (term %d) popped p index :%d (term %d) current proposal: ",
+		//	d.RaftGroup.Raft.GetId(), index, term, p.index, p.term)
+		//for _, prop := range d.proposals {
+		//	fmt.Printf(" %d", prop.index)
+		//}
+		//fmt.Println()
 
 		// p.term must be less than or equal to ent.Term due to the logic in popProposal
 		if p.term != term {
 			NotifyStaleReq(d.Term(), p.cb)
 			return nil
+		}
+
+		if p.index != index {
+			return d.popProposal(term, index)
 		}
 
 		return p
@@ -556,11 +576,13 @@ func (d *peerMsgHandler) preProposeRaftCommand(req *raft_cmdpb.RaftCmdRequest) e
 func (d *peerMsgHandler) proposeRequest(msg *raft_cmdpb.RaftCmdRequest, cb *message.Callback) {
 	// sequentially record the callback(proposal) of each RaftCmdRequest
 	//when the request is done, callback can wake the client and give the response
-	d.proposals = append(d.proposals, &proposal{
-		index: d.nextProposalIndex(),
-		term:  d.Term(),
-		cb:    cb,
-	})
+	if cb != nil {
+		d.proposals = append(d.proposals, &proposal{
+			index: d.nextProposalIndex(),
+			term:  d.Term(),
+			cb:    cb,
+		})
+	}
 	//fmt.Printf("[%d] new proposal with index %d current has %d proposals\n",
 	//	d.RaftGroup.Raft.GetId(), d.nextProposalIndex(), len(d.proposals))
 
@@ -613,6 +635,7 @@ func (d *peerMsgHandler) proposeAdminRequest(msg *raft_cmdpb.RaftCmdRequest, cb 
 		cb.AdminDone(raft_cmdpb.AdminCmdType_ChangePeer)
 	case raft_cmdpb.AdminCmdType_Split:
 		d.proposeRequest(msg, cb)
+
 	}
 }
 
@@ -624,21 +647,21 @@ func (d *peerMsgHandler) proposeRaftCommand(msg *raft_cmdpb.RaftCmdRequest, cb *
 	}
 	// Your Code Here (2B).
 	if msg.AdminRequest != nil {
-		fmt.Printf("[%d] propose cmd %v potential next index %d\n",
-			d.RaftGroup.Raft.GetId(), msg.AdminRequest.CmdType, d.nextProposalIndex())
+		//fmt.Printf("[%d] propose cmd %v potential next index %d\n",
+		//	d.RaftGroup.Raft.GetId(), msg.AdminRequest.CmdType, d.nextProposalIndex())
 		d.proposeAdminRequest(msg, cb)
 	} else {
-		key := getKey(msg.Requests[0])
-		fmt.Printf("[%d] propose cmd %v potential next index %d",
-			d.RaftGroup.Raft.GetId(), msg.Requests[0].CmdType, d.nextProposalIndex())
-		if key != nil {
-			fmt.Printf(" with key %v", string(key))
-			if msg.Requests[0].CmdType == raft_cmdpb.CmdType_Put {
-				val := msg.Requests[0].Put.Value
-				fmt.Printf(" with value %v", string(val))
-			}
-		}
-		fmt.Println()
+		//key := getKey(msg.Requests[0])
+		//fmt.Printf("[%d] propose cmd %v potential next index %d",
+		//	d.RaftGroup.Raft.GetId(), msg.Requests[0].CmdType, d.nextProposalIndex())
+		//if key != nil {
+		//	fmt.Printf(" with key %v", string(key))
+		//	if msg.Requests[0].CmdType == raft_cmdpb.CmdType_Put {
+		//		val := msg.Requests[0].Put.Value
+		//		fmt.Printf(" with value %v", string(val))
+		//	}
+		//}
+		//fmt.Println()
 
 		d.proposeRequest(msg, cb)
 	}
